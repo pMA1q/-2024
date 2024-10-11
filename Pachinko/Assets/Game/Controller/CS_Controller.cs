@@ -63,6 +63,7 @@ public class CS_Controller : MonoBehaviour
     {
         mPrevPhese = mNowPhese;
         mNowPhese = _nextPhese;
+        GoNextPhese();
     }
 
     //次のフェーズへ行く
