@@ -6,13 +6,14 @@ public class CS_SphereSpawn : MonoBehaviour
     public GameObject objectToSpawn; // 生成するオブジェクトのプレハブ
     public Transform spawnPoint;     // オブジェクトの生成位置
     public float spawnInterval = 0.6f; // 1秒あたり1.67回生成するため、0.6秒ごとに生成
-    [SerializeField] float forceY;
+    [SerializeField] private float forceY;
 
-
-    Vector3 force = new Vector3(0.0f, forceY, 0.0f);
+    private Vector3 force;
 
     private void Start()
     {
+        // forceYを使用してVector3の力を初期化
+        force = new Vector3(0.0f, forceY, 0.0f);
 
         // コルーチンを開始して、指定の間隔でオブジェクトを生成する
         StartCoroutine(SpawnObjects());
