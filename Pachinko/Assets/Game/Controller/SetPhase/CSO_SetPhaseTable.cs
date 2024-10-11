@@ -1,29 +1,32 @@
+//---------------------------------
+//準備フェーズのテーブル
+//担当者：中島
+//---------------------------------
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MissionTable", menuName = "Table/MissionTable", order = 1)]
-public class CSO_MIssionStatus : ScriptableObject
+[CreateAssetMenu(fileName = "SetPhaseTable", menuName = "Table/SetFhaseTable", order = 1)]
+public class CSO_SetPhaseTable : ScriptableObject
 {
     [Header("ミッション情報")]
-    public List<MissionTable> infomation;
+    public List<SetPhaseTable> infomation;
 
-    
 }
 
 
 [System.Serializable]
 
-public class MissionTable
+public class SetPhaseTable
 {
     [Header("ミッション名")]
     public string name;  // カスタム名を保持する
     [Header("ミッション内容")]
-    public List<Mission> mission;
+    public List<SetPhaseInfomation> mission;
 }
 
 [System.Serializable]
-public class Mission
+public class SetPhaseInfomation
 {
     [Header("演出名")]
     public string name;

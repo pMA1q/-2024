@@ -1,40 +1,37 @@
 //---------------------------------
-//€”õƒtƒF[ƒYi—ß“ƒ
-//’S“–ÒF’†“‡
+//ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½Fï¿½[ï¿½Yï¿½iï¿½ß“ï¿½
+//ï¿½Sï¿½ï¿½ï¿½ÒFï¿½ï¿½ï¿½ï¿½
 //---------------------------------
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Linq;  // LINQ‚ğg‚¤‚½‚ß‚É•K—v
+using System.Linq;  // LINQï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ß‚É•Kï¿½v
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 
 public class CS_SetPheseController : MonoBehaviour
 {
-   
     //[SerializeField]
     //CSO_SetPhaseStatus mProbabilityStatus;
     //List<float> mProbabilities = new List<float>();
 
-    [SerializeField,Header("ƒ~ƒbƒVƒ‡ƒ“î•ñ")]
-    private CSO_MIssionStatus mMissionStatus;
+    [SerializeField,Header("æº–å‚™ãƒ•ã‚§ãƒ¼ã‚ºã®ãƒ†ãƒ¼ãƒ–ãƒ«")]
+    private CSO_SetPhaseTable mMissionStatus;
 
-    [SerializeField, Header("ƒ~ƒbƒVƒ‡ƒ“‘I‘ğƒvƒŒƒnƒu")]
+    [SerializeField, Header("ãƒŸãƒƒã‚·ãƒ§ãƒ³selectã®ãƒ—ãƒ¬ãƒãƒ–")]
     private GameObject mMisstionSelect;
 
-    //‰‰o‚ªI‚í‚Á‚½‚©”Û‚©
-    private bool mPerformanceFinish = true;
+    private int mPrizesNum = 0;//å…¥è³æ•°
 
+    private CS_Controller mBigController;//å¸ä»¤å¡”(å¤§)
 
-    private int mPrizesNum = 0;//“üÜ”
-
-    private CS_Controller mBigController;//i—ß“ƒ‘å
-
- //-----------------------ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰-----------------------
+ //-----------------------ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©-----------------------
     public delegate void Performance(int _performance);
 
-    //‰‰o‚ğ—¬‚·ƒgƒŠƒK[ƒCƒxƒ“ƒg
+    //ç™»éŒ²æ™‚ã«ä½¿ç”¨
     public static event Performance OnPlayPerformance;
  //-------------------------------------------------------------
 
@@ -46,57 +43,64 @@ public class CS_SetPheseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ƒpƒtƒH[ƒ}ƒ“ƒXƒŠƒXƒg‚©‚çŠm—¦‚ğƒRƒs[
+        //ï¿½pï¿½tï¿½Hï¿½[ï¿½}ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½Rï¿½sï¿½[
         //for (int i = 0; i < mProbabilityStatus.performances.Count; i++)
         //{
         //    mProbabilities.Add(mProbabilityStatus.performances[i].value);
-        //    Debug.Log(mProbabilityStatus.performances[i].name + "‚ÌŠm—¦" + mProbabilities[i] + "%");
+        //    Debug.Log(mProbabilityStatus.performances[i].name + "ï¿½ÌŠmï¿½ï¿½" + mProbabilities[i] + "%");
         //}
 
        
 
-        mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//i—ß“ƒi‘åj‚ğæ“¾
-        Instantiate(mMisstionSelect, mMisstionSelect.transform.position, mMisstionSelect.transform.rotation);
+        mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//å¸ä»¤å¡”å¤§ã‚’å–å¾—
+                                                                                        //ãƒŸãƒƒã‚·ãƒ§ãƒ³é¸æŠã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+        GameObject instance = Instantiate(mMisstionSelect, mMisstionSelect.transform.position, mMisstionSelect.transform.rotation);
+        instance.name = mMisstionSelect.name; // (Clone)ãŒä»˜ã‹ãªã„ã‚ˆã†ã«åå‰ã‚’ã‚ªãƒªã‚¸ãƒŠãƒ«ã®åå‰ã«æˆ»ã™
+
+        Debug.Log("mMisstionSelect" + mMisstionSelect.name);
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-        //CheckLottery();
-        //return;
-        //‰‰o‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚È‚çI—¹
-        if (!mPerformanceFinish) { return; }
 
-        //c‚è“üÜ”‚ª0H
+        //CheckLottery();
+      
+
+        //å¤‰å‹•ã§ãã‚‹ã‹ã‚’å–å¾—
+        bool variationStart = mBigController.CanVariationStart();
+        if (!variationStart) { return; }//falseãªã‚‰çµ‚äº†
+
+
+        //å…¥è³æ•°ãŒ3ï¼Ÿ
         if(mPrizesNum == 3)
         {
-            mPrizesNum = 0;//ƒeƒXƒg—p
-            //ƒ~ƒbƒVƒ‡ƒ“‘I‘ğ‚Ìˆ—‚ğ‘‚­
+            //åˆ¥ç‰©ã‚’å‚ç…§ã—ã¦ã„ã‚‹ã®ã§ã‚·ãƒ¼ãƒ³ã‹ã‚‰MissionSelectã‚’è¦‹ã¤ã‘ã¦ã‚µã‚¤ãƒ‰å–å¾—
+            mMisstionSelect = GameObject.Find("MissionSelect");
+            //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒŸãƒƒã‚·ãƒ§ãƒ³ã‚’é¸æŠã™ã‚‹çŠ¶æ…‹ã‚’é–‹å§‹ã™ã‚‹
+            mMisstionSelect.GetComponent<CS_LotMission>().PlaySelectMode();
+            Destroy(this.gameObject);
             return;
         }
 
-
-
-        //•Û—¯‹Ê”‚ª0‚È‚çI—¹
-        //if(mBigController.GetStock() == 0) { return; }
-
-        // ƒTƒuƒXƒNƒ‰ƒCƒuŠm”F‚ÌƒƒOo—Í
+        // ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã¯nullãªã‚‰çµ‚äº†
         if (OnPlayPerformance == null) { return; }
 
-        //•Û—¯‹Ê‚ğg—p
-        //mBigController.UseStock();
+        //ä¿ç•™ç‰ãŒç„¡ã„ãªã‚‰çµ‚äº†
+        if(mBigController.GetStock() == 0) { return; }
 
-        //ƒ~ƒbƒVƒ‡ƒ“’Š‘I
+        //ä¿ç•™ç‰ä½¿ç”¨ï¼ˆå¤‰å‹•é–‹å§‹ï¼‰
+        mBigController.UseStock();
+
+        //æ¼”å‡ºæŠ½é¸
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
-        mPerformanceFinish = false;//‰‰oI—¹ƒtƒ‰ƒO‚ğfalse
 
-        mPrizesNum++;//“üÜ”‚ğ‘‚â‚·
+        mPrizesNum++;//å…¥è³æ•°åŠ ç®—
 
 
         if (OnPlayPerformance != null)
         {
-            //‰‰oŠJnƒgƒŠƒK[‚ğON
+            //ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©å®Ÿè¡Œy
             OnPlayPerformance(randomNumber);
         }
            
@@ -109,47 +113,26 @@ public class CS_SetPheseController : MonoBehaviour
         if (debugCount < 10000)
         {
             //int randomNumber = CS_LotteryFunction.LotPerformance(mProbabilities);
-            //Debug.Log("ƒ‰ƒ“ƒ_ƒ€‚É‘I‚Î‚ê‚½‰‰o: " + mProbabilityStatus.performances[randomNumber].name);
+            //Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½É‘Iï¿½Î‚ê‚½ï¿½ï¿½ï¿½o: " + mProbabilityStatus.performances[randomNumber].name);
             //debugCount++;
 
             //if (debugCount >= 10000)
             //{
-            //    Debug.Log("10000‰ñI—¹");
+            //    Debug.Log("10000ï¿½ï¿½Iï¿½ï¿½");
             //}
         }
 
     }
 
-    //ƒV[ƒ““à‚É‚ ‚éƒIƒuƒWƒFƒNƒg‚©‚çCS_SetPheseController‚ğŒ©‚Â‚¯‚Ä•Ô‚·
-    public static CS_SetPheseController GetCtrl()
-    {
-        //ƒV[ƒ““à‚Ì‘S‚Ä‚ÌGameObject‚ğæ“¾‚µ‚ÄA–¼‘O‚ÉmPrefabName‚ğŠÜ‚ŞƒIƒuƒWƒFƒNƒg‚ğŒŸõ
-        GameObject targetObject = FindObjectsOfType<GameObject>()
-            .FirstOrDefault(obj => obj.name.Contains("SetPhaseCtrl"));
-        if (targetObject != null)
-        {
-            Debug.Log("€”õƒtƒF[ƒYi—ß“ƒ‚ªŒ©‚Â‚©‚Á‚½");
-            return targetObject.GetComponent<CS_SetPheseController>();
-        }
-        return null;
-    }
-
-    //‰‰oI—¹ŠÖ”
-    public void PerformanceFinish()
-    {
-        mPerformanceFinish = true;
-    }
-    
-    //“o˜^‚³‚ê‚Ä‚¢‚éƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰‚ğ‚·‚×‚Äíœ
+   
     public static void RemoveAllHandlers()
     {
-        // OnPlayPerformance ‚É‰½‚©‚µ‚ç‚Ìƒnƒ“ƒhƒ‰‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡
+        // OnPlayPerformanceã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹é–¢æ•°ã‚’æ¶ˆã™
         if (OnPlayPerformance != null)
         {
-            // OnPlayPerformance ‚É“o˜^‚³‚ê‚Ä‚¢‚é‘S‚Ä‚Ìƒnƒ“ƒhƒ‰‚ğæ“¾
+            //ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã‚’å–å¾—
             Delegate[] handlers = OnPlayPerformance.GetInvocationList();
 
-            // ‚·‚×‚Ä‚Ìƒnƒ“ƒhƒ‰‚ğ‰ğœ
             foreach (Delegate handler in handlers)
             {
                 OnPlayPerformance -= (Performance)handler;
@@ -157,5 +140,6 @@ public class CS_SetPheseController : MonoBehaviour
         }
     }
 
-   
+    
+
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6eec1c17790ccb243b46afb3eac8f038, type: 3}
-  m_Name: MissionTable
+  m_Name: SetPhaseTable
   m_EditorClassIdentifier: 
   infomation:
   - name: "\u30B9\u30C6\u30FC\u30BF\u30B9\u30DF\u30C3\u30B7\u30E7\u30F3"

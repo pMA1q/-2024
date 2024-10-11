@@ -34,11 +34,13 @@ public class CS_SetPerformanceFinish : MonoBehaviour
         //指定した秒数待つ
         yield return new WaitForSeconds(mTimer);
 
-        //準備フェーズ司令塔を取得
-        CS_SetPheseController spc = CS_SetPheseController.GetCtrl();
-        if(spc == null) { Debug.LogError("準備フェーズ司令塔が見つからない");}
+        //司令塔を取得して、演出が終了したことを知らせる
+        CS_Controller ctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        ctrl.PerformanceFinish();
+        //CS_SetPheseController spc = CS_SetPheseController.GetCtrl();
+        if(ctrl == null) { Debug.LogError("司令塔が見つからない");}
 
-        spc.PerformanceFinish();
+        //spc.PerformanceFinish();
         Destroy(this);
     }
 }
