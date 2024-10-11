@@ -6,6 +6,7 @@ public class Heso : MonoBehaviour
 {
     private const int TotalValues = 65536;
     private const int WinningValues = 36553;
+    private CS_Controller csController;
 
     readonly int MAX_STOCK = 5;
     public List<int[]> stock = new List<int[]>();
@@ -15,7 +16,18 @@ public class Heso : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // CS_Controllerがアタッチされているオブジェクトを取得
+        GameObject controllerObject = GameObject.Find("CS_ControllerObject");
 
+        // CS_Controllerコンポーネントを取得
+        if (controllerObject != null)
+        {
+            csController = controllerObject.GetComponent<CS_Controller>();
+        }
+        else
+        {
+            Debug.LogError("CS_ControllerObjectが見つかりません！");
+        }
     }
 
     // Update is called once per frame
@@ -43,7 +55,7 @@ public class Heso : MonoBehaviour
             {
                 Debug.Log("ハズレ");
                 // 通常はランダムに生成
-                i = new int[] { Random.Range(1, 9), Random.Range(1, 9), Random.Range(1, 9) };
+                i = new int[] { Random.Range(1, 8), Random.Range(1, 8), Random.Range(1, 8) };
 
                 // リーチ判定 (左右の数字が一致しているかどうか)
                 if (i[0] == i[2])
@@ -57,6 +69,8 @@ public class Heso : MonoBehaviour
 
             // ストックに追加
             stock.Add(i);
+            csController.AddStock();
+            Debug.Log("Stock added. Current stock: " + csController.GetStock());
 
             // 非アクティブなstockObjectをアクティブにする
             foreach (var v in stockObjects)
