@@ -5,15 +5,18 @@ public class RotatingObject : MonoBehaviour
     private Rigidbody rb;
     public GameObject windmill; // Windmillオブジェクト
     public GameObject cylinder; // Cylinderオブジェクト
+    public GameObject cylinder2; // Cylinderオブジェクト
 
     void Start()
     {
         // WindmillとCylinderのColliderを取得
         Collider windmillCollider = windmill.GetComponent<Collider>();
         Collider cylinderCollider = cylinder.GetComponent<Collider>();
+        Collider cylinderCollider2 = cylinder.GetComponent<Collider>();
 
         // 2つのCollider間の衝突を無視する
         Physics.IgnoreCollision(windmillCollider, cylinderCollider);
+        Physics.IgnoreCollision(windmillCollider, cylinderCollider2);
         rb = GetComponent<Rigidbody>();
     }
 

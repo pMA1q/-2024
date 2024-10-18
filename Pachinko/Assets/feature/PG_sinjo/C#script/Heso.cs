@@ -69,7 +69,6 @@ public class Heso : MonoBehaviour
 
             // ストックに追加
             stock.Add(i);
-            csController.AddStock();
             Debug.Log("Stock added. Current stock: " + csController.GetStock());
 
             // 非アクティブなstockObjectをアクティブにする

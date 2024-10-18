@@ -6,7 +6,9 @@ public class CS_SphereSpawn : MonoBehaviour
     public GameObject objectToSpawn; // 生成するオブジェクトのプレハブ
     public Transform spawnPoint;     // オブジェクトの生成位置
     public float spawnInterval = 0.6f; // 1秒あたり1.67回生成するため、0.6秒ごとに生成
-    [SerializeField] private float forceY;
+    [Header("玉の発射速度")]
+    [SerializeField] public float forceY;
+
 
     private Vector3 force;
 
