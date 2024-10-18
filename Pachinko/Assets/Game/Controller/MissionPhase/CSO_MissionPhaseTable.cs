@@ -11,8 +11,6 @@ public class CSO_MissionPhaseTable : ScriptableObject
 {
     [Header("ƒ~ƒbƒVƒ‡ƒ“î•ñ")]
     public List<MissionPhaseInfomation> infomation;
-
-
 }
 
 [System.Serializable]
