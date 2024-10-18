@@ -639,6 +639,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 831471373}
   spawnInterval: 0.6
+  forceY: 0
 --- !u!65 &831471375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1080,6 +1081,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 295858697363015208, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.435475
+      objectReference: {fileID: 0}
+    - target: {fileID: 295858697363015208, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.077786
+      objectReference: {fileID: 0}
+    - target: {fileID: 295858697363015208, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.99685705
+      objectReference: {fileID: 0}
+    - target: {fileID: 295858697363015208, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.07922131
+      objectReference: {fileID: 0}
+    - target: {fileID: 295858697363015208, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 9.087997
+      objectReference: {fileID: 0}
+    - target: {fileID: 402901119493945170, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 1280472144138749109, guid: 3691bf875a7a088489abb884c51c4098,
         type: 3}
       propertyPath: m_Mesh
@@ -1170,6 +1201,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -4.16
       objectReference: {fileID: 0}
+    - target: {fileID: 3578011637423742806, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3959603287718465650, guid: 3691bf875a7a088489abb884c51c4098,
         type: 3}
       propertyPath: mSubCamera
@@ -1209,6 +1245,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089613784987959400, guid: 3691bf875a7a088489abb884c51c4098,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 8648990141049476417, guid: 3691bf875a7a088489abb884c51c4098,
         type: 3}

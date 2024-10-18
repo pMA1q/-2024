@@ -59,9 +59,7 @@ public class CS_LotMission: MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Return))
             {
-                CS_Controller bigctrl =  GameObject.Find("BigController").GetComponent<CS_Controller>();//Ži—ß“ƒ‘å‚ðŽæ“¾
-                bigctrl.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
-                Destroy(this.gameObject);
+                
             }
         }
     }
