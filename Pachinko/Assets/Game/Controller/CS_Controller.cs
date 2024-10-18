@@ -63,6 +63,7 @@ public class CS_Controller : MonoBehaviour
     {
         mPrevPhese = mNowPhese;
         mNowPhese = _nextPhese;
+        GoNextPhese();
     }
 
     //次のフェーズへ行く
@@ -81,7 +82,7 @@ public class CS_Controller : MonoBehaviour
 
     public void UseStock()
     {
-       // mStock--;
+        mStock--;
         mPatternVariationFinish = false;//図柄変動終了フラグをfalse
         mPerformanceFinish = false;//演出終了フラグをfalse
 

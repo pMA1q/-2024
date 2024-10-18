@@ -7,10 +7,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CS_SetPerformanceFinish : MonoBehaviour
+public class CS_PerformanceFinish : MonoBehaviour
 {
     [SerializeField, Header("演出終了までの時間")]
-    private float mTimer = 1f;
+    private float mTimer = 0f;
 
     //終了報告までのタイマー
     public float Timer

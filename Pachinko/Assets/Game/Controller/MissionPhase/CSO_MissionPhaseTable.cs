@@ -11,8 +11,6 @@ public class CSO_MissionPhaseTable : ScriptableObject
 {
     [Header("ミッション情報")]
     public List<MissionPhaseInfomation> infomation;
-
-
 }
 
 [System.Serializable]
@@ -22,11 +20,9 @@ public class MissionPhaseInfomation
     public string name;
     [Header("当落情報")]
     public WIN_LOST win_lost;
-
-    [Header("各ミッションのテクスチャマテリアル")]
-    public Material missionTextureMaterial;
-
-    [Header("演出")]
+    [Header("再抽選有無")]
+    public REPLAY replay;
+    [Header("演出プレハブ")]
     public GameObject performance;
 }
 
@@ -38,4 +34,13 @@ public enum WIN_LOST
     MIDDLE_WIN,//中当たり
     BIG_WIN,//大当たり
     RANDOM//ランダム
+}
+
+//再抽選有無
+public enum REPLAY
+{
+    FALSE = 0,//無
+    TRUE_P1,
+    TRUE_P2
+    
 }

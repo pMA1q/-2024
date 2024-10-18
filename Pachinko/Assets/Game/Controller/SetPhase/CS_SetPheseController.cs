@@ -79,6 +79,7 @@ public class CS_SetPheseController : MonoBehaviour
             mMisstionSelect = GameObject.Find("MissionSelect");
             //プレイヤーがミッションを選択する状態を開始する
             mMisstionSelect.GetComponent<CS_LotMission>().PlaySelectMode();
+            RemoveAllHandlers();
             Destroy(this.gameObject);
             return;
         }
