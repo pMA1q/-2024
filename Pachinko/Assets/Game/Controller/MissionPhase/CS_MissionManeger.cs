@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissionManager : MonoBehaviour
+public class CS_MissionManeger : MonoBehaviour
 {
     public CSO_MissionPhaseTable missionPhaseTable;  // Inspector で設定可能
 
@@ -14,10 +14,28 @@ public class MissionManager : MonoBehaviour
 
     private bool isReplayTriggered = false;  // 再抽選フラグ
 
+    [SerializeField]
+    [Header("0:収集ミッション")]
+    [Header("1:討伐ミッション")]
+    [Header("2:鍛錬ミッション")]
+    private GameObject[] missionPrefab;
+
+    private CS_Controller bigController;//司令塔(大)
+
     void Start()
     {
         // プレイヤーステータス初期化
-        playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
+        //playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
+
+        
+
+        bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
+
+        //ミッションの種類を取得
+        int missionType = (int)bigController.GetComponent<CSO_MissionData>().MissionNumber;
+        //ミッション選択オブジェクトを生成
+        GameObject instance = Instantiate(missionPrefab[missionType], missionPrefab[missionType].transform.position, missionPrefab[missionType].transform.rotation);
+        instance.name = missionPrefab[missionType].name; // (Clone)が付かないように名前をオリジナルの名前に戻す
 
         // ミッションフェーズ開始
         StartMissionPhase();
