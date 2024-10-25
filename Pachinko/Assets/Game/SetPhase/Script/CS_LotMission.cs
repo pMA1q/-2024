@@ -49,21 +49,7 @@ public class CS_LotMission: MonoBehaviour
         Debug.Log("MissionSelect" + this.name);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        bool active = mSetPhaseSelect.activeSelf;
-
-        if (active && mSelectActive)
-        {
-            if(Input.GetKeyDown(KeyCode.Return))
-            {
-                
-            }
-        }
-    }
-
+   
     //ミッション決定
     private void DecisionMission(int _num)
     {
@@ -88,6 +74,7 @@ public class CS_LotMission: MonoBehaviour
         if (mNowMissionSelect == 3)
         {
             mNowMissionSelect = 0;
+            CS_SetPheseController.OnPlayPerformance -= DecisionMission;
         }
 
         //演出終了用スクリプトを生成
@@ -103,7 +90,7 @@ public class CS_LotMission: MonoBehaviour
     {
         //選択オブジェクトをtrue
         mSelectActive = true;
-        Debug.Log("mSelectActiveあああ" + mSelectActive + "name" + this.gameObject.name);
+       // Debug.Log("mSelectActiveあああ" + mSelectActive + "name" + this.gameObject.name);
 
         bool active = mSetPhaseSelect.activeSelf;
 

@@ -17,11 +17,23 @@ public class CS_DrawPattern : MonoBehaviour
 
     Coroutine mCoroutine = null;  // コルーチンの実行を管理する変数
 
-   
+    private CS_NumberSprite mNumberSprite;  
+
     // 初期値設定
     int[] mValue = new int[3] { 1, 1, 1 };
 
-   
+
+
+    private void Start()
+    {
+        mNumberSprite = this.GetComponent<CS_NumberSprite>();
+        if (mNumberSprite == null)
+        {
+            Debug.LogError("CS_NumberSpriteをアタッチしてください");
+        }
+
+    }
+
     public void StartPatternVariation()
     {
         //Debug.Log("図柄変動");
@@ -58,6 +70,7 @@ public class CS_DrawPattern : MonoBehaviour
             yield return null;
         }
 
+
        
 
         // stockのサイズを再度確認してから値を表示
@@ -65,11 +78,13 @@ public class CS_DrawPattern : MonoBehaviour
         {
             //0.2秒ごとに左、右、中の順番で止める
             DecisionNumber(mTexts[0], mHeso.stock[0][0]);
+           // mNumberSprite.SetNumber(mHeso.stock[0][0],CS_NumberSprite.Pattern.LEFT);
             yield return StartCoroutine(UpdateWithIncNumber(0.2f, 1,3)); // 0.2秒間、IncNumberを回す
-            DecisionNumber(mTexts[1], mHeso.stock[0][2]);
+           // DecisionNumber(mTexts[1], mHeso.stock[0][2]);
+            mNumberSprite.SetNumber(mHeso.stock[0][2], CS_NumberSprite.Pattern.RIGHT);
             yield return StartCoroutine(UpdateWithIncNumber(0.2f, 2, 3));
-            DecisionNumber(mTexts[2], mHeso.stock[0][1]);
-           
+           // DecisionNumber(mTexts[2], mHeso.stock[0][1]);
+            mNumberSprite.SetNumber(mHeso.stock[0][0], CS_NumberSprite.Pattern.CENTER);
         }
         else
         {
@@ -112,6 +127,9 @@ public class CS_DrawPattern : MonoBehaviour
         
        
         mTexts[_val].text = mValue[_val].ToString();
+
+        //画像の変更
+      //  mNumberSprite.SetNumber(mValue[_val], (CS_NumberSprite.Pattern)_val);
 
         if (mValue[_val] % 2 == 0)
         {
