@@ -90,7 +90,11 @@ public class CS_Controller : MonoBehaviour
         mDrawNum.StartPatternVariation();//
     }
 
-    
+    public bool GetJuckpot()
+    {
+        int[] nowstock = mHeso.stock[0];
+        return nowstock.Length == 3 && nowstock[0] == nowstock[1] && nowstock[1] == nowstock[2];
+    }
 
     //•Û—¯‹Ê‚ðŽæ“¾‚·‚é
     public int GetStock()

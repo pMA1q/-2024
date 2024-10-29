@@ -1,6 +1,6 @@
 //---------------------------------
-//�����t�F�[�Y�i�ߓ�
-//�S���ҁF����
+//準備フェーズ司令塔
+//担当者：中島
 //---------------------------------
 
 using System.Collections;
@@ -23,6 +23,9 @@ public class CS_SetPheseController : MonoBehaviour
 
     [SerializeField, Header("ミッションselectのプレハブ")]
     private GameObject mMisstionSelect;
+
+    [SerializeField, Header("キュイン(テスト用なので後で消す)")]
+    private GameObject mCuinSE;
 
     private int mPrizesNum = 0;//入賞数
 
@@ -93,6 +96,9 @@ public class CS_SetPheseController : MonoBehaviour
         //保留玉使用（変動開始）
         mBigController.UseStock();
 
+        //テスト
+        if (mBigController.GetJuckpot()) { Instantiate(mCuinSE, mCuinSE.transform.position, mCuinSE.transform.rotation); }
+
         //演出抽選
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
 
@@ -101,7 +107,7 @@ public class CS_SetPheseController : MonoBehaviour
 
         if (OnPlayPerformance != null)
         {
-            //イベントハンドラ実行y
+            //イベントハンドラ実行
             OnPlayPerformance(randomNumber);
         }
            

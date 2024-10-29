@@ -62,6 +62,7 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Lottery.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseStatus.cs" />
@@ -80,14 +81,18 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Practice\CS_TestSpawnPerfomance.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\Game\Controller\CS_GameManeger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+    <Compile Include="Assets\Game\Core\CS_NumberSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Game\SetPhase\Script\CS_LotMission.cs" />
@@ -98,6 +103,7 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Practice\CS_Spawner_Y.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Game\Core\Prefab\CS_BoundBall.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
@@ -119,11 +125,7 @@
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
-    <Compile Include="Assets\Game\Core\CS_NumberSprite.cs" />
-    <Compile Include="Assets\Game\Controller\CS_GameManeger.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionData.cs" />
+    <Compile Include="Assets\Game\Sound\CS_SoundEffectDestroy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
