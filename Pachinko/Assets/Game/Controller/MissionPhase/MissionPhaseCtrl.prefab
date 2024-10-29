@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2851348079688611413}
-  - component: {fileID: 2851348079688611410}
+  - component: {fileID: 764806092190018832}
   m_Layer: 0
-  m_Name: SetPhaseCtrl
+  m_Name: MissionPhaseCtrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2851348079688611410
+--- !u!114 &764806092190018832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2851348079688611415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a9aaefb79f3244c9d3fb801b0df60a, type: 3}
+  m_Script: {fileID: 11500000, guid: 913d7998d12427642a9ea17813a09afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMissionStatus: {fileID: 11400000, guid: 04e48b602a5ae0140b6879cdccfa3f8e, type: 2}
-  mMisstionSelect: {fileID: 5303551311178200054, guid: 00908f137ac06ff4abdb97fafe746a48,
-    type: 3}
-  mCuinSE: {fileID: 301587773258209136, guid: c5a78b4ebca1794488d8c9359df48ded, type: 3}
+  missionPhaseTable: {fileID: 0}
+  missionPrefab:
+  - {fileID: 7144967071714588428, guid: 53ef7e740dbeba440b53952e7b52b73c, type: 3}
+  - {fileID: 7144967071714588428, guid: 4dce92416ee72d14e865195c8c79404c, type: 3}
+  - {fileID: 7144967071714588428, guid: 3a30a79242f2fa94680983003149f6b8, type: 3}

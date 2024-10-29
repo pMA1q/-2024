@@ -180,7 +180,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6521168315771184472}
-  m_Text: "\u8A0E\u4F10\u30DF\u30C3\u30B7\u30E7\u30F3"
+  m_Text: "\u53CE\u96C6\u30DF\u30C3\u30B7\u30E7\u30F3"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7144967071714588424}
   m_Layer: 0
-  m_Name: SubjugationMission
+  m_Name: CollectMission
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

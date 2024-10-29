@@ -29,7 +29,7 @@ public class CS_NumberSprite : MonoBehaviour
         int pattern = (int)_pattern;
         if (_number >= 0 && _number <= 9)
         {
-            mNumberImage[pattern].sprite = mNumberSprite[_number];  // 該当する数字の画像をセット
+            mNumberImage[pattern].sprite = mNumberSprite[_number-1];  // 該当する数字の画像をセット
         }
         else
         {
