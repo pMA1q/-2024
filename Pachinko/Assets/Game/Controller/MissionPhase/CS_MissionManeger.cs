@@ -23,6 +23,8 @@ public class CS_MissionManeger : MonoBehaviour
 
     private CS_Controller bigController;//司令塔(大)
 
+    private int mPrizesNum = 0;//入賞数
+
     //-----------------------イベントハンドラ-----------------------
     public delegate void Performance(int _performance);
 
@@ -47,6 +49,45 @@ public class CS_MissionManeger : MonoBehaviour
 
         // ミッションフェーズ開始
         StartMissionPhase();
+    }
+
+    private void Update()
+    {
+        //変動できるかを取得
+        bool variationStart = bigController.CanVariationStart();
+        if (!variationStart) { return; }//falseなら終了
+
+
+        //入賞数が20？
+        if (mPrizesNum == 20)
+        {
+           
+            //RemoveAllHandlers();
+            //Destroy(this.gameObject);
+            return;
+        }
+
+        // イベントハンドラはnullなら終了
+        if (OnPlayPerformance == null) { return; }
+
+        //保留玉が無いなら終了
+        if (bigController.GetStock() == 0) { return; }
+
+        //保留玉使用（変動開始）
+        bigController.UseStock();
+
+       
+        //演出抽選
+        int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
+
+        mPrizesNum++;//入賞数加算
+
+
+        if (OnPlayPerformance != null)
+        {
+            //イベントハンドラ実行
+            OnPlayPerformance(randomNumber);
+        }
     }
 
     // ミッションフェーズの進行
