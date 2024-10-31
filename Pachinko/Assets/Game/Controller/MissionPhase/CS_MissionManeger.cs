@@ -25,6 +25,15 @@ public class CS_MissionManeger : MonoBehaviour
 
     private int mPrizesNum = 0;//入賞数
 
+    //private int mGameCount = 0;
+
+    //private List<int> mMissionIndexes;
+    //private List<MissionPhaseInfomation> mMissionInfomations;
+
+    CS_SM_Unique mSM_Unique;
+    private int[] mUniquePF;
+    int mNextMissionNum = -1;
+
     //-----------------------イベントハンドラ-----------------------
     public delegate void Performance(int _performance);
 
@@ -35,9 +44,7 @@ public class CS_MissionManeger : MonoBehaviour
     void Start()
     {
         // プレイヤーステータス初期化
-        //playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
-
-        
+        playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10, initialPreemptiveAttack: 30, initialRevaival: 20);
 
         bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
 
@@ -47,8 +54,57 @@ public class CS_MissionManeger : MonoBehaviour
         GameObject instance = Instantiate(missionPrefab[missionType], missionPrefab[missionType].transform.position, missionPrefab[missionType].transform.rotation);
         instance.name = missionPrefab[missionType].name; // (Clone)が付かないように名前をオリジナルの名前に戻す
 
-        // ミッションフェーズ開始
-        StartMissionPhase();
+        mSM_Unique = this.gameObject.AddComponent<CS_SM_Unique>();
+        mUniquePF = new int[] { 11, 12 };//ユニークな演出の項目番号配列
+
+        // ミッションフェーズのシナリオを決める
+       // StartMissionPhase();
+    }
+
+    //ミッションシナリオ抽せん
+    public void StartMissionPhase()
+    {
+        int max = 20;
+        for (int i = 0; i < max; i++)  // 20回転の抽選処理
+        {
+            int missionIndex = UnityEngine.Random.Range(0, missionPhaseTable.infomation.Count - 1);  // リストからミッションを抽選
+            MissionPhaseInfomation mission = missionPhaseTable.infomation[missionIndex];
+
+            //mMissionInfomations.Add(mission);//ミッション情報リスト追加
+            //mMissionIndexes.Add(missionIndex);//ミッション項目番号リストに追加
+
+            Debug.Log($"抽選されたミッション: {mission.name}");
+
+            {
+                //// ミッションの当落情報に応じた処理
+                //if (mission.win_lost == WIN_LOST.LOST)
+                //{
+                //    Debug.Log("ミッション失敗: 敵に逃げられる");
+                //    HandleEscapeMission(mission);
+                //}
+                //else if (mission.win_lost == WIN_LOST.SMALL_WIN)
+                //{
+                //    Debug.Log("小当たりミッション発生");
+                //    HandleDefeatMission(mission);
+                //}
+                //else
+                //{
+                //    Debug.Log($"当たりミッション: {mission.name}");
+                //    CallMission(mission);
+                //}
+
+                //// 20回転目の処理
+                //if (i == 19 && isReplayTriggered)
+                //{
+                //    Debug.Log("20回転目に再抽選発生。再抽選後、ボスフェーズへ移行。");
+                //    // 再抽選後、ボスフェーズへ移行
+                //    HandleReplay();
+                //    break;
+                //}
+            }
+        }
+
+       
     }
 
     private void Update()
@@ -57,12 +113,11 @@ public class CS_MissionManeger : MonoBehaviour
         bool variationStart = bigController.CanVariationStart();
         if (!variationStart) { return; }//falseなら終了
 
-
         //入賞数が20？
         if (mPrizesNum == 20)
         {
-           
-            //RemoveAllHandlers();
+            RemoveAllHandlers();
+            StartBossPhase();
             //Destroy(this.gameObject);
             return;
         }
@@ -76,58 +131,61 @@ public class CS_MissionManeger : MonoBehaviour
         //保留玉使用（変動開始）
         bigController.UseStock();
 
-       
         //演出抽選
-        int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
+        //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
+        int randomNumber = CS_LotteryFunction.LotNormalInt(16);//一旦項目17までに限定する
+
+        if(mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
 
         mPrizesNum++;//入賞数加算
 
+        //イベントハンドラ実行
+        OnPlayPerformance(randomNumber);
 
-        if (OnPlayPerformance != null)
-        {
-            //イベントハンドラ実行
-            OnPlayPerformance(randomNumber);
-        }
+        //再抽選確認。当選すれば次のミッション決定
+        mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
+
+        DesisionNextMissionNum(randomNumber);//ユニークなミッションならば次のミッション番号を決める
     }
 
-    // ミッションフェーズの進行
-    public void StartMissionPhase()
+    //現在のミッションがユニークな場合
+    private void DesisionNextMissionNum(int _nowMissionNum)
     {
-        for (int i = 0; i < 20; i++)  // 20回転の抽選処理
+        int next = -1;
+        for (int i = 0; i < mUniquePF.Length; i++)
         {
-            int missionIndex = UnityEngine.Random.Range(0, missionPhaseTable.infomation.Count);  // リストからミッションを抽選
-            MissionPhaseInfomation mission = missionPhaseTable.infomation[missionIndex];
-
-            Debug.Log($"抽選されたミッション: {mission.name}");
-
-            // ミッションの当落情報に応じた処理
-            if (mission.win_lost == WIN_LOST.LOST)
+            if (_nowMissionNum == mUniquePF[i] - 1)
             {
-                Debug.Log("ミッション失敗: 敵に逃げられる");
-                HandleEscapeMission(mission);
-            }
-            else if (mission.win_lost == WIN_LOST.SMALL_WIN)
-            {
-                Debug.Log("小当たりミッション発生");
-                HandleDefeatMission(mission);
-            }
-            else
-            {
-                Debug.Log($"当たりミッション: {mission.name}");
-                CallMission(mission);
-            }
-
-            // 20回転目の処理
-            if (i == 19 && isReplayTriggered)
-            {
-                Debug.Log("20回転目に再抽選発生。再抽選後、ボスフェーズへ移行。");
-                // 再抽選後、ボスフェーズへ移行
-                HandleReplay();
-                break;
+                next = mSM_Unique.DesisionMission(i);
+                mNextMissionNum = next;
             }
         }
     }
+    
+    //再抽選確認
+    private int CheckReLottely(MissionPhaseInfomation mission)
+    {
+        //再抽選無しなら終了
+        if(mission.replay == REPLAY.FALSE) { return -1; }
 
+        //先制攻撃の確率に設定
+        float percentage = playerStatus.preemptiveAttack;
+       
+        //P2なら復活値にする
+        if(mission.replay == REPLAY.TRUE_P2){ percentage = playerStatus.revaival; }
+
+        float randomValue = UnityEngine.Random.Range(0f, 100f);
+        if (randomValue < percentage)
+        {
+            //当たったら追加する
+            MissionPhaseInfomation replayMission = missionPhaseTable.infomation[mission.replayNum - 1];
+            //mMissionIndexes.Add(mission.replayNum - 1);
+            //mMissionInfomations.Add(replayMission);
+            return mission.replayNum - 1;
+        }
+        else { mNextMissionNum = -1; }
+        return -1;
+    }
 
     // 敵に逃げられる場合の処理
     private void HandleEscapeMission(MissionPhaseInfomation mission)
@@ -138,10 +196,7 @@ public class CS_MissionManeger : MonoBehaviour
             // 再抽選やステータスの変更処理を実行
             isReplayTriggered = true;  // 再抽選フラグを設定
         }
-        else
-        {
-            Debug.Log("再抽選なし");
-        }
+        
     }
 
     // 敵と戦って負ける場合の処理

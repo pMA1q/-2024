@@ -13,24 +13,29 @@ public class PlayerStatus
     public int attack;
     public int defense;
 
+    public float preemptiveAttack;  //先制攻撃
+    public float revaival;          //復活
+
     // バックアップ用のステータス
     private PlayerStatus backupStatus;
 
     // コンストラクタ（初期値を設定）
-    public PlayerStatus(int initialHp, int initialAttack, int initialDefense)
+    public PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
     {
         hp = initialHp;
         attack = initialAttack;
         defense = initialDefense;
+        preemptiveAttack = initialPreemptiveAttack;
+        revaival = initialRevaival;
 
         // 初期ステータスをバックアップとして保存
-        BackupInitialStatus();
+       // BackupInitialStatus();
     }
 
     // 初期ステータスをバックアップとして保持
     private void BackupInitialStatus()
     {
-        backupStatus = new PlayerStatus(hp, attack, defense);
+        backupStatus = new PlayerStatus(hp, attack, defense, preemptiveAttack, revaival);
     }
 
     // ゲーム終了時、ステータスを初期状態に戻す

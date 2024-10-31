@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // 初期ステータス設定
-        playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
+       // playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
 
         // ゲーム開始
         StartGame();
