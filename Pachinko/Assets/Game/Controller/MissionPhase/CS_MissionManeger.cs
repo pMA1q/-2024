@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CS_MissionManeger : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class CS_MissionManeger : MonoBehaviour
     private GameObject[] missionPrefab;
 
     private CS_Controller bigController;//i—ß“ƒ(‘å)
+
+    //-----------------------ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰-----------------------
+    public delegate void Performance(int _performance);
+
+    //“o˜^‚Ég—p
+    public static event Performance OnPlayPerformance;
+    //-------------------------------------------------------------
 
     void Start()
     {
@@ -139,4 +147,21 @@ public class CS_MissionManeger : MonoBehaviour
             Instantiate(mission.performance, Vector3.zero, Quaternion.identity);
         }
     }
+
+    public static void RemoveAllHandlers()
+    {
+        // OnPlayPerformance‚É“o˜^‚³‚ê‚Ä‚¢‚éŠÖ”‚ğÁ‚·
+        if (OnPlayPerformance != null)
+        {
+            //“o˜^‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ğæ“¾
+            Delegate[] handlers = OnPlayPerformance.GetInvocationList();
+
+            foreach (Delegate handler in handlers)
+            {
+                OnPlayPerformance -= (Performance)handler;
+            }
+        }
+    }
+
+
 }
