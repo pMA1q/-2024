@@ -10,13 +10,13 @@ public class CS_PerformanceHandler : MonoBehaviour
     void OnEnable()
     {
         // イベントにメソッドを登録
-        SubjugSastinMission.OnPlayPerformance += HandlePerformance;
+        //SubjugSastinMission.OnPlayPerformance += HandlePerformance;
     }
 
     void OnDisable()
     {
         // イベントからメソッドを解除（メモリリーク防止）
-        SubjugSastinMission.OnPlayPerformance -= HandlePerformance;
+        //SubjugSastinMission.OnPlayPerformance -= HandlePerformance;
     }
 
     // イベントが発生したときに実行されるメソッド
