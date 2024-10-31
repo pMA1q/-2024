@@ -71,9 +71,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Game\Controller\CS_BossPhaseController.cs" />
+    <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
-    <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CS_SetPheseController.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_SM_Unique.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\Bokudayo\Script\P_RanAway.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
@@ -132,8 +133,6 @@
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
-    <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_SM_Unique.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
