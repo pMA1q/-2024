@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus
+public class CSO_PlayerStatus
 {
     // ステータスのプロパティ
     public int hp;
@@ -14,10 +14,10 @@ public class PlayerStatus
     public int defense;
 
     // バックアップ用のステータス
-    private PlayerStatus backupStatus;
+    private CSO_PlayerStatus backupStatus;
 
     // コンストラクタ（初期値を設定）
-    public PlayerStatus(int initialHp, int initialAttack, int initialDefense)
+    public CSO_PlayerStatus(int initialHp, int initialAttack, int initialDefense)
     {
         hp = initialHp;
         attack = initialAttack;
@@ -30,7 +30,7 @@ public class PlayerStatus
     // 初期ステータスをバックアップとして保持
     private void BackupInitialStatus()
     {
-        backupStatus = new PlayerStatus(hp, attack, defense);
+        backupStatus = new CSO_PlayerStatus(hp, attack, defense);
     }
 
     // ゲーム終了時、ステータスを初期状態に戻す

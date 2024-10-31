@@ -6,14 +6,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class CS_GameManager : MonoBehaviour
 {
-    private PlayerStatus playerStatus;
+    private CSO_PlayerStatus playerStatus;
 
     void Start()
     {
         // 初期ステータス設定
-        playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
+        playerStatus = new CSO_PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
 
         // ゲーム開始
         StartGame();

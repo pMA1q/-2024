@@ -82,6 +82,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionData.cs" />
+    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_SphereSpawn.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\ChangeText.cs" />
     <Compile Include="Assets\Bokudayo\Script\ExplosionSample.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_PerformanceHandler.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseTable.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -126,7 +128,7 @@
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
-    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
+    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SubjugSastinMission.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
