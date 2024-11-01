@@ -107,7 +107,7 @@ public class CS_MissionManeger : MonoBehaviour
         if (mPrizesNum == 20)
         {
             RemoveAllHandlers();
-            StartBossPhase();
+            //StartBossPhase();
             //Destroy(this.gameObject);
             return;
         }

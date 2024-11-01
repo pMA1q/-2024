@@ -4,6 +4,16 @@ public class CS_SMPerfSpawner : MonoBehaviour
 {
     public CSO_MissionPhaseTable missionPhaseTable; // スクリプタブルオブジェクトの参照
 
+    private void Start()
+    {
+        CS_MissionManeger.OnPlayPerformance += CS_MissionManeger_OnPlayPerformance;
+    }
+
+    private void CS_MissionManeger_OnPlayPerformance(int _performance)
+    {
+        throw new System.NotImplementedException();
+    }
+
     // ミッションIDに基づいて演出プレハブを取得するメソッド
     public GameObject GetMissionPerformancePrefab(int missionId)
     {
@@ -25,5 +35,11 @@ public class CS_SMPerfSpawner : MonoBehaviour
         {
             Instantiate(performancePrefab, transform.position, Quaternion.identity);
         }
+        else
+        {
+            Debug.Log("演出ID" + missionId);
+            Instantiate(missionPhaseTable.infomation[3].performance, transform.position, Quaternion.identity);
+        }
     }
 }
+
