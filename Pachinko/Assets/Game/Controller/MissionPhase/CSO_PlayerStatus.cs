@@ -20,7 +20,7 @@ public class CSO_PlayerStatus
     private CSO_PlayerStatus backupStatus;
 
     // �R���X�g���N�^�i�����l��ݒ�j
-    public PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
+    public CSO_PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
     {
         hp = initialHp;
         attack = initialAttack;
@@ -35,7 +35,7 @@ public class CSO_PlayerStatus
     // �����X�e�[�^�X��o�b�N�A�b�v�Ƃ��ĕێ�
     private void BackupInitialStatus()
     {
-        backupStatus = new PlayerStatus(hp, attack, defense, preemptiveAttack, revaival);
+        backupStatus = new CSO_PlayerStatus(hp, attack, defense, preemptiveAttack, revaival);
     }
 
     // �Q�[���I�����A�X�e�[�^�X�������Ԃɖ߂�
