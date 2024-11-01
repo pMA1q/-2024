@@ -119,6 +119,7 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_SphereSpawn.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\ChangeText.cs" />
     <Compile Include="Assets\Bokudayo\Script\ExplosionSample.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_PerformanceHandler.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseTable.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Game\Controller\CS_Controller.cs" />
     <Compile Include="Assets\Game\Core\CS_RenderTexture.cs" />
+    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SubjugSastinMission.cs" />
     <Compile Include="Assets\Game\SetPhase\Script\CS_PerformanceFinish.cs" />
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

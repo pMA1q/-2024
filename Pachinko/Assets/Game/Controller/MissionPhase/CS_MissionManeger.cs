@@ -11,7 +11,7 @@ public class CS_MissionManeger : MonoBehaviour
 {
     public CSO_MissionPhaseTable missionPhaseTable;  // Inspector で設定可能
 
-    private PlayerStatus playerStatus;
+    private CSO_PlayerStatus playerStatus;
 
     private bool isReplayTriggered = false;  // 再抽選フラグ
 

@@ -1,25 +1,25 @@
 //---------------------------------
-//ƒvƒŒƒCƒ„[‚ÌƒXƒe[ƒ^ƒXƒNƒ‰ƒX
-//’S“–ÒF–ìè
+//ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½Nï¿½ï¿½ï¿½X
+//ï¿½Sï¿½ï¿½ï¿½ÒFï¿½ï¿½ï¿½
 //---------------------------------
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus
+public class CSO_PlayerStatus
 {
-    // ƒXƒe[ƒ^ƒX‚ÌƒvƒƒpƒeƒB
+    // ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½Ìƒvï¿½ï¿½ï¿½pï¿½eï¿½B
     public int hp;
     public int attack;
     public int defense;
 
-    public float preemptiveAttack;  //æ§UŒ‚
-    public float revaival;          //•œŠˆ
+    public float preemptiveAttack;  //ï¿½æ§ï¿½Uï¿½ï¿½
+    public float revaival;          //ï¿½ï¿½ï¿½ï¿½
 
-    // ƒoƒbƒNƒAƒbƒv—p‚ÌƒXƒe[ƒ^ƒX
-    private PlayerStatus backupStatus;
+    // ï¿½oï¿½bï¿½Nï¿½Aï¿½bï¿½vï¿½pï¿½ÌƒXï¿½eï¿½[ï¿½^ï¿½X
+    private CSO_PlayerStatus backupStatus;
 
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^i‰Šú’l‚ğİ’èj
+    // ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½İ’ï¿½j
     public PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
     {
         hp = initialHp;
@@ -28,17 +28,17 @@ public class PlayerStatus
         preemptiveAttack = initialPreemptiveAttack;
         revaival = initialRevaival;
 
-        // ‰ŠúƒXƒe[ƒ^ƒX‚ğƒoƒbƒNƒAƒbƒv‚Æ‚µ‚Ä•Û‘¶
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½oï¿½bï¿½Nï¿½Aï¿½bï¿½vï¿½Æ‚ï¿½ï¿½Ä•Û‘ï¿½
        // BackupInitialStatus();
     }
 
-    // ‰ŠúƒXƒe[ƒ^ƒX‚ğƒoƒbƒNƒAƒbƒv‚Æ‚µ‚Ä•Û
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½oï¿½bï¿½Nï¿½Aï¿½bï¿½vï¿½Æ‚ï¿½ï¿½Ä•Ûï¿½
     private void BackupInitialStatus()
     {
         backupStatus = new PlayerStatus(hp, attack, defense, preemptiveAttack, revaival);
     }
 
-    // ƒQ[ƒ€I—¹AƒXƒe[ƒ^ƒX‚ğ‰Šúó‘Ô‚É–ß‚·
+    // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚É–ß‚ï¿½
     public void ResetStatus()
     {
         hp = backupStatus.hp;
@@ -46,13 +46,13 @@ public class PlayerStatus
         defense = backupStatus.defense;
     }
 
-    // ’Š‘IŒ‹‰Ê‚ÉŠî‚Ã‚¢‚ÄƒXƒe[ƒ^ƒX‚ğXV
+    // ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½Ê‚ÉŠï¿½Ã‚ï¿½ï¿½ÄƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½Xï¿½V
     public void UpdateStatus(int hpChange, int attackChange, int defenseChange)
     {
         hp += hpChange;
         attack += attackChange;
         defense += defenseChange;
 
-        Debug.Log($"ƒXƒe[ƒ^ƒXXV: HP {hp}, UŒ‚—Í {attack}, –hŒä—Í {defense}");
+        Debug.Log($"ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½Xï¿½V: HP {hp}, ï¿½Uï¿½ï¿½ï¿½ï¿½ {attack}, ï¿½hï¿½ï¿½ï¿½ {defense}");
     }
 }

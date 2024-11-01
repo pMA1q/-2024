@@ -203,6 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7144967071714588424}
+  - component: {fileID: 5210065295273007803}
   m_Layer: 0
   m_Name: SubjugationMission
   m_TagString: Untagged
@@ -227,3 +228,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5210065295273007803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144967071714588428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bec618523e0910439f7f990a668ed36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionPhaseTable: {fileID: 11400000, guid: 4891666031a17cd4897a48e5e94e522a, type: 2}
