@@ -1,6 +1,6 @@
 //---------------------------------
-//ƒQ[ƒ€ƒ}ƒl[ƒWƒƒ[
-//’S“–ÒF–ìè
+//ï¿½Qï¿½[ï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[
+//ï¿½Sï¿½ï¿½ï¿½ÒFï¿½ï¿½ï¿½
 //---------------------------------
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +12,14 @@ public class CS_GameManager : MonoBehaviour
 
     void Start()
     {
-        // ‰ŠúƒXƒe[ƒ^ƒXİ’è
-        playerStatus = new CSO_PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½İ’ï¿½
+       // playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10);
 
-        // ƒQ[ƒ€ŠJn
+        // ï¿½Qï¿½[ï¿½ï¿½ï¿½Jï¿½n
         StartGame();
     }
 
-    // ƒQ[ƒ€is
+    // ï¿½Qï¿½[ï¿½ï¿½ï¿½iï¿½s
     public void StartGame()
     {
         PreparePhase();
@@ -28,21 +28,21 @@ public class CS_GameManager : MonoBehaviour
         EndGame();
     }
 
-    // €”õƒtƒF[ƒYiƒAƒCƒeƒ€ûWA’b˜BA“¢”°ƒ~ƒbƒVƒ‡ƒ“‚Ì‘I‘ğj
+    // ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½Fï¿½[ï¿½Yï¿½iï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Aï¿½bï¿½Bï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ì‘Iï¿½ï¿½j
     private void PreparePhase()
     {
-        Debug.Log("€”õƒtƒF[ƒYŠJn");
-        // ƒ~ƒbƒVƒ‡ƒ“‘I‘ğ‚È‚Ç‚Ìˆ—
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½Fï¿½[ï¿½Yï¿½Jï¿½n");
+        // ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½È‚Ç‚Ìï¿½ï¿½ï¿½
     }
 
-    // ƒ~ƒbƒVƒ‡ƒ“ƒtƒF[ƒYi20+ƒ¿‰ñ“]‚ÅƒXƒe[ƒ^ƒX‚ğ•ÛEXVj
+    // ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½tï¿½Fï¿½[ï¿½Yï¿½i20+ï¿½ï¿½ï¿½ï¿½]ï¿½ÅƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½Ûï¿½ï¿½Eï¿½Xï¿½Vï¿½j
     private void MissionPhase()
     {
-        Debug.Log("ƒ~ƒbƒVƒ‡ƒ“ƒtƒF[ƒYŠJn");
+        Debug.Log("ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½tï¿½Fï¿½[ï¿½Yï¿½Jï¿½n");
 
-        for (int i = 0; i < 20; i++)  // ‰ñ“]”‚É‰‚¶‚ÄƒXƒe[ƒ^ƒX‚ğXV
+        for (int i = 0; i < 20; i++)  // ï¿½ï¿½]ï¿½ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ÄƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½Xï¿½V
         {
-            // ƒ‰ƒ“ƒ_ƒ€‚ÉƒXƒe[ƒ^ƒX‚ğXVi—á‚Æ‚µ‚Äƒ‰ƒ“ƒ_ƒ€‚È”’l‚ğg—pj
+            // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ÉƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½Xï¿½Vï¿½iï¿½ï¿½Æ‚ï¿½ï¿½Äƒï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Èï¿½ï¿½lï¿½ï¿½gï¿½pï¿½j
             int randomHpChange = UnityEngine.Random.Range(-5, 10);
             int randomAttackChange = UnityEngine.Random.Range(0, 5);
             int randomDefenseChange = UnityEngine.Random.Range(0, 3);
@@ -51,23 +51,23 @@ public class CS_GameManager : MonoBehaviour
         }
     }
 
-    // ƒ{ƒXƒtƒF[ƒYiŠm—§‚µ‚½ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚µ‚Ä’Š‘Ij
+    // ï¿½{ï¿½Xï¿½tï¿½Fï¿½[ï¿½Yï¿½iï¿½mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½Ä’ï¿½ï¿½Iï¿½j
     private void BossPhase()
     {
-        Debug.Log("ƒ{ƒXƒtƒF[ƒYŠJn");
+        Debug.Log("ï¿½{ï¿½Xï¿½tï¿½Fï¿½[ï¿½Yï¿½Jï¿½n");
 
-        for (int i = 0; i < 10; i++)  // ƒ{ƒXƒtƒF[ƒY‚Å‚Ì10‰ñ“]
+        for (int i = 0; i < 10; i++)  // ï¿½{ï¿½Xï¿½tï¿½Fï¿½[ï¿½Yï¿½Å‚ï¿½10ï¿½ï¿½]
         {
-            // ƒ‰ƒ“ƒ_ƒ€‚Åƒ{ƒX‚Æí‚¤Œ‹‰Ê
+            // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Åƒ{ï¿½Xï¿½Æí‚¤ï¿½ï¿½ï¿½ï¿½
             int randomBossAttack = UnityEngine.Random.Range(0, 15);
             playerStatus.UpdateStatus(-randomBossAttack, 0, 0);
         }
     }
 
-    // ƒQ[ƒ€I—¹‚Ìˆ—iƒŠƒZƒbƒgj
+    // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½j
     private void EndGame()
     {
-        Debug.Log("ƒQ[ƒ€I—¹AƒXƒe[ƒ^ƒX‚ğƒŠƒZƒbƒg‚·‚é");
-        playerStatus.ResetStatus();  // ƒXƒe[ƒ^ƒX‚ğ‰Šúó‘Ô‚É–ß‚·
+        Debug.Log("ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½Aï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ï¿½");
+        playerStatus.ResetStatus();  // ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚É–ß‚ï¿½
     }
 }

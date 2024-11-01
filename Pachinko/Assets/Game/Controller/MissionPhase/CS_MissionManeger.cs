@@ -8,97 +8,210 @@ public class CS_MissionManeger : MonoBehaviour
     private bool isReplayTriggered = false;
 
     [SerializeField]
-    [Header("0:ûWƒ~ƒbƒVƒ‡ƒ“")]
-    [Header("1:“¢”°ƒ~ƒbƒVƒ‡ƒ“")]
-    [Header("2:’b˜Bƒ~ƒbƒVƒ‡ƒ“")]
+    [Header("0:ï¿½ï¿½ï¿½Wï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½")]
+    [Header("1:ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½")]
+    [Header("2:ï¿½bï¿½Bï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½")]
     private GameObject[] missionPrefab;
 
     private CS_Controller bigController;
 
-    //-----------------------ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰-----------------------
+    private int mPrizesNum = 0;//ï¿½ï¿½ï¿½Üï¿½
+
+    //private int mGameCount = 0;
+
+    //private List<int> mMissionIndexes;
+    //private List<MissionPhaseInfomation> mMissionInfomations;
+
+    CS_SM_Unique mSM_Unique;
+    private int[] mUniquePF;
+    int mNextMissionNum = -1;
+
+    //-----------------------ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½nï¿½ï¿½ï¿½hï¿½ï¿½-----------------------
     public delegate void Performance(int _performance);
 
-    public static event Performance OnPlayPerformance;  // ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰
+    public static event Performance OnPlayPerformance;  // ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½nï¿½ï¿½ï¿½hï¿½ï¿½
     //-------------------------------------------------------------
 
     void Start()
     {
-        bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        playerStatus = new CSO_PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10, initialPreemptiveAttack: 30, initialRevaival: 20);
+
+        bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//ï¿½iï¿½ß“ï¿½ï¿½ï¿½ï¿½æ“¾
+
+        //ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½Ş‚ï¿½æ“¾
         int missionType = (int)bigController.GetComponent<CSO_MissionData>().MissionNumber;
         GameObject instance = Instantiate(missionPrefab[missionType], missionPrefab[missionType].transform.position, missionPrefab[missionType].transform.rotation);
         instance.name = missionPrefab[missionType].name;
 
-        StartMissionPhase();
+        mSM_Unique = this.gameObject.AddComponent<CS_SM_Unique>();
+        mUniquePF = new int[] { 11, 12 };//ï¿½ï¿½ï¿½jï¿½[ï¿½Nï¿½È‰ï¿½ï¿½oï¿½Ìï¿½ï¿½Ú”Ôï¿½ï¿½zï¿½ï¿½
+
+        // ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½tï¿½Fï¿½[ï¿½Yï¿½ÌƒVï¿½iï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ß‚ï¿½
+       // StartMissionPhase();
     }
 
+    //ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Vï¿½iï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void StartMissionPhase()
     {
-        for (int i = 0; i < 20; i++)
+        int max = 20;
+        for (int i = 0; i < max; i++)  // 20ï¿½ï¿½]ï¿½Ì’ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½
         {
-            int missionIndex = UnityEngine.Random.Range(0, missionPhaseTable.infomation.Count);
+            int missionIndex = UnityEngine.Random.Range(0, missionPhaseTable.infomation.Count - 1);  // ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ğ’Š‘I
             MissionPhaseInfomation mission = missionPhaseTable.infomation[missionIndex];
 
-            Debug.Log($"’Š‘I‚³‚ê‚½ƒ~ƒbƒVƒ‡ƒ“: {mission.name}");
+            //mMissionInfomations.Add(mission);//ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñƒŠƒXï¿½gï¿½Ç‰ï¿½
+            //mMissionIndexes.Add(missionIndex);//ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú”Ôï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½É’Ç‰ï¿½
 
-            if (mission.win_lost == WIN_LOST.LOST)
-            {
-                HandleEscapeMission(mission);
-            }
-            else if (mission.win_lost == WIN_LOST.SMALL_WIN)
-            {
-                HandleDefeatMission(mission);
-            }
-            else
-            {
-                CallMission(mission, missionIndex); // ƒCƒ“ƒfƒbƒNƒX‚ğ“n‚·
-            }
+            Debug.Log($"ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ê‚½ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½: {mission.name}");
 
-            if (i == 19 && isReplayTriggered)
             {
-                HandleReplay();
-                break;
+                //// ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                //if (mission.win_lost == WIN_LOST.LOST)
+                //{
+                //    Debug.Log("ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s: ï¿½Gï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                //    HandleEscapeMission(mission);
+                //}
+                //else if (mission.win_lost == WIN_LOST.SMALL_WIN)
+                //{
+                //    Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                //    HandleDefeatMission(mission);
+                //}
+                //else
+                //{
+                //    Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½: {mission.name}");
+                //    CallMission(mission);
+                //}
+
+                //// 20ï¿½ï¿½]ï¿½Ú‚Ìï¿½ï¿½ï¿½
+                //if (i == 19 && isReplayTriggered)
+                //{
+                //    Debug.Log("20ï¿½ï¿½]ï¿½Ú‚ÉÄ’ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½Ä’ï¿½ï¿½Iï¿½ï¿½Aï¿½{ï¿½Xï¿½tï¿½Fï¿½[ï¿½Yï¿½ÖˆÚsï¿½B");
+                //    // ï¿½Ä’ï¿½ï¿½Iï¿½ï¿½Aï¿½{ï¿½Xï¿½tï¿½Fï¿½[ï¿½Yï¿½ÖˆÚs
+                //    HandleReplay();
+                //    break;
+                //}
+            }
+        }
+
+       
+    }
+
+    private void Update()
+    {
+        //ï¿½Ï“ï¿½ï¿½Å‚ï¿½ï¿½é‚©ï¿½ï¿½æ“¾
+        bool variationStart = bigController.CanVariationStart();
+        if (!variationStart) { return; }//falseï¿½È‚ï¿½Iï¿½ï¿½
+
+        //ï¿½ï¿½ï¿½Üï¿½ï¿½ï¿½20ï¿½H
+        if (mPrizesNum == 20)
+        {
+            RemoveAllHandlers();
+            StartBossPhase();
+            //Destroy(this.gameObject);
+            return;
+        }
+
+        // ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½nullï¿½È‚ï¿½Iï¿½ï¿½
+        if (OnPlayPerformance == null) { return; }
+
+        //ï¿½Û—ï¿½ï¿½Ê‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½Iï¿½ï¿½
+        if (bigController.GetStock() == 0) { return; }
+
+        //ï¿½Û—ï¿½ï¿½Êgï¿½pï¿½iï¿½Ï“ï¿½ï¿½Jï¿½nï¿½j
+        bigController.UseStock();
+
+        //ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½I
+        //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
+        int randomNumber = CS_LotteryFunction.LotNormalInt(16);//ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½17ï¿½Ü‚Å‚ÉŒï¿½ï¿½è‚·ï¿½ï¿½
+
+        if(mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
+
+        mPrizesNum++;//ï¿½ï¿½ï¿½Üï¿½ï¿½ï¿½ï¿½Z
+
+        //ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½s
+        OnPlayPerformance(randomNumber);
+
+        //ï¿½Ä’ï¿½ï¿½Iï¿½mï¿½Fï¿½Bï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½Îï¿½ï¿½Ìƒ~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
+
+        DesisionNextMissionNum(randomNumber);//ï¿½ï¿½ï¿½jï¿½[ï¿½Nï¿½Èƒ~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½Îï¿½ï¿½Ìƒ~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½
+    }
+
+    //ï¿½ï¿½ï¿½İ‚Ìƒ~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½[ï¿½Nï¿½Èê‡
+    private void DesisionNextMissionNum(int _nowMissionNum)
+    {
+        int next = -1;
+        for (int i = 0; i < mUniquePF.Length; i++)
+        {
+            if (_nowMissionNum == mUniquePF[i] - 1)
+            {
+                next = mSM_Unique.DesisionMission(i);
+                mNextMissionNum = next;
             }
         }
     }
+    
+    //ï¿½Ä’ï¿½ï¿½Iï¿½mï¿½F
+    private int CheckReLottely(MissionPhaseInfomation mission)
+    {
+        //ï¿½Ä’ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½Iï¿½ï¿½
+        if(mission.replay == REPLAY.FALSE) { return -1; }
 
-    // “G‚É“¦‚°‚ç‚ê‚éê‡‚Ìˆ—
+        //ï¿½æ§ï¿½Uï¿½ï¿½ï¿½ÌŠmï¿½ï¿½ï¿½Éİ’ï¿½
+        float percentage = playerStatus.preemptiveAttack;
+       
+        //P2ï¿½È‚ç•œï¿½ï¿½ï¿½lï¿½É‚ï¿½ï¿½ï¿½
+        if(mission.replay == REPLAY.TRUE_P2){ percentage = playerStatus.revaival; }
+
+        float randomValue = UnityEngine.Random.Range(0f, 100f);
+        if (randomValue < percentage)
+        {
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
+            MissionPhaseInfomation replayMission = missionPhaseTable.infomation[mission.replayNum - 1];
+            //mMissionIndexes.Add(mission.replayNum - 1);
+            //mMissionInfomations.Add(replayMission);
+            return mission.replayNum - 1;
+        }
+        else { mNextMissionNum = -1; }
+        return -1;
+    }
+
+    // ï¿½Gï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Ìï¿½ï¿½ï¿½
     private void HandleEscapeMission(MissionPhaseInfomation mission)
     {
         if (mission.replay == REPLAY.TRUE_P1 || mission.replay == REPLAY.TRUE_P2)
         {
-            Debug.Log("Ä’Š‘I‚ª”­¶‚µ‚Ü‚µ‚½");
+            Debug.Log("ï¿½Ä’ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½");
             isReplayTriggered = true;
         }
-        else
-        {
-            Debug.Log("Ä’Š‘I‚È‚µ");
-        }
+        
     }
 
-    // “G‚Æí‚Á‚Ä•‰‚¯‚éê‡‚Ìˆ—
+    // ï¿½Gï¿½Æï¿½ï¿½ï¿½Ä•ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Ìï¿½ï¿½ï¿½
     private void HandleDefeatMission(MissionPhaseInfomation mission)
     {
         if (mission.replay == REPLAY.TRUE_P1 || mission.replay == REPLAY.TRUE_P2)
         {
-            Debug.Log("•œŠˆ‰Â”Û‚ÌÄ’Š‘I”­¶");
-            isReplayTriggered = true;  // Ä’Š‘Iƒtƒ‰ƒO‚ğİ’è
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Â”Û‚ÌÄ’ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½");
+            isReplayTriggered = true;  // ï¿½Ä’ï¿½ï¿½Iï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½İ’ï¿½
         }
         else
         {
-            Debug.Log("Ä’Š‘I‚È‚µ");
+            Debug.Log("ï¿½Ä’ï¿½ï¿½Iï¿½È‚ï¿½");
         }
     }
 
 
-    // Ä’Š‘IŒã‚Ìˆ—
+    // ï¿½Ä’ï¿½ï¿½Iï¿½ï¿½Ìï¿½ï¿½ï¿½
     private void HandleReplay()
     {
-        Debug.Log("Ä’Š‘IÀs’†EEE");
+        Debug.Log("ï¿½Ä’ï¿½ï¿½Iï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Eï¿½Eï¿½E");
 
-        // •K—v‚ÈÄ’Š‘Iˆ—‚ğ‚±‚±‚É’Ç‰Á
-        // —á: ƒXƒe[ƒ^ƒX•ÏXAƒŠƒvƒŒƒC—pƒf[ƒ^‚Ìİ’è‚È‚Ç
+        // ï¿½Kï¿½vï¿½ÈÄ’ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É’Ç‰ï¿½
+        // ï¿½ï¿½: ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ÏXï¿½Aï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½pï¿½fï¿½[ï¿½^ï¿½Ìİ’ï¿½È‚ï¿½
 
-        // Ä’Š‘IŒã‚Éƒ{ƒXƒtƒF[ƒY‚ÖˆÚs
+        // ï¿½Ä’ï¿½ï¿½Iï¿½ï¿½Éƒ{ï¿½Xï¿½tï¿½Fï¿½[ï¿½Yï¿½ÖˆÚs
         // StartBossPhase();
 
 
@@ -106,13 +219,13 @@ public class CS_MissionManeger : MonoBehaviour
 
     private void CallMission(MissionPhaseInfomation mission, int missionIndex)
     {
-        Debug.Log($"ƒ~ƒbƒVƒ‡ƒ“Às: {mission.name}");
+        Debug.Log($"ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s: {mission.name}");
         playerStatus.UpdateStatus(hpChange: 5, attackChange: 2, defenseChange: 1);
 
         if (mission.performance != null)
         {
             Instantiate(mission.performance, Vector3.zero, Quaternion.identity);
-            OnPlayPerformance?.Invoke(missionIndex);  // ƒCƒxƒ“ƒgƒgƒŠƒK[
+            OnPlayPerformance?.Invoke(missionIndex);  // ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½gï¿½ï¿½ï¿½Kï¿½[
         }
     }
 

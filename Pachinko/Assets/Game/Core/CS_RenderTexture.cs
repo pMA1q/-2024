@@ -13,9 +13,13 @@ public class CS_RenderTexture : MonoBehaviour
 
     private Renderer mRenderer;
 
+    private Vector3 mDefaultScale;
+
     // Start is called before the first frame update
     void Start()
     {
+        mDefaultScale = this.transform.localScale;
+
         mRenderer = GetComponent<Renderer>();
 
         //カメラのアスペクト比を取得
@@ -38,10 +42,9 @@ public class CS_RenderTexture : MonoBehaviour
     void Update()
     {
         
-        //RenderTexture rTexture = new RenderTexture(Screen.width, Screen.height, 24);
-        //mSubCamera.targetTexture = rTexture;
-
         //マテリアルとしてオブジェクトに投影
         mRenderer.material.mainTexture = mSubCamera.targetTexture;
+
+        this.transform.localScale = mDefaultScale;
     }
 }
