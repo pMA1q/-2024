@@ -142,6 +142,9 @@ public class CS_MissionManeger : MonoBehaviour
         //イベントハンドラ実行
         OnPlayPerformance(randomNumber);
 
+        string name = missionPhaseTable.infomation[randomNumber].name;
+        Debug.Log("演出番号" + name);
+
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
 

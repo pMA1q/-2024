@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913d7998d12427642a9ea17813a09afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionPhaseTable: {fileID: 0}
+  missionPhaseTable: {fileID: 11400000, guid: 4891666031a17cd4897a48e5e94e522a, type: 2}
   missionPrefab:
   - {fileID: 7144967071714588428, guid: 53ef7e740dbeba440b53952e7b52b73c, type: 3}
   - {fileID: 7144967071714588428, guid: 4dce92416ee72d14e865195c8c79404c, type: 3}
