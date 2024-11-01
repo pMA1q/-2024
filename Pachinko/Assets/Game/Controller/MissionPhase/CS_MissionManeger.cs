@@ -132,6 +132,9 @@ public class CS_MissionManeger : MonoBehaviour
         //�C�x���g�n���h�����s
         OnPlayPerformance(randomNumber);
 
+        string name = missionPhaseTable.infomation[randomNumber].name;
+        Debug.Log("���o�ԍ�" + name);
+
         //�Ē��I�m�F�B���I����Ύ��̃~�b�V��������
         mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
 
