@@ -22,7 +22,7 @@ public class CS_Spawner_Y : MonoBehaviour
     void SpawnPerformance(int _num)
     {
         //ƒvƒŒƒnƒu¶¬
-        Instantiate(status.performances[_num].performancePrefab, transform.position, transform.rotation);
+        //Instantiate(status.performances[_num].performancePrefab, transform.position, transform.rotation);
     }
 
 }
