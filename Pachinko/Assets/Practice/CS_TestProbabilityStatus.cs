@@ -7,7 +7,7 @@ using UnityEngine;
 public class CS_TestProbabilityStatus : ScriptableObject
 {
 
-    [SerializeField,Header("演出名と出現確率を入力")]
-    public List<ProbabilityEntry> performances; 
+//    [SerializeField,Header("演出名と出現確率を入力")]
+//    public List<ProbabilityEntry> performances; 
 }
 

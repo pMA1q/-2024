@@ -44,7 +44,7 @@ public class CS_MissionManeger : MonoBehaviour
     void Start()
     {
         // プレイヤーステータス初期化
-        playerStatus = new PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10, initialPreemptiveAttack: 30, initialRevaival: 20);
+        playerStatus = new CSO_PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10, initialPreemptiveAttack: 30, initialRevaival: 20);
 
         bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
 
@@ -141,6 +141,9 @@ public class CS_MissionManeger : MonoBehaviour
 
         //イベントハンドラ実行
         OnPlayPerformance(randomNumber);
+
+        string name = missionPhaseTable.infomation[randomNumber].name;
+        Debug.Log("演出番号" + name);
 
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);

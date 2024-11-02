@@ -1,6 +1,6 @@
 //---------------------------------
-//�v���C���[�̃X�e�[�^�X�N���X
-//�S���ҁF���
+//プレイヤーのステータスクラス
+//担当者：野崎
 //---------------------------------
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class CSO_PlayerStatus
 {
-    // �X�e�[�^�X�̃v���p�e�B
+    // ステータスのプロパティ
     public int hp;
     public int attack;
     public int defense;
@@ -16,11 +16,11 @@ public class CSO_PlayerStatus
     public float preemptiveAttack;  //�搧�U��
     public float revaival;          //����
 
-    // �o�b�N�A�b�v�p�̃X�e�[�^�X
+    // バックアップ用のステータス
     private CSO_PlayerStatus backupStatus;
 
-    // �R���X�g���N�^�i�����l��ݒ�j
-    public PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
+    // コンストラクタ（初期値を設定）
+    public CSO_PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
     {
         hp = initialHp;
         attack = initialAttack;
@@ -28,17 +28,23 @@ public class CSO_PlayerStatus
         preemptiveAttack = initialPreemptiveAttack;
         revaival = initialRevaival;
 
-        // �����X�e�[�^�X��o�b�N�A�b�v�Ƃ��ĕۑ�
-       // BackupInitialStatus();
+        // 初期ステータスをバックアップとして保存
+        BackupInitialStatus();
     }
 
-    // �����X�e�[�^�X��o�b�N�A�b�v�Ƃ��ĕێ�
+    //バックアップ用コンストラクタ
+    public CSO_PlayerStatus(CSO_PlayerStatus _backUp)
+    {
+        backupStatus = _backUp;
+    }
+
+    // 初期ステータスをバックアップとして保持
     private void BackupInitialStatus()
     {
-        backupStatus = new PlayerStatus(hp, attack, defense, preemptiveAttack, revaival);
+        backupStatus = new CSO_PlayerStatus(this);
     }
 
-    // �Q�[���I�����A�X�e�[�^�X�������Ԃɖ߂�
+    // ゲーム終了時、ステータスを初期状態に戻す
     public void ResetStatus()
     {
         hp = backupStatus.hp;
@@ -46,13 +52,13 @@ public class CSO_PlayerStatus
         defense = backupStatus.defense;
     }
 
-    // ���I���ʂɊ�Â��ăX�e�[�^�X��X�V
+    // 抽選結果に基づいてステータスを更新
     public void UpdateStatus(int hpChange, int attackChange, int defenseChange)
     {
         hp += hpChange;
         attack += attackChange;
         defense += defenseChange;
 
-        Debug.Log($"�X�e�[�^�X�X�V: HP {hp}, �U���� {attack}, �h��� {defense}");
+        Debug.Log($"ステータス更新: HP {hp}, 攻撃力 {attack}, 防御力 {defense}");
     }
 }
