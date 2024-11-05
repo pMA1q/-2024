@@ -29,6 +29,9 @@ public class CS_Controller : MonoBehaviour
     [SerializeField, Header("図柄表示")]
     private CS_DrawPattern mDrawNum;
 
+    [SerializeField, Header("図柄表示")]
+    private CS_NumberRailController mDrawNum2;
+
     private PACHINKO_PHESE mNowPhese = PACHINKO_PHESE.SET;//現在のフェーズ
     private PACHINKO_PHESE mPrevPhese = PACHINKO_PHESE.SET;//前ののフェーズ
 
@@ -87,7 +90,15 @@ public class CS_Controller : MonoBehaviour
         mPerformanceFinish = false;//演出終了フラグをfalse
 
         //Debug.Log("図柄:" + mHeso.stock[0][0] + "," + mHeso.stock[0][1] + "," + mHeso.stock[0][2] + ",");
-        mDrawNum.StartPatternVariation();//
+        if(mDrawNum != null) {  mDrawNum.StartPatternVariation();}
+        if(mDrawNum2 != null) {  mDrawNum2.StartPattenRail();}
+
+       
+    }
+
+    public int[] GetPatterns()
+    {
+        return mHeso.stock[0];
     }
 
     public bool GetJuckpot()
@@ -113,11 +124,14 @@ public class CS_Controller : MonoBehaviour
     public void PatternVariationFinish()
     {
         mPatternVariationFinish = true;
+        mHeso.DisableStock();//ストックを削除
+        mHeso.stock.RemoveAt(0);//ストックリストの０番目を削除
     }
 
     //変動が開始できるか
     public bool CanVariationStart()
     {
+        if(GetStock() <= 0) { return false; }
         return mPatternVariationFinish && mPerformanceFinish;
     }
 }

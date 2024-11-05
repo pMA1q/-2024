@@ -9,37 +9,43 @@ public class CS_NumberRail : MonoBehaviour
     private RectTransform mStopPosition;
     [SerializeField, Header("下のポジション")]
     private RectTransform mBottom;
-    [SerializeField, Header("0から順に1の図柄から入れる")]
+    [SerializeField, Header("0から順に1の図柄から入れる(右は9から)")]
     private GameObject[] mNumberPatterns = new GameObject[9];
 
-    [SerializeField, Header("流れるスピード")]
-    private float mSpeed = 300;
-    [SerializeField, Header("流れるスピード（停止開始時）")]
-    private float mStopStartSpeed = 2000;
+    [SerializeField, Header("0から順に1の図柄から入れる(右は9から)")]
+    private bool isInversion = false;
+
+    [SerializeField, Header("パネルオブジェクト")]
+    private RectTransform mPanelRect;
+
+    private float mSpeed = 10000;//流れるスピード
+
+    private float mStopStartSpeed = 2000;//停止開始時のスピード
 
     private float mInterval = 420;//間隔
-
-    private float mVariationSecond = 8f;
 
     private bool isVariation = false;
 
     private bool isStopStart = false;
 
-    private int mStopNumber = 2;
+    private int mStopNumber = 1;
+
+    private float mNowAlpha = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartVariation();   
+        for (int i = 0; i < 9; i++)
+        {
+            RectTransform rTrans = mNumberPatterns[i].GetComponent<RectTransform>();
+            CheckOutsidePanel(i, rTrans);//パネル外なら透明にする
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if(!isVariation) { return; }
-
-        //テスト
-        if (Input.GetKeyDown(KeyCode.Return)) { StopStart(); }
 
         float moveSpeed = mSpeed;
         if (isStopStart) { moveSpeed = mStopStartSpeed; }
@@ -60,15 +66,33 @@ public class CS_NumberRail : MonoBehaviour
             rTrans.localPosition = newPos;
 
             CheckOverBottom(i, rTrans);
+            CheckOutsidePanel(i, rTrans);//パネル外なら透明にする
         }
 
         //図柄の停止が開始されているなら停止処理開始
         if (isStopStart) { StopPatterns(); }
     }
 
+    //パネル外に出たらAlpha値を0にする
+    private void CheckOutsidePanel(int _index, RectTransform _rTrans)
+    {
+        // RectTransformUtilityでPanelの範囲内か確認
+        bool isInside = RectTransformUtility.RectangleContainsScreenPoint(mPanelRect, _rTrans.position, null);
+
+        // 範囲外ならAlphaを0に、範囲内なら1に設定
+        Image img = mNumberPatterns[_index].GetComponent<Image>();
+        if (img != null)
+        {
+            img.color = new Color(1, 1, 1, isInside ? mNowAlpha : 0.0f);
+        }
+    }
+
     private void StopPatterns()
     {
         int stopPattern = mStopNumber - 1;//止まる図柄
+
+        //反転フラグがあるなら停止番号と逆の番号にアクセスできるように設定
+        if(isInversion){ stopPattern = 9 - stopPattern - 1; }
 
         //止まる図柄のポジション取得
         RectTransform stopPatternRec = mNumberPatterns[stopPattern].GetComponent<RectTransform>();
@@ -84,6 +108,7 @@ public class CS_NumberRail : MonoBehaviour
                 Vector3 newPos = rTrans.localPosition;
                 newPos.y += offset;
                 rTrans.localPosition = newPos;
+                CheckOutsidePanel(i, rTrans);//パネル外なら透明にする
             }
 
             //このレールの変動をストップさせる
@@ -94,9 +119,10 @@ public class CS_NumberRail : MonoBehaviour
     }
 
     //図柄の停止を開始
-    public void StopStart()
+    public void StopStart(int _stopNum)
     {
-        ArrangePatterns();
+        mStopNumber = _stopNum;
+        ArrangePatterns(5);
         isStopStart = true;
     }
 
@@ -119,11 +145,7 @@ public class CS_NumberRail : MonoBehaviour
             _rRtrans.localPosition = newPos;
         }
     }
-    //変動の時間をセット(秒)
-    public void SetVariationSecond(float _second)
-    {
-        mVariationSecond = _second;
-    }
+
 
     //レールの回転スタート
     public void StartVariation()
@@ -131,16 +153,29 @@ public class CS_NumberRail : MonoBehaviour
         StartCoroutine(StartVal());
     }
 
+    //アルファ値を変える
+    public void ChangeAlpha(float _alpha)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            RectTransform rTrans = mNumberPatterns[i].GetComponent<RectTransform>();
+            mNumberPatterns[i].GetComponent<Image>().color = new Color(1, 1, 1, _alpha);
+            CheckOutsidePanel(i, rTrans);//パネル外なら透明にする
+        }
+        mNowAlpha = _alpha;
+    }
+
     private IEnumerator StartVal()
     {
         //図柄を少し上げる
-        float up = 100;
+        float up = 50;
         for(int i = 0; i < 9; i++)
         {
             RectTransform rectTransform = mNumberPatterns[i].GetComponent<RectTransform>();
             Vector3 numberPos = rectTransform.localPosition;
-            numberPos.y += 50;
+            numberPos.y += up;
             rectTransform.localPosition = numberPos;
+            CheckOutsidePanel(i, rectTransform);//パネル外なら透明にする
         }
         yield return new WaitForSeconds(1f);
 
@@ -148,10 +183,15 @@ public class CS_NumberRail : MonoBehaviour
         isVariation = true;
     }
 
-    private void ArrangePatterns()
+    //図柄の整列
+    private void ArrangePatterns(int _bottomNum)
     {
         //num - 4 のインデックスを計算し、範囲外の場合に補正
-        int startIdx = mStopNumber - 5;
+        int startIdx = mStopNumber - _bottomNum;
+        if (isInversion)
+        {
+            startIdx = 9 - mStopNumber - (_bottomNum-1);
+        }
         if (startIdx < 0)
         {
             startIdx += mNumberPatterns.Length; // 負のインデックスを配列の後ろからに補正
@@ -173,6 +213,7 @@ public class CS_NumberRail : MonoBehaviour
             newPos.y += mInterval;
             RectTransform rectTransform = mNumberPatterns[index].GetComponent<RectTransform>();
             rectTransform.localPosition = newPos;
+            CheckOutsidePanel(i, rectTransform);//パネル外なら透明にする
         }
     }
 }
