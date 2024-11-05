@@ -63,6 +63,7 @@
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -76,7 +77,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CS_SetPheseController.cs" />
-    <Compile Include="Assets\Game\Core\CS_DrawPattern.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_DrawPattern.cs" />
     <Compile Include="Assets\Practice\CS_TestProbabilityStatus.cs" />
     <Compile Include="Assets\Bokudayo\Script\ChangeColor.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
@@ -97,7 +98,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Game\Controller\CS_GameManeger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Game\Core\CS_NumberSprite.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_NumberSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Bokudayo\Script\ColorTransfer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Game\Core\CS_Windmill.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_Windmill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Practice\CS_Spawner_Y.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_NumberRail.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\RotatingObject.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_SphereSpawn.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\ChangeText.cs" />
@@ -129,12 +131,14 @@
     <Compile Include="Assets\Game\Sound\CS_SoundEffectDestroy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Game\Controller\CS_Controller.cs" />
-    <Compile Include="Assets\Game\Core\CS_RenderTexture.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_RenderTexture.cs" />
     <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SubjugSastinMission.cs" />
     <Compile Include="Assets\Game\SetPhase\Script\CS_PerformanceFinish.cs" />
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_SetPsitionPerfPos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
