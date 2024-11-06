@@ -24,7 +24,7 @@ public class CS_Controller : MonoBehaviour
     List<GameObject> mCtrls = new List<GameObject>();
 
     [SerializeField, Header("ヘソ")]
-    private Heso mHeso;
+    private CS_Stock mHeso;
 
     [SerializeField, Header("図柄表示")]
     private CS_DrawPattern mDrawNum;
@@ -40,7 +40,7 @@ public class CS_Controller : MonoBehaviour
     private bool mPatternVariationFinish = true;//図柄変動終了フラグ
     private bool mPerformanceFinish = true;//演出終了フラグ
 
-    
+    private int[] mPattern = new int[3];//図柄
 
     // Start is called before the first frame update
     void Start()
@@ -89,28 +89,28 @@ public class CS_Controller : MonoBehaviour
         mPatternVariationFinish = false;//図柄変動終了フラグをfalse
         mPerformanceFinish = false;//演出終了フラグをfalse
 
+        mPattern = CS_LotteryFunction.PatternLottery(); 
         //Debug.Log("図柄:" + mHeso.stock[0][0] + "," + mHeso.stock[0][1] + "," + mHeso.stock[0][2] + ",");
         if(mDrawNum != null) {  mDrawNum.StartPatternVariation();}
         if(mDrawNum2 != null) {  mDrawNum2.StartPattenRail();}
 
-       
     }
 
     public int[] GetPatterns()
     {
-        return mHeso.stock[0];
+        return mPattern;
     }
 
     public bool GetJuckpot()
     {
-        int[] nowstock = mHeso.stock[0];
+        int[] nowstock = mPattern;
         return nowstock.Length == 3 && nowstock[0] == nowstock[1] && nowstock[1] == nowstock[2];
     }
 
     //保留玉を取得する
     public int GetStock()
     {
-        mStock = mHeso.stock.Count;
+        mStock = mHeso.Count;
         return mStock;
     }
 
@@ -125,7 +125,6 @@ public class CS_Controller : MonoBehaviour
     {
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除
-        mHeso.stock.RemoveAt(0);//ストックリストの０番目を削除
     }
 
     //変動が開始できるか
