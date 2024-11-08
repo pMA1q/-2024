@@ -46,7 +46,6 @@ public class CS_LotMission: MonoBehaviour
         mTextureMaterials.Add(mItemMission);
 
         CS_SetPheseController.OnPlayPerformance += DecisionMission;
-        Debug.Log("MissionSelect" + this.name);
     }
 
    

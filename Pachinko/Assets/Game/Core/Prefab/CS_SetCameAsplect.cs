@@ -9,11 +9,26 @@ public class CS_SetCameAsplect : MonoBehaviour
 
     [SerializeField, Header("c”ä—¦")]
     private float mHeightRatio = 9.0f;
-    // Start is called before the first frame update
+
+    [SerializeField, Header("‹–ìŠp")]
+    private float mFieldView = 96.5f;
+
+    private Camera camera;
+
     void Awake()
     {
+        camera = GetComponent<Camera>();
+        SetCameraAspectAndFOV();
+    }
+
+    private void OnEnable()
+    {
+        SetCameraAspectAndFOV();
+    }
+
+    private void SetCameraAspectAndFOV()
+    {
         float targetAspect = mWidthRatio / mHeightRatio;
-        Camera camera = GetComponent<Camera>();
         float windowAspect = (float)Screen.width / (float)Screen.height;
         float scaleHeight = windowAspect / targetAspect;
 
@@ -36,7 +51,8 @@ public class CS_SetCameAsplect : MonoBehaviour
         }
 
         camera.rect = rect;
-    }
 
-  
+        // ‹–ìŠp‚ğÄİ’è‚µ‚ÄŠmÀ‚É”½‰f
+        camera.fieldOfView = mFieldView;
+    }
 }

@@ -53,11 +53,11 @@ public class CS_SetPheseController : MonoBehaviour
         //    Debug.Log(mProbabilityStatus.performances[i].name + "�̊m��" + mProbabilities[i] + "%");
         //}
 
-       
-
         mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
-                                                                                        //ミッション選択オブジェクトを生成
-        GameObject instance = Instantiate(mMisstionSelect, mMisstionSelect.transform.position, mMisstionSelect.transform.rotation);
+        Vector3 spawnPos = GameObject.Find("BigController").GetComponent<CS_PerformancePos>().InitialPos;
+
+        //ミッション選択オブジェクトを生成
+        GameObject instance = Instantiate(mMisstionSelect, spawnPos, mMisstionSelect.transform.rotation);
         instance.name = mMisstionSelect.name; // (Clone)が付かないように名前をオリジナルの名前に戻す
 
         Debug.Log("mMisstionSelect" + mMisstionSelect.name);
