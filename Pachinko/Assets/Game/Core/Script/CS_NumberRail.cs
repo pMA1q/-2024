@@ -168,7 +168,7 @@ public class CS_NumberRail : MonoBehaviour
     private IEnumerator StartVal()
     {
         //}•¿‚ğ­‚µã‚°‚é
-        float up = 50;
+        float up = 100;
         for(int i = 0; i < 9; i++)
         {
             RectTransform rectTransform = mNumberPatterns[i].GetComponent<RectTransform>();

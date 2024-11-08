@@ -59,9 +59,9 @@ public class CS_NumberRailController : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             mNumRails[i].StartVariation();
+            yield return new WaitForSeconds(0.3f);
         }
 
-        yield return new WaitForSeconds(1.0f);
         isVariation = true;
 
         yield return new WaitForSeconds(mVariationTime);

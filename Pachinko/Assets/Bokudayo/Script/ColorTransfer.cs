@@ -6,9 +6,7 @@ public class ColorTransfer : MonoBehaviour
 {
     public GameObject[] selectBack; // 色を移動させるCubeの配列
     public GameObject[] missonPlate; //文字を表示するオブジェクト
-    public Button transferButtonRight; // ボタン
-    public Button transferButtonLeft; // ボタン
-    public Button transferButtonDecision; // ボタン
+   
 
     [SerializeField, Header("非選択時に加算するマテリアル")]
     private Material mNoSelectMaterial;
@@ -18,9 +16,7 @@ public class ColorTransfer : MonoBehaviour
     private void Start()
     {
         // ボタンが押されたときのイベントを設定
-        transferButtonRight.onClick.AddListener(MoveRight);
-        transferButtonLeft.onClick.AddListener(MoveLeft);
-        transferButtonDecision.onClick.AddListener(MissionDecision);
+        FindButtons();
 
         Material[] materials = selectBack[0].GetComponent<Renderer>().materials;//materialsを取得
         //0番目をミッション情報に設定したマテリアルに変更
@@ -28,6 +24,21 @@ public class ColorTransfer : MonoBehaviour
         //変更した配列を再度設定
         selectBack[1].GetComponent<Renderer>().materials = materials;
         selectBack[2].GetComponent<Renderer>().materials = materials;
+    }
+
+    private void FindButtons()
+    {
+        Canvas canvas = GameObject.Find("ButtonCanvas").GetComponent<Canvas>();
+        Button[] buttons = canvas.GetComponentsInChildren<Button>();
+
+        string[] buttonNames = new string[3] { "ButtonLeft", "BottonRight", "ButtonPush" };
+
+        for(int i = 0; i <3; i++)
+        {
+            if(buttons[i].name == "ButtonLeft") { buttons[i].onClick.AddListener(MoveLeft); }
+            else if(buttons[i].name == "ButtonRight") { buttons[i].onClick.AddListener(MoveRight); }
+            else{ buttons[i].onClick.AddListener(MissionDecision); }
+        }
     }
 
     private void MoveRight()
