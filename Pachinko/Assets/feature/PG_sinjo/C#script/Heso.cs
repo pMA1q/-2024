@@ -5,7 +5,8 @@ using UnityEngine;
 public class Heso : MonoBehaviour
 {
     private const int TotalValues = 65536;
-    private const int WinningValues = 36553;
+    //private const int WinningValues = 36553;
+    private const int WinningValues = 10000;
     private CS_Controller csController;
 
     readonly int MAX_STOCK = 5;

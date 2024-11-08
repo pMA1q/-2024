@@ -70,9 +70,6 @@ public class CS_DrawPattern : MonoBehaviour
             yield return null;
         }
 
-
-       
-
         // stockのサイズを再度確認してから値を表示
         if (mHeso.stock.Count > 0 && mHeso.stock[0].Length >= 3)
         {
@@ -94,12 +91,12 @@ public class CS_DrawPattern : MonoBehaviour
 
         mCoroutine = null;
         yield return new WaitForSeconds(0.5f);
-        mHeso.DisableStock();//ストックを削除
-        mHeso.stock.RemoveAt(0);//ストックリストの０番目を削除
+        //mHeso.DisableStock();//ストックを削除
+        //mHeso.stock.RemoveAt(0);//ストックリストの０番目を削除
 
         //司令塔に図柄変動終了を伝える
-        CS_Controller ctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
-        ctrl.PatternVariationFinish();
+        //CS_Controller ctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        //ctrl.PatternVariationFinish();
 
         yield return null;
     }
@@ -131,14 +128,6 @@ public class CS_DrawPattern : MonoBehaviour
         //画像の変更
         mNumberSprite.SetNumber(mValue[_val], (CS_NumberSprite.Pattern)_val);
 
-        //if (mValue[_val] % 2 == 0)
-        //{
-        //    mTexts[_val].color = Color.blue;
-        //}
-        //else
-        //{
-        //    mTexts[_val].color = Color.red;
-        //}
     }
 
     //図柄が順番に止まるときの止まった図柄以外はまだインクリメントし続ける
