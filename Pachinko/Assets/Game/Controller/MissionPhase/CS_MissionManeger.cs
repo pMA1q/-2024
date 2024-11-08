@@ -25,13 +25,10 @@ public class CS_MissionManeger : MonoBehaviour
 
     private int mPrizesNum = 0;//入賞数
 
-    //private int mGameCount = 0;
-
-    //private List<int> mMissionIndexes;
-    //private List<MissionPhaseInfomation> mMissionInfomations;
-
+    //ユニークな演出
     CS_SM_Unique mSM_Unique;
     private int[] mUniquePF;
+
     int mNextMissionNum = -1;
 
     //-----------------------イベントハンドラ-----------------------
@@ -122,7 +119,7 @@ public class CS_MissionManeger : MonoBehaviour
             return;
         }
 
-        // イベントハンドラはnullなら終了
+        //イベントハンドラはnullなら終了
         if (OnPlayPerformance == null) { return; }
 
         //保留玉が無いなら終了
