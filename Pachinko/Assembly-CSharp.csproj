@@ -68,7 +68,7 @@
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Lottery.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_SetPsitionPerfPos.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Game\Controller\CS_BossPhaseController.cs" />
@@ -88,6 +88,7 @@
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionData.cs" />
     <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_SM_Unique.cs" />
@@ -141,7 +142,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

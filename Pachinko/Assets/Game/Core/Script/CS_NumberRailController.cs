@@ -49,6 +49,7 @@ public class CS_NumberRailController : MonoBehaviour
     {
         if(mCoroutine == null)
         {
+            mVariationTime = mBigCtrl.VariationTimer-1.0f;//•Ï“®ŠÔİ’è
             mCoroutine = StartCoroutine(RealTex());
         }
     }

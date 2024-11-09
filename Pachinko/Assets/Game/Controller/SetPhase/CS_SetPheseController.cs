@@ -54,13 +54,10 @@ public class CS_SetPheseController : MonoBehaviour
         //}
 
         mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
-        Vector3 spawnPos = GameObject.Find("BigController").GetComponent<CS_PerformancePos>().InitialPos;
-
+        
         //ミッション選択オブジェクトを生成
-        GameObject instance = Instantiate(mMisstionSelect, spawnPos, mMisstionSelect.transform.rotation);
+        GameObject instance = Instantiate(mMisstionSelect, Vector3.zero, mMisstionSelect.transform.rotation);
         instance.name = mMisstionSelect.name; // (Clone)が付かないように名前をオリジナルの名前に戻す
-
-        Debug.Log("mMisstionSelect" + mMisstionSelect.name);
     }
 
     // Update is called once per frame
@@ -92,6 +89,9 @@ public class CS_SetPheseController : MonoBehaviour
 
         //保留玉が無いなら終了
         if(mBigController.GetStock() == 0) { return; }
+
+        //変動時間設定
+        mBigController.VariationTimer = 2.0f;
 
         //保留玉使用（変動開始）
         mBigController.UseStock();

@@ -511,6 +511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3580923785552057014}
   - component: {fileID: 5163230805460548033}
+  - component: {fileID: 7796621808883311774}
   m_Layer: 0
   m_Name: MissionSelect
   m_TagString: Untagged
@@ -527,7 +528,7 @@ Transform:
   m_GameObject: {fileID: 5303551311178200054}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 3, z: 1}
+  m_LocalScale: {x: 5, y: 3, z: 1.1406468}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 733419823340069137}
@@ -551,6 +552,20 @@ MonoBehaviour:
   mEventMission: {fileID: 9155250584009690025}
   mItemMission: {fileID: 119508675576951844}
   mSetPhaseSelect: {fileID: 5976285343426044786}
+--- !u!114 &7796621808883311774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5303551311178200054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4b5b14fcec5334085dff5dbfb91fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mOffsetPos: {x: 0, y: 0, z: 2.5}
+  mSumPos: {x: 0, y: 0, z: 0}
 --- !u!1 &6927818349901546805
 GameObject:
   m_ObjectHideFlags: 0

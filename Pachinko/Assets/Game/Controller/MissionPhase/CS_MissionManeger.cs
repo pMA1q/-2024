@@ -11,6 +11,7 @@ public class CS_MissionManeger : MonoBehaviour
 {
     public CSO_MissionPhaseTable missionPhaseTable;  // Inspector で設定可能
 
+    [SerializeField,Header("プレイヤーステータス")]
     private CSO_PlayerStatus playerStatus;
 
     private bool isReplayTriggered = false;  // 再抽選フラグ
@@ -23,7 +24,14 @@ public class CS_MissionManeger : MonoBehaviour
 
     private CS_Controller bigController;//司令塔(大)
 
-    private int mPrizesNum = 0;//入賞数
+    private int mGameCount = 20;//入賞数
+
+    //ゲーム数の設定、取得
+    public int GameCount
+    {
+        set { mGameCount = value; }
+        get { return mGameCount; }
+    }
 
     //ユニークな演出
     CS_SM_Unique mSM_Unique;
@@ -32,7 +40,7 @@ public class CS_MissionManeger : MonoBehaviour
     int mNextMissionNum = -1;
 
     //-----------------------イベントハンドラ-----------------------
-    public delegate void Performance(int _performance);
+    public delegate void Performance(int _performance);//引数：項目番号-1
 
     //登録時に使用
     public static event Performance OnPlayPerformance;
@@ -41,7 +49,7 @@ public class CS_MissionManeger : MonoBehaviour
     void Start()
     {
         // プレイヤーステータス初期化
-        playerStatus = new CSO_PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10, initialPreemptiveAttack: 30, initialRevaival: 20);
+       // playerStatus = new CSO_PlayerStatus(initialHp: 100, initialAttack: 10, initialDefense: 10, initialPreemptiveAttack: 30, initialRevaival: 20);
 
         bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
 
@@ -53,6 +61,10 @@ public class CS_MissionManeger : MonoBehaviour
 
         mSM_Unique = this.gameObject.AddComponent<CS_SM_Unique>();
         mUniquePF = new int[] { 11, 12 };//ユニークな演出の項目番号配列
+
+        //テスト
+        OnPlayPerformance += PlayPerformance;
+
 
         // ミッションフェーズのシナリオを決める
        // StartMissionPhase();
@@ -111,7 +123,7 @@ public class CS_MissionManeger : MonoBehaviour
         if (!variationStart) { return; }//falseなら終了
 
         //入賞数が20？
-        if (mPrizesNum == 20)
+        if (mGameCount == 0 && mNextMissionNum != -1)
         {
             RemoveAllHandlers();
             StartBossPhase();
@@ -131,15 +143,29 @@ public class CS_MissionManeger : MonoBehaviour
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
         int randomNumber = CS_LotteryFunction.LotNormalInt(16);//一旦項目17までに限定する
+       
+        mGameCount--;//入賞数減算
 
+        string name = missionPhaseTable.infomation[randomNumber].name;
+        //無発展
+        if (randomNumber <= 2)
+        {
+            float[] valTime = new float[3] { 8f, 10f, 10f };
+            bigController.VariationTimer = valTime[randomNumber];//変動時間設定
+            bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
+            mNextMissionNum = -1;
+            
+            Debug.Log("演出番号" + name);
+            return;
+        }
+
+        //次の演出番号が-1じゃないなら抽せんを無視する
         if(mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
-
-        mPrizesNum++;//入賞数加算
-
+        
         //イベントハンドラ実行
         OnPlayPerformance(randomNumber);
 
-        string name = missionPhaseTable.infomation[randomNumber].name;
+        name = missionPhaseTable.infomation[randomNumber].name;
         Debug.Log("演出番号" + name);
 
         //再抽選確認。当選すれば次のミッション決定
@@ -169,21 +195,17 @@ public class CS_MissionManeger : MonoBehaviour
         if(mission.replay == REPLAY.FALSE) { return -1; }
 
         //先制攻撃の確率に設定
-        float percentage = playerStatus.preemptiveAttack;
+        float percentage = playerStatus.charaStatus.preemptiveAttack;
        
         //P2なら復活値にする
-        if(mission.replay == REPLAY.TRUE_P2){ percentage = playerStatus.revaival; }
+        if(mission.replay == REPLAY.TRUE_P2){ percentage = playerStatus.charaStatus.revaival; }
 
         float randomValue = UnityEngine.Random.Range(0f, 100f);
         if (randomValue < percentage)
         {
-            //当たったら追加する
-            MissionPhaseInfomation replayMission = missionPhaseTable.infomation[mission.replayNum - 1];
-            //mMissionIndexes.Add(mission.replayNum - 1);
-            //mMissionInfomations.Add(replayMission);
+            //当たったら追加再抽選先の項目番号を返す
             return mission.replayNum - 1;
         }
-        else { mNextMissionNum = -1; }
         return -1;
     }
 
@@ -259,5 +281,8 @@ public class CS_MissionManeger : MonoBehaviour
         }
     }
 
-
+    private void PlayPerformance(int _num)
+    {
+        Instantiate(missionPhaseTable.infomation[_num].performance, Vector3.zero, Quaternion.identity);
+    }
 }
