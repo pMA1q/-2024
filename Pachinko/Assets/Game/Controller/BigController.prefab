@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2474442167957775445}
   - component: {fileID: 2474442167957775434}
   - component: {fileID: 2977572893432882904}
-  - component: {fileID: -7317998516573106555}
+  - component: {fileID: 4608715447548663831}
   m_Layer: 0
   m_Name: BigController
   m_TagString: Untagged
@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 2851348079688611415, guid: e5792b70b67b5734ca3144eb06c112a7, type: 3}
   mHeso: {fileID: 0}
   mDrawNum: {fileID: 0}
+  mDrawNum2: {fileID: 0}
 --- !u!114 &2977572893432882904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44142419377a54a888bc02a1d67e01f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7317998516573106555
+--- !u!114 &4608715447548663831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,6 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2474442167957775435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e1511eca0bc6149b2f98204a6b4392, type: 3}
+  m_Script: {fileID: 11500000, guid: f531596cfd41ac64a9ed7388adcaae46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mPlayerStatus: {fileID: 11400000, guid: 124c1d07259e22b48b1ca1b84265cb72, type: 2}

@@ -53,14 +53,11 @@ public class CS_SetPheseController : MonoBehaviour
         //    Debug.Log(mProbabilityStatus.performances[i].name + "�̊m��" + mProbabilities[i] + "%");
         //}
 
-       
-
         mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
-                                                                                        //ミッション選択オブジェクトを生成
-        GameObject instance = Instantiate(mMisstionSelect, mMisstionSelect.transform.position, mMisstionSelect.transform.rotation);
+        
+        //ミッション選択オブジェクトを生成
+        GameObject instance = Instantiate(mMisstionSelect, Vector3.zero, mMisstionSelect.transform.rotation);
         instance.name = mMisstionSelect.name; // (Clone)が付かないように名前をオリジナルの名前に戻す
-
-        Debug.Log("mMisstionSelect" + mMisstionSelect.name);
     }
 
     // Update is called once per frame
@@ -93,6 +90,9 @@ public class CS_SetPheseController : MonoBehaviour
         //保留玉が無いなら終了
         if(mBigController.GetStock() == 0) { return; }
 
+        //変動時間設定
+        mBigController.VariationTimer = 2.0f;
+
         //保留玉使用（変動開始）
         mBigController.UseStock();
 
@@ -102,8 +102,11 @@ public class CS_SetPheseController : MonoBehaviour
         //演出抽選
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
 
-        mPrizesNum++;//入賞数加算
+        //ミッション内容保存
+        CS_MissionData data = GameObject.Find("BigController").GetComponent<CS_MissionData>();
+        data.SaveMissionContents(mPrizesNum, randomNumber);
 
+        mPrizesNum++;//入賞数加算
 
         if (OnPlayPerformance != null)
         {

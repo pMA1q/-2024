@@ -32,6 +32,8 @@ public class CS_NumberRail : MonoBehaviour
 
     private float mNowAlpha = 1f;
 
+    bool isBeforeFinish = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,8 @@ public class CS_NumberRail : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if(!isVariation) { return; }
 
         float moveSpeed = mSpeed;
@@ -169,15 +173,24 @@ public class CS_NumberRail : MonoBehaviour
     {
         //図柄を少し上げる
         float up = 100;
-        for(int i = 0; i < 9; i++)
+        float afterpos = mNumberPatterns[0].GetComponent<RectTransform>().localPosition.y + up;
+       
+
+        while(mNumberPatterns[0].GetComponent<RectTransform>().localPosition.y <= afterpos)
         {
-            RectTransform rectTransform = mNumberPatterns[i].GetComponent<RectTransform>();
-            Vector3 numberPos = rectTransform.localPosition;
-            numberPos.y += up;
-            rectTransform.localPosition = numberPos;
-            CheckOutsidePanel(i, rectTransform);//パネル外なら透明にする
+            for (int i = 0; i < 9; i++)
+            {
+                RectTransform rectTransform = mNumberPatterns[i].GetComponent<RectTransform>();
+                Vector3 numberPos = rectTransform.localPosition;
+                numberPos.y += 150 * Time.deltaTime;
+                rectTransform.localPosition = numberPos;
+                CheckOutsidePanel(i, rectTransform);//パネル外なら透明にする
+            }
+
+            yield return null;
         }
-        yield return new WaitForSeconds(1f);
+        
+        yield return new WaitForSeconds(0.1f);
 
         //下に流れる変動開始
         isVariation = true;

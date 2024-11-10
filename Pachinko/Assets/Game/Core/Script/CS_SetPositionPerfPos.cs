@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CS_SetPsitionPerfPos : MonoBehaviour
+public class CS_SetPositionPerfPos : MonoBehaviour
 {
     [SerializeField, Header("サブカメラの位置から+αの値")]
-    private Vector3 mOffsetPos;
+    private Vector3 mOffsetPos= new Vector3(0f, 0f, 10f);
+
+    [SerializeField, Header("合計値+αの値")]
+    private Vector3 mSumPos;
+
+    Camera mSubCamera;
 
     void Start()
     {
         // "SubCamera"という名前のカメラを検索
-        Camera subCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
+        mSubCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
 
         // SubCameraが見つかった場合、CanvasのRender Cameraに設定
-        if (subCamera != null)
+        if (mSubCamera != null)
         {
             Vector3 newPos = this.transform.position;
-            newPos = subCamera.transform.position + mOffsetPos;
+            newPos = mSubCamera.transform.position + mOffsetPos;
             this.transform.position = newPos;
         }
         else
@@ -25,6 +30,11 @@ public class CS_SetPsitionPerfPos : MonoBehaviour
         }
 
        // Destroy(this);
+    }
+
+    private void Update()
+    {
+        this.transform.position = mSubCamera.transform.position + mOffsetPos;
     }
 }
 

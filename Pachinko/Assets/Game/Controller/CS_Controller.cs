@@ -42,6 +42,15 @@ public class CS_Controller : MonoBehaviour
 
     private int[] mPattern = new int[3];//}•¿
 
+    private float mVariationTimer;
+
+    //•Ï“®ŠÔ‚Ìİ’èAæ“¾
+    public float VariationTimer
+    {
+        set { mVariationTimer = value; }
+        get { return mVariationTimer; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
