@@ -85,7 +85,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionData.cs" />
     <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
@@ -142,6 +141,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

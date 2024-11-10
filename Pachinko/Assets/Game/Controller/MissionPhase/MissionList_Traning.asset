@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3aedeaca8f8c174594fd12e7c67f905, type: 3}
-  m_Name: MissionList_Collect
+  m_Name: MissionList_Traning
   m_EditorClassIdentifier: 
   infomation:
   - name: "1_8\u79D2\u5909\u52D5(\u7121\u767A\u5C55)"

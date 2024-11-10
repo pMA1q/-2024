@@ -102,8 +102,11 @@ public class CS_SetPheseController : MonoBehaviour
         //演出抽選
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
 
-        mPrizesNum++;//入賞数加算
+        //ミッション内容保存
+        CS_MissionData data = GameObject.Find("BigController").GetComponent<CS_MissionData>();
+        data.SaveMissionContents(mPrizesNum, randomNumber);
 
+        mPrizesNum++;//入賞数加算
 
         if (OnPlayPerformance != null)
         {

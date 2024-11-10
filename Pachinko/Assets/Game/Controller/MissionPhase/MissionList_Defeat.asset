@@ -165,6 +165,11 @@ MonoBehaviour:
     replay: 0
     replayNum: 0
     performance: {fileID: 0}
+  - name: "29_3\u629E\u3067\u30C1\u30B1\u30C3\u30C8\u7372\u5F97"
+    win_lost: 0
+    replay: 0
+    replayNum: 0
+    performance: {fileID: 0}
   - name: "30_\u5831\u916CUP"
     win_lost: 4
     replay: 0

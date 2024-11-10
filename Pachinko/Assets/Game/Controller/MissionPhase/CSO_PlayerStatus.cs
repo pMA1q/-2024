@@ -84,7 +84,7 @@ public class CharacterStatus
     [Header("復活")]
     public float revaival;
     [Header("装備ランク")]
-    public float equipmentRank;
+    public int equipmentRank;
     [Header("カットイン")]
     public float cutIn;
 }
