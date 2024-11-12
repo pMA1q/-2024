@@ -1,13 +1,13 @@
 //---------------------------------
-//準備フェーズ司令塔
-//担当者：中島
+// 準備フェーズ司令塔
+// 担当者：中島
 //---------------------------------
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Linq;  // LINQ��g�����߂ɕK�v
+using System.Linq;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
@@ -27,14 +27,14 @@ public class CS_SetPheseController : MonoBehaviour
     [SerializeField, Header("キュイン(テスト用なので後で消す)")]
     private GameObject mCuinSE;
 
-    private int mPrizesNum = 0;//入賞数
+    private int mPrizesNum = 0; // 入賞数
 
-    private CS_Controller mBigController;//司令塔(大)
+    private CS_Controller mBigController; // 司令塔(大)
 
  //-----------------------イベントハンドラ-----------------------
     public delegate void Performance(int _performance);
 
-    //登録時に使用
+    // 登録時に使用
     public static event Performance OnPlayPerformance;
  //-------------------------------------------------------------
 
@@ -55,7 +55,7 @@ public class CS_SetPheseController : MonoBehaviour
 
         mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
         
-        //ミッション選択オブジェクトを生成
+        // ミッション選択オブジェクトを生成
         GameObject instance = Instantiate(mMisstionSelect, Vector3.zero, mMisstionSelect.transform.rotation);
         instance.name = mMisstionSelect.name; // (Clone)が付かないように名前をオリジナルの名前に戻す
     }
@@ -67,17 +67,17 @@ public class CS_SetPheseController : MonoBehaviour
         //CheckLottery();
       
 
-        //変動できるかを取得
+        // 変動できるかを取得
         bool variationStart = mBigController.CanVariationStart();
-        if (!variationStart) { return; }//falseなら終了
+        if (!variationStart) { return; } // falseなら終了
 
 
-        //入賞数が3？
+        // 入賞数が3？
         if(mPrizesNum == 3)
         {
-            //別物を参照しているのでシーンからMissionSelectを見つけてサイド取得
+            // 別物を参照しているのでシーンからMissionSelectを見つけてサイド取得
             mMisstionSelect = GameObject.Find("MissionSelect");
-            //プレイヤーがミッションを選択する状態を開始する
+            // プレイヤーがミッションを選択する状態を開始する
             mMisstionSelect.GetComponent<CS_LotMission>().PlaySelectMode();
             RemoveAllHandlers();
             Destroy(this.gameObject);
@@ -87,30 +87,30 @@ public class CS_SetPheseController : MonoBehaviour
         // イベントハンドラはnullなら終了
         if (OnPlayPerformance == null) { return; }
 
-        //保留玉が無いなら終了
+        // 保留玉が無いなら終了
         if(mBigController.GetStock() == 0) { return; }
 
-        //変動時間設定
+        // 変動時間設定
         mBigController.VariationTimer = 2.0f;
 
-        //保留玉使用（変動開始）
+        // 保留玉使用（変動開始）
         mBigController.UseStock();
 
-        //テスト
+        // テスト
         if (mBigController.GetJuckpot()) { Instantiate(mCuinSE, mCuinSE.transform.position, mCuinSE.transform.rotation); }
 
-        //演出抽選
+        // 演出抽選
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
 
-        //ミッション内容保存
+        // ミッション内容保存
         CS_MissionData data = GameObject.Find("BigController").GetComponent<CS_MissionData>();
         data.SaveMissionContents(mPrizesNum, randomNumber);
 
-        mPrizesNum++;//入賞数加算
+        mPrizesNum++;　// 入賞数加算
 
         if (OnPlayPerformance != null)
         {
-            //イベントハンドラ実行
+            // イベントハンドラ実行
             OnPlayPerformance(randomNumber);
         }
            
@@ -140,7 +140,7 @@ public class CS_SetPheseController : MonoBehaviour
         // OnPlayPerformanceに登録されている関数を消す
         if (OnPlayPerformance != null)
         {
-            //登録されているものを取得
+            // 登録されているものを取得
             Delegate[] handlers = OnPlayPerformance.GetInvocationList();
 
             foreach (Delegate handler in handlers)
