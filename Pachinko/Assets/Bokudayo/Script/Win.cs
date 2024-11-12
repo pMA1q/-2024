@@ -41,10 +41,22 @@ public class Win : MonoBehaviour // クラス名を変更
             // 右側のカプセルが倒れる
             rightCapsule1.GetComponent<Rigidbody>().isKinematic = false;
             rightCapsule1.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
-            rightCapsule2.GetComponent<Rigidbody>().isKinematic = false;
-            rightCapsule2.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
-            rightCapsule3.GetComponent<Rigidbody>().isKinematic = false;
-            rightCapsule3.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
+            if(rightCapsule2)
+            {
+                rightCapsule2.GetComponent<Rigidbody>().isKinematic = false;
+                rightCapsule2.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
+            }
+            if (rightCapsule3)
+            {
+                rightCapsule3.GetComponent<Rigidbody>().isKinematic = false;
+                rightCapsule3.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
+            }
+            
+            GameObject rootObject = transform.root.gameObject;
+            if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
+            {
+                rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true,5f);//プレハブを消すまでの時間(秒)
+            }
         }
         else
         {
