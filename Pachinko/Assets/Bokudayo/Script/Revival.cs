@@ -23,13 +23,22 @@ public class Revival : MonoBehaviour
     {
         // 初期位置と回転を保存
         leftStartPosition = leftCapsule.transform.position;
-        rightStartPosition1 = rightCapsule1.transform.position;
-        rightStartPosition2 = rightCapsule2.transform.position;
-        rightStartPosition3 = rightCapsule3.transform.position;
         leftStartRotation = leftCapsule.transform.rotation;
-        rightStartRotation1 = rightCapsule1.transform.rotation;
-        rightStartRotation2 = rightCapsule2.transform.rotation;
-        rightStartRotation3 = rightCapsule3.transform.rotation;
+        if(rightCapsule1)
+        {
+            rightStartPosition1 = rightCapsule1.transform.position;
+            rightStartRotation1 = rightCapsule1.transform.rotation;
+        }
+        if (rightCapsule2)
+        {
+            rightStartPosition2 = rightCapsule2.transform.position;
+            rightStartRotation2 = rightCapsule2.transform.rotation;
+        }
+        if (rightCapsule3)
+        {
+            rightStartPosition3 = rightCapsule3.transform.position;
+            rightStartRotation3 = rightCapsule3.transform.rotation;
+        }
     }
 
     void Update()
@@ -61,10 +70,18 @@ public class Revival : MonoBehaviour
             // 右側のカプセルが倒れる
             rightCapsule1.GetComponent<Rigidbody>().isKinematic = false;
             rightCapsule1.GetComponent<Rigidbody>().AddForce(Vector3.right * 500);
-            rightCapsule2.GetComponent<Rigidbody>().isKinematic = false;
-            rightCapsule2.GetComponent<Rigidbody>().AddForce(Vector3.right * 500);
-            rightCapsule3.GetComponent<Rigidbody>().isKinematic = false;
-            rightCapsule3.GetComponent<Rigidbody>().AddForce(Vector3.right * 500);
+            rightCapsule1.GetComponent<Rigidbody>().isKinematic = false;
+            rightCapsule1.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
+            if (rightCapsule2)
+            {
+                rightCapsule2.GetComponent<Rigidbody>().isKinematic = false;
+                rightCapsule2.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
+            }
+            if (rightCapsule3)
+            {
+                rightCapsule3.GetComponent<Rigidbody>().isKinematic = false;
+                rightCapsule3.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
+            }
             yield return new WaitForSeconds(2); // 倒れた後の待機時間
 
             // バトル終了処理
@@ -78,6 +95,11 @@ public class Revival : MonoBehaviour
             leftCapsule.GetComponent<Rigidbody>().AddForce(Vector3.left * 500);
             yield return new WaitForSeconds(2); // 倒れた後の待機時間
             RespawnCapsule(leftCapsule, leftStartPosition, leftStartRotation);
+            GameObject rootObject = transform.root.gameObject;
+            if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
+            {
+                rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 5f); ;//プレハブを消すまでの時間(秒)
+            }
         }
 
         battleCount++; // 戦った回数をカウント

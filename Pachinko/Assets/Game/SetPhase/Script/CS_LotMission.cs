@@ -78,7 +78,7 @@ public class CS_LotMission: MonoBehaviour
 
         //演出終了用スクリプトを生成
         CS_PerformanceFinish spcFinish = this.gameObject.AddComponent<CS_PerformanceFinish>();
-        spcFinish.Timer = 2f;//終了までの時間を1秒に変更
+        spcFinish.DestroyConfig(false, 2f);
 
         coroutine = null;
         yield return null;

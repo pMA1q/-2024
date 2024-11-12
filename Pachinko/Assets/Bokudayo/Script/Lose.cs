@@ -45,12 +45,19 @@ public class Lose : MonoBehaviour // クラス名を変更
             rightCapsule2.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
             rightCapsule3.GetComponent<Rigidbody>().isKinematic = false;
             rightCapsule3.GetComponent<Rigidbody>().AddForce(Vector3.right * 500); // 後ろに倒れる力を加える
+
+           
         }
         else
         {
             // 左側のカプセルが倒れる
             leftCapsule.GetComponent<Rigidbody>().isKinematic = false;
             leftCapsule.GetComponent<Rigidbody>().AddForce(Vector3.left * 500);
+            GameObject rootObject = transform.root.gameObject;
+            if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
+            {
+                rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 5f); ;//プレハブを消すまでの時間(秒)
+            }
         }
     }
 }

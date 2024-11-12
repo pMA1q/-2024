@@ -74,12 +74,14 @@ MonoBehaviour:
     win_lost: 4
     replay: 0
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 5893495972000618546, guid: 256e0fa944e300e4aa14ad22bb19b235,
+      type: 3}
   - name: "12_\u6575\u5302\u308F\u305B\u5F37(\u30D7\u30EC\u30A4\u30E4\u30FC\u304C\u9053\u3092\u9078\u3076100\uFF05)"
     win_lost: 4
     replay: 0
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 555636998027329705, guid: b35d416347799c2458f16c288ce3d07f,
+      type: 3}
   - name: "13_\u65753\u4F53\u51FA\u73FE\uFF0B\u6226\u308F\u305A\u306B\u9003\u3052\u3089\u308C\u308B"
     win_lost: 0
     replay: 1

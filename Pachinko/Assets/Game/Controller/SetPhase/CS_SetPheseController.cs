@@ -95,7 +95,7 @@ public class CS_SetPheseController : MonoBehaviour
 
         //保留玉使用（変動開始）
         mBigController.UseStock();
-
+    
         //テスト
         if (mBigController.GetJuckpot()) { Instantiate(mCuinSE, mCuinSE.transform.position, mCuinSE.transform.rotation); }
 

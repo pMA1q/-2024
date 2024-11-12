@@ -78,8 +78,9 @@ public class CS_MissionManeger : MonoBehaviour
         bool variationStart = bigController.CanVariationStart();
         if (!variationStart) { return; }//falseなら終了
 
+        Debug.Log("次のミッションフラグ" + mNextMissionNum);
         //入賞数が20？
-        if (mGameCount == 0 && mNextMissionNum != -1)
+        if (mGameCount <= 0 && mNextMissionNum == -1)
         {
             RemoveAllHandlers();
             StartBossPhase();
@@ -93,30 +94,36 @@ public class CS_MissionManeger : MonoBehaviour
         //保留玉が無いなら終了
         if (bigController.GetStock() == 0) { return; }
 
-        //保留玉使用（変動開始）
-        bigController.UseStock();
-
+       
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
         int randomNumber = CS_LotteryFunction.LotNormalInt(16);//一旦項目17までに限定する
        
         mGameCount--;//入賞数減算
 
+        Debug.Log("残りゲーム数" + mGameCount);
+
         string name = missionPhaseTable.infomation[randomNumber].name;
+        float[] valTime = new float[3] { 8f, 10f, 10f };
         //無発展
         if (randomNumber <= 2)
         {
-            float[] valTime = new float[3] { 8f, 10f, 10f };
-            bigController.VariationTimer = valTime[randomNumber];//変動時間設定
-            bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
-            mNextMissionNum = -1;
             
+            bigController.VariationTimer = valTime[randomNumber];//変動時間設定
+            mNextMissionNum = -1;
+            //保留玉使用（変動開始）
+            bigController.UseStock();
+            bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
             Debug.Log("演出番号" + name);
             return;
         }
+        else { bigController.VariationTimer = 4f; }
+
+        //保留玉使用（変動開始）
+        bigController.UseStock();
 
         //次の演出番号が-1じゃないなら抽せんを無視する
-        if(mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
+        if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
         
         //イベントハンドラ実行
         OnPlayPerformance(randomNumber);
