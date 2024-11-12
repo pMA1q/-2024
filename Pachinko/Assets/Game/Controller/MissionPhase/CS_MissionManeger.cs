@@ -180,7 +180,7 @@ public class CS_MissionManeger : MonoBehaviour
         return -1;
     }
 
-    //収集ミッション意外のときのステータスUP処理
+    //収集ミッション時以外のステータスUP処理
     private void RundomStatusUP(int _val)
     {
         CharacterStatus cStatus = playerStatus.charaStatus;
@@ -192,7 +192,7 @@ public class CS_MissionManeger : MonoBehaviour
         playerStatus.charaStatus = cStatus;
     }
 
-    //収集ミッションのときのステータスUP処理
+    //収集ミッション時のステータスUP処理
     private void StatusUP(int _val)
     {
         int missionType = (int)missionData.MissionNumber;//ミッションの種類
