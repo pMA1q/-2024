@@ -112,7 +112,7 @@ public class CS_MissionManeger : MonoBehaviour
             bigController.VariationTimer = valTime[randomNumber];//変動時間設定
             mNextMissionNum = -1;
             //保留玉使用（変動開始）
-            bigController.UseStock();
+            bigController.UseStock(WIN_LOST.LOST);
             bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
             Debug.Log("演出番号" + name);
             return;
@@ -120,7 +120,7 @@ public class CS_MissionManeger : MonoBehaviour
         else { bigController.VariationTimer = 4f; }
 
         //保留玉使用（変動開始）
-        bigController.UseStock();
+        bigController.UseStock(missionPhaseTable.infomation[randomNumber].win_lost);
 
         //次の演出番号が-1じゃないなら抽せんを無視する
         if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }

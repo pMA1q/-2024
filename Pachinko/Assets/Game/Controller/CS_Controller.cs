@@ -92,13 +92,13 @@ public class CS_Controller : MonoBehaviour
         mStock++;
     }
 
-    public void UseStock()
+    public void UseStock(WIN_LOST _win_lost)
     {
         mStock--;
         mPatternVariationFinish = false;//図柄変動終了フラグをfalse
         mPerformanceFinish = false;//演出終了フラグをfalse
 
-        mPattern = CS_LotteryFunction.PatternLottery(); 
+        mPattern = CS_LotteryFunction.PatternLottery2(_win_lost); 
         //Debug.Log("図柄:" + mHeso.stock[0][0] + "," + mHeso.stock[0][1] + "," + mHeso.stock[0][2] + ",");
         if(mDrawNum != null) {  mDrawNum.StartPatternVariation();}
         if(mDrawNum2 != null) {  mDrawNum2.StartPattenRail();}
