@@ -94,7 +94,7 @@ public class CS_SetPheseController : MonoBehaviour
         mBigController.VariationTimer = 2.0f;
 
         //保留玉使用（変動開始）
-        mBigController.UseStock();
+        mBigController.UseStock(WIN_LOST.LOST);
     
         //テスト
         if (mBigController.GetJuckpot()) { Instantiate(mCuinSE, mCuinSE.transform.position, mCuinSE.transform.rotation); }

@@ -61,6 +61,45 @@ public class CS_LotteryFunction : MonoBehaviour
         return i;
     }
 
+    //演出結果をもとに図柄を決める
+    public static int[] PatternLottery2(WIN_LOST _win_lost)
+    {
+        
+        int[] i = { 7, 7, 7 };
+
+        switch(_win_lost)
+        {
+            case WIN_LOST.LOST:
+            case WIN_LOST.RANDOM:
+                //三つの数字がバラバラになるまでループ
+                while(i[0] == i[2])
+                {
+                    // 通常はランダムに生成//0~8で抽せんし、+1した値にする
+                    i = new int[] { CS_LotteryFunction.LotNormalInt(8) + 1, CS_LotteryFunction.LotNormalInt(8) + 1, CS_LotteryFunction.LotNormalInt(8) + 1 };
+                }
+                break;
+            case WIN_LOST.SMALL_WIN:
+                // iの0~2が2, 4, 6, 8の偶数番号になるように抽せん
+                for (int j = 0; j < 3; j++)
+                {
+                    int[] evenNumbers = { 2, 4, 6, 8 };
+                    i[j] = evenNumbers[CS_LotteryFunction.LotNormalInt(4)];
+                }
+                break;
+
+            case WIN_LOST.MIDDLE_WIN:
+                // iの0~2が1, 3, 5, 9の奇数番号になるように抽せん
+                for (int j = 0; j < 3; j++)
+                {
+                    int[] oddNumbers = { 1, 3, 5, 9 };
+                    i[j] = oddNumbers[CS_LotteryFunction.LotNormalInt(4)];
+                }
+                break;
+        }
+
+        return i;
+    }
+
     //ノーマル抽選 int型の番号を返す。
     //範囲：0~
     public static int LotNormalInt(int _max)
