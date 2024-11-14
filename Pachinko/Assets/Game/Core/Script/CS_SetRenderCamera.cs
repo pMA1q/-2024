@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CS_SetRenderCamera : MonoBehaviour
 {
-    public float planeDistance = 100;
+    private float planeDistance = 1.66f;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // "SubCamera"‚Æ‚¢‚¤–¼‘O‚ÌƒJƒƒ‰‚ğŒŸõ
         Camera subCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
