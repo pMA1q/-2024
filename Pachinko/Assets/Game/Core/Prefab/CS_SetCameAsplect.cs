@@ -18,14 +18,15 @@ public class CS_SetCameAsplect : MonoBehaviour
     void Awake()
     {
         camera = GetComponent<Camera>();
-        SetCameraAspectAndFOV();
+       // SetCameraAspectAndFOV();
     }
 
-    private void OnEnable()
+    void Update()
     {
         SetCameraAspectAndFOV();
     }
 
+   
     private void SetCameraAspectAndFOV()
     {
         float targetAspect = mWidthRatio / mHeightRatio;

@@ -23,7 +23,7 @@ public class CS_RenderTexture : MonoBehaviour
         mRenderer = GetComponent<Renderer>();
 
         //RenderTextureの設定
-        RenderTexture rTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        RenderTexture rTexture = new RenderTexture(mSubCamera.pixelWidth, mSubCamera.pixelHeight, 24);
         mSubCamera.targetTexture = rTexture;
 
         // テリアルのメインテクスチャをRenderTextureに設定
