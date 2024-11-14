@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CS_SetRenderCamera : MonoBehaviour
 {
+    public float planeDistance = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class CS_SetRenderCamera : MonoBehaviour
             {
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
                 canvas.worldCamera = subCamera;
+                canvas.planeDistance = planeDistance;
             }
             else
             {
