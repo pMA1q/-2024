@@ -142,4 +142,9 @@ public class CS_Controller : MonoBehaviour
         if(GetStock() <= 0) { return false; }
         return mPatternVariationFinish && mPerformanceFinish;
     }
+
+    public bool GetVariationFinish()
+    {
+        return mPatternVariationFinish && mPerformanceFinish;
+    }
 }

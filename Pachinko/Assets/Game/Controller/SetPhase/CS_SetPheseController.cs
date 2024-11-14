@@ -64,16 +64,8 @@ public class CS_SetPheseController : MonoBehaviour
     void Update()
     {
 
-        //CheckLottery();
-      
-
-        //変動できるかを取得
-        bool variationStart = mBigController.CanVariationStart();
-        if (!variationStart) { return; }//falseなら終了
-
-
         //入賞数が3？
-        if(mPrizesNum == 3)
+        if (mPrizesNum == 3 && mBigController.GetVariationFinish())
         {
             //別物を参照しているのでシーンからMissionSelectを見つけてサイド取得
             mMisstionSelect = GameObject.Find("MissionSelect");
@@ -83,6 +75,11 @@ public class CS_SetPheseController : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+
+
+        //変動できるかを取得
+        bool variationStart = mBigController.CanVariationStart();
+        if (!variationStart) { return; }//falseなら終了
 
         // イベントハンドラはnullなら終了
         if (OnPlayPerformance == null) { return; }
