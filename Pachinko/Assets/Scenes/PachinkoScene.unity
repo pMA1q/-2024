@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1601,7 +1601,6 @@ GameObject:
   - component: {fileID: 1509820025}
   - component: {fileID: 1509820024}
   - component: {fileID: 1509820023}
-  - component: {fileID: 1509820022}
   m_Layer: 0
   m_Name: SubCamera
   m_TagString: Untagged
@@ -1609,21 +1608,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1509820022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509820021}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ec55505bc058644ab21e99deec95e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mWidthRatio: 16
-  mHeightRatio: 9
-  mFieldView: 65
 --- !u!45 &1509820023
 Skybox:
   m_ObjectHideFlags: 0
