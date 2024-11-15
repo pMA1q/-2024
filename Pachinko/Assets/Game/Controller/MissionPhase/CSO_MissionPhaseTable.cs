@@ -22,6 +22,8 @@ public class MissionPhaseInfomation
     public WIN_LOST win_lost;
     [Header("再抽選有無")]
     public REPLAY replay;
+    [Header("再抽選先の項目番号(再抽選なしの場合は0)")]
+    public int replayNum;
     [Header("演出プレハブ")]
     public GameObject performance;
 }

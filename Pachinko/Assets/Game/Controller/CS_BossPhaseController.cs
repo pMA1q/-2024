@@ -13,13 +13,11 @@ public class CS_BossPheseController : MonoBehaviour
 {
 
     [SerializeField]
-    CS_TestProbabilityStatus mProbabilityStatus;
+    CSO_MissionPhaseTable mProbabilityStatus;
     List<float> mProbabilities = new List<float>();
 
     //演出が終わったか否か
     private bool mPerformanceFinish = true;
-
-
 
     //-----------------------イベントハンドラ-----------------------
     public delegate void Performance(int _performance);
@@ -35,11 +33,7 @@ public class CS_BossPheseController : MonoBehaviour
     void Start()
     {
         //
-        for (int i = 0; i < mProbabilityStatus.performances.Count; i++)
-        {
-            mProbabilities.Add(mProbabilityStatus.performances[i].value);
-            Debug.Log(mProbabilityStatus.performances[i].name + "の確率" + mProbabilities[i] + "%");
-        }
+       
     }
 
     // Update is called once per frame
@@ -65,7 +59,7 @@ public class CS_BossPheseController : MonoBehaviour
         if (debugCount < 10000)
         {
             int randomNumber = CS_LotteryFunction.LotPerformance(mProbabilities);
-            Debug.Log("ランダムに選ばれた演出: " + mProbabilityStatus.performances[randomNumber].name);
+            //Debug.Log("ランダムに選ばれた演出: " + mProbabilityStatus.performances[randomNumber].name);
             debugCount++;
 
             if (debugCount >= 10000)

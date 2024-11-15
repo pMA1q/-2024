@@ -46,26 +46,9 @@ public class CS_LotMission: MonoBehaviour
         mTextureMaterials.Add(mItemMission);
 
         CS_SetPheseController.OnPlayPerformance += DecisionMission;
-        Debug.Log("MissionSelect" + this.name);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        bool active = mSetPhaseSelect.activeSelf;
-
-        if (active && mSelectActive)
-        {
-            if(Input.GetKeyDown(KeyCode.Return))
-            {
-                CS_Controller bigctrl =  GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
-                bigctrl.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
-                Destroy(this.gameObject);
-            }
-        }
-    }
-
+   
     //ミッション決定
     private void DecisionMission(int _num)
     {
@@ -90,11 +73,12 @@ public class CS_LotMission: MonoBehaviour
         if (mNowMissionSelect == 3)
         {
             mNowMissionSelect = 0;
+            CS_SetPheseController.OnPlayPerformance -= DecisionMission;
         }
 
         //演出終了用スクリプトを生成
         CS_PerformanceFinish spcFinish = this.gameObject.AddComponent<CS_PerformanceFinish>();
-        spcFinish.Timer = 2f;//終了までの時間を1秒に変更
+        spcFinish.DestroyConfig(false, 2f);
 
         coroutine = null;
         yield return null;
@@ -105,7 +89,7 @@ public class CS_LotMission: MonoBehaviour
     {
         //選択オブジェクトをtrue
         mSelectActive = true;
-        Debug.Log("mSelectActiveあああ" + mSelectActive + "name" + this.gameObject.name);
+       // Debug.Log("mSelectActiveあああ" + mSelectActive + "name" + this.gameObject.name);
 
         bool active = mSetPhaseSelect.activeSelf;
 

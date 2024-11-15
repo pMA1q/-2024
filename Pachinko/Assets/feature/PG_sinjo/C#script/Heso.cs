@@ -5,7 +5,8 @@ using UnityEngine;
 public class Heso : MonoBehaviour
 {
     private const int TotalValues = 65536;
-    private const int WinningValues = 36553;
+    //private const int WinningValues = 36553;
+    private const int WinningValues = 10000;
     private CS_Controller csController;
 
     readonly int MAX_STOCK = 5;
@@ -17,7 +18,7 @@ public class Heso : MonoBehaviour
     void Start()
     {
         // CS_Controllerがアタッチされているオブジェクトを取得
-        GameObject controllerObject = GameObject.Find("CS_ControllerObject");
+        GameObject controllerObject = GameObject.Find("BigController");
 
         // CS_Controllerコンポーネントを取得
         if (controllerObject != null)
