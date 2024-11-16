@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionPhaseTable: {fileID: 11400000, guid: 4891666031a17cd4897a48e5e94e522a, type: 2}
   playerStatus: {fileID: 11400000, guid: 124c1d07259e22b48b1ca1b84265cb72, type: 2}
-  mCutIn: {fileID: 7144967071714588428, guid: 97268fd9c1fce35409cd9ae4ddba3e9e, type: 3}
+  mCutIn: {fileID: 7144967071714588428, guid: b9c1b2e0c4a31ae45931201a4c0c48d7, type: 3}
   missionPrefab:
   - {fileID: 7144967071714588428, guid: b54e3d1629394894aa4b7962a5d5ce8c, type: 3}
   - {fileID: 7144967071714588428, guid: 4dce92416ee72d14e865195c8c79404c, type: 3}
