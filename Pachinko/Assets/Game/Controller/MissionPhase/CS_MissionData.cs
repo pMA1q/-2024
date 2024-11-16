@@ -28,7 +28,18 @@ public class CS_MissionData : MonoBehaviour
             return mMisisonNumber;
         }
     }
-     
+
+    private bool IsChoiceSuccess = false;
+
+    public void ChoiceSuccess()
+    {
+        IsChoiceSuccess = true;
+    }
+    public void ChoiceSuccessReset()
+    {
+        IsChoiceSuccess = false;
+    }
+
     //’Š‚¹‚ñ‚³‚ê‚½ƒ~ƒbƒVƒ‡ƒ“”Ô†‚ğ•Û‘¶
     public void SaveMissionContents(int _count, int _contentNum)
     {

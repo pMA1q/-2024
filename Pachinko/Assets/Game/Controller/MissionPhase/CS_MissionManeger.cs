@@ -14,6 +14,10 @@ public class CS_MissionManeger : MonoBehaviour
     [SerializeField,Header("プレイヤーステータス")]
     private CSO_PlayerStatus playerStatus;
 
+    [SerializeField, Header("カットイン")]
+    private GameObject mCutIn;
+    private GameObject mCutInPlay = null;
+
     private bool isReplayTriggered = false;  // 再抽選フラグ
 
     [SerializeField]
@@ -38,11 +42,15 @@ public class CS_MissionManeger : MonoBehaviour
     private int mSubjugationNum = 0;
     public int SunjugationEnemy { get { return mSubjugationNum; } }
 
+
+
     //ユニークな演出
     CS_SM_Unique mSM_Unique;
     private int[] mUniquePF;
 
     int mNextMissionNum = -1;
+
+    private int mBackupNumber = 0;
 
     //-----------------------イベントハンドラ-----------------------
     public delegate void Performance(int _performance);//引数：項目番号-1
@@ -74,11 +82,21 @@ public class CS_MissionManeger : MonoBehaviour
 
     private void Update()
     {
+        if (bigController.CutIn) 
+        { 
+            if(mCutInPlay == null) { mCutInPlay = Instantiate(mCutIn, mCutIn.transform.position, mCutIn.transform.rotation); }
+            return;
+        }
+
+        UniquePerformance();//ユニークなミッションならば次のミッション番号を決める[
+
+        //再抽選確認。当選すれば次のミッション決定
+        mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[mBackupNumber]);
         //変動できるかを取得
         bool variationStart = bigController.CanVariationStart();
         if (!variationStart) { return; }//falseなら終了
 
-        Debug.Log("次のミッションフラグ" + mNextMissionNum);
+        //Debug.Log("次のミッションフラグ" + mNextMissionNum);
         //入賞数が20？
         if (mGameCount <= 0 && mNextMissionNum == -1)
         {
@@ -101,20 +119,14 @@ public class CS_MissionManeger : MonoBehaviour
        
         mGameCount--;//入賞数減算
 
-        Debug.Log("残りゲーム数" + mGameCount);
+        //Debug.Log("残りゲーム数" + mGameCount);
 
         string name = missionPhaseTable.infomation[randomNumber].name;
-        float[] valTime = new float[3] { 8f, 10f, 10f };
+       
         //無発展
         if (randomNumber <= 2)
         {
-            
-            bigController.VariationTimer = valTime[randomNumber];//変動時間設定
-            mNextMissionNum = -1;
-            //保留玉使用（変動開始）
-            bigController.UseStock(WIN_LOST.LOST);
-            bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
-            Debug.Log("演出番号" + name);
+            NoDevelopment(randomNumber);
             return;
         }
         else { bigController.VariationTimer = 4f; }
@@ -124,26 +136,40 @@ public class CS_MissionManeger : MonoBehaviour
 
         //次の演出番号が-1じゃないなら抽せんを無視する
         if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
-        
+
+        mBackupNumber = randomNumber;
+
         //イベントハンドラ実行
         OnPlayPerformance(randomNumber);
 
         name = missionPhaseTable.infomation[randomNumber].name;
         Debug.Log("演出番号" + name);
 
-        //再抽選確認。当選すれば次のミッション決定
-        mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
-
-        DesisionNextMissionNum(randomNumber);//ユニークなミッションならば次のミッション番号を決める
+        
     }
 
-    //現在のミッションがユニークな場合
-    private void DesisionNextMissionNum(int _nowMissionNum)
+    //無発展処理
+    private void NoDevelopment(int _perfNumber)
+    {
+        float[] valTime = new float[3] { 8f, 10f, 10f };
+        bigController.VariationTimer = valTime[_perfNumber];//変動時間設定
+        mNextMissionNum = -1;
+        mBackupNumber = _perfNumber;
+        //保留玉使用（変動開始）
+        bigController.UseStock(WIN_LOST.LOST);
+        bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
+        string name = missionPhaseTable.infomation[_perfNumber].name;
+        Debug.Log("演出番号" + name);
+    }
+   
+
+    //ユニークな演出時の処理
+    private void UniquePerformance()
     {
         int next = -1;
         for (int i = 0; i < mUniquePF.Length; i++)
         {
-            if (_nowMissionNum == mUniquePF[i] - 1)
+            if (mBackupNumber == mUniquePF[i] - 1)
             {
                 next = mSM_Unique.DesisionMission(i);
                 mNextMissionNum = next;
@@ -187,8 +213,8 @@ public class CS_MissionManeger : MonoBehaviour
         float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.revaival, cStatus.equipmentRank, cStatus.cutIn};
         int random = CS_LotteryFunction.LotNormalInt(4);
         
-        if(_val == 6 || _val == 9) { status[random] *= 2f; }//ランダムステータスUP小
-        else  { status[random] *= 3f; }//ランダムステータスUP大
+        if(_val == 6 || _val == 9) { status[random] += 50f; }//ランダムステータスUP小
+        else  { status[random] += 100f; }//ランダムステータスUP大
         playerStatus.charaStatus = cStatus;
     }
 
@@ -199,8 +225,8 @@ public class CS_MissionManeger : MonoBehaviour
         int mContents = bigController.GetComponent<CS_MissionData>().GetMissionContent(missionType);//ミッションの内容
         CharacterStatus cStatus = playerStatus.charaStatus;
         float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.revaival, cStatus.equipmentRank, cStatus.cutIn };
-        if (_val == 6 || _val == 9) { status[mContents] *= 2f; }//ステータスUP小
-        else { status[mContents] *= 3f; }//ステータスUP中
+        if (_val == 6 || _val == 9) { status[mContents] += 50f; }//ステータスUP小
+        else { status[mContents] += 100f; }//ステータスUP中
         playerStatus.charaStatus = cStatus;
     }
 
@@ -214,6 +240,8 @@ public class CS_MissionManeger : MonoBehaviour
     private void StartBossPhase()
     {
         Debug.Log("ボスフェーズへ移行します");
+        Destroy(this.gameObject);
+        bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
         // ボスフェーズの処理を開始
     }
 

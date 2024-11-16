@@ -67,6 +67,7 @@ public class CS_LotteryFunction : MonoBehaviour
         
         int[] i = { 7, 7, 7 };
 
+        int res = 1;
         switch(_win_lost)
         {
             case WIN_LOST.LOST:
@@ -79,24 +80,28 @@ public class CS_LotteryFunction : MonoBehaviour
                 }
                 break;
             case WIN_LOST.SMALL_WIN:
+                int[] evenNumbers = { 2, 4, 6, 8 };
+                res = evenNumbers[CS_LotteryFunction.LotNormalInt(3)];
                 // i‚Ì0~2‚ª2, 4, 6, 8‚Ì‹ô””Ô†‚É‚È‚é‚æ‚¤‚É’Š‚¹‚ñ
                 for (int j = 0; j < 3; j++)
                 {
-                    int[] evenNumbers = { 2, 4, 6, 8 };
-                    i[j] = evenNumbers[CS_LotteryFunction.LotNormalInt(4)];
+
+                    i[j] = res;
                 }
                 break;
 
             case WIN_LOST.MIDDLE_WIN:
+                int[] oddNumbers = { 1, 3, 5, 9 };
+                res = oddNumbers[CS_LotteryFunction.LotNormalInt(3)];
                 // i‚Ì0~2‚ª1, 3, 5, 9‚ÌŠï””Ô†‚É‚È‚é‚æ‚¤‚É’Š‚¹‚ñ
                 for (int j = 0; j < 3; j++)
                 {
-                    int[] oddNumbers = { 1, 3, 5, 9 };
-                    i[j] = oddNumbers[CS_LotteryFunction.LotNormalInt(4)];
+
+                    i[j] = res;
                 }
                 break;
         }
-
+        Debug.Log("“–‘I"+_win_lost +"}•¿" + i[0] + i[1] + i[2]);
         return i;
     }
 
