@@ -26,7 +26,7 @@ public class CS_SM_Unique : MonoBehaviour
     }
 
     //‰‰o€–Ú11”Ô
-    public int P11()
+    private int P11()
     {
         if (!mCoiceSuccess) { return -1; }
 
@@ -38,7 +38,7 @@ public class CS_SM_Unique : MonoBehaviour
     }
 
     //‰‰o€–Ú11”Ô
-    public int P12()
+    private int P12()
     {
         int[] nextMissionNums = new int[] { 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 18, 19, 24, 25 };
         int missionIdx = CS_LotteryFunction.LotNormalInt(nextMissionNums.Length - 1);
@@ -46,6 +46,21 @@ public class CS_SM_Unique : MonoBehaviour
         return nextMissionNums[missionIdx] - 1;
     }
 
+    private int P18()
+    {
+        CSO_PlayerStatus pStatus = GameObject.Find("BigController").GetComponent<CS_MissionData>().PlayerStatus;
+        CharacterStatus cStatus = pStatus.charaStatus;
+        float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.revaival, cStatus.equipmentRank, cStatus.cutIn };
+        int random = CS_LotteryFunction.LotNormalInt(4);
+        status[random] += 50f;
+        cStatus.charColorUP = status[0];
+        cStatus.preemptiveAttack = status[1];
+        cStatus.revaival = status[2];
+        cStatus.equipmentRank = (int)status[3];
+        cStatus.cutIn = status[4];
+        pStatus.charaStatus = cStatus;
+        return -1;
+    }
 
     //Ÿ‚Ì‰‰o”Ô†‚ğŒˆ‚ß‚Ä•Ô‚·
     public int DesisionMission(int _val)

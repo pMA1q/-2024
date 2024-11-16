@@ -40,6 +40,13 @@ public class CS_Controller : MonoBehaviour
     private bool mPatternVariationFinish = true;//図柄変動終了フラグ
     private bool mPerformanceFinish = true;//演出終了フラグ
 
+    private bool IsCutIn = false;
+    public bool CutIn
+    {
+        set { IsCutIn = value; }
+        get { return IsCutIn; }
+    }
+
     private int[] mPattern = new int[3];//図柄
 
     private float mVariationTimer;
@@ -126,12 +133,18 @@ public class CS_Controller : MonoBehaviour
     //演出終了
     public void PerformanceFinish()
     {
+        CutIn = false;
         mPerformanceFinish = true;
     }
 
     //図柄変動終了
     public void PatternVariationFinish()
     {
+        if (GetJuckpot()) 
+        { 
+            CutIn = true;
+            mPerformanceFinish = false;
+        }
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除
     }
