@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: e6c48f8ae1e0d304ba3824b94b2ed6c2, type: 2}
+  m_Texture: {fileID: 8400000, guid: e39a7284c377fb340918c519b6ae28c4, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -87,7 +87,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: e6c48f8ae1e0d304ba3824b94b2ed6c2, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: e39a7284c377fb340918c519b6ae28c4, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3076d72447619ad47a1ce1d829f5cdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mSE: {fileID: 301587773258209136, guid: bb1a12772b2c10f47b2d7e32282a6532, type: 3}
+  mDestroyTime: 5
 --- !u!1 &7144967071714588428
 GameObject:
   m_ObjectHideFlags: 0

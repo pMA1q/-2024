@@ -39,7 +39,9 @@ public class CS_RenderTexture : MonoBehaviour
 
         // RenderTextureの設定。カメラのアスペクト比を元に正確な解像度で作成
         int renderTextureWidth = mSubCamera.pixelHeight * Mathf.RoundToInt(aspectRatio);
-        RenderTexture rTexture = new RenderTexture(renderTextureWidth, mSubCamera.pixelHeight, 24);
+        //RenderTexture rTexture = new RenderTexture(renderTextureWidth, mSubCamera.pixelHeight, 24);
+        RenderTexture rTexture = new RenderTexture(1920, 1080, 24);
+        rTexture.depthStencilFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.D16_UNorm;
         mSubCamera.targetTexture = rTexture;
 
         // マテリアルのメインテクスチャをRenderTextureに設定

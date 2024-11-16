@@ -156,9 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec55505bc058644ab21e99deec95e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mWidthRatio: 16
-  mHeightRatio: 9
-  mFieldView: 65
 --- !u!45 &899895723
 Skybox:
   m_ObjectHideFlags: 0
@@ -431,9 +428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec55505bc058644ab21e99deec95e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mWidthRatio: 16
-  mHeightRatio: 9
-  mFieldView: 65
 --- !u!45 &1124469126
 Skybox:
   m_ObjectHideFlags: 0
