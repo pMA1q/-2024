@@ -76,12 +76,12 @@ public class CS_LotteryFunction : MonoBehaviour
                 while(i[0] == i[2])
                 {
                     // í èÌÇÕÉâÉìÉ_ÉÄÇ…ê∂ê¨//0~8Ç≈íäÇπÇÒÇµÅA+1ÇµÇΩílÇ…Ç∑ÇÈ
-                    i = new int[] { CS_LotteryFunction.LotNormalInt(8) + 1, CS_LotteryFunction.LotNormalInt(8) + 1, CS_LotteryFunction.LotNormalInt(8) + 1 };
+                    i = new int[] { CS_LotteryFunction.LotNormalInt(9) + 1, CS_LotteryFunction.LotNormalInt(9) + 1, CS_LotteryFunction.LotNormalInt(8) + 1 };
                 }
                 break;
             case WIN_LOST.SMALL_WIN:
                 int[] evenNumbers = { 2, 4, 6, 8 };
-                res = evenNumbers[CS_LotteryFunction.LotNormalInt(3)];
+                res = evenNumbers[CS_LotteryFunction.LotNormalInt(4)];
                 // iÇÃ0~2Ç™2, 4, 6, 8ÇÃãÙêîî‘çÜÇ…Ç»ÇÈÇÊÇ§Ç…íäÇπÇÒ
                 for (int j = 0; j < 3; j++)
                 {
@@ -92,7 +92,7 @@ public class CS_LotteryFunction : MonoBehaviour
 
             case WIN_LOST.MIDDLE_WIN:
                 int[] oddNumbers = { 1, 3, 5, 9 };
-                res = oddNumbers[CS_LotteryFunction.LotNormalInt(3)];
+                res = oddNumbers[CS_LotteryFunction.LotNormalInt(4)];
                 // iÇÃ0~2Ç™1, 3, 5, 9ÇÃäÔêîî‘çÜÇ…Ç»ÇÈÇÊÇ§Ç…íäÇπÇÒ
                 for (int j = 0; j < 3; j++)
                 {

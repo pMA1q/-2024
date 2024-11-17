@@ -13892,7 +13892,6 @@ GameObject:
   - component: {fileID: 3724235320107593172}
   - component: {fileID: 7646835355145906741}
   - component: {fileID: 8278394523380083767}
-  - component: {fileID: 4705332936944274809}
   m_Layer: 0
   m_Name: Windmill
   m_TagString: Untagged
@@ -13908,7 +13907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7495579799581384273}
   m_LocalRotation: {x: 0.9402939, y: -0.34036368, z: -0, w: 0}
-  m_LocalPosition: {x: -12.04, y: -10.54, z: -1.4334326}
+  m_LocalPosition: {x: -12.61, y: -10.54, z: -1.4334326}
   m_LocalScale: {x: 112.76128, y: 112.76128, z: 59.122234}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13995,21 +13994,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 39239b3a7d120ed4694d257dc02831d1, type: 3}
---- !u!114 &4705332936944274809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7495579799581384273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f92fb1f48f1de8841b6f04880a0e1192, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windmill: {fileID: 7495579799581384273}
-  cylinder: {fileID: 5865696707340874661}
-  cylinder2: {fileID: 0}
 --- !u!1 &7597930263817945422
 GameObject:
   m_ObjectHideFlags: 0

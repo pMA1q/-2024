@@ -39,12 +39,19 @@ public class CS_Controller : MonoBehaviour
     
     private bool mPatternVariationFinish = true;//図柄変動終了フラグ
     private bool mPerformanceFinish = true;//演出終了フラグ
+    private bool mPerformanceSemiFinish = true;//演出終了仮フラグ(演出が終わってから消えるまでのフラグ)
 
-    private bool IsCutIn = false;
-    public bool CutIn
+    public bool PerformanceSemiFinish
     {
-        set { IsCutIn = value; }
-        get { return IsCutIn; }
+        set { mPerformanceSemiFinish = value; }
+        get { return mPerformanceSemiFinish; }
+    }
+
+    private bool IsJackPotCutIn = false;
+    public bool JackPotPerf
+    {
+        set { IsJackPotCutIn = value; }
+        get { return IsJackPotCutIn; }
     }
 
     private int[] mPattern = new int[3];//図柄
@@ -104,6 +111,7 @@ public class CS_Controller : MonoBehaviour
         mStock--;
         mPatternVariationFinish = false;//図柄変動終了フラグをfalse
         mPerformanceFinish = false;//演出終了フラグをfalse
+        mPerformanceSemiFinish = false;//演出終了(仮)フラグをfalse
 
         mPattern = CS_LotteryFunction.PatternLottery2(_win_lost); 
         //Debug.Log("図柄:" + mHeso.stock[0][0] + "," + mHeso.stock[0][1] + "," + mHeso.stock[0][2] + ",");
@@ -133,8 +141,13 @@ public class CS_Controller : MonoBehaviour
     //演出終了
     public void PerformanceFinish()
     {
-        CutIn = false;
+        JackPotPerf = false;
         mPerformanceFinish = true;
+    }
+
+    public bool GetPerformanceFinish()
+    {
+        return mPerformanceFinish;
     }
 
     //図柄変動終了
@@ -142,12 +155,16 @@ public class CS_Controller : MonoBehaviour
     {
         if (GetJuckpot()) 
         { 
-            CutIn = true;
             mPerformanceFinish = false;
+            mPerformanceSemiFinish = false;
+            JackPotPerf = true;
         }
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除
     }
+
+    //図柄変動が終了しているか
+    public bool GetPatternVariationFinish() { return mPatternVariationFinish; }
 
     //変動が開始できるか
     public bool CanVariationStart()
