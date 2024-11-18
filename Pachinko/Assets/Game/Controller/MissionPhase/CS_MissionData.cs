@@ -17,28 +17,37 @@ public class CS_MissionData : MonoBehaviour
     private MISSION_TYPE mMisisonNumber = MISSION_TYPE.COLLECT;
     
     //ミッションの種類を設定、取得
-    public MISSION_TYPE MissionNumber
+    public MISSION_TYPE MissionType
     {
-        set
-        {
-            mMisisonNumber = value;
-        }
-        get
-        {
-            return mMisisonNumber;
-        }
+        set { mMisisonNumber = value; }
+        get { return mMisisonNumber;  }
     }
+
+    //無発展フラグ
+    private bool IsNoDevelopment = false;
+    public bool NoDevelpment
+    {
+        set { IsNoDevelopment = value; }
+        get { return IsNoDevelopment; }
+    }
+        
 
     private bool IsChoiceSuccess = false;
+    //選択フラグの取得
+    public bool GetChoiceSuccess() { return IsChoiceSuccess; }
+    //選択成功
+    public void ChoiceSuccess(){ IsChoiceSuccess = true; }
+    //選択フラグをリセット
+    public void ChoiceSuccessReset(){ IsChoiceSuccess = false; }
 
-    public void ChoiceSuccess()
+    //次回的出現時確実に戦うフラグ
+    private bool IsBattle = false;
+    public bool NextBattleFlag 
     {
-        IsChoiceSuccess = true;
+        set { IsBattle = value; }
+        get { return IsBattle; }
     }
-    public void ChoiceSuccessReset()
-    {
-        IsChoiceSuccess = false;
-    }
+
 
     //抽せんされたミッション番号を保存
     public void SaveMissionContents(int _count, int _contentNum)
