@@ -153,6 +153,7 @@
     <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SubjugSastinMission.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformanceFinish.cs" />
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_CameraZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
