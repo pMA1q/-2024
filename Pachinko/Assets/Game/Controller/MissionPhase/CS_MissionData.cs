@@ -4,61 +4,120 @@ using UnityEngine;
 
 public class CS_MissionData : MonoBehaviour
 {
-    [SerializeField, Header("�v���C���[�X�e�[�^�X")]
+    [SerializeField, Header("プレイヤーステータス")]
     private CSO_PlayerStatus mPlayerStatus;
     public CSO_PlayerStatus PlayerStatus { get{ return mPlayerStatus; } }
 
+
+    /// <summary>--------------------------------------------------------------
+    //準備フェーズの選択結果の保存、取得
     public enum MISSION_TYPE
     {
-        COLLECT = 0,    //���W
-        SUBJUGATION,//����
-        TRAINING,   //�g���[�j���O
+        COLLECT = 0,    //収集
+        SUBJUGATION,//討伐
+        TRAINING,   //トレーニング
     }
     private MISSION_TYPE mMisisonNumber = MISSION_TYPE.COLLECT;
     
-    //�~�b�V�����̎�ނ�ݒ�A�擾
+    //ミッションの種類を設定、取得
     public MISSION_TYPE MissionType
     {
         set { mMisisonNumber = value; }
         get { return mMisisonNumber;  }
     }
 
-    //�����W�t���O
+    //無発展フラグ
     private bool IsNoDevelopment = false;
     public bool NoDevelpment
     {
         set { IsNoDevelopment = value; }
         get { return IsNoDevelopment; }
     }
-        
 
-    private bool IsChoiceSuccess = false;
-    //�I���t���O�̎擾
-    public bool GetChoiceSuccess() { return IsChoiceSuccess; }
-    //�I�𐬌�
-    public void ChoiceSuccess(){ IsChoiceSuccess = true; }
-    //�I���t���O�����Z�b�g
-    public void ChoiceSuccessReset(){ IsChoiceSuccess = false; }
+    private int[] mMissionContentsNums = new int[3];
+    //抽せんされたミッション番号を保存
+    public void SaveMissionContents(int _count, int _contentNum)
+    {
+        mMissionContentsNums[_count] = _contentNum;
+    }
+    public int GetMissionContent(int _contentsNum)
+    {
+        return mMissionContentsNums[_contentsNum];
+    }
+    /// </summary>-----------------------------------------------------------------
 
-    //����I�o�����m���ɐ키�t���O
+    //選択方式演出の選択成功フラグ(項目番号:11,12,18,19)
+    private bool isChoiceSuccess = false;
+    public bool GetChoiceSuccess() { return isChoiceSuccess; }
+    //選択成功
+    public void ChoiceSuccess() { isChoiceSuccess = true; }
+    //選択フラグリセット
+    public void ChoiceSuccessReset() { isChoiceSuccess = false; }
+
     private bool IsBattle = false;
-    public bool NextBattleFlag 
+    public bool NextBattleFlag
     {
         set { IsBattle = value; }
         get { return IsBattle; }
     }
 
-
-    //�����񂳂ꂽ�~�b�V�����ԍ���ۑ�
-    public void SaveMissionContents(int _count, int _contentNum)
+    //プレイヤーバフフラグ(項目番号:20,21,29)
+    public enum PLAYER_BUFF
     {
-        mMissionContentsNums[_count] = _contentNum;
+        NONE,       //無
+        WEAK,       //弱
+        STRONG,     //強
+    }
+    private PLAYER_BUFF mPlayerBuff = PLAYER_BUFF.NONE;
+    //プレイヤーバフの種類を設定、取得
+    public PLAYER_BUFF PlayerBuff
+    {
+        set { mPlayerBuff = value; }
+        get { return mPlayerBuff; }
     }
 
-    //�~�b�V�������e
-    private int[] mMissionContentsNums = new int[3];
-    public int GetMissionContent(int _contentsNum)
+    //敵のデバフフラグ(項目番号:22)
+    private bool isEnemyDeBuff = false;
+    //敵のデバフを設定、取得
+    public bool IsEnemyDeBuff
     {
-        return mMissionContentsNums[_contentsNum];
+        set { isEnemyDeBuff = value; }
+        get { return isEnemyDeBuff; }
+    }
+
+    //スキル取得フラグ(項目番号:23)
+    private int mSkill = 0;
+    //スキル数の設定、取得
+    public int Skill
+    {
+        set { mSkill = value; }
+        get { return mSkill; }
+    }
+
+    //敵遭遇高確モードフラグ(項目番号:26)
+    private bool mHighProbabEnemyMode = false;
+    //フラグの設定、取得
+    public bool HighProbabEnemyMode
+    {
+        set { HighProbabEnemyMode = value; }
+        get { return HighProbabEnemyMode; }
+    }
+
+    //ゲーム数延長数(項目番号:27)
+    private int mExtensionGameCount = 0;
+    //追加するゲームカウント数
+    public int ExtensionGameCount
+    {
+        set { mExtensionGameCount = value; }
+        get { return mExtensionGameCount; }
+    }
+
+    //報酬UPフラグ(項目番号:30)
+    private bool mRewardUp = false;
+    //フラグの設定、取得
+    public bool RewardUp
+    {
+        set { mRewardUp = value; }
+        get { return mRewardUp; }
     }
 }

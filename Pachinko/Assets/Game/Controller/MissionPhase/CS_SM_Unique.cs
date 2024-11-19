@@ -23,7 +23,7 @@ public class CS_SM_Unique : CS_UniqueMission
     protected override void Start()
     {
         base.Start();
-        mUniquePF_Functions = new Func<int>[] { P11, P12 ,P18_19, P18_19};
+        mUniquePF_Functions = new Func<int>[] { P11, P12 ,P18_19, P18_19, P20, P21, P22, P23, P26};
     }
 
     //演出項目11番
@@ -65,10 +65,46 @@ public class CS_SM_Unique : CS_UniqueMission
         return -1;
     }
 
-    //演出項目22番
-    private void P22()
+    //演出項目20番
+    private int P20()
     {
-        missionData.NextBattleFlag = true;
+        missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.WEAK;
+        return -1;
+    }
+
+    //演出項目20番
+    private int P21()
+    {
+        missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.STRONG;
+        return -1;
+    }
+
+    //演出項目22番
+    private int P22()
+    {
+        missionData.IsEnemyDeBuff = true;
+        return -1;
+    }
+
+    //演出項目23番
+    private int P23()
+    {
+        missionData.Skill++;
+        return -1;
+    }
+
+    //演出項目26番
+    private int P26()
+    {
+        missionData.HighProbabEnemyMode = true;
+        return -1;
+    }
+
+    //演出項目30番
+    private int P30()
+    {
+        missionData.RewardUp = true;
+        return -1;
     }
 
     //次の演出番号を決めて返す

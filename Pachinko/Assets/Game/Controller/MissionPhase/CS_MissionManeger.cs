@@ -54,6 +54,8 @@ public class CS_MissionManeger : MonoBehaviour
 
     private Coroutine mCoroutine = null;
 
+    private int mHightEnemyCount = 0;
+
     //-----------------------イベントハンドラ-----------------------
     public delegate void Performance(int _performance);//引数：項目番号-1
 
@@ -116,7 +118,7 @@ public class CS_MissionManeger : MonoBehaviour
        
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
-        int randomNumber = CS_LotteryFunction.LotNormalInt(16);//一旦項目17までに限定する
+        int randomNumber = CS_LotteryFunction.LotNormalInt(17);//一旦項目17までに限定する
        
         mGameCount--;//入賞数減算
 
@@ -178,6 +180,12 @@ public class CS_MissionManeger : MonoBehaviour
                 mNextMissionNum = next;
             }
         }
+
+        if(missionData.HighProbabEnemyMode)
+        {
+            missionData.HighProbabEnemyMode = false;
+            mHightEnemyCount = 3;
+        }
     }
     
     //再抽選確認
@@ -185,6 +193,28 @@ public class CS_MissionManeger : MonoBehaviour
     {
         //再抽選無しなら終了
         if(mission.replay == REPLAY.FALSE) { return -1; }
+
+        int[] lot;
+        if(missionData.PlayerBuff == CS_MissionData.PLAYER_BUFF.WEAK)
+        {
+            lot = new int[2] { 6, 9 };
+            missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.NONE;
+            return lot[CS_LotteryFunction.LotNormalInt(2)]-1;
+        }
+        if (missionData.PlayerBuff == CS_MissionData.PLAYER_BUFF.STRONG)
+        {
+            lot = new int[4] { 6, 9, 14, 16 };
+            missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.NONE;
+            return lot[CS_LotteryFunction.LotNormalInt(4)]-1;
+        }
+
+        //敵高確率遭遇ゲーム数が1以上なら敵一体遭遇演出にする
+        if(mHightEnemyCount >= 1)
+        {
+            mHightEnemyCount--;
+            lot = new int[6] { 4 ,5, 6, 7, 8, 9 };
+            return lot[CS_LotteryFunction.LotNormalInt(6)] - 1;
+        }
 
         //先制攻撃の確率に設定
         float percentage = playerStatus.charaStatus.preemptiveAttack;
