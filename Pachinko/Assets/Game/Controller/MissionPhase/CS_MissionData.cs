@@ -33,6 +33,8 @@ public class CS_MissionData : MonoBehaviour
         set { IsNoDevelopment = value; }
         get { return IsNoDevelopment; }
     }
+
+    private int[] mMissionContentsNums = new int[3];
     //抽せんされたミッション番号を保存
     public void SaveMissionContents(int _count, int _contentNum)
     {
@@ -46,15 +48,17 @@ public class CS_MissionData : MonoBehaviour
 
     //選択方式演出の選択成功フラグ(項目番号:11,12,18,19)
     private bool isChoiceSuccess = false;
+    public bool GetChoiceSuccess() { return isChoiceSuccess; }
     //選択成功
-    public void ChoiceSuccess()
-    {
-        isChoiceSuccess = true;
-    }
+    public void ChoiceSuccess() { isChoiceSuccess = true; }
     //選択フラグリセット
-    public void ChoiceSuccessReset()
+    public void ChoiceSuccessReset() { isChoiceSuccess = false; }
+
+    private bool IsBattle = false;
+    public bool NextBattleFlag
     {
-        isChoiceSuccess = false;
+        set { IsBattle = value; }
+        get { return IsBattle; }
     }
 
     //プレイヤーバフフラグ(項目番号:20,21,29)
