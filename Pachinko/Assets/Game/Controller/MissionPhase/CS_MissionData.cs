@@ -4,31 +4,36 @@ using UnityEngine;
 
 public class CS_MissionData : MonoBehaviour
 {
-    [SerializeField, Header("ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX")]
+    [SerializeField, Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹")]
     private CSO_PlayerStatus mPlayerStatus;
     public CSO_PlayerStatus PlayerStatus { get{ return mPlayerStatus; } }
 
 
     /// <summary>--------------------------------------------------------------
-    //€”õƒtƒF[ƒY‚Ì‘I‘ğŒ‹‰Ê‚Ì•Û‘¶Aæ“¾
+    //æº–å‚™ãƒ•ã‚§ãƒ¼ã‚ºã®é¸æŠçµæœã®ä¿å­˜ã€å–å¾—
     public enum MISSION_TYPE
     {
-        COLLECT = 0,    //ûW
-        SUBJUGATION,//“¢”°
-        TRAINING,   //ƒgƒŒ[ƒjƒ“ƒO
+        COLLECT = 0,    //åé›†
+        SUBJUGATION,//è¨ä¼
+        TRAINING,   //ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°
     }
     private MISSION_TYPE mMisisonNumber = MISSION_TYPE.COLLECT;
     
-    //ƒ~ƒbƒVƒ‡ƒ“‚Ìí—Ş‚ğİ’èAæ“¾
-    public MISSION_TYPE MissionNumber
+    //ãƒŸãƒƒã‚·ãƒ§ãƒ³ã®ç¨®é¡ã‚’è¨­å®šã€å–å¾—
+    public MISSION_TYPE MissionType
     {
-        set{ mMisisonNumber = value;}
-        get{ return mMisisonNumber;}
+        set { mMisisonNumber = value; }
+        get { return mMisisonNumber;  }
     }
 
-    //€”õƒtƒF[ƒY‚Å‘I‘ğ‚³‚ê‚½ƒ~ƒbƒVƒ‡ƒ““à—e‚Ì”Ô†
-    private int[] mMissionContentsNums = new int[3];
-    //’Š‚¹‚ñ‚³‚ê‚½ƒ~ƒbƒVƒ‡ƒ“”Ô†‚ğ•Û‘¶
+    //ç„¡ç™ºå±•ãƒ•ãƒ©ã‚°
+    private bool IsNoDevelopment = false;
+    public bool NoDevelpment
+    {
+        set { IsNoDevelopment = value; }
+        get { return IsNoDevelopment; }
+    }
+    //æŠ½ã›ã‚“ã•ã‚ŒãŸãƒŸãƒƒã‚·ãƒ§ãƒ³ç•ªå·ã‚’ä¿å­˜
     public void SaveMissionContents(int _count, int _contentNum)
     {
         mMissionContentsNums[_count] = _contentNum;
@@ -39,73 +44,73 @@ public class CS_MissionData : MonoBehaviour
     }
     /// </summary>-----------------------------------------------------------------
 
-    //‘I‘ğ•û®‰‰o‚Ì‘I‘ğ¬Œ÷ƒtƒ‰ƒO(€–Ú”Ô†:11,12,18,19)
+    //é¸æŠæ–¹å¼æ¼”å‡ºã®é¸æŠæˆåŠŸãƒ•ãƒ©ã‚°(é …ç›®ç•ªå·:11,12,18,19)
     private bool isChoiceSuccess = false;
-    //‘I‘ğ¬Œ÷
+    //é¸æŠæˆåŠŸ
     public void ChoiceSuccess()
     {
         isChoiceSuccess = true;
     }
-    //‘I‘ğƒtƒ‰ƒOƒŠƒZƒbƒg
+    //é¸æŠãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
     public void ChoiceSuccessReset()
     {
         isChoiceSuccess = false;
     }
 
-    //ƒvƒŒƒCƒ„[ƒoƒtƒtƒ‰ƒO(€–Ú”Ô†:20,21,29)
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒ•ãƒ•ãƒ©ã‚°(é …ç›®ç•ªå·:20,21,29)
     public enum PLAYER_BUFF
     {
-        NONE,       //–³
-        WEAK,       //ã
-        STRONG,     //‹­
+        NONE,       //ç„¡
+        WEAK,       //å¼±
+        STRONG,     //å¼·
     }
     private PLAYER_BUFF mPlayerBuff = PLAYER_BUFF.NONE;
-    //ƒvƒŒƒCƒ„[ƒoƒt‚Ìí—Ş‚ğİ’èAæ“¾
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒ•ã®ç¨®é¡ã‚’è¨­å®šã€å–å¾—
     public PLAYER_BUFF PlayerBuff
     {
         set { mPlayerBuff = value; }
         get { return mPlayerBuff; }
     }
 
-    //“G‚Ìƒfƒoƒtƒtƒ‰ƒO(€–Ú”Ô†:22)
+    //æ•µã®ãƒ‡ãƒãƒ•ãƒ•ãƒ©ã‚°(é …ç›®ç•ªå·:22)
     private bool isEnemyDeBuff = false;
-    //“G‚Ìƒfƒoƒt‚ğİ’èAæ“¾
+    //æ•µã®ãƒ‡ãƒãƒ•ã‚’è¨­å®šã€å–å¾—
     public bool IsEnemyDeBuff
     {
         set { isEnemyDeBuff = value; }
         get { return isEnemyDeBuff; }
     }
 
-    //ƒXƒLƒ‹æ“¾ƒtƒ‰ƒO(€–Ú”Ô†:23)
+    //ã‚¹ã‚­ãƒ«å–å¾—ãƒ•ãƒ©ã‚°(é …ç›®ç•ªå·:23)
     private int mSkill = 0;
-    //ƒXƒLƒ‹”‚Ìİ’èAæ“¾
+    //ã‚¹ã‚­ãƒ«æ•°ã®è¨­å®šã€å–å¾—
     public int Skill
     {
         set { mSkill = value; }
         get { return mSkill; }
     }
 
-    //“G‘˜‹ö‚Šmƒ‚[ƒhƒtƒ‰ƒO(€–Ú”Ô†:26)
+    //æ•µé­é‡é«˜ç¢ºãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°(é …ç›®ç•ªå·:26)
     private bool mHighProbabEnemyMode = false;
-    //ƒtƒ‰ƒO‚Ìİ’èAæ“¾
+    //ãƒ•ãƒ©ã‚°ã®è¨­å®šã€å–å¾—
     public bool HighProbabEnemyMode
     {
         set { HighProbabEnemyMode = value; }
         get { return HighProbabEnemyMode; }
     }
 
-    //ƒQ[ƒ€”‰„’·”(€–Ú”Ô†:27)
+    //ã‚²ãƒ¼ãƒ æ•°å»¶é•·æ•°(é …ç›®ç•ªå·:27)
     private int mExtensionGameCount = 0;
-    //’Ç‰Á‚·‚éƒQ[ƒ€ƒJƒEƒ“ƒg”
+    //è¿½åŠ ã™ã‚‹ã‚²ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆæ•°
     public int ExtensionGameCount
     {
         set { mExtensionGameCount = value; }
         get { return mExtensionGameCount; }
     }
 
-    //•ñVUPƒtƒ‰ƒO(€–Ú”Ô†:30)
+    //å ±é…¬UPãƒ•ãƒ©ã‚°(é …ç›®ç•ªå·:30)
     private bool mRewardUp = false;
-    //ƒtƒ‰ƒO‚Ìİ’èAæ“¾
+    //ãƒ•ãƒ©ã‚°ã®è¨­å®šã€å–å¾—
     public bool RewardUp
     {
         set { mRewardUp = value; }
