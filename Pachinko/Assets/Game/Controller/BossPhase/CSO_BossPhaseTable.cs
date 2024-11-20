@@ -6,22 +6,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SetPhaseTable", menuName = "Table/MissionFhaseTable", order = 1)]
-public class CSO_MissionPhaseTable : ScriptableObject
+[CreateAssetMenu(fileName = "BossPhaseTable", menuName = "Table/BossFhaseTable", order = 1)]
+public class CSO_BossPhaseTable : ScriptableObject
 {
     [Header("ミッション情報")]
-    public List<MissionPhaseInfomation> infomation;
+    public List<BossPhaseInfomation> infomation;
 }
 
 [System.Serializable]
-public class MissionPhaseInfomation
+public class BossPhaseInfomation
 {
     [Header("発展内容名")]
     public string name;
     [Header("当落情報")]
-    public WIN_LOST win_lost;
+    public WIN_LOST_B win_lost;
     [Header("再抽選有無")]
-    public REPLAY replay;
+    public REPLAY_B replay;
     [Header("再抽選先の項目番号(再抽選なしの場合は0)")]
     public int replayNum;
     [Header("演出プレハブ")]
@@ -29,7 +29,7 @@ public class MissionPhaseInfomation
 }
 
 //当落情報
-public enum WIN_LOST
+public enum WIN_LOST_B
 {
     LOST = 0,//ハズレ
     SMALL_WIN,//小当たり
@@ -39,10 +39,13 @@ public enum WIN_LOST
 }
 
 //再抽選有無
-public enum REPLAY
+public enum REPLAY_B
 {
     FALSE = 0,//無
     TRUE_P1,
-    TRUE_P2
+    TRUE_P2,
+    TRUE_P3,
+    TRUE_P4,
+    TRUE_P5,
     
 }

@@ -54,11 +54,22 @@ public class CS_MissionData : MonoBehaviour
     //選択フラグリセット
     public void ChoiceSuccessReset() { isChoiceSuccess = false; }
 
-    private bool IsBattle = false;
-    public bool NextBattleFlag
+    //討伐数の合計
+    private int mSubjugationSum = 0;
+    //討伐数の設定、取得
+    public int SubjugationSum
     {
-        set { IsBattle = value; }
-        get { return IsBattle; }
+        set { mSubjugationSum = value; }
+        get { return mSubjugationSum; }
+    }
+
+    //１ミッションで討伐した敵の討伐数（項目番号:18,19）
+    private int mSubjugation_OneMission = 0;
+    //討伐数の設定、取得
+    public int SubjugationOneMission
+    {
+        set { mSubjugation_OneMission = value; }
+        get { return mSubjugation_OneMission; }
     }
 
     //プレイヤーバフフラグ(項目番号:20,21,29)
@@ -99,8 +110,8 @@ public class CS_MissionData : MonoBehaviour
     //フラグの設定、取得
     public bool HighProbabEnemyMode
     {
-        set { HighProbabEnemyMode = value; }
-        get { return HighProbabEnemyMode; }
+        set { mHighProbabEnemyMode = value; }
+        get { return mHighProbabEnemyMode; }
     }
 
     //ゲーム数延長数(項目番号:27)
@@ -119,5 +130,20 @@ public class CS_MissionData : MonoBehaviour
     {
         set { mRewardUp = value; }
         get { return mRewardUp; }
+    }
+
+
+    //各フラグやデータをリセットする
+    public void ResetMissionData()
+    {
+        isChoiceSuccess = false;
+        mSubjugationSum = 0;
+        mSubjugation_OneMission = 0;
+        mPlayerBuff = PLAYER_BUFF.NONE;
+        isEnemyDeBuff = false;
+        mSkill = 0;
+        mHighProbabEnemyMode = false;
+        mExtensionGameCount = 0;
+        mRewardUp = false;
     }
 }

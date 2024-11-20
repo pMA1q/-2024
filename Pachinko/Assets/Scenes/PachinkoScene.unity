@@ -1368,7 +1368,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 720, y: 720}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2310,7 +2310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -233.78, y: 52.95404}
+  m_AnchoredPosition: {x: -233.78003, y: 52.9541}
   m_SizeDelta: {x: 40, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754997766
@@ -6272,6 +6272,16 @@ PrefabInstance:
       propertyPath: m_MatchWidthOrHeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6673196055675141161, guid: dc190d43668bb6748922252e7c93aae4,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673196055675141161, guid: dc190d43668bb6748922252e7c93aae4,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
+      objectReference: {fileID: 0}
     - target: {fileID: 7525685379379107564, guid: dc190d43668bb6748922252e7c93aae4,
         type: 3}
       propertyPath: m_Camera
@@ -8614,7 +8624,7 @@ PrefabInstance:
     - target: {fileID: 8482909576133733790, guid: bb1a47c256ebb8d41b603ae1c567895a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 62.8
+      value: 66.3
       objectReference: {fileID: 0}
     - target: {fileID: 8482909576133733790, guid: bb1a47c256ebb8d41b603ae1c567895a,
         type: 3}
