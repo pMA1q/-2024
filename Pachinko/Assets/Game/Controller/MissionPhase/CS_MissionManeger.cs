@@ -66,6 +66,7 @@ public class CS_MissionManeger : MonoBehaviour
     void Start()
     {
         missionData = GameObject.Find("BigController").GetComponent<CS_MissionData>();
+        missionData.ResetMissionData();//ミッションデータの各フラグをレセットする
         // プレイヤーステータスをデータから取得
         playerStatus = missionData.PlayerStatus;
 
@@ -90,7 +91,6 @@ public class CS_MissionManeger : MonoBehaviour
     {
         if(mCoroutine != null) { return; }
         
-
         UniquePerformance();//ユニークなミッションならば報酬または次のミッション番号を決める
 
         //入賞数が20？
@@ -108,7 +108,6 @@ public class CS_MissionManeger : MonoBehaviour
 
         //Debug.Log("次のミッションフラグ" + mNextMissionNum);
        
-
         //イベントハンドラはnullなら終了
         if (OnPlayPerformance == null) { return; }
 
@@ -186,6 +185,19 @@ public class CS_MissionManeger : MonoBehaviour
             missionData.HighProbabEnemyMode = false;
             mHightEnemyCount = 3;
         }
+
+        //敵を討伐したなら
+        if(missionData.SubjugationOneMission >= 1)
+        {
+            mSubjugationNum = missionData.SubjugationOneMission;//討伐数に加算
+            missionData.SubjugationSum = mSubjugationNum;//ミッションデータの討伐数合計を更新
+            int perfNumber = mBackupNumber + 1;//演出項目番号
+            //次回ミッション遂行フラグ確定？の演出かを調べる
+            bool perfNumber18or19 = (perfNumber == 18 || perfNumber == 19);
+            //次回ミッション遂行フラグ確定？の演出でないなら１ミッション討伐数を0に戻す
+            if (!perfNumber18or19) {   missionData.SubjugationOneMission = 0; }
+           
+        }
     }
     
     //再抽選確認
@@ -225,14 +237,10 @@ public class CS_MissionManeger : MonoBehaviour
         float randomValue = UnityEngine.Random.Range(0f, 100f);
         if (randomValue < percentage)//当たった
         {
-            //ランダムステータス
+            //ランダムステータスUP
             if(mission.replayNum <= 16) 
             {
-                //ミッションの種類を取得
-                int missionType = (int)bigController.GetComponent<CS_MissionData>().MissionType;
-                if(missionType == 0) { StatusUP(mission.replayNum); }
-                else{ RundomStatusUP(mission.replayNum); }
-
+                RundomStatusUP(mission.replayNum);
             }
             return mission.replayNum - 1;
         }
@@ -243,30 +251,27 @@ public class CS_MissionManeger : MonoBehaviour
     private void RundomStatusUP(int _val)
     {
         CharacterStatus cStatus = playerStatus.charaStatus;
-        float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.revaival, cStatus.equipmentRank, cStatus.cutIn};
-        int random = CS_LotteryFunction.LotNormalInt(4);
+        float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.attack, cStatus.revaival, cStatus.cutIn};
+        List<float> choicePercent = new List<float> {cStatus.charColorUpPow.conicePercent, cStatus.preemptiveAttackUpPow.conicePercent,cStatus.attackUpPow.conicePercent,
+                                                     cStatus.revivalUpPow.conicePercent,cStatus.cutInUpPow.conicePercent};
+        List<float> smallpower = new List<float> {cStatus.charColorUpPow.smallUP, cStatus.preemptiveAttackUpPow.smallUP,cStatus.attackUpPow.smallUP,
+                                                     cStatus.revivalUpPow.smallUP,cStatus.cutInUpPow.smallUP};
+        List<float> midllepower = new List<float> {cStatus.charColorUpPow.smallUP, cStatus.preemptiveAttackUpPow.smallUP,cStatus.attackUpPow.smallUP,
+                                                     cStatus.revivalUpPow.smallUP,cStatus.cutInUpPow.smallUP};
+        List<float> maxpower = new List<float> {cStatus.charColorUpPow.max, cStatus.preemptiveAttackUpPow.max,cStatus.attackUpPow.max,
+                                                     cStatus.revivalUpPow.max,cStatus.cutInUpPow.max};
+        int random = CS_LotteryFunction.LotPerformance(choicePercent);
         
-        if(_val == 6 || _val == 9) { status[random] += 50f; }//ランダムステータスUP小
-        else  { status[random] += 100f; }//ランダムステータスUP大
+        if(_val == 6 || _val == 9) { status[random] += smallpower[random]; }//ランダムステータスUP小
+        else  { status[random] += midllepower[random]; }//ランダムステータスUP中
+        //最大値を超えないようにする
+        if (status[random] > maxpower[random]) { status[random] = maxpower[random]; }
+        cStatus.charColorUP = status[0];
+        cStatus.preemptiveAttack = status[1];
+        cStatus.attack = status[2];
+        cStatus.revaival = status[3];
+        cStatus.cutIn = status[4];
         playerStatus.charaStatus = cStatus;
-    }
-
-    //収集ミッション時のステータスUP処理
-    private void StatusUP(int _val)
-    {
-        int missionType = (int)missionData.MissionType;//ミッションの種類
-        int mContents = bigController.GetComponent<CS_MissionData>().GetMissionContent(missionType);//ミッションの内容
-        CharacterStatus cStatus = playerStatus.charaStatus;
-        float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.revaival, cStatus.equipmentRank, cStatus.cutIn };
-        if (_val == 6 || _val == 9) { status[mContents] += 50f; }//ステータスUP小
-        else { status[mContents] += 100f; }//ステータスUP中
-        playerStatus.charaStatus = cStatus;
-    }
-
-    //項目番号18と19のときのリザルト
-    public void Result18_19(int _res)
-    {
-        mSubjugationNum += _res;
     }
 
     // ボスフェーズへの移行

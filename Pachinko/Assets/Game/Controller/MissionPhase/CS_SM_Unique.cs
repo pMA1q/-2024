@@ -50,17 +50,44 @@ public class CS_SM_Unique : CS_UniqueMission
     //演出項目18&19番
     private int P18_19()
     {
-        if (!missionData.GetChoiceSuccess()) { return -1; }
+        //選択に失敗した？
+        if (!missionData.GetChoiceSuccess()) 
+        {
+            //１ミッション討伐数を0に戻す
+            missionData.SubjugationOneMission = 0;
+            return -1;
+        }
         CSO_PlayerStatus pStatus = GameObject.Find("BigController").GetComponent<CS_MissionData>().PlayerStatus;
         CharacterStatus cStatus = pStatus.charaStatus;
-        float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.revaival, cStatus.equipmentRank, cStatus.cutIn };
-        int random = CS_LotteryFunction.LotNormalInt(4);
-        status[random] += 50f;
+        float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.attack, cStatus.revaival, cStatus.cutIn };
+        List<float> choicePercent = new List<float> {cStatus.charColorUpPow.conicePercent, cStatus.preemptiveAttackUpPow.conicePercent,cStatus.attackUpPow.conicePercent,
+                                                     cStatus.revivalUpPow.conicePercent,cStatus.cutInUpPow.conicePercent};
+        List<float> smallpower = new List<float> {cStatus.charColorUpPow.smallUP, cStatus.preemptiveAttackUpPow.smallUP,cStatus.attackUpPow.smallUP,
+                                                     cStatus.revivalUpPow.smallUP,cStatus.cutInUpPow.smallUP};
+        List<float> midllepower = new List<float> {cStatus.charColorUpPow.smallUP, cStatus.preemptiveAttackUpPow.smallUP,cStatus.attackUpPow.smallUP,
+                                                     cStatus.revivalUpPow.smallUP,cStatus.cutInUpPow.smallUP};
+        List<float> bigpower = new List<float> {cStatus.charColorUpPow.bigUP, cStatus.preemptiveAttackUpPow.bigUP,cStatus.attackUpPow.bigUP,
+                                                     cStatus.revivalUpPow.bigUP,cStatus.cutInUpPow.bigUP};
+        List<float> maxpower = new List<float> {cStatus.charColorUpPow.max, cStatus.preemptiveAttackUpPow.max,cStatus.attackUpPow.max,
+                                                     cStatus.revivalUpPow.max,cStatus.cutInUpPow.max};
+        int random = CS_LotteryFunction.LotPerformance(choicePercent);
+
+        //1~3体倒した？
+        if(missionData.SubjugationOneMission >= 1 && missionData.SubjugationOneMission <= 3) { status[random] += smallpower[random]; }
+        //4~6体倒した？
+        else if (missionData.SubjugationOneMission <= 6) { status[random] += midllepower[random]; }
+        //7~9体倒した？
+        else { status[random] += bigpower[random]; }
+
+        //最大値を超えないようにする
+        if(status[random] > maxpower[random]) { status[random] = maxpower[random]; }
+
         cStatus.charColorUP = status[0];
         cStatus.preemptiveAttack = status[1];
-        cStatus.revaival = status[2];
-        cStatus.equipmentRank = (int)status[3];
+        cStatus.attack = status[2];
+        cStatus.revaival = status[3];
         cStatus.cutIn = status[4];
+        //プレイヤーステータスを更新
         pStatus.charaStatus = cStatus;
         return -1;
     }
