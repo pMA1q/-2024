@@ -16,14 +16,14 @@ MonoBehaviour:
   attack: 10
   defense: 10
   charaStatus:
-    charColorUP: 5
+    charColorUP: 8
     charColorUpPow:
       smallUP: 3
       middleUP: 5
       bigUP: 20
       max: 80
       conicePercent: 30
-    preemptiveAttack: 5
+    preemptiveAttack: 8
     preemptiveAttackUpPow:
       smallUP: 3
       middleUP: 5

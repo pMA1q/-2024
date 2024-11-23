@@ -57,7 +57,7 @@ public class CS_SM_Unique : CS_UniqueMission
             missionData.SubjugationOneMission = 0;
             return -1;
         }
-        CSO_PlayerStatus pStatus = GameObject.Find("BigController").GetComponent<CS_MissionData>().PlayerStatus;
+        CSO_PlayerStatus pStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
         CharacterStatus cStatus = pStatus.charaStatus;
         float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.attack, cStatus.revaival, cStatus.cutIn };
         List<float> choicePercent = new List<float> {cStatus.charColorUpPow.conicePercent, cStatus.preemptiveAttackUpPow.conicePercent,cStatus.attackUpPow.conicePercent,
@@ -74,7 +74,7 @@ public class CS_SM_Unique : CS_UniqueMission
 
         //1~3体倒した？
         if(missionData.SubjugationOneMission >= 1 && missionData.SubjugationOneMission <= 3) { status[random] += smallpower[random]; }
-        //4~6体倒した？
+        //4~6体倒した？s
         else if (missionData.SubjugationOneMission <= 6) { status[random] += midllepower[random]; }
         //7~9体倒した？
         else { status[random] += bigpower[random]; }
@@ -87,7 +87,7 @@ public class CS_SM_Unique : CS_UniqueMission
         cStatus.attack = status[2];
         cStatus.revaival = status[3];
         cStatus.cutIn = status[4];
-        //プレイヤーステータスを更新
+        //プレイヤーステータスを更新s
         pStatus.charaStatus = cStatus;
         return -1;
     }
@@ -95,14 +95,14 @@ public class CS_SM_Unique : CS_UniqueMission
     //演出項目20番
     private int P20()
     {
-        missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.WEAK;
+        missionData.PlayerBuff = CS_MissionPhaseData.PLAYER_BUFF.WEAK;
         return -1;
     }
 
     //演出項目20番
     private int P21()
     {
-        missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.STRONG;
+        missionData.PlayerBuff = CS_MissionPhaseData.PLAYER_BUFF.STRONG;
         return -1;
     }
 

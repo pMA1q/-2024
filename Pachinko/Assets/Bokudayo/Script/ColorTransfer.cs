@@ -112,8 +112,8 @@ public class ColorTransfer : MonoBehaviour
         //âºèàóù
         bigctrl.ChangePhase(CS_Controller.PACHINKO_PHESE.MISSION);
         
-        CS_MissionData mData = GameObject.Find("BigController").GetComponent<CS_MissionData>();
-        mData.MissionType = (CS_MissionData.MISSION_TYPE)selectNum;
+        CS_MissionPhaseData mData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
+        mData.MissionType = (CS_MissionPhaseData.MISSION_TYPE)selectNum;
 
 
         yield return null;

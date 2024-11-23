@@ -101,7 +101,7 @@ public class CS_LotteryFunction : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log("ìñëI"+_win_lost +"ê}ïø" + i[0] + i[1] + i[2]);
+       // Debug.Log("ìñëI"+_win_lost +"ê}ïø" + i[0] + i[1] + i[2]);
         return i;
     }
 

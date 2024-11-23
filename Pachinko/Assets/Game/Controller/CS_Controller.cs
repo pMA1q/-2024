@@ -120,6 +120,8 @@ public class CS_Controller : MonoBehaviour
 
     }
 
+
+
     public int[] GetPatterns()
     {
         return mPattern;

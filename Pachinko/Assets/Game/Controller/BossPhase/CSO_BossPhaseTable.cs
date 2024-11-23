@@ -19,7 +19,7 @@ public class BossPhaseInfomation
     [Header("発展内容名")]
     public string name;
     [Header("当落情報")]
-    public WIN_LOST_B win_lost;
+    public WIN_LOST win_lost;
     [Header("再抽選有無")]
     public REPLAY_B replay;
     [Header("再抽選先の項目番号(再抽選なしの場合は0)")]
@@ -28,15 +28,6 @@ public class BossPhaseInfomation
     public GameObject performance;
 }
 
-//当落情報
-public enum WIN_LOST_B
-{
-    LOST = 0,//ハズレ
-    SMALL_WIN,//小当たり
-    MIDDLE_WIN,//中当たり
-    BIG_WIN,//大当たり
-    RANDOM//ランダム
-}
 
 //再抽選有無
 public enum REPLAY_B

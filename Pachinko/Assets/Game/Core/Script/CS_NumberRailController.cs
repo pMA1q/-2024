@@ -65,7 +65,7 @@ public class CS_NumberRailController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         isVariation = true;
 
-        CS_MissionData missionData = GameObject.Find("BigController").GetComponent<CS_MissionData>();
+        CS_MissionPhaseData missionData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
 
         if (missionData.NoDevelpment) { yield return new WaitForSeconds(mVariationTime -2f); }//変動時間が過ぎるまで処理を進めない
         else { while (!mBigCtrl.PerformanceSemiFinish) { yield return null; } }//演出終了仮フラグがtrueになるまで処理を進めない
