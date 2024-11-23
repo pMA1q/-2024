@@ -35,7 +35,7 @@ public enum WIN_LOST
     SMALL_WIN,//小当たり
     MIDDLE_WIN,//中当たり
     BIG_WIN,//大当たり
-    RANDOM//ランダム
+    RANDOM,//ランダム
 }
 
 //再抽選有無

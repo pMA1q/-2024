@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CS_MissionData : MonoBehaviour
+public class CS_MissionPhaseData : MonoBehaviour
 {
     [SerializeField, Header("プレイヤーステータス")]
     private CSO_PlayerStatus mPlayerStatus;

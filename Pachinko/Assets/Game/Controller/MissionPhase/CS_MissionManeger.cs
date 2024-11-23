@@ -27,7 +27,7 @@ public class CS_MissionManeger : MonoBehaviour
     private GameObject[] missionPrefab;
 
     private CS_Controller bigController;//司令塔(大)
-    private CS_MissionData missionData;//司令塔(大)
+    private CS_MissionPhaseData missionData;//司令塔(大)
 
     private int mGameCount = 20;//入賞数
 
@@ -65,7 +65,7 @@ public class CS_MissionManeger : MonoBehaviour
 
     void Start()
     {
-        missionData = GameObject.Find("BigController").GetComponent<CS_MissionData>();
+        missionData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
         missionData.ResetMissionData();//ミッションデータの各フラグをレセットする
         // プレイヤーステータスをデータから取得
         playerStatus = missionData.PlayerStatus;
@@ -73,13 +73,13 @@ public class CS_MissionManeger : MonoBehaviour
         bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
 
         //ミッションの種類を取得
-        int missionType = (int)bigController.GetComponent<CS_MissionData>().MissionType;
+        int missionType = (int)bigController.GetComponent<CS_MissionPhaseData>().MissionType;
         //ミッション選択オブジェクトを生成
         GameObject instance = Instantiate(missionPrefab[missionType], missionPrefab[missionType].transform.position, missionPrefab[missionType].transform.rotation);
         instance.name = missionPrefab[missionType].name; // (Clone)が付かないように名前をオリジナルの名前に戻す
 
-        CS_MissionData.MISSION_TYPE mtype = missionData.MissionType;
-        if(mtype == CS_MissionData.MISSION_TYPE.SUBJUGATION) { mSM_Unique = new CS_SM_Unique(); }
+        CS_MissionPhaseData.MISSION_TYPE mtype = missionData.MissionType;
+        //if(mtype == CS_MissionPhaseData.MISSION_TYPE.SUBJUGATION) { mSM_Unique = new CS_SM_Unique(); }
         mSM_Unique = this.gameObject.AddComponent<CS_SM_Unique>();
         mUniquePF = new int[] { 11, 12, 18, 19, 22 };//ユニークな演出の項目番号配列
 
@@ -136,7 +136,7 @@ public class CS_MissionManeger : MonoBehaviour
         missionData.NoDevelpment = false;//無発展フラグをfalse
 
         //再抽選確認。当選すれば次のミッション決定
-        mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[mBackupNumber]);
+        mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
         //次の演出番号が-1じゃないなら再抽選結果を入れる
         if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
 
@@ -207,16 +207,16 @@ public class CS_MissionManeger : MonoBehaviour
         if(mission.replay == REPLAY.FALSE) { return -1; }
 
         int[] lot;
-        if(missionData.PlayerBuff == CS_MissionData.PLAYER_BUFF.WEAK)
+        if(missionData.PlayerBuff == CS_MissionPhaseData.PLAYER_BUFF.WEAK)
         {
             lot = new int[2] { 6, 9 };
-            missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.NONE;
+            missionData.PlayerBuff = CS_MissionPhaseData.PLAYER_BUFF.NONE;
             return lot[CS_LotteryFunction.LotNormalInt(2)]-1;
         }
-        if (missionData.PlayerBuff == CS_MissionData.PLAYER_BUFF.STRONG)
+        if (missionData.PlayerBuff == CS_MissionPhaseData.PLAYER_BUFF.STRONG)
         {
             lot = new int[4] { 6, 9, 14, 16 };
-            missionData.PlayerBuff = CS_MissionData.PLAYER_BUFF.NONE;
+            missionData.PlayerBuff = CS_MissionPhaseData.PLAYER_BUFF.NONE;
             return lot[CS_LotteryFunction.LotNormalInt(4)]-1;
         }
 
@@ -228,6 +228,7 @@ public class CS_MissionManeger : MonoBehaviour
             return lot[CS_LotteryFunction.LotNormalInt(6)] - 1;
         }
 
+        Debug.Log("再抽選開始");
         //先制攻撃の確率に設定
         float percentage = playerStatus.charaStatus.preemptiveAttack;
        
@@ -237,6 +238,7 @@ public class CS_MissionManeger : MonoBehaviour
         float randomValue = UnityEngine.Random.Range(0f, 100f);
         if (randomValue < percentage)//当たった
         {
+            Debug.Log("再抽選当選");
             //ランダムステータスUP
             if(mission.replayNum <= 16) 
             {
@@ -280,7 +282,7 @@ public class CS_MissionManeger : MonoBehaviour
         Debug.Log("ボスフェーズへ移行します");
         Destroy(this.gameObject);
         // ボスフェーズの処理を開始
-        bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
+        bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOSS);
     }
 
     //抽選後処理
