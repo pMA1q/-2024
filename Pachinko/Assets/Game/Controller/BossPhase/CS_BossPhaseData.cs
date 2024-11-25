@@ -47,6 +47,15 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return isConfirmationChoice; }
     }
 
+    //選択成功フラグ
+    private bool isChoiceSuccess;
+    //復活フラグの設定、取得
+    public bool IsChoiceSuccess
+    {
+        set { isChoiceSuccess = value; }
+        get { return isChoiceSuccess; }
+    }
+
     //1変動時のプレイヤーの攻撃量
     private float mBossOneAttackPow;
     //バックアップHPの設定、取得
@@ -64,8 +73,15 @@ public class CS_BossPhaseData : MonoBehaviour
         set { mBossNumber = value; }
         get { return mBossNumber; }
     }
-
     
+    //ボス討伐フラグ
+    private bool isSubjugation;
+    //ボス討伐フラグの設定、取得
+    public bool IsSubjugation
+    {
+        set { isSubjugation = value; }
+        get { return isSubjugation; }
+    }
 
     // Start is called before the first frame update
     void Start()
