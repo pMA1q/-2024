@@ -10,9 +10,9 @@ using UnityEngine;
 public class CSO_PlayerStatus : ScriptableObject
 {
     // ステータスのプロパティ
-    public int hp;
-    public int attack;
-    public int defense;
+    public float hp;
+    public float attack;
+    public float defense;
 
     public CharacterStatus charaStatus;
     public Ticket ticket;
@@ -41,7 +41,6 @@ public class CSO_PlayerStatus : ScriptableObject
         defense = _backUp.defense;
         charaStatus = _backUp.charaStatus;
         ticket = _backUp.ticket;
-        backupStatus = null;
     }
 
 

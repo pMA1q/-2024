@@ -11,11 +11,67 @@ public class CS_BossPhaseData : MonoBehaviour
     private CSO_PlayerStatus mPlayerStatus;
     public CSO_PlayerStatus PlayerStatus { get { return mPlayerStatus; } }
 
+    //プレイヤーHPのバックアップ
+    private float mBackUpHP;
+    //バックアップHPの設定、取得
+    public float BackUpHP
+    {
+        set { mBackUpHP = value; }
+        get { return mBackUpHP; }
+    }
+
+    //1変動時のプレイヤーの攻撃量
+    private float mPlayerOneAttackPow;
+    //バックアップHPの設定、取得
+    public float PlayerOneAttackPow
+    {
+        set { mPlayerOneAttackPow = value; }
+        get { return mPlayerOneAttackPow; }
+    }
+
+    //1変動時のプレイヤーの復活
+    private bool isPlayerRevaival;
+    //復活フラグの設定、取得
+    public bool IsPlayerRevaival
+    {
+        set { isPlayerRevaival = value; }
+        get { return isPlayerRevaival; }
+    }
+
+    //確定成功フラグ
+    private bool isConfirmationChoice;
+    //復活フラグの設定、取得
+    public bool IsConfirmationChoice
+    {
+        set { isConfirmationChoice = value; }
+        get { return isConfirmationChoice; }
+    }
+
+    //1変動時のプレイヤーの攻撃量
+    private float mBossOneAttackPow;
+    //バックアップHPの設定、取得
+    public float BossOneAttackPow
+    {
+        set { mBossOneAttackPow = value; }
+        get { return mBossOneAttackPow; }
+    }
+
+    //ボス番号
+    private int mBossNumber;
+    //ボス番号の設定、取得
+    public int BossNumber
+    {
+        set { mBossNumber = value; }
+        get { return mBossNumber; }
+    }
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        mPlayerStatus = this.GetComponent<CS_MissionPhaseData>().PlayerStatus;   
+        mPlayerStatus = this.GetComponent<CS_MissionPhaseData>().PlayerStatus;
+        mBackUpHP = mPlayerStatus.hp;
     }
 
     //無発展フラグ
