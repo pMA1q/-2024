@@ -27,6 +27,7 @@ public class CS_Boss1_Unique : CS_BossUnique
             bossHp = 0;
             mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
         }
+        mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
         return -1;
     }
 
@@ -50,6 +51,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号5の報酬、記録データ処理
     private int P5()
     {
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if (mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
         return -1;
     }
 
@@ -81,13 +93,23 @@ public class CS_Boss1_Unique : CS_BossUnique
         {
             if (ReLot(percentage)) { next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1; }//当選すれば先制攻撃の番号を返す
         }
-        mBossData.BackUpHP = playerHp;
         return next;
     }
 
     // 項目番号6の報酬、記録データ処理
     private int P6()
     {
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if (mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
         return -1;
     }
 
@@ -118,12 +140,26 @@ public class CS_Boss1_Unique : CS_BossUnique
         {
             if (ReLot(percentage)) { next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1; }//当選すれば先制攻撃の番号を返す
         }
-
-        //プレイヤー体力更新
-        mBossData.BackUpHP = playerHp;
-
         return next;
     }
+
+    // 項目番号7の報酬、記録データ処理
+    private int P7()
+    {
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if (mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
+        return -1;
+    }
+
 
     //項目番号7の再抽選処理
     private int P7_Relot()
@@ -144,19 +180,24 @@ public class CS_Boss1_Unique : CS_BossUnique
             }
             
         }
-        mBossData.BackUpHP = playerHp;
         return next;
     }
 
-    // 項目番号7の報酬、記録データ処理
-    private int P7()
-    {
-        return -1;
-    }
-
+   
     // 項目番号8の報酬、記録データ処理
     private int P8()
     {
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if (mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
         return -1;
     }
 
@@ -179,13 +220,23 @@ public class CS_Boss1_Unique : CS_BossUnique
             }
 
         }
-        mBossData.BackUpHP = playerHp;
         return next;
     }
 
     // 項目番号9の報酬、記録データ処理
     private int P9()
     {
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if(mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
         return -1;
     }
 
@@ -210,6 +261,13 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号10の報酬、記録データ処理
     private int P10()
     {
+        mBossStatus.infomations[mBossData.BossNumber].hp -= mBossData.PlayerOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
+        {
+            mBossData.IsSubjugation = true;
+        }
         return -1;
     }
 
@@ -233,6 +291,13 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号11の報酬、記録データ処理
     private int P11()
     {
+        mBossStatus.infomations[mBossData.BossNumber].hp -= mBossData.PlayerOneAttackPow;
+
+        //ボスの体力が無くなれば討伐成功
+        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
+        {
+            mBossData.IsSubjugation = true;
+        }
         return -1;
     }
 
@@ -277,6 +342,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号13の報酬、記録データ処理
     private int P13()
     {
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if (mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
         return -1;
     }
 
@@ -302,19 +378,27 @@ public class CS_Boss1_Unique : CS_BossUnique
                 mBossData.IsPlayerRevaival = true;
             }
         }
-        mBossData.BackUpHP = playerHp;
         return next;
     }
 
     // 項目番号14の報酬、記録データ処理
     private int P14()
     {
+        //連続攻撃数分減らす
+        mBossStatus.infomations[mBossData.BossNumber].hp -= mPlayerStatus.attack * 0.60f * mBossData.SuccessionNum;
+
+        //ボスの体力が無くなれば討伐成功
+        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
+        {
+            mBossData.IsSubjugation = true;
+        }
         return -1;
     }
 
     // 項目番号15の報酬、記録データ処理
     private int P15()
     {
+        
         return -1;
     }
 
@@ -427,7 +511,6 @@ public class CS_Boss1_Unique : CS_BossUnique
                 mBossData.IsPlayerRevaival = true;
             }
         }
-        mBossData.BackUpHP = playerHp;
         return next;
     }
 
@@ -576,9 +659,6 @@ public class CS_Boss1_Unique : CS_BossUnique
             if (ReLot(percentage)) { next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1; }//当選すれば先制攻撃の番号を返す
         }
 
-        //プレイヤー体力更新
-        mBossData.BackUpHP = playerHp;
-
         return next;
     }
 
@@ -589,6 +669,7 @@ public class CS_Boss1_Unique : CS_BossUnique
 
     public override int ReLottery(int _val)
     {
+        mBossData.BackUpHP = mPlayerStatus.hp;
         return mUniquePF_Functions[_val]();
     }
 }

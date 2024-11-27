@@ -30,7 +30,7 @@ public class CS_BossPhaseData : MonoBehaviour
     }
 
     //1変動時のプレイヤーの復活
-    private bool isPlayerRevaival;
+    private bool isPlayerRevaival = false;
     //復活フラグの設定、取得
     public bool IsPlayerRevaival
     {
@@ -48,13 +48,23 @@ public class CS_BossPhaseData : MonoBehaviour
     }
 
     //選択成功フラグ
-    private bool isChoiceSuccess;
+    private bool isChoiceSuccess = false;
     //復活フラグの設定、取得
     public bool IsChoiceSuccess
     {
         set { isChoiceSuccess = value; }
         get { return isChoiceSuccess; }
     }
+
+    //連続攻撃数
+    private int mSuccessionNum = 0;
+    //ボス番号の設定、取得
+    public int SuccessionNum
+    {
+        set { mSuccessionNum = value; }
+        get { return mSuccessionNum; }
+    }
+
 
     //1変動時のプレイヤーの攻撃量
     private float mBossOneAttackPow;
@@ -66,7 +76,7 @@ public class CS_BossPhaseData : MonoBehaviour
     }
 
     //ボス番号
-    private int mBossNumber;
+    private int mBossNumber = 0;
     //ボス番号の設定、取得
     public int BossNumber
     {
@@ -75,12 +85,21 @@ public class CS_BossPhaseData : MonoBehaviour
     }
     
     //ボス討伐フラグ
-    private bool isSubjugation;
+    private bool isSubjugation = false;
     //ボス討伐フラグの設定、取得
     public bool IsSubjugation
     {
         set { isSubjugation = value; }
         get { return isSubjugation; }
+    }
+
+    //負けフラグ
+    private bool isPlayerLose = false;
+    //負けフラグの設定、取得
+    public bool IsPlayerLose
+    {
+        set { isPlayerLose = value; }
+        get { return isPlayerLose; }
     }
 
     // Start is called before the first frame update
