@@ -60,6 +60,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Bokudayo\Script\E_RanAway.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Waldemarst\Broccoli\Controller\BroccoTreeController_1_2_5.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_Title4FadeOut.cs" />
     <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Assets\Practice\CS_Spawner_Y.cs" />
     <Compile Include="Assets\Game\Controller\CameraController\CS_CameraSizeSetter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossStatus.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAColliderBuilderCommon.cs" />
     <Compile Include="Assets\Game\Core\Prefab\CS_BoundBall.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneCollider.cs" />
@@ -140,9 +143,11 @@
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshColliderBuilder.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_PerformanceHandler.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseTable.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_Boss1_Unique.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_UniqueMission.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionPhaseData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_Stock.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -159,11 +164,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossStatus.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionPhaseData.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_Boss1_Unique.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
