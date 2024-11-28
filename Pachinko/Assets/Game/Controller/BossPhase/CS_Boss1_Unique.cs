@@ -321,6 +321,7 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号12の報酬、記録データ処理
     private int P12()
     {
+        //特になし
         return -1;
     }
 
@@ -398,19 +399,33 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号15の報酬、記録データ処理
     private int P15()
     {
-        
-        return -1;
+        //次回攻撃確定
+        int[] nextMissionNums = new int[] { 4,　10, 11, 17, 24};
+        int missionIdx = CS_LotteryFunction.LotNormalInt(nextMissionNums.Length - 1);
+        return nextMissionNums[missionIdx] - 1;
     }
 
     // 項目番号16の報酬、記録データ処理
     private int P16()
     {
+        //プレイヤーHP20%回復
+        float healpw = mMaxPlayerHp * 0.2f;
+        mBossData.PlayerStatus.hp += healpw;
+
         return -1;
     }
 
     // 項目番号17の報酬、記録データ処理
     private int P17()
     {
+        float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
+        bossHp -= mBossData.PlayerOneAttackPow;
+        if (bossHp <= 0.0f)
+        {
+            bossHp = 0;
+            mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
+        }
+        mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
         return -1;
     }
 
@@ -434,12 +449,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号18の報酬、記録データ処理
     private int P18()
     {
+        int val = CS_LotteryFunction.LotNormalInt(3);
+        if(val == 0) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL; }
+        else if(val == 1) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG; }
+        else { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.DEBUFF; }
         return -1;
     }
 
     // 項目番号19の報酬、記録データ処理
     private int P19()
     {
+        //特になし
         return -1;
     }
 
@@ -468,24 +488,44 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号20の報酬、記録データ処理
     private int P20()
     {
+        //特になし
         return -1;
     }
 
     // 項目番号21の報酬、記録データ処理
     private int P21()
     {
+        mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL;
         return -1;
     }
 
     // 項目番号22の報酬、記録データ処理
     private int P22()
     {
+        mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG;
         return -1;
     }
 
     // 項目番号23の報酬、記録データ処理
     private int P23()
     {
+        if(mBossData.GetChoiceSuccess())
+        {
+            mBossData.BossStatus.infomations[mBossData.BossNumber].hp = 0;
+            mBossData.IsSubjugation = true;
+            return -1;
+        }
+
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if (mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
         return -1;
     }
 
@@ -517,6 +557,14 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号24の報酬、記録データ処理
     private int P24()
     {
+        float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
+        bossHp -= mBossData.PlayerOneAttackPow;
+        if (bossHp <= 0.0f)
+        {
+            bossHp = 0;
+            mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
+        }
+        mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
         return -1;
     }
 
@@ -540,6 +588,11 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号25の報酬、記録データ処理
     private int P25()
     {
+        if (mBossData.GetChoiceSuccess())
+        {
+            mBossData.BossStatus.infomations[mBossData.BossNumber].hp = 0;
+            mBossData.IsSubjugation = true;
+        }
         return -1;
     }
 
@@ -567,6 +620,24 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号26の報酬、記録データ処理
     private int P26()
     {
+        //成功なら攻撃失敗ならダメージ
+        if (mBossData.GetChoiceSuccess())
+        {
+            mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.80f;
+        }
+        else
+        {
+            mBossStatus.infomations[mBossData.BossNumber].hp -= mPlayerStatus.attack * 0.80f;
+        }
+
+        if(mPlayerStatus.hp <= 0.0f)
+        {
+            mBossData.IsPlayerLose = true;
+        }
+        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0.0f)
+        {
+            mBossData.IsSubjugation = true;
+        }
         return -1;
     }
 
@@ -591,18 +662,39 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号27の報酬、記録データ処理
     private int P27()
     {
+        mBossData.IsDamageUp = true;
+        if (mBossData.GetChoiceSuccess())
+        {
+            mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;
+        }
+
+        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0.0f)
+        {
+            mBossData.IsSubjugation = true;
+        }
+
         return -1;
     }
 
     // 項目番号28の報酬、記録データ処理
     private int P28()
     {
-        return -1;
+        int[] nextMissionNums = new int[] { 4, 10, 11, 17, 24,};
+       
+        int missionIdx = CS_LotteryFunction.LotNormalInt(nextMissionNums.Length - 1);
+
+        return nextMissionNums[missionIdx] - 1; ;
     }
 
     // 項目番号29の報酬、記録データ処理
     private int P29()
     {
+        if (mBossData.IsPartnereJoin) 
+        {
+            return -1;
+        }
+
+        mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;
         return -1;
     }
 
@@ -622,12 +714,28 @@ public class CS_Boss1_Unique : CS_BossUnique
 
         mBossData.IsConfirmationChoice = success;
 
+        if (mPlayerStatus.hp <= 0.0f)
+        {
+            mBossData.IsPlayerLose = true;
+        }
+
         return next;
     }
 
     // 項目番号30の報酬、記録データ処理
     private int P30()
     {
+        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+
+        //復活フラグが立っているなら、元に戻す
+        if (mBossData.IsPlayerRevaival)
+        {
+            mPlayerStatus.hp = mBossData.BackUpHP;
+        }
+        else if (mPlayerStatus.hp <= 0)
+        {
+            mBossData.IsPlayerLose = true;
+        }
         return -1;
     }
 

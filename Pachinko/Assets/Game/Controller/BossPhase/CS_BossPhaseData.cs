@@ -47,13 +47,15 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return isConfirmationChoice; }
     }
 
-    //選択成功フラグ
+    //選択方式演出の選択成功フラグ(項目番号)
     private bool isChoiceSuccess = false;
-    //復活フラグの設定、取得
-    public bool IsChoiceSuccess
+    public bool GetChoiceSuccess() { return isChoiceSuccess; }
+    //選択成功
+    public void ChoiceSuccess(bool _success)
     {
-        set { isChoiceSuccess = value; }
-        get { return isChoiceSuccess; }
+        CS_Controller bigCtrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        bigCtrl.WaitChoice = false;
+        isChoiceSuccess = _success;
     }
 
     //連続攻撃数
@@ -84,6 +86,40 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return mBossNumber; }
     }
     
+
+    //バフ、デバフのフラグ
+    public enum BUFF_DEBUFF
+    {
+        NONE,
+        BUFF_SMALL,//バフ(小)
+        BUFF_BIG,//バフ(大)
+        DEBUFF//デバフ
+    }
+    private BUFF_DEBUFF mBuff_Debuff = BUFF_DEBUFF.NONE;
+    public BUFF_DEBUFF Buff_Debuff
+    {
+        set { mBuff_Debuff = value; }
+        get { return mBuff_Debuff; }
+    }
+
+    //次回攻撃時ダメージUPフラグ
+    private bool isDamageUp = false;
+    //ボス討伐フラグの設定、取得
+    public bool IsDamageUp
+    {
+        set { isSubjugation = value; }
+        get { return isSubjugation; }
+    }
+
+    //次回攻撃時ダメージUPフラグ
+    private bool isPartnereJoin = false;
+    //ボス討伐フラグの設定、取得
+    public bool IsPartnereJoin
+    {
+        set { isPartnereJoin = value; }
+        get { return isPartnereJoin; }
+    }
+
     //ボス討伐フラグ
     private bool isSubjugation = false;
     //ボス討伐フラグの設定、取得

@@ -57,6 +57,7 @@ public class CS_BossPheseController : MonoBehaviour
         mController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
         mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
         mBossData.ResetData();//ボスフェーズデータの各フラグをリセットする
+        mBossStatus = mBossData.BossStatus;
         mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
         //ボス番号に応じた情報を設定
         SetBossInfomation(); 
@@ -133,6 +134,9 @@ public class CS_BossPheseController : MonoBehaviour
     }
     private void StartNextPhase()
     {
+        //HPを元に戻す
+        mPlayerStatus.hp = mPlayerStatus.backupStatus.hp;
+        mBossStatus.infomations[mBossNumber].hp = mBossStatus.initialValues[mBossNumber].hp;
         Debug.Log("次のフェーズへ移行します");
         //mController.ChangePhase(CS_Controller.PACHINKO_PHESE);
         Destroy(this.gameObject);

@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "PlayerStatus", menuName = "PlayerStatus", order = 1)]
 public class CSO_PlayerStatus : ScriptableObject
@@ -17,8 +18,9 @@ public class CSO_PlayerStatus : ScriptableObject
     public CharacterStatus charaStatus;
     public Ticket ticket;
 
+    [NonSerialized]
     // バックアップ用のステータス
-    private CSO_PlayerStatus backupStatus;
+    public CSO_PlayerStatus backupStatus;
 
     // コンストラクタ（初期値を設定）
     public CSO_PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)

@@ -46,11 +46,17 @@ public class CS_MissionPhaseData : MonoBehaviour
     }
     /// </summary>-----------------------------------------------------------------
 
+    
     //選択方式演出の選択成功フラグ(項目番号:11,12,18,19)
     private bool isChoiceSuccess = false;
     public bool GetChoiceSuccess() { return isChoiceSuccess; }
     //選択成功
-    public void ChoiceSuccess() { isChoiceSuccess = true; }
+    public void ChoiceSuccess(bool _success) 
+    {
+        CS_Controller bigCtrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        bigCtrl.WaitChoice = false;
+        isChoiceSuccess = _success; 
+    }
     //選択フラグリセット
     public void ChoiceSuccessReset() { isChoiceSuccess = false; }
 
