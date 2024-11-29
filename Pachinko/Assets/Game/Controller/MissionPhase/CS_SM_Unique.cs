@@ -10,15 +10,7 @@ public class CS_SM_Unique : CS_UniqueMission
 {
     private Func<int>[] mUniquePF_Functions;
 
-    private bool mCoiceSuccess = false;
-
-    public bool Coice
-    {
-        set
-        {
-            Coice = value;
-        }
-    }
+   
 
     protected override void Start()
     {

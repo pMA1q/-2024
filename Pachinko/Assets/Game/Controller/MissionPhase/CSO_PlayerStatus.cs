@@ -5,20 +5,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "PlayerStatus", menuName = "PlayerStatus", order = 1)]
 public class CSO_PlayerStatus : ScriptableObject
 {
     // ステータスのプロパティ
-    public int hp;
-    public int attack;
-    public int defense;
+    public float hp;
+    public float attack;
+    public float defense;
 
     public CharacterStatus charaStatus;
     public Ticket ticket;
 
+    [NonSerialized]
     // バックアップ用のステータス
-    private CSO_PlayerStatus backupStatus;
+    public CSO_PlayerStatus backupStatus;
 
     // コンストラクタ（初期値を設定）
     public CSO_PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
@@ -41,7 +43,6 @@ public class CSO_PlayerStatus : ScriptableObject
         defense = _backUp.defense;
         charaStatus = _backUp.charaStatus;
         ticket = _backUp.ticket;
-        backupStatus = null;
     }
 
 
