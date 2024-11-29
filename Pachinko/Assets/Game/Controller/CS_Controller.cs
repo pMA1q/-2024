@@ -40,6 +40,7 @@ public class CS_Controller : MonoBehaviour
     private bool mPatternVariationFinish = true;//図柄変動終了フラグ
     private bool mPerformanceFinish = true;//演出終了フラグ
     private bool mPerformanceSemiFinish = true;//演出終了仮フラグ(演出が終わってから消えるまでのフラグ)
+    private bool mWaitChoice = false;//選択待ちフラグ
 
     public bool PerformanceSemiFinish
     {
@@ -63,6 +64,12 @@ public class CS_Controller : MonoBehaviour
     {
         set { mVariationTimer = value; }
         get { return mVariationTimer; }
+    }
+
+    public bool WaitChoice
+    {
+        set { mWaitChoice = value; }
+        get { return mWaitChoice; }
     }
 
     // Start is called before the first frame update

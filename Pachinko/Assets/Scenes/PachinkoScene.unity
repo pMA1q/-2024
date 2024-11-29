@@ -8591,11 +8591,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3956933396633039659, guid: bb1a47c256ebb8d41b603ae1c567895a,
+        type: 3}
+      propertyPath: forceY
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316713922820263978, guid: bb1a47c256ebb8d41b603ae1c567895a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6447807100200946965, guid: bb1a47c256ebb8d41b603ae1c567895a,
         type: 3}
       propertyPath: mSubCamera
       value: 
       objectReference: {fileID: 1509820026}
+    - target: {fileID: 8036779444684978942, guid: bb1a47c256ebb8d41b603ae1c567895a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8036779445374971144, guid: bb1a47c256ebb8d41b603ae1c567895a,
         type: 3}
       propertyPath: m_Mesh
