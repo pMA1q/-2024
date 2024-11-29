@@ -10,6 +10,8 @@ public class CS_SetPositionPerfPos : MonoBehaviour
 
     [SerializeField, Header("カメラのポジション")]
     private Vector3 mCameraPos;
+    [SerializeField, Header("カメラの回転")]
+    private Vector3 mCameraRot;
 
     Camera mSubCamera;
 
@@ -24,6 +26,7 @@ public class CS_SetPositionPerfPos : MonoBehaviour
             Vector3 newPos = mObjectPos;
             this.transform.position = newPos;
             mSubCamera.transform.position = mCameraPos;
+            mSubCamera.transform.eulerAngles = mCameraRot;
         }
         else
         {
