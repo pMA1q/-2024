@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CS_SetPositionPerfPos : MonoBehaviour
 {
+    [Header("座標(10000,0,0)を原点としたときのポジション")]
     [SerializeField, Header("サブカメラの位置から+αの値")]
-    private Vector3 mOffsetPos= new Vector3(0f, 0f, 10f);
+    private Vector3 mObjectPos= new Vector3(0f, 0f, 10f);
 
-    [SerializeField, Header("合計値+αの値")]
-    private Vector3 mSumPos;
+    [SerializeField, Header("カメラのポジション")]
+    private Vector3 mCameraPos;
 
     Camera mSubCamera;
 
@@ -20,13 +21,13 @@ public class CS_SetPositionPerfPos : MonoBehaviour
         // SubCameraが見つかった場合、CanvasのRender Cameraに設定
         if (mSubCamera != null)
         {
-            Vector3 newPos = this.transform.position;
-            newPos = mSubCamera.transform.position + mOffsetPos;
+            Vector3 newPos = mObjectPos;
             this.transform.position = newPos;
+            mSubCamera.transform.position = mCameraPos;
         }
         else
         {
-            Debug.LogWarning("SubCameraが見つかりませんでした。");
+            Debug.LogError("SubCameraが見つかりませんでした。");
         }
 
        // Destroy(this);
