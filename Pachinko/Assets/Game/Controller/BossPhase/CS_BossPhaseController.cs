@@ -22,6 +22,9 @@ public class CS_BossPheseController : MonoBehaviour
 
     private CS_Controller mController;
 
+    private CSO_PlayerStatus mPlayerStatus;
+    private CSO_BossStatus mBossStatus;
+
     private int mBossNumber = 0;
     public int BossNumber
     {
@@ -54,6 +57,8 @@ public class CS_BossPheseController : MonoBehaviour
         mController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
         mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
         mBossData.ResetData();//ボスフェーズデータの各フラグをリセットする
+        mBossStatus = mBossData.BossStatus;
+        mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
         //ボス番号に応じた情報を設定
         SetBossInfomation(); 
     }
@@ -115,7 +120,7 @@ public class CS_BossPheseController : MonoBehaviour
         mBossData.NoDevelpment = false;//無発展フラグをfalse
 
         //再抽選確認。当選すれば次のミッション決定
-        mNextMissionNum = CheckReLottely(mNowBossTable.infomation[randomNumber]);
+        mNextMissionNum = CheckReLottely(randomNumber);
         //次の演出番号が-1じゃないなら再抽選結果を入れる
         if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
 
@@ -129,6 +134,9 @@ public class CS_BossPheseController : MonoBehaviour
     }
     private void StartNextPhase()
     {
+        //HPを元に戻す
+        mPlayerStatus.hp = mPlayerStatus.backupStatus.hp;
+        mBossStatus.infomations[mBossNumber].hp = mBossStatus.initialValues[mBossNumber].hp;
         Debug.Log("次のフェーズへ移行します");
         //mController.ChangePhase(CS_Controller.PACHINKO_PHESE);
         Destroy(this.gameObject);
@@ -152,9 +160,99 @@ public class CS_BossPheseController : MonoBehaviour
 
     private int CheckReLottely(BossPhaseInfomation info)
     {
+        
         return -1;
+
+        {
+            //REPLAY_B replay = info.replay;
+            //float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
+
+
+
+            //switch (replay)
+            //{
+            //    case REPLAY_B.TRUE_P1:
+            //        {
+            //            int[] preemptive = new int[2] { 4, 10 };
+            //            float playerHp = mPlayerStatus.hp;
+            //            playerHp -= mBossStatus.infomations[mBossNumber].attack * 0.333f;//ボスの攻撃力（弱）をhpから引く
+            //            if (playerHp <= 0f)//体力が無くなれば復活抽せん
+            //            {
+            //                percentage = mPlayerStatus.charaStatus.revaival;
+            //                if (!ReLot(percentage))//当選しなかったら敗北
+            //                { 
+            //                    playerHp = 0;
+
+            //                }
+            //                else 
+            //                {
+
+            //                    next = CS_LotteryFunction.LotNormalInt(preemptive.Length)-1; 
+            //                }//当選すれば項目番号4のを返す
+            //            }
+            //            else//先制攻撃の値で再抽選
+            //            {
+            //                if (ReLot(percentage)) { next = CS_LotteryFunction.LotNormalInt(preemptive.Length) - 1; }//当選すれば項目番号4のを返す
+            //            }
+
+            //            //プレイヤー体力更新
+            //            mPlayerStatus.hp = playerHp;
+            //        }
+            //        break;
+            //    case REPLAY_B.TRUE_P2:
+            //        {
+
+            //            float playerHp = mPlayerStatus.hp;
+            //            playerHp -= mBossStatus.infomations[mBossNumber].attack * 0.333f;//ボスの攻撃力（弱）をhpから引く
+            //            if (playerHp <= 0f)//体力が無くなれば復活抽せん
+            //            {
+            //                percentage = mPlayerStatus.charaStatus.revaival;
+            //                if (!ReLot(percentage))//当選しなかったら敗北
+            //                {
+            //                    playerHp = 0;
+
+            //                }
+            //                else 
+            //                {
+            //                    //当選すれば先制攻撃の項目番号を返す
+            //                    next = 3; 
+            //                }
+            //            }
+            //            //プレイヤー体力更新
+            //            mPlayerStatus.hp = playerHp;
+            //        }
+            //        break;
+            //    case REPLAY_B.TRUE_P3:
+
+            //        break;
+            //    case REPLAY_B.TRUE_P4:
+
+            //        break;
+            //    case REPLAY_B.TRUE_P5:
+
+            //        break;
+            //}
+        }
     }
 
+    private int CheckReLottely(int _val)
+    {
+        List<int> isRerotteryNums = new List<int> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 17, 19, 20, 23, 24, 25, 26, 29, 30 };
+        int next = -1;
+        for (int i = 0; i < isRerotteryNums.Count; i++)
+        {
+            if (i == _val + 1)
+            {
+                next = mBossUnique.ReLottery(i);
+                break;
+            }
+        }
+        return next;
+
+      
+    }
+
+    
     private IEnumerator AfterLottery(int _perfNum)
     {
         yield return new WaitForSeconds(0.5f);
