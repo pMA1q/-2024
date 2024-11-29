@@ -449,11 +449,21 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号18の報酬、記録データ処理
     private int P18()
     {
-        int val = CS_LotteryFunction.LotNormalInt(3);
-        if(val == 0) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL; }
-        else if(val == 1) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG; }
-        else { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.DEBUFF; }
+        //特になし
         return -1;
+    }
+
+    //項目番号18の再抽選処理ここではバフ、デバフをきめつ
+    private int P18_Relot()
+    {
+        int next = -1;
+
+        int val = CS_LotteryFunction.LotNormalInt(3);
+        if (val == 0) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL; }
+        else if (val == 1) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG; }
+        else { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.DEBUFF; }
+
+        return next;
     }
 
     // 項目番号19の報酬、記録データ処理
@@ -652,9 +662,14 @@ public class CS_Boss1_Unique : CS_BossUnique
         if (ReLot(percentage))
         {
             success = true;
+            next = 24;
+        }
+        else
+        {
+            next = 23;
         }
 
-        mBossData.IsConfirmationChoice = success;
+        //mBossData.IsConfirmationChoice = success;
 
         return next;
     }
@@ -779,5 +794,27 @@ public class CS_Boss1_Unique : CS_BossUnique
     {
         mBossData.BackUpHP = mPlayerStatus.hp;
         return mUniquePF_Functions[_val]();
+    }
+
+    //次回確定フラグなどを変更処理
+    private void FlagChange(int _pef)
+    {
+        int[] nowMissionNums = new int[] { 4, 10, 11, 17 };
+        for (int i = 0; i < nowMissionNums.Length; i++)
+        {
+            int unique = nowMissionNums[i] - 4;
+            if (_pef == unique)
+            {
+                mBossData.IsDamageUp = false;
+            }
+
+        }
+        bool IsPlayerAttack = false;
+        if(mBossData.IsDamageUp)
+        {
+           
+        }
+
+
     }
 }

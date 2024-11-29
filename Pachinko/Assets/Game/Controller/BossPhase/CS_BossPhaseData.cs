@@ -111,9 +111,9 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return isSubjugation; }
     }
 
-    //次回攻撃時ダメージUPフラグ
+    //次回攻撃時仲間参戦フラグ
     private bool isPartnereJoin = false;
-    //ボス討伐フラグの設定、取得
+    //仲間参戦フラグの設定、取得
     public bool IsPartnereJoin
     {
         set { isPartnereJoin = value; }
