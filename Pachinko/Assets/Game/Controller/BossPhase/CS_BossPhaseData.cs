@@ -20,7 +20,7 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return mBackUpHP; }
     }
 
-    //1変動時のプレイヤーの攻撃量
+    //1変動時のプレイヤーの攻撃量(項目番号:)
     private float mPlayerOneAttackPow;
     //バックアップHPの設定、取得
     public float PlayerOneAttackPow
@@ -46,6 +46,15 @@ public class CS_BossPhaseData : MonoBehaviour
         set { isConfirmationChoice = value; }
         get { return isConfirmationChoice; }
     }
+    //確定成功フラグ
+    private bool isSkillStrong = false;
+    //復活フラグの設定、取得
+    public bool IsSkillStrong
+    {
+        set { isSkillStrong = value; }
+        get { return isSkillStrong; }
+    }
+
 
     //選択方式演出の選択成功フラグ(項目番号)
     private bool isChoiceSuccess = false;
@@ -105,7 +114,7 @@ public class CS_BossPhaseData : MonoBehaviour
     //次回攻撃時ダメージUPフラグ
     private bool isDamageUp = false;
     //ボス討伐フラグの設定、取得
-    public bool IsDamageUp
+    public bool IsDamageOneRankUp
     {
         set { isSubjugation = value; }
         get { return isSubjugation; }

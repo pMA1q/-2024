@@ -152,4 +152,9 @@ public class CS_MissionPhaseData : MonoBehaviour
         mExtensionGameCount = 0;
         mRewardUp = false;
     }
+
+    private void Start()
+    {
+        mPlayerStatus.backupStatus = new CSO_PlayerStatus(mPlayerStatus);
+    }
 }
