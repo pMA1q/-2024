@@ -26,13 +26,17 @@ public class CS_PerformanceFinish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(FinishWait());
+        CS_Controller ctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        ctrl.PerformanceSemiFinish = true;//演出終了仮フラグをtrue
+        
     }
 
     public void DestroyConfig(bool _destroy, float _destroyTimer)
     {
         IsDestroyObject = _destroy;
         DestroyTimer = _destroyTimer;
+
+        StartCoroutine(FinishWait());
     }
 
     private IEnumerator FinishWait()

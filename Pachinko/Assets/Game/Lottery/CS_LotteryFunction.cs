@@ -67,6 +67,7 @@ public class CS_LotteryFunction : MonoBehaviour
         
         int[] i = { 7, 7, 7 };
 
+        int res = 1;
         switch(_win_lost)
         {
             case WIN_LOST.LOST:
@@ -75,28 +76,32 @@ public class CS_LotteryFunction : MonoBehaviour
                 while(i[0] == i[2])
                 {
                     // 通常はランダムに生成//0~8で抽せんし、+1した値にする
-                    i = new int[] { CS_LotteryFunction.LotNormalInt(8) + 1, CS_LotteryFunction.LotNormalInt(8) + 1, CS_LotteryFunction.LotNormalInt(8) + 1 };
+                    i = new int[] { CS_LotteryFunction.LotNormalInt(9) + 1, CS_LotteryFunction.LotNormalInt(9) + 1, CS_LotteryFunction.LotNormalInt(8) + 1 };
                 }
                 break;
             case WIN_LOST.SMALL_WIN:
+                int[] evenNumbers = { 2, 4, 6, 8 };
+                res = evenNumbers[CS_LotteryFunction.LotNormalInt(4)];
                 // iの0~2が2, 4, 6, 8の偶数番号になるように抽せん
                 for (int j = 0; j < 3; j++)
                 {
-                    int[] evenNumbers = { 2, 4, 6, 8 };
-                    i[j] = evenNumbers[CS_LotteryFunction.LotNormalInt(4)];
+
+                    i[j] = res;
                 }
                 break;
 
             case WIN_LOST.MIDDLE_WIN:
+                int[] oddNumbers = { 1, 3, 5, 9 };
+                res = oddNumbers[CS_LotteryFunction.LotNormalInt(4)];
                 // iの0~2が1, 3, 5, 9の奇数番号になるように抽せん
                 for (int j = 0; j < 3; j++)
                 {
-                    int[] oddNumbers = { 1, 3, 5, 9 };
-                    i[j] = oddNumbers[CS_LotteryFunction.LotNormalInt(4)];
+
+                    i[j] = res;
                 }
                 break;
         }
-
+       // Debug.Log("当選"+_win_lost +"図柄" + i[0] + i[1] + i[2]);
         return i;
     }
 

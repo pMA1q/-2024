@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SetPhaseTable", menuName = "Table/SetFhaseTable", order = 1)]
+[CreateAssetMenu(fileName = "SetPhaseTable", menuName = "Table/MissionFhaseTable", order = 1)]
 public class CSO_MissionPhaseTable : ScriptableObject
 {
     [Header("ミッション情報")]
@@ -35,7 +35,7 @@ public enum WIN_LOST
     SMALL_WIN,//小当たり
     MIDDLE_WIN,//中当たり
     BIG_WIN,//大当たり
-    RANDOM//ランダム
+    RANDOM,//ランダム
 }
 
 //再抽選有無

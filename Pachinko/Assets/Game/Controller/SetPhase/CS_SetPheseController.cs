@@ -46,13 +46,7 @@ public class CS_SetPheseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //�p�t�H�[�}���X���X�g����m����R�s�[
-        //for (int i = 0; i < mProbabilityStatus.performances.Count; i++)
-        //{
-        //    mProbabilities.Add(mProbabilityStatus.performances[i].value);
-        //    Debug.Log(mProbabilityStatus.performances[i].name + "�̊m��" + mProbabilities[i] + "%");
-        //}
-
+        
         mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
         
         //ミッション選択オブジェクトを生成
@@ -88,10 +82,12 @@ public class CS_SetPheseController : MonoBehaviour
         if(mBigController.GetStock() == 0) { return; }
 
         //変動時間設定
-        mBigController.VariationTimer = 2.0f;
+        mBigController.VariationTimer = 3.0f;
 
-        //保留玉使用（変動開始）
-        mBigController.UseStock(WIN_LOST.LOST);
+        GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().NoDevelpment = false;//無発展フラグをfalse
+
+       //保留玉使用（変動開始）
+       mBigController.UseStock(WIN_LOST.LOST);
     
         //テスト
         if (mBigController.GetJuckpot()) { Instantiate(mCuinSE, mCuinSE.transform.position, mCuinSE.transform.rotation); }
@@ -100,7 +96,7 @@ public class CS_SetPheseController : MonoBehaviour
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
 
         //ミッション内容保存
-        CS_MissionData data = GameObject.Find("BigController").GetComponent<CS_MissionData>();
+        CS_MissionPhaseData data = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
         data.SaveMissionContents(mPrizesNum, randomNumber);
 
         mPrizesNum++;//入賞数加算

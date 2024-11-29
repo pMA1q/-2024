@@ -33,11 +33,11 @@ public class ColorTransfer : MonoBehaviour
 
         string[] buttonNames = new string[3] { "ButtonLeft", "BottonRight", "ButtonPush" };
 
-        for(int i = 0; i <3; i++)
+        for(int i = 0; i < buttons.Length; i++)
         {
             if(buttons[i].name == "ButtonLeft") { buttons[i].onClick.AddListener(MoveLeft); }
             else if(buttons[i].name == "ButtonRight") { buttons[i].onClick.AddListener(MoveRight); }
-            else{ buttons[i].onClick.AddListener(MissionDecision); }
+            else if (buttons[i].name == "ButtonPush") { buttons[i].onClick.AddListener(MissionDecision); }
         }
     }
 
@@ -112,8 +112,8 @@ public class ColorTransfer : MonoBehaviour
         //‰¼ˆ—
         bigctrl.ChangePhase(CS_Controller.PACHINKO_PHESE.MISSION);
         
-        CS_MissionData mData = GameObject.Find("BigController").GetComponent<CS_MissionData>();
-        mData.MissionNumber = (CS_MissionData.MISSION_TYPE)selectNum;
+        CS_MissionPhaseData mData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
+        mData.MissionType = (CS_MissionPhaseData.MISSION_TYPE)selectNum;
 
 
         yield return null;

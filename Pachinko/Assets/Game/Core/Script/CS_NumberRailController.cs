@@ -62,10 +62,14 @@ public class CS_NumberRailController : MonoBehaviour
             mNumRails[i].StartVariation();
             yield return new WaitForSeconds(0.1f);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         isVariation = true;
 
-        yield return new WaitForSeconds(mVariationTime);
+        CS_MissionPhaseData missionData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
+
+        if (missionData.NoDevelpment) { yield return new WaitForSeconds(mVariationTime -2f); }//変動時間が過ぎるまで処理を進めない
+        else { while (!mBigCtrl.PerformanceSemiFinish) { yield return null; } }//演出終了仮フラグがtrueになるまで処理を進めない
+        
 
         mNumRails[0].StopStart(mBigCtrl.GetPatterns()[0]);
         yield return new WaitForSeconds(1.0f);
