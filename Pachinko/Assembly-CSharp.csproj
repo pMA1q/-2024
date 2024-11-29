@@ -79,6 +79,7 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+    <Compile Include="Assets\Game\BossPhase\CS_HpGage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CS_SetPheseController.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_DrawPattern.cs" />

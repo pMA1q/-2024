@@ -462,6 +462,7 @@ public class CS_Boss1_Unique : CS_BossUnique
         if (val == 0) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL; }
         else if (val == 1) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG; }
         else { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.DEBUFF; }
+        mBossData.IsDamageOneRankUp = true;
 
         return next;
     }
@@ -677,7 +678,7 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号27の報酬、記録データ処理
     private int P27()
     {
-        mBossData.IsDamageUp = true;
+        mBossData.IsDamageOneRankUp = true;
         if (mBossData.GetChoiceSuccess())
         {
             mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;
@@ -793,28 +794,48 @@ public class CS_Boss1_Unique : CS_BossUnique
     public override int ReLottery(int _val)
     {
         mBossData.BackUpHP = mPlayerStatus.hp;
-        return mUniquePF_Functions[_val]();
+        int next = mUniquePF_Functions[_val]();
+
+        if (mBossData.IsDamageOneRankUp)
+        {
+            switch(mBossData.Buff_Debuff)
+            {
+                case CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL:
+                    mBossData.PlayerOneAttackPow = mBossData.PlayerOneAttackPow * 1.2f;
+                    break;
+                case CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG:
+                    mBossData.PlayerOneAttackPow = mBossData.PlayerOneAttackPow * 1.4f;
+                    break;
+                case CS_BossPhaseData.BUFF_DEBUFF.DEBUFF:
+                    mBossData.BossOneAttackPow = mBossData.BossOneAttackPow * 1.2f;
+                    break;
+
+            }
+        }
+
+        return next;
     }
 
     //次回確定フラグなどを変更処理
     private void FlagChange(int _pef)
     {
         int[] nowMissionNums = new int[] { 4, 10, 11, 17 };
+        bool IsPlayerAttack = false;
         for (int i = 0; i < nowMissionNums.Length; i++)
         {
             int unique = nowMissionNums[i] - 4;
             if (_pef == unique)
             {
-                mBossData.IsDamageUp = false;
+                IsPlayerAttack = true;
             }
 
         }
-        bool IsPlayerAttack = false;
-        if(mBossData.IsDamageUp)
+      
+        if(IsPlayerAttack)
         {
-           
+            mBossData.IsDamageOneRankUp = false;
+            mBossData.IsSkillStrong = false;
         }
-
 
     }
 }
