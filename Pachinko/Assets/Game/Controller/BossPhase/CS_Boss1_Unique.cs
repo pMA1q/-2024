@@ -707,6 +707,7 @@ public class CS_Boss1_Unique : CS_BossUnique
     {
         if (mBossData.IsPartnereJoin) 
         {
+            mBossData.IsPartnereJoin = false;
             return -1;
         }
 
@@ -728,12 +729,16 @@ public class CS_Boss1_Unique : CS_BossUnique
             success = true;
         }
 
-        mBossData.IsConfirmationChoice = success;
+        mBossData.IsPartnereJoin = success;
 
-        if (mPlayerStatus.hp <= 0.0f)
+        if(success)
         {
-            mBossData.IsPlayerLose = true;
+            if(CS_LotteryFunction.LotNormalInt(2) == 0)
+            {
+                mBossData.IsPartnereJoin = true;
+            }
         }
+       
 
         return next;
     }
