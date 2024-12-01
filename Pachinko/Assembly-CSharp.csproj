@@ -74,7 +74,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseController.cs" />
-    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMTransition.cs" />
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
@@ -156,7 +155,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Game\Controller\CS_Controller.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_RenderTexture.cs" />
-    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SubjugSastinMission.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformanceFinish.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossPhaseTable.cs" />
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
@@ -164,6 +162,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
+    <Compile Include="Assets\Game\BossPhase\CSO_BPTransition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

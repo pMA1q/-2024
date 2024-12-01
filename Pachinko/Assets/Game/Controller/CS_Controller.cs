@@ -182,7 +182,7 @@ public class CS_Controller : MonoBehaviour
         return mPatternVariationFinish && mPerformanceFinish;
     }
 
-    public bool GetVariationFinish()
+    public bool GetVariationFinish() 
     {
         return mPatternVariationFinish && mPerformanceFinish;
     }
