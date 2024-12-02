@@ -7,12 +7,26 @@ public class CS_Boss1_Unique : CS_BossUnique
 {
     private Func<int>[] mUniquePF_Functions;
     private Func<int>[] mUniquePF_ReLotteryFunctions;
+    private enum ATTACK_TYPE
+    {
+        WEAK = 0,
+        MIDDLE,
+        STRONG
+    }
+    float[] boss_magnification = new float[] { 0.50f, 0.70f, 0.90f };
+    float[] player_magnification = new float[] { 0.60f, 0.60f, 1.0f };
+    ATTACK_TYPE attackType;
+
+    bool playerAttack = false;
+    bool bossAttack = false;
+    bool nextPlayerAttack = false;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         mUniquePF_Functions = new Func<int>[] { P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P20, P21, P22, P23, P24, P25, P26, P27, P28, P29, P30 };
-        mUniquePF_ReLotteryFunctions = new Func<int>[] { P4_Relot, P5_Relot, P6_Relot, P7_Relot, P8_Relot, P9_Relot, P10_Relot, P11_Relot, P12_Relot, P13_Relot, P17_Relot, P19_20Relot, P19_20Relot,
+        mUniquePF_ReLotteryFunctions = new Func<int>[] { P4_Relot, P5_Relot, P6_Relot, P7_Relot, P8_Relot, P9_Relot, P10_Relot, P11_Relot, P12_Relot, P13_Relot, P17_Relot,P18_Relot, P19_20Relot, P19_20Relot,
             P23_Relot, P24_Relot, P25_Relot, P26_Relot, P29_Relot, P30_Relot };
 
     }
@@ -20,14 +34,14 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号4の報酬、記録データ処理
     private int P4()
     {
-        float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
-        bossHp -= mBossData.PlayerOneAttackPow;
-        if(bossHp <= 0.0f)
-        {
-            bossHp = 0;
-            mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
-        }
-        mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
+        //float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
+        //bossHp -= mBossData.PlayerOneAttackPow;
+        //if(bossHp <= 0.0f)
+        //{
+        //    bossHp = 0;
+        //    mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
+        //}
+        //mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
         return -1;
     }
 
@@ -37,31 +51,34 @@ public class CS_Boss1_Unique : CS_BossUnique
         int next = -1;
        
         float percentage = mPlayerStatus.charaStatus.charColorUP;
-        float attack = mPlayerStatus.charaStatus.preemptiveAttack * 0.60f;//攻撃力(弱)
+        float attack = mBossData.BossOneBlockHp;//1ゲージ分
         if(ReLot(percentage))
         {
-            attack = mPlayerStatus.charaStatus.preemptiveAttack * 0.80f;//攻撃力(中)にする
+            attackType = ATTACK_TYPE.MIDDLE;
+            attack = mBossData.BossOneBlockHp*2;//攻撃力(中)にする
         }
 
         mBossData.PlayerOneAttackPow = attack;
 
+        CheckPlayerkPowerUp(4);
+        playerAttack = true;
         return next;
     }
 
     // 項目番号5の報酬、記録データ処理
     private int P5()
     {
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if (mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if (mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -70,28 +87,29 @@ public class CS_Boss1_Unique : CS_BossUnique
     {
         int next = -1;
         mBossData.IsPlayerRevaival = false;
-        int[] preemptive = new int[2] { 4, 10 };
         float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
         float playerHp = mPlayerStatus.hp;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;//この変動時のアタック量
-        playerHp -= mBossData.BossOneAttackPow;//ボスの攻撃力（弱）をhpから引く
+        attackType = ATTACK_TYPE.WEAK;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        CheakBossPowerUp();
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
             percentage = mPlayerStatus.charaStatus.revaival;
-            if (!ReLot(percentage))//当選しなかったら敗北
-            {
-                return -1;
-
-            }
-            else
-            {
-                //当選したなら復活
-                mBossData.IsPlayerRevaival = true;
-            }
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
+            bossAttack = true;
         }
         else//先制攻撃の値で再抽選
         {
-            if (ReLot(percentage)) { next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1; }//当選すれば先制攻撃の番号を返す
+            if (ReLot(percentage))
+            {
+                //当選すれば先制攻撃の番号を返す
+                next = 4;
+                mBossData.PlayerOneAttackPow = mBossData.BossOneBlockHp;
+                CheckPlayerkPowerUp(4);
+                playerAttack = true;
+            }
+            else { bossAttack = true; }
         }
         return next;
     }
@@ -99,17 +117,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号6の報酬、記録データ処理
     private int P6()
     {
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if (mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if (mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -118,27 +136,29 @@ public class CS_Boss1_Unique : CS_BossUnique
     {
         int next = -1;
         mBossData.IsPlayerRevaival = false;
-        int[] preemptive = new int[2] { 4, 10 };
         float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
         float playerHp = mPlayerStatus.hp;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * 0.80f;//この変動時のアタック量
-        playerHp -= mBossData.BossOneAttackPow;//ボスの攻撃力（中）をhpから引く
+        attackType = ATTACK_TYPE.MIDDLE;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        CheakBossPowerUp();
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
             percentage = mPlayerStatus.charaStatus.revaival;
-            if (!ReLot(percentage))//当選しなかったら敗北
-            {
-                return -1;
-            }
-            else
-            {
-                //当選したなら復活
-                mBossData.IsPlayerRevaival = true;
-            }
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
+            bossAttack = true;
         }
         else//先制攻撃の値で再抽選
         {
-            if (ReLot(percentage)) { next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1; }//当選すれば先制攻撃の番号を返す
+            if (ReLot(percentage))
+            {
+                //当選すれば先制攻撃の番号を返す
+                next = 4;
+                mBossData.PlayerOneAttackPow = mBossData.BossOneBlockHp;
+                CheckPlayerkPowerUp(4);
+                playerAttack = true;
+            }
+            else { bossAttack = true; }
         }
         return next;
     }
@@ -146,17 +166,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号7の報酬、記録データ処理
     private int P7()
     {
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if (mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if (mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -165,21 +185,18 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P7_Relot()
     {
         int next = -1;
-
-        float percentage = mPlayerStatus.charaStatus.revaival;
         float playerHp = mPlayerStatus.hp;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;//この変動時のアタック量
-        playerHp -= mBossData.BossOneAttackPow;//ボスの攻撃力（中）をhpから引く
+        attackType = ATTACK_TYPE.WEAK;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        CheakBossPowerUp();
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
+            float percentage = mPlayerStatus.charaStatus.revaival;
             percentage = mPlayerStatus.charaStatus.revaival;
-            if (ReLot(percentage))
-            {
-                //当選すれば復活
-                mBossData.IsPlayerRevaival = true;
-            }
-            
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
         }
+        bossAttack = true;
         return next;
     }
 
@@ -187,17 +204,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号8の報酬、記録データ処理
     private int P8()
     {
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if (mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if (mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -205,38 +222,34 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P8_Relot()
     {
         int next = -1;
-
-        float percentage = mPlayerStatus.charaStatus.revaival;
         float playerHp = mPlayerStatus.hp;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack;//この変動時のアタック量
-        playerHp -= mBossData.BossOneAttackPow;//ボスの攻撃力（中）をhpから引く
+        attackType = ATTACK_TYPE.STRONG;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
+            float percentage = mPlayerStatus.charaStatus.revaival;
             percentage = mPlayerStatus.charaStatus.revaival;
-            if (ReLot(percentage))
-            {
-                //当選すれば復活
-                mBossData.IsPlayerRevaival = true;
-            }
-
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
         }
+        bossAttack = true;
         return next;
     }
 
     // 項目番号9の報酬、記録データ処理
     private int P9()
     {
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if(mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if(mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -244,30 +257,31 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P9_Relot()
     {
         int next = -1;
-        mBossData.IsPlayerRevaival = false;
-        int[] preemptive = new int[2] { 4, 10 };
-        float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;//この変動時のアタック量
-        
-        if (ReLot(percentage)) 
-        { 
-            next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1; //当選すれば先制攻撃の番号を返す
+        float playerHp = mPlayerStatus.hp;
+        attackType = ATTACK_TYPE.WEAK;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        CheakBossPowerUp();
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
+        if (playerHp <= 0f)//体力が無くなれば復活抽せん
+        {
+            float percentage = mPlayerStatus.charaStatus.revaival;
+            percentage = mPlayerStatus.charaStatus.revaival;
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
         }
-        
-
+        bossAttack = true;
         return next;
     }
 
     // 項目番号10の報酬、記録データ処理
     private int P10()
     {
-        mBossStatus.infomations[mBossData.BossNumber].hp -= mBossData.PlayerOneAttackPow;
+        //mBossStatus.infomations[mBossData.BossNumber].hp -= mBossData.PlayerOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
-        {
-            mBossData.IsSubjugation = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
+        //{
+        //    mBossData.IsSubjugation = true;
+        //}
         return -1;
     }
 
@@ -275,29 +289,30 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P10_Relot()
     {
         int next = -1;
-
         float percentage = mPlayerStatus.charaStatus.charColorUP;
-        float attack = mPlayerStatus.charaStatus.preemptiveAttack * 0.60f;//攻撃力(弱)
+        attackType = ATTACK_TYPE.WEAK;
+       
         if (ReLot(percentage))
         {
-            attack = mPlayerStatus.charaStatus.preemptiveAttack * 0.80f;//攻撃力(中)にする
+            attackType = ATTACK_TYPE.MIDDLE;
         }
 
-        mBossData.PlayerOneAttackPow = attack;
-
+        mBossData.PlayerOneAttackPow = mPlayerStatus.attack * player_magnification[(int)attackType];
+        CheckPlayerkPowerUp(10);
+        playerAttack = true;
         return next;
     }
 
     // 項目番号11の報酬、記録データ処理
     private int P11()
     {
-        mBossStatus.infomations[mBossData.BossNumber].hp -= mBossData.PlayerOneAttackPow;
+        //mBossStatus.infomations[mBossData.BossNumber].hp -= mBossData.PlayerOneAttackPow;
 
-        //ボスの体力が無くなれば討伐成功
-        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
-        {
-            mBossData.IsSubjugation = true;
-        }
+        ////ボスの体力が無くなれば討伐成功
+        //if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
+        //{
+        //    mBossData.IsSubjugation = true;
+        //}
         return -1;
     }
 
@@ -305,16 +320,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P11_Relot()
     {
         int next = -1;
-
         float percentage = mPlayerStatus.charaStatus.charColorUP;
-        float attack = mPlayerStatus.charaStatus.attack * 0.60f;//攻撃力(弱)
+        attackType = ATTACK_TYPE.WEAK;
+
         if (ReLot(percentage))
         {
-            attack = mPlayerStatus.charaStatus.attack * 0.80f;//攻撃力(中)にする
+            attackType = ATTACK_TYPE.MIDDLE;
         }
 
-        mBossData.PlayerOneAttackPow = attack;
-
+        mBossData.PlayerOneAttackPow = mPlayerStatus.attack * player_magnification[(int)attackType];
+        CheckPlayerkPowerUp(11);
+        playerAttack = true;
         return next;
     }
 
@@ -329,12 +345,14 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P12_Relot()
     {
         int next = -1;
-        int[] preemptive = new int[2] { 4, 10 };
         float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
         if (ReLot(percentage)) 
         { 
-            next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1;  //当選すれば先制攻撃の番号を返す
-            mBossData.PlayerOneAttackPow = mPlayerStatus.charaStatus.preemptiveAttack * 0.60f;
+            next = 10;  //当選すれば先制攻撃の番号を返す
+            attackType = ATTACK_TYPE.WEAK;
+            mBossData.PlayerOneAttackPow = mPlayerStatus.attack * player_magnification[(int)attackType];
+            CheckPlayerkPowerUp(12);
+            playerAttack = true;
         }
 
         return next;
@@ -343,17 +361,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号13の報酬、記録データ処理
     private int P13()
     {
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if (mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if (mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -361,24 +379,33 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P13_Relot()
     {
         int next = -1;
-
-        float percentage = mPlayerStatus.charaStatus.revaival;
+        mBossData.IsPlayerRevaival = false;
+        float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
         float playerHp = mPlayerStatus.hp;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;//この変動時のアタック量
-        playerHp -= mBossData.BossOneAttackPow;//ボスの攻撃力（中）をhpから引く
+        attackType = ATTACK_TYPE.WEAK;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        CheakBossPowerUp();
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
             percentage = mPlayerStatus.charaStatus.revaival;
-            if (!ReLot(percentage))//当選しなかったら敗北
-            {
-                return -1;
-            }
-            else
-            {
-                //当選すれば復活
-                mBossData.IsPlayerRevaival = true;
-            }
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
+            bossAttack = true;
+
         }
+        else//先制攻撃の値で再抽選
+        {
+            if (ReLot(percentage))
+            {
+                //当選すれば10を返す
+                next = 10;
+                mBossData.PlayerOneAttackPow = mBossData.BossOneBlockHp;
+                CheckPlayerkPowerUp(10);
+                playerAttack = true;
+            }
+            else { bossAttack = true; }
+        }
+
         return next;
     }
 
@@ -386,13 +413,13 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P14()
     {
         //連続攻撃数分減らす
-        mBossStatus.infomations[mBossData.BossNumber].hp -= mPlayerStatus.attack * 0.60f * mBossData.SuccessionNum;
+        //mBossStatus.infomations[mBossData.BossNumber].hp -= mPlayerStatus.attack * 0.60f * mBossData.SuccessionNum;
 
-        //ボスの体力が無くなれば討伐成功
-        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
-        {
-            mBossData.IsSubjugation = true;
-        }
+        ////ボスの体力が無くなれば討伐成功
+        //if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0)
+        //{
+        //    mBossData.IsSubjugation = true;
+        //}
         return -1;
     }
 
@@ -409,8 +436,8 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P16()
     {
         //プレイヤーHP20%回復
-        float healpw = mMaxPlayerHp * 0.2f;
-        mBossData.PlayerStatus.hp += healpw;
+        //float healpw = mMaxPlayerHp * 0.2f;
+        //mBossData.PlayerStatus.hp += healpw;
 
         return -1;
     }
@@ -418,14 +445,14 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号17の報酬、記録データ処理
     private int P17()
     {
-        float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
-        bossHp -= mBossData.PlayerOneAttackPow;
-        if (bossHp <= 0.0f)
-        {
-            bossHp = 0;
-            mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
-        }
-        mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
+        //float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
+        //bossHp -= mBossData.PlayerOneAttackPow;
+        //if (bossHp <= 0.0f)
+        //{
+        //    bossHp = 0;
+        //    mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
+        //}
+        //mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
         return -1;
     }
 
@@ -433,16 +460,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P17_Relot()
     {
         int next = -1;
-
         float percentage = mPlayerStatus.charaStatus.charColorUP;
-        float attack = mPlayerStatus.charaStatus.preemptiveAttack * 0.80f;//攻撃力(中)
+        attackType = ATTACK_TYPE.MIDDLE;
+
         if (ReLot(percentage))
         {
-            attack = mPlayerStatus.charaStatus.preemptiveAttack;//攻撃力(強)にする
+            attackType = ATTACK_TYPE.STRONG;
         }
 
-        mBossData.PlayerOneAttackPow = attack;
-
+        mBossData.PlayerOneAttackPow = mPlayerStatus.attack * player_magnification[(int)attackType];
+        CheckPlayerkPowerUp(17);
+        playerAttack = true;
         return next;
     }
 
@@ -479,17 +507,16 @@ public class CS_Boss1_Unique : CS_BossUnique
     {
         int next = -1;
         mBossData.IsPlayerRevaival = false;
-        int[] preemptive = new int[3] {11, 17,24 };
         float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
 
 
         if (ReLot(percentage)) 
         {
             //当選すれば先制攻撃の番号を返す
-            int randomval = CS_LotteryFunction.LotNormalInt(preemptive.Length);
-            next = preemptive[randomval] - 1;
-            float[] attack = new float[3] { mPlayerStatus.attack * 0.60f, mPlayerStatus.attack * 0.80f, mPlayerStatus.attack * 0.80f };
-            mBossData.PlayerOneAttackPow = attack[randomval];
+            next = 10;
+            mBossData.PlayerOneAttackPow = mBossData.BossOneBlockHp;
+            CheckPlayerkPowerUp(10);
+            playerAttack = true;
         }
 
 
@@ -520,23 +547,23 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号23の報酬、記録データ処理
     private int P23()
     {
-        if(mBossData.GetChoiceSuccess())
-        {
-            mBossData.BossStatus.infomations[mBossData.BossNumber].hp = 0;
-            mBossData.IsSubjugation = true;
-            return -1;
-        }
+        //if(mBossData.GetChoiceSuccess())
+        //{
+        //    mBossData.BossStatus.infomations[mBossData.BossNumber].hp = 0;
+        //    mBossData.IsSubjugation = true;
+        //    return -1;
+        //}
 
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if (mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if (mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -544,38 +571,32 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P23_Relot()
     {
         int next = -1;
-
-        float percentage = mPlayerStatus.charaStatus.revaival;
         float playerHp = mPlayerStatus.hp;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * 0.80f;//この変動時のアタック量
-        playerHp -= mBossData.BossOneAttackPow;//ボスの攻撃力（中）をhpから引く
+        attackType = ATTACK_TYPE.MIDDLE;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        CheakBossPowerUp();
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
+            float percentage = mPlayerStatus.charaStatus.revaival;
             percentage = mPlayerStatus.charaStatus.revaival;
-            if (!ReLot(percentage))//当選しなかったら敗北
-            {
-                return -1;
-            }
-            else
-            {
-                //当選すれば復活
-                mBossData.IsPlayerRevaival = true;
-            }
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
         }
+        bossAttack = true;
         return next;
     }
 
     // 項目番号24の報酬、記録データ処理
     private int P24()
     {
-        float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
-        bossHp -= mBossData.PlayerOneAttackPow;
-        if (bossHp <= 0.0f)
-        {
-            bossHp = 0;
-            mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
-        }
-        mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
+        //float bossHp = mBossStatus.infomations[mBossData.BossNumber].hp;
+        //bossHp -= mBossData.PlayerOneAttackPow;
+        //if (bossHp <= 0.0f)
+        //{
+        //    bossHp = 0;
+        //    mBossData.IsSubjugation = true;//ボス討伐フラグをtrue
+        //}
+        //mBossStatus.infomations[mBossData.BossNumber].hp = bossHp;
         return -1;
     }
 
@@ -583,16 +604,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P24_Relot()
     {
         int next = -1;
-
         float percentage = mPlayerStatus.charaStatus.charColorUP;
-        float attack = mPlayerStatus.charaStatus.preemptiveAttack * 0.80f;//攻撃力(中)
+        attackType = ATTACK_TYPE.MIDDLE;
+
         if (ReLot(percentage))
         {
-            attack = mPlayerStatus.charaStatus.preemptiveAttack;//攻撃力(強)にする
+            attackType = ATTACK_TYPE.STRONG;
         }
 
-        mBossData.PlayerOneAttackPow = attack;
-
+        mBossData.PlayerOneAttackPow = mPlayerStatus.attack * player_magnification[(int)attackType];
+        CheckPlayerkPowerUp(17);
+        playerAttack = true;
         return next;
     }
 
@@ -621,34 +643,35 @@ public class CS_Boss1_Unique : CS_BossUnique
         {
             success = true;
             mBossData.PlayerOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].hp;
+            playerAttack = true;
         }
 
         mBossData.IsConfirmationChoice = success;
 
-         return next;
+        return next;
     }
 
     // 項目番号26の報酬、記録データ処理
     private int P26()
     {
         //成功なら攻撃失敗ならダメージ
-        if (mBossData.GetChoiceSuccess())
-        {
-            mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.80f;
-        }
-        else
-        {
-            mBossStatus.infomations[mBossData.BossNumber].hp -= mPlayerStatus.attack * 0.80f;
-        }
+        //if (mBossData.GetChoiceSuccess())
+        //{
+        //    mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.80f;
+        //}
+        //else
+        //{
+        //    mBossStatus.infomations[mBossData.BossNumber].hp -= mPlayerStatus.attack * 0.80f;
+        //}
 
-        if(mPlayerStatus.hp <= 0.0f)
-        {
-            mBossData.IsPlayerLose = true;
-        }
-        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0.0f)
-        {
-            mBossData.IsSubjugation = true;
-        }
+        //if(mPlayerStatus.hp <= 0.0f)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
+        //if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0.0f)
+        //{
+        //    mBossData.IsSubjugation = true;
+        //}
         return -1;
     }
 
@@ -663,14 +686,27 @@ public class CS_Boss1_Unique : CS_BossUnique
         if (ReLot(percentage))
         {
             success = true;
-            next = 24;
+            playerAttack = true;
+            // next = 24;
         }
         else
         {
-            next = 23;
+            bossAttack = true;
+            //next = 23;
         }
 
-        //mBossData.IsConfirmationChoice = success;
+        attackType = ATTACK_TYPE.MIDDLE;
+        //攻撃力(中)
+        if (success)
+        { 
+            mBossData.PlayerOneAttackPow = mPlayerStatus.charaStatus.attack * player_magnification[(int)attackType];
+            CheckPlayerkPowerUp(26);
+        }
+        else
+        { 
+            mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];
+            CheakBossPowerUp();
+        }
 
         return next;
     }
@@ -678,16 +714,16 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号27の報酬、記録データ処理
     private int P27()
     {
-        mBossData.IsDamageOneRankUp = true;
-        if (mBossData.GetChoiceSuccess())
-        {
-            mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;
-        }
+        //mBossData.IsDamageOneRankUp = true;
+        //if (mBossData.GetChoiceSuccess())
+        //{
+        //    mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;
+        //}
 
-        if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0.0f)
-        {
-            mBossData.IsSubjugation = true;
-        }
+        //if (mBossStatus.infomations[mBossData.BossNumber].hp <= 0.0f)
+        //{
+        //    mBossData.IsSubjugation = true;
+        //}
 
         return -1;
     }
@@ -696,9 +732,10 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P28()
     {
         int[] nextMissionNums = new int[] { 4, 10, 11, 17, 24,};
-       
+        ATTACK_TYPE[] types = new ATTACK_TYPE[] { ATTACK_TYPE.WEAK, ATTACK_TYPE.WEAK, ATTACK_TYPE.WEAK, ATTACK_TYPE.MIDDLE, ATTACK_TYPE.MIDDLE };
         int missionIdx = CS_LotteryFunction.LotNormalInt(nextMissionNums.Length - 1);
 
+        mBossData.PlayerOneAttackPow = mPlayerStatus.attack * player_magnification[(int)types[missionIdx]];
         return nextMissionNums[missionIdx] - 1; ;
     }
 
@@ -710,8 +747,6 @@ public class CS_Boss1_Unique : CS_BossUnique
             mBossData.IsPartnereJoin = false;
             return -1;
         }
-
-        mPlayerStatus.hp -= mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;
         return -1;
     }
 
@@ -733,10 +768,14 @@ public class CS_Boss1_Unique : CS_BossUnique
 
         if(success)
         {
-            if(CS_LotteryFunction.LotNormalInt(2) == 0)
-            {
-                mBossData.IsPartnereJoin = true;
-            }
+            mBossData.IsPartnereJoin = CS_LotteryFunction.LotJackpot(3);
+        }
+        else
+        {
+            attackType = ATTACK_TYPE.WEAK;
+            mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];
+            CheakBossPowerUp();
+            bossAttack = true;
         }
        
 
@@ -746,17 +785,17 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号30の報酬、記録データ処理
     private int P30()
     {
-        mPlayerStatus.hp -= mBossData.BossOneAttackPow;
+        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
 
-        //復活フラグが立っているなら、元に戻す
-        if (mBossData.IsPlayerRevaival)
-        {
-            mPlayerStatus.hp = mBossData.BackUpHP;
-        }
-        else if (mPlayerStatus.hp <= 0)
-        {
-            mBossData.IsPlayerLose = true;
-        }
+        ////復活フラグが立っているなら、元に戻す
+        //if (mBossData.IsPlayerRevaival)
+        //{
+        //    mPlayerStatus.hp = mBossData.BackUpHP;
+        //}
+        //else if (mPlayerStatus.hp <= 0)
+        //{
+        //    mBossData.IsPlayerLose = true;
+        //}
         return -1;
     }
 
@@ -765,27 +804,28 @@ public class CS_Boss1_Unique : CS_BossUnique
     {
         int next = -1;
         mBossData.IsPlayerRevaival = false;
-        int[] preemptive = new int[2] { 4, 10 };
         float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
         float playerHp = mPlayerStatus.hp;
-        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * 0.60f;//この変動時のアタック量
-        playerHp -= mBossData.BossOneAttackPow;//ボスの攻撃力（中）をhpから引く
+        attackType = ATTACK_TYPE.WEAK;
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
+        CheakBossPowerUp();
+        playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
             percentage = mPlayerStatus.charaStatus.revaival;
-            if (!ReLot(percentage))//当選しなかったら敗北
-            {
-                return -1;
-            }
-            else
-            {
-                //当選したなら復活
-                mBossData.IsPlayerRevaival = true;
-            }
+            mBossData.IsPlayerRevaival = ReLot(percentage);//当選結果を復活フラグに更新
+
         }
         else//先制攻撃の値で再抽選
         {
-            if (ReLot(percentage)) { next = preemptive[CS_LotteryFunction.LotNormalInt(preemptive.Length)] - 1; }//当選すれば先制攻撃の番号を返す
+            if (ReLot(percentage))
+            {
+                //当選すれば10を返す
+                next = 10;
+                mBossData.PlayerOneAttackPow = mBossData.BossOneBlockHp;
+                CheckPlayerkPowerUp(10);
+                playerAttack = true;
+            }
         }
 
         return next;
@@ -793,54 +833,105 @@ public class CS_Boss1_Unique : CS_BossUnique
 
     public override int DesisionFlag(int _val)
     {
-        return mUniquePF_ReLotteryFunctions[_val]();
+        FlagChange();
+        return mUniquePF_ReLotteryFunctions[_val]() -1;
     }
 
     public override int ReLottery(int _val)
     {
         mBossData.BackUpHP = mPlayerStatus.hp;
+        playerAttack = false;
+        bossAttack = false;
         int next = mUniquePF_Functions[_val]();
-
-        if (mBossData.IsDamageOneRankUp)
-        {
-            switch(mBossData.Buff_Debuff)
-            {
-                case CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL:
-                    mBossData.PlayerOneAttackPow = mBossData.PlayerOneAttackPow * 1.2f;
-                    break;
-                case CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG:
-                    mBossData.PlayerOneAttackPow = mBossData.PlayerOneAttackPow * 1.4f;
-                    break;
-                case CS_BossPhaseData.BUFF_DEBUFF.DEBUFF:
-                    mBossData.BossOneAttackPow = mBossData.BossOneAttackPow * 1.2f;
-                    break;
-
-            }
-        }
-
-        return next;
+        return next -1;
     }
 
     //次回確定フラグなどを変更処理
-    private void FlagChange(int _pef)
+    private void FlagChange()
     {
-        int[] nowMissionNums = new int[] { 4, 10, 11, 17 };
-        bool IsPlayerAttack = false;
-        for (int i = 0; i < nowMissionNums.Length; i++)
+       
+        if(playerAttack)
         {
-            int unique = nowMissionNums[i] - 4;
-            if (_pef == unique)
-            {
-                IsPlayerAttack = true;
-            }
-
+            if(mBossData.IsDamageOneRankUp) { mBossData.IsDamageOneRankUp = false; }
+            else if (mBossData.IsSkillStrong) { mBossData.IsSkillStrong = false; }
+            else if(mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL || mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG)
+            { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE; }
+            
+            return;
         }
-      
-        if(IsPlayerAttack)
+        else if(bossAttack)
         {
-            mBossData.IsDamageOneRankUp = false;
-            mBossData.IsSkillStrong = false;
+            mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE;
         }
-
     }
+
+    private void CheakBossPowerUp()
+    {
+       if(mBossData .Buff_Debuff != CS_BossPhaseData.BUFF_DEBUFF.DEBUFF) { return; }
+
+       switch(attackType)
+        {
+            case ATTACK_TYPE.WEAK:
+                attackType = ATTACK_TYPE.MIDDLE;
+                break;
+            case ATTACK_TYPE.MIDDLE:
+                attackType = ATTACK_TYPE.STRONG;
+                break;
+        }
+
+        mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];
+       // mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE;
+    }
+
+    private void CheckPlayerkPowerUp(int _perf)
+    {
+        if(mBossData.IsDamageOneRankUp )
+        { 
+            DamegeRankUp(_perf);
+            return; 
+        }
+        if (mBossData.IsSkillStrong && mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL)
+        {
+            DamegeRankUp(_perf);
+            return;
+        }
+        else if (mBossData.IsSkillStrong && mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL)
+        {
+            DamegeTwoRankUp(_perf);
+        }
+    }
+
+    private void DamegeRankUp(int _perf)
+    {
+        if(_perf == 4)
+        {
+            mBossData.PlayerOneAttackPow += mBossData.BossOneBlockHp;
+            return;
+        }
+
+        switch (attackType)
+        {
+            case ATTACK_TYPE.WEAK:
+                attackType = ATTACK_TYPE.MIDDLE;
+                break;
+            case ATTACK_TYPE.MIDDLE:
+                attackType = ATTACK_TYPE.STRONG;
+                break;
+        }
+
+        mBossData.PlayerOneAttackPow = mBossData.PlayerStatus.charaStatus.attack * player_magnification[(int)attackType];
+        //mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE;
+    }
+    private void DamegeTwoRankUp(int _perf)
+    {
+        if (_perf == 4)
+        {
+            mBossData.PlayerOneAttackPow += mBossData.BossOneBlockHp * 2;
+            return;
+        }
+
+        attackType = ATTACK_TYPE.STRONG;
+        mBossData.PlayerOneAttackPow = mBossData.PlayerStatus.charaStatus.attack * player_magnification[(int)attackType];
+    }
+
 }

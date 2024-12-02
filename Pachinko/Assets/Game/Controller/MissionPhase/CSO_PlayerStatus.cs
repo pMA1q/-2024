@@ -11,7 +11,7 @@ using System;
 public class CSO_PlayerStatus : ScriptableObject
 {
     // ステータスのプロパティ
-    public float hp;
+    public int hp;
     public float attack;
     public float defense;
 
