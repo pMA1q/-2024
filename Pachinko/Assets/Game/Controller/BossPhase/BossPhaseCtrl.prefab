@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1484226573058628566}
+  - component: {fileID: 251866801084912490}
   m_Layer: 0
   m_Name: BossPhaseCtrl
   m_TagString: Untagged
@@ -31,3 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &251866801084912490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287296361909855014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f3c6166db3c8d4b8411d4c318ea1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mBossTables:
+  - {fileID: 11400000, guid: d050698ba82341c40a2357c505323a13, type: 2}
+  mHpGuage: {fileID: 1623181193349219906, guid: 9eb702c5d76a28245b34f6fd7a27cd63,
+    type: 3}

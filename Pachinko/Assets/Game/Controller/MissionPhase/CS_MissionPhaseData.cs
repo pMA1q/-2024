@@ -153,8 +153,9 @@ public class CS_MissionPhaseData : MonoBehaviour
         mRewardUp = false;
     }
 
-    private void Start()
+    private void Awake()
     {
         mPlayerStatus.backupStatus = new CSO_PlayerStatus(mPlayerStatus);
+        this.GetComponent<CS_BossPhaseData>().Init();
     }
 }

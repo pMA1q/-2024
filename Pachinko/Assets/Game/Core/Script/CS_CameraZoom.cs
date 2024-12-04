@@ -103,12 +103,10 @@ public class CS_CameraZoom : MonoBehaviour
         int layerMask = LayerMask.GetMask("DisplayLayer");
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("タップ検出");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
                 float movepow = 4.0f;
                 float addscalepow = 1.5f;
-                Debug.Log($"レイが当たったオブジェクト: {hit.transform.name}");
                 if (!hasScaled) 
                 { 
                     mDisplay.localScale *= addscalepow;
