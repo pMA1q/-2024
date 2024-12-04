@@ -156,5 +156,6 @@ public class CS_MissionPhaseData : MonoBehaviour
     private void Awake()
     {
         mPlayerStatus.backupStatus = new CSO_PlayerStatus(mPlayerStatus);
+        this.GetComponent<CS_BossPhaseData>().Init();
     }
 }

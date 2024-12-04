@@ -21,6 +21,9 @@ public class CS_Boss1_Unique : CS_BossUnique
     bool bossAttack = false;
     bool nextPlayerAttack = false;
 
+    //テスト用
+    CS_HpGuage guage;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -29,6 +32,13 @@ public class CS_Boss1_Unique : CS_BossUnique
         mUniquePF_ReLotteryFunctions = new Func<int>[] { P4_Relot, P5_Relot, P6_Relot, P7_Relot, P8_Relot, P9_Relot, P10_Relot, P11_Relot, P12_Relot, P13_Relot, P17_Relot,P18_Relot, P19_20Relot, P19_20Relot,
             P23_Relot, P24_Relot, P25_Relot, P26_Relot, P29_Relot, P30_Relot };
 
+        guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+    }
+
+    private IEnumerator Revaival()
+    {
+        while (!guage.HpDownUpdateFinish) { yield return null; }
+        if (mBossData.IsPlayerRevaival) { guage.PlayerHpRevival(); }
     }
 
     // 項目番号4の報酬、記録データ処理
@@ -104,12 +114,15 @@ public class CS_Boss1_Unique : CS_BossUnique
             if (ReLot(percentage))
             {
                 //当選すれば先制攻撃の番号を返す
-                next = 4;
+                next = 10;
                 mBossData.PlayerOneAttackPow = mBossData.BossOneBlockHp;
-                CheckPlayerkPowerUp(4);
+                CheckPlayerkPowerUp(10);
                 playerAttack = true;
             }
-            else { bossAttack = true; }
+            else
+            { 
+                bossAttack = true; 
+            }
         }
         return next;
     }
@@ -489,8 +502,16 @@ public class CS_Boss1_Unique : CS_BossUnique
         int val = CS_LotteryFunction.LotNormalInt(3);
         if (val == 0) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL; }
         else if (val == 1) { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG; }
-        else { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.DEBUFF; }
-        mBossData.IsDamageOneRankUp = true;
+        else
+        { 
+            mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.DEBUFF;
+            //次回攻撃確定
+            int[] nextMissionNums = new int[] { 4, 10, 11, 17, 24 };
+            int missionIdx = CS_LotteryFunction.LotNormalInt(nextMissionNums.Length - 1);
+            mBossData.IsDamageOneRankUp = true;
+            next = nextMissionNums[missionIdx] - 1;
+        }
+       
 
         return next;
     }
@@ -833,36 +854,52 @@ public class CS_Boss1_Unique : CS_BossUnique
 
     public override int DesisionFlag(int _val)
     {
+        if (mBossData == null) { mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>(); }
+        if (bossAttack)
+        {
+
+            guage.PlayerHpDown();
+            StartCoroutine(Revaival());
+            
+        }
+        if(playerAttack)
+        {
+            guage.BossHpDown();
+        }
         FlagChange();
-        return mUniquePF_ReLotteryFunctions[_val]() -1;
+        Debug.Log("Dessision番号" + _val);
+        return mUniquePF_Functions[_val]() -1;
     }
 
     public override int ReLottery(int _val)
     {
+        if (mBossData == null) { mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>(); }
         mBossData.BackUpHP = mPlayerStatus.hp;
         playerAttack = false;
         bossAttack = false;
-        int next = mUniquePF_Functions[_val]();
+        int next = mUniquePF_ReLotteryFunctions[_val]();
         return next -1;
     }
 
     //次回確定フラグなどを変更処理
     private void FlagChange()
     {
-       
         if(playerAttack)
         {
             if(mBossData.IsDamageOneRankUp) { mBossData.IsDamageOneRankUp = false; }
             else if (mBossData.IsSkillStrong) { mBossData.IsSkillStrong = false; }
-            else if(mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL || mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG)
-            { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE; }
-            
+            mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE;
             return;
         }
         else if(bossAttack)
         {
-            mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE;
+            if (mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_SMALL || mBossData.Buff_Debuff == CS_BossPhaseData.BUFF_DEBUFF.BUFF_BIG)
+            { mBossData.Buff_Debuff = CS_BossPhaseData.BUFF_DEBUFF.NONE; }
+
+           
         }
+
+        mBossData.IsPlayerRevaival = false;
     }
 
     private void CheakBossPowerUp()

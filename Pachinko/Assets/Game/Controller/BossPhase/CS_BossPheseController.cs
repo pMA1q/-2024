@@ -14,6 +14,9 @@ public class CS_BossPheseController : MonoBehaviour
     [SerializeField, Header("ボスのテーブルリスト")]
     private List<CSO_BossPhaseTable> mBossTables;
 
+    [SerializeField, Header("体力ゲージ")]
+    private GameObject mHpGuage;
+
     private CSO_BossPhaseTable mNowBossTable;
 
     private CS_BossUnique mBossUnique;
@@ -59,8 +62,15 @@ public class CS_BossPheseController : MonoBehaviour
         mBossData.ResetData();//ボスフェーズデータの各フラグをリセットする
         mBossStatus = mBossData.BossStatus;
         mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
+
+        //体力ゲージ生成
+        GameObject guage = Instantiate(mHpGuage, Vector3.zero, Quaternion.identity);
+        guage.name = mHpGuage.name;//Cloneが付かないように変更
+        guage.GetComponent<CS_HpGuage>().Init();
         //ボス番号に応じた情報を設定
-        SetBossInfomation(); 
+        SetBossInfomation();
+
+        
     }
 
     private void SetBossInfomation()
@@ -68,7 +78,7 @@ public class CS_BossPheseController : MonoBehaviour
         switch(mBossNumber)
         {
             case 0:
-                mBossUnique = new CS_Boss1_Unique();
+                mBossUnique = this.gameObject.AddComponent<CS_Boss1_Unique>();
                 break;
             //case 1:
             //    mBossUnique = new CS_Boss2_Unique();
@@ -87,6 +97,8 @@ public class CS_BossPheseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(mCoroutine != null) { return; }
+
         //残りゲーム数が0以下で次のミッションのフラグも立っていない？
         if (mGameCount <= 0 && mNextMissionNum == -1)
         {
@@ -98,12 +110,13 @@ public class CS_BossPheseController : MonoBehaviour
 
         //変動できるかを取得
         bool variationStart = mController.CanVariationStart();
-        if (!variationStart) { return; }//falseなら終了
+         if (!variationStart) { return; }//falseなら終了
 
         //保留玉が無いなら終了
         if (mController.GetStock() == 0) { return; }
 
-        int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
+        //int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
+        int randomNumber = 4;
 
         mGameCount--;//ゲームカウントをへらす
 
@@ -115,20 +128,31 @@ public class CS_BossPheseController : MonoBehaviour
             NoDevelopment(randomNumber);
             return;
         }
-        else { mController.VariationTimer = 4f; }
+        else
+        {
+            CS_BossPhaseData data = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+            data.NoDevelpment = false;
+            mController.VariationTimer = 4f; 
+        }
 
         mBossData.NoDevelpment = false;//無発展フラグをfalse
 
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(randomNumber);
         //次の演出番号が-1じゃないなら再抽選結果を入れる
-        if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
+        if (mNextMissionNum > -1) { randomNumber = mNextMissionNum; }
 
+        Debug.Log("再抽選番号:" + mNextMissionNum);
+        Debug.Log("番号:" + randomNumber);
+        name = mNowBossTable.infomation[randomNumber].name;
         //保留玉使用（変動開始）
         mController.UseStock(mNowBossTable.infomation[randomNumber].win_lost);
 
         //抽せん番号を保存する
         mBackupNumber = randomNumber;
+
+        CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+        guage.pefName = name;
 
         mCoroutine = StartCoroutine(AfterLottery(randomNumber));//抽せん後処理を走らせる
     }
@@ -154,102 +178,31 @@ public class CS_BossPheseController : MonoBehaviour
         //保留玉使用（変動開始）
         mController.UseStock(WIN_LOST.LOST);
         mController.PerformanceFinish();//演出は行わないので終了フラグを立てる
+        mController.PerformanceSemiFinish = true;
         string name = mNowBossTable.infomation[_perfNumber].name;
+        CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+        guage.pefName = name;
+
+        CS_BossPhaseData data = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+        data.NoDevelpment = true;
+
         Debug.Log("演出番号" + name);
     }
 
-    private int CheckReLottely(BossPhaseInfomation info)
-    {
-        
-        return -1;
-
-        {
-            //REPLAY_B replay = info.replay;
-            //float percentage = mPlayerStatus.charaStatus.preemptiveAttack;
-
-
-
-            //switch (replay)
-            //{
-            //    case REPLAY_B.TRUE_P1:
-            //        {
-            //            int[] preemptive = new int[2] { 4, 10 };
-            //            float playerHp = mPlayerStatus.hp;
-            //            playerHp -= mBossStatus.infomations[mBossNumber].attack * 0.333f;//ボスの攻撃力（弱）をhpから引く
-            //            if (playerHp <= 0f)//体力が無くなれば復活抽せん
-            //            {
-            //                percentage = mPlayerStatus.charaStatus.revaival;
-            //                if (!ReLot(percentage))//当選しなかったら敗北
-            //                { 
-            //                    playerHp = 0;
-
-            //                }
-            //                else 
-            //                {
-
-            //                    next = CS_LotteryFunction.LotNormalInt(preemptive.Length)-1; 
-            //                }//当選すれば項目番号4のを返す
-            //            }
-            //            else//先制攻撃の値で再抽選
-            //            {
-            //                if (ReLot(percentage)) { next = CS_LotteryFunction.LotNormalInt(preemptive.Length) - 1; }//当選すれば項目番号4のを返す
-            //            }
-
-            //            //プレイヤー体力更新
-            //            mPlayerStatus.hp = playerHp;
-            //        }
-            //        break;
-            //    case REPLAY_B.TRUE_P2:
-            //        {
-
-            //            float playerHp = mPlayerStatus.hp;
-            //            playerHp -= mBossStatus.infomations[mBossNumber].attack * 0.333f;//ボスの攻撃力（弱）をhpから引く
-            //            if (playerHp <= 0f)//体力が無くなれば復活抽せん
-            //            {
-            //                percentage = mPlayerStatus.charaStatus.revaival;
-            //                if (!ReLot(percentage))//当選しなかったら敗北
-            //                {
-            //                    playerHp = 0;
-
-            //                }
-            //                else 
-            //                {
-            //                    //当選すれば先制攻撃の項目番号を返す
-            //                    next = 3; 
-            //                }
-            //            }
-            //            //プレイヤー体力更新
-            //            mPlayerStatus.hp = playerHp;
-            //        }
-            //        break;
-            //    case REPLAY_B.TRUE_P3:
-
-            //        break;
-            //    case REPLAY_B.TRUE_P4:
-
-            //        break;
-            //    case REPLAY_B.TRUE_P5:
-
-            //        break;
-            //}
-        }
-    }
-
+    
     private int CheckReLottely(int _val)
     {
-        List<int> isRerotteryNums = new List<int> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 17, 19, 20, 23, 24, 25, 26, 29, 30 };
+        List<int> isRerotteryNums = new List<int> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 17,18, 19, 20, 23, 24, 25, 26, 29, 30 };
         int next = -1;
         for (int i = 0; i < isRerotteryNums.Count; i++)
         {
-            if (i == _val + 1)
+            if (isRerotteryNums[i] == _val + 1)
             {
                 next = mBossUnique.ReLottery(i);
                 break;
             }
         }
         return next;
-
-      
     }
 
     
@@ -257,21 +210,19 @@ public class CS_BossPheseController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         //イベントハンドラ実行
-        PlayPerformance(_perfNum);
-
+        //PlayPerformance(_perfNum);
+        mController.PerformanceSemiFinish = true;
         //演出が終わるまで処理を進めない
         while (!mController.GetPatternVariationFinish()) { yield return null; }
         //Debug.Log("演出終了(仮)" + bigController.PerformanceSemiFinish);
 
-        //GameObject JackPotPerf = null;
-        ////当たり演出フラグがtrueならその演出生成
-        //if (mController.JackPotPerf)
-        //{
-        //    JackPotPerf = Instantiate(mCutIn, mCutIn.transform.position, mCutIn.transform.rotation);
-        //}
+        mNextMissionNum = mBossUnique.DesisionFlag(_perfNum - 3);
 
-        ////演出が終わるまで処理を進めない
-        //while (JackPotPerf) { yield return null; }
+        CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+
+        while (!guage.HpUpdateFinish) { yield return null; }
+
+        mController.PerformanceFinish();
 
         mCoroutine = null;
     }

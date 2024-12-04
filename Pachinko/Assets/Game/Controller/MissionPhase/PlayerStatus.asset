@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa6d700543f94e4d9e43050167f5358, type: 3}
   m_Name: PlayerStatus
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 10
   attack: 10
   defense: 10
   charaStatus:

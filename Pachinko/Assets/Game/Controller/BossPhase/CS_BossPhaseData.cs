@@ -11,7 +11,6 @@ public class CS_BossPhaseData : MonoBehaviour
     private CSO_PlayerStatus mPlayerStatus;
     public CSO_PlayerStatus PlayerStatus { get { return mPlayerStatus; } }
 
- 
     //1変動時のプレイヤーの攻撃量(項目番号:4,10,11,14,17,26)
     private float mPlayerOneAttackPow;
     //攻撃量の設定、取得
@@ -164,12 +163,13 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return isPlayerLose; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    public void Init()
     {
         mPlayerStatus = this.GetComponent<CS_MissionPhaseData>().PlayerStatus;
-        if(mPlayerStatus.backupStatus == null) { Debug.Log("mPlayerStatusはnull"); }
+        if (mPlayerStatus.backupStatus == null) { Debug.Log("mPlayerStatusはnull"); }
         mBackUpHP = mPlayerStatus.hp;
+        mBossList.SaveInitialValues();
     }
 
     //無発展フラグ

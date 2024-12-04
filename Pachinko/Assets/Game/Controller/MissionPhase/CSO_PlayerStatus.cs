@@ -43,7 +43,6 @@ public class CSO_PlayerStatus : ScriptableObject
         defense = _backUp.defense;
         charaStatus = _backUp.charaStatus;
         ticket = _backUp.ticket;
-        Debug.Log("バックアップ完了");
     }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CS_HpGage : MonoBehaviour
+public class CS_HpGuage : MonoBehaviour
 {
     [SerializeField, Header("プレイヤーHP")]
     private Image[] mPlayerHpBlocks = new Image[10];
@@ -24,21 +24,30 @@ public class CS_HpGage : MonoBehaviour
     private int mPlayerOneBlockHp = 1;
     private int mBossOneBlockHp = 1;
 
-    int test = 1;
+    public string pefName;
 
-    bool mGuageUpdateFinish = false;
-    public bool HpUpdateFinish { get { return mGuageUpdateFinish; } }
+    bool mGuageDownUpdateFinish = false;
+    bool mGuageRevUpdateFinish = true;
+
+    public bool HpDownUpdateFinish { get { return mGuageDownUpdateFinish; } }
+    public bool HpRevaivalUpdateFinish { get { return mGuageRevUpdateFinish; } }
+
+    public bool HpUpdateFinish { get { return mGuageDownUpdateFinish && mGuageRevUpdateFinish; } }
+
+    public Text testTx; 
 
     private void Start()
     {
-        Invoke("LateStart", 0.5f);
+        //Init();
+        //Invoke("LateStart", 0.5f);
     }
     // Start is called before the first frame update
-    void LateStart()
+    public void Init()
     {
         mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
         if(mBossData.PlayerStatus==null) { Debug.Log("PlayerStatusはnullです"); }
         mMaxPlayerHp = mBossData.PlayerStatus.backupStatus.hp;
+        Debug.Log("プレイヤーHP" + mMaxPlayerHp);
         mPlayerOneBlockHp = (int)mMaxPlayerHp / 10;
         mBossData.PlayerOneBlockHp = mPlayerOneBlockHp;
         mMaxBossHp = mBossData.BossStatus.infomations[mBossData.BossNumber].hp;
@@ -49,33 +58,34 @@ public class CS_HpGage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mPlayerGageCol == null) {  }
-        else { Debug.Log("コルーチンはnullではない"); }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (!mBossData) { return; }
+        testTx.text = pefName;
+        if(!mBossData.NoDevelpment && mBossData.IsPlayerRevaival)
         {
-            PlayerHpDown();
+            testTx.text = pefName + "復活あり";
         }
     }
 
     //プレイヤーのHPゲージを減らす
     public void PlayerHpDown()
     {
-        mGuageUpdateFinish = false;
-        if (mPlayerGageCol == null) { mPlayerGageCol = StartCoroutine(PlayerSubGage()); }
         
+        mGuageDownUpdateFinish = false;
+        StartCoroutine(PlayerSubGage());
+        //if (mPlayerGageCol == null) { mPlayerGageCol = StartCoroutine(PlayerSubGage()); }
+
     }
 
     //ボスのHPゲージを減らす
     public void BossHpDown()
     {
-        mGuageUpdateFinish = false;
-        if (mBossGageCol == null) { mBossGageCol = StartCoroutine(PlayerSubGage()); }
-
+        mGuageDownUpdateFinish = false;
+        // if (mBossGageCol == null) { mBossGageCol = StartCoroutine(BossSubGage()); }
+        mBossGageCol = StartCoroutine(BossSubGage());
     }
 
     public void PlayerHpRevival()
     {
-        mGuageUpdateFinish = false;
         if (mPlayerGageCol == null) { mPlayerGageCol = StartCoroutine(PlayerRevaivalGage()); }
 
     }
@@ -83,11 +93,13 @@ public class CS_HpGage : MonoBehaviour
    
     private IEnumerator PlayerSubGage()
     {
-
+        Debug.Log("プレイヤー体力減少");
         int count = 0; // アクティブを無効にする個数をカウント
-        float attackPow = Mathf.Ceil(mBossData.BossOneAttackPow / mPlayerOneBlockHp);
+        float attackPow = Mathf.Ceil(mBossData.BossOneAttackPow / (float)mPlayerOneBlockHp);
         
         int deleteNum = (int)attackPow;
+
+        Debug.Log("消去数:" + deleteNum + "ボス攻撃力:" + mBossData.BossOneAttackPow + "プレイヤ1ブロックHP" + mPlayerOneBlockHp);
         for (int i = 0; i < mPlayerHpBlocks.Length; i++)
         {
             // アクティブかつまだ num 個を無効化していない場合
@@ -112,7 +124,9 @@ public class CS_HpGage : MonoBehaviour
 
         mBossData.PlayerStatus.hp = leftoverHp;
         mPlayerGageCol = null;
-        mGuageUpdateFinish = true;
+        if (mBossData.IsPlayerRevaival) { mGuageRevUpdateFinish = false; }
+        mGuageDownUpdateFinish = true;
+       
         yield return null;
     }
     private IEnumerator PlayerRevaivalGage()
@@ -142,18 +156,19 @@ public class CS_HpGage : MonoBehaviour
 
         mBossData.PlayerStatus.hp = leftoverHp;
         mPlayerGageCol = null;
-        mGuageUpdateFinish = true;
+        mGuageRevUpdateFinish = true;
         yield return null;
     }
 
 
     private IEnumerator BossSubGage()
     {
-
+        Debug.Log("ボス体力減少");
         int count = 0; // アクティブを無効にする個数をカウント
         float attackPow = Mathf.Ceil(mBossData.PlayerOneAttackPow / mBossOneBlockHp);
 
         int deleteNum = (int)attackPow;
+        Debug.Log("消去数:" + deleteNum + "プレイヤ攻撃力:" + mBossData.PlayerOneAttackPow + "ボス1ブロックHP" + mBossOneBlockHp);
         for (int i = 0; i < mBossHpBlocks.Length; i++)
         {
             // アクティブかつまだ num 個を無効化していない場合
@@ -178,7 +193,7 @@ public class CS_HpGage : MonoBehaviour
 
         mBossData.BossStatus.infomations[mBossData.BossNumber].hp = leftoverHp;
         mBossGageCol = null;
-        mGuageUpdateFinish = true;
+        mGuageDownUpdateFinish = true;
         yield return null;
     }
 
