@@ -53,65 +53,43 @@
     <UnityVersion>2021.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Bokudayo\Script\E_RanAway.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
-    <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Debuff.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Lottery.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseController.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPheseController.cs" />
-    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMTransition.cs" />
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
-    <Compile Include="Assets\Game\BossPhase\Guage\CS_HpGuage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CS_SetPheseController.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_DrawPattern.cs" />
     <Compile Include="Assets\Practice\CS_TestProbabilityStatus.cs" />
-    <Compile Include="Assets\Game\Controller\CameraController\CS_SetSafeArea.cs" />
     <Compile Include="Assets\Bokudayo\Script\ChangeColor.cs" />
-    <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAMeshColliderCommon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Waldemarst\Broccoli\Controller\BroccoTreeController_1_2_5.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_Title4FadeOut.cs" />
-    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_SM_Unique.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\Bokudayo\Script\P_RanAway.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Practice\CS_TestSpawnPerfomance.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets\Game\Controller\CS_GameManeger.cs" />
-    <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderBuilder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_NumberSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
@@ -120,19 +98,15 @@
     <Compile Include="Assets\Bokudayo\Script\ColorTransfer.cs" />
     <Compile Include="Assets\Game\MissionPhase\CutIn\CS_CutIn.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_Windmill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Practice\CS_Spawner_Y.cs" />
-    <Compile Include="Assets\Game\Controller\CameraController\CS_CameraSizeSetter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossStatus.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAColliderBuilderCommon.cs" />
     <Compile Include="Assets\Game\Core\Prefab\CS_BoundBall.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneCollider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderChild.cs" />
-    <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SABoneColliderCommon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionTitleFade.cs" />
@@ -145,25 +119,74 @@
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshColliderBuilder.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_PerformanceHandler.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseTable.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_Boss1_Unique.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_UniqueMission.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionPhaseData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_Stock.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\DestroyBall.cs" />
-    <Compile Include="Assets\Game\Sound\CS_SoundEffectDestroy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Game\Controller\CS_Controller.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_RenderTexture.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformanceFinish.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossPhaseTable.cs" />
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_CameraZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
+    <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
+    <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
+    <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_Windmill.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_5EnemiesApeer_Win.cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshColliderBuilder.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_PerformanceHandler.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_Player.cs" />
+    <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderChild.cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SABoneColliderCommon.cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
+    <Compile Include="Assets\CameraZoomController.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_Ally.cs" />
+    <Compile Include="Assets\Game\BossPhase\Guage\CS_HpGuage.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_Boss1_Unique.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_Extend.cs" />
+    <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_Debuff.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_UniqueMission.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionPhaseData.cs" />
+    <Compile Include="Assets\Game\Controller\CameraController\CS_CameraSizeSetter.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_DrawPattern.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_Stock.cs" />
+    <Compile Include="Assets\Game\Controller\CameraController\CS_SetSafeArea.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_SM_Unique.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_ShojiController.cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAMeshColliderCommon.cs" />
+    <Compile Include="Assets\Game\Sound\CS_SoundEffectDestroy.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionTitleFade.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossStatus.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_3ChoiceTicket.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_RewardUp.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_NumberRail.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_Skill].cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAColliderBuilderCommon.cs" />
+    <Compile Include="Assets\Game\Core\Prefab\CS_BoundBall.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Strength.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_5EnemiesApeer_Lose.cs" />
+    <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Weak.cs" />
+    <Compile Include="Assets\Game\BossPhase\CSO_BPTransition.cs" />
+    <Compile Include="Assets\Waldemarst\Broccoli\Controller\BroccoTreeController_1_2_5.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossPhaseTable.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_CameraZoom.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderBuilder.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
+    <Compile Include="Assets\Game\MissionPhase\CutIn\CS_CutIn.cs" />
+    <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneCollider.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_Title4FadeOut.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
     <Compile Include="Assets\Game\Controller\CS_Player.cs" />
     <Compile Include="Assets\feature\yamaguchi\CS_ShojiController.cs" />
@@ -464,12 +487,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -858,12 +875,6 @@
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Fbx.Editor">
-      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Formats.Fbx.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
@@ -879,14 +890,14 @@
     <Reference Include="Unity.Burst.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
@@ -902,9 +913,6 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Autodesk.Fbx">
-      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
@@ -927,9 +935,6 @@
     <Reference Include="Unity.VisualScripting.Shared.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Formats.Fbx.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
@@ -947,6 +952,18 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Fbx.Editor">
+      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Formats.Fbx.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Fbx">
+      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Formats.Fbx.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
