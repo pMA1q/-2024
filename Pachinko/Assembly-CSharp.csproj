@@ -179,6 +179,7 @@
     <Compile Include="Assets\Game\Controller\CS_Extend.cs" />
     <Compile Include="Assets\Game\Controller\CS_Enemy.cs" />
     <Compile Include="Assets\Anim_CameraZoom\CameraZoomController.cs" />
+    <Compile Include="Assets\Game\BossPhase\CS_BPTranstision.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

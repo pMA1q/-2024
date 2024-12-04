@@ -280,9 +280,10 @@ public class CS_MissionManeger : MonoBehaviour
     private void StartBossPhase()
     {
         Debug.Log("ボスフェーズへ移行します");
-        Destroy(this.gameObject);
+        Destroy(this);
+        // CS_BPTrantition  の呼び出しを追記
+        gameObject.AddComponent<CS_BPTranstision>();
         // ボスフェーズの処理を開始
-        bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOSS);
     }
 
     //抽選後処理
