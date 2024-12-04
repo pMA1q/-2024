@@ -86,7 +86,9 @@ public class CS_HpGuage : MonoBehaviour
 
     public void PlayerHpRevival()
     {
-        if (mPlayerGageCol == null) { mPlayerGageCol = StartCoroutine(PlayerRevaivalGage()); }
+        //
+        mPlayerGageCol = StartCoroutine(PlayerRevaivalGage());
+        //if (mPlayerGageCol == null) { mPlayerGageCol = StartCoroutine(PlayerRevaivalGage()); }
 
     }
 
@@ -100,7 +102,7 @@ public class CS_HpGuage : MonoBehaviour
         int deleteNum = (int)attackPow;
 
         Debug.Log("消去数:" + deleteNum + "ボス攻撃力:" + mBossData.BossOneAttackPow + "プレイヤ1ブロックHP" + mPlayerOneBlockHp);
-        for (int i = 0; i < mPlayerHpBlocks.Length; i++)
+        for (int i = mPlayerHpBlocks.Length　-1; i >= 0; i--)
         {
             // アクティブかつまだ num 個を無効化していない場合
             if (mPlayerHpBlocks[i].gameObject.activeSelf && count < deleteNum)
@@ -119,21 +121,29 @@ public class CS_HpGuage : MonoBehaviour
                 leftoverHp++;
             }
         }
-        
+
+        Debug.Log("残りhp" + leftoverHp);
+        Debug.Log("復活フラグ" + mBossData.IsPlayerRevaival);
+
         if(!mBossData.IsPlayerRevaival && leftoverHp == 0) { mBossData.IsPlayerLose = true; }
+        if (mBossData.IsPlayerRevaival)
+        {
+            Debug.Log("復活");
+            mGuageRevUpdateFinish = false; 
+        }
 
         mBossData.PlayerStatus.hp = leftoverHp;
         mPlayerGageCol = null;
-        if (mBossData.IsPlayerRevaival) { mGuageRevUpdateFinish = false; }
         mGuageDownUpdateFinish = true;
        
         yield return null;
     }
     private IEnumerator PlayerRevaivalGage()
     {
-
+        Debug.Log("プレイヤー体力回復");
         int count = 0; // アクティブを無効にする個数をカウント
         int revCount = (int)mBossData.BackUpHP - mBossData.PlayerStatus.hp;
+        Debug.Log("回復量" + revCount);
         for (int i = 0; i < mPlayerHpBlocks.Length; i++)
         {
             // アクティブかつまだ num 個を無効化していない場合

@@ -38,7 +38,11 @@ public class CS_Boss1_Unique : CS_BossUnique
     private IEnumerator Revaival()
     {
         while (!guage.HpDownUpdateFinish) { yield return null; }
-        if (mBossData.IsPlayerRevaival) { guage.PlayerHpRevival(); }
+        if (mBossData.IsPlayerRevaival)
+        {
+            Debug.Log("復活処理開始");
+            guage.PlayerHpRevival(); 
+        }
     }
 
     // 項目番号4の報酬、記録データ処理
@@ -103,6 +107,7 @@ public class CS_Boss1_Unique : CS_BossUnique
         mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
         CheakBossPowerUp();
         playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
+        Debug.Log("プレイヤーHP" + playerHp);
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
             percentage = mPlayerStatus.charaStatus.revaival;
@@ -155,6 +160,7 @@ public class CS_Boss1_Unique : CS_BossUnique
         mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
         CheakBossPowerUp();
         playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
+        
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
             percentage = mPlayerStatus.charaStatus.revaival;
@@ -166,9 +172,9 @@ public class CS_Boss1_Unique : CS_BossUnique
             if (ReLot(percentage))
             {
                 //当選すれば先制攻撃の番号を返す
-                next = 4;
+                next = 10;
                 mBossData.PlayerOneAttackPow = mBossData.BossOneBlockHp;
-                CheckPlayerkPowerUp(4);
+                CheckPlayerkPowerUp(10);
                 playerAttack = true;
             }
             else { bossAttack = true; }
@@ -198,11 +204,13 @@ public class CS_Boss1_Unique : CS_BossUnique
     private int P7_Relot()
     {
         int next = -1;
+        mBossData.IsPlayerRevaival = false;
         float playerHp = mPlayerStatus.hp;
         attackType = ATTACK_TYPE.WEAK;
         mBossData.BossOneAttackPow = mBossStatus.infomations[mBossData.BossNumber].attack * boss_magnification[(int)attackType];//この変動時のアタック量
         CheakBossPowerUp();
         playerHp -= Mathf.Ceil(mBossData.BossOneAttackPow / mBossData.PlayerOneBlockHp);//ボスの攻撃をhpから引く
+
         if (playerHp <= 0f)//体力が無くなれば復活抽せん
         {
             float percentage = mPlayerStatus.charaStatus.revaival;
@@ -217,17 +225,6 @@ public class CS_Boss1_Unique : CS_BossUnique
     // 項目番号8の報酬、記録データ処理
     private int P8()
     {
-        //mPlayerStatus.hp -= mBossData.BossOneAttackPow;
-
-        ////復活フラグが立っているなら、元に戻す
-        //if (mBossData.IsPlayerRevaival)
-        //{
-        //    mPlayerStatus.hp = mBossData.BackUpHP;
-        //}
-        //else if (mPlayerStatus.hp <= 0)
-        //{
-        //    mBossData.IsPlayerLose = true;
-        //}
         return -1;
     }
 
@@ -857,10 +854,8 @@ public class CS_Boss1_Unique : CS_BossUnique
         if (mBossData == null) { mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>(); }
         if (bossAttack)
         {
-
             guage.PlayerHpDown();
-            StartCoroutine(Revaival());
-            
+            StartCoroutine(Revaival());   
         }
         if(playerAttack)
         {
@@ -899,7 +894,7 @@ public class CS_Boss1_Unique : CS_BossUnique
            
         }
 
-        mBossData.IsPlayerRevaival = false;
+       
     }
 
     private void CheakBossPowerUp()

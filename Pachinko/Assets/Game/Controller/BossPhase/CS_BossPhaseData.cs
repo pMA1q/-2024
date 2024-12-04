@@ -6,6 +6,8 @@ public class CS_BossPhaseData : MonoBehaviour
 {
     [SerializeField, Header("ボスステータス")]
     private CSO_BossStatus mBossList;
+    [SerializeField, Header("ボスステータスBackUP")]
+    private CSO_BossStatus mBossListBackUp;
     public CSO_BossStatus BossStatus { get { return mBossList; } }
 
     private CSO_PlayerStatus mPlayerStatus;
@@ -183,6 +185,13 @@ public class CS_BossPhaseData : MonoBehaviour
     public void ResetData()
     {
 
+    }
+
+    private void OnApplicationQuit()
+    {
+#if UNITY_EDITOR
+        mBossList.ResetToInitialValues();
+#endif
     }
 
 }

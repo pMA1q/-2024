@@ -116,7 +116,7 @@ public class CS_BossPheseController : MonoBehaviour
         if (mController.GetStock() == 0) { return; }
 
         //int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
-        int randomNumber = 4;
+        int randomNumber = 6;
 
         mGameCount--;//ゲームカウントをへらす
 

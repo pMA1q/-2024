@@ -158,4 +158,11 @@ public class CS_MissionPhaseData : MonoBehaviour
         mPlayerStatus.backupStatus = new CSO_PlayerStatus(mPlayerStatus);
         this.GetComponent<CS_BossPhaseData>().Init();
     }
+
+    private void OnApplicationQuit()
+    {
+#if UNITY_EDITOR
+        mPlayerStatus.ResetStatus();
+#endif
+    }
 }

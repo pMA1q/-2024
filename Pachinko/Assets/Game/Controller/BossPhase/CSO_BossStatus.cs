@@ -48,6 +48,18 @@ public class CSO_BossStatus : ScriptableObject
             });
         }
     }
+
+#if UNITY_EDITOR
+
+    private void OnDisable()
+    {
+        // エディタでの実行停止時に初期値にリセット
+        if (!Application.isPlaying)
+        {
+            ResetToInitialValues();
+        }
+    }
+#endif
 }
 
 [System.Serializable]
@@ -64,3 +76,4 @@ public class BossStatusInfomation
     [Header("上限値攻撃")]
     public float maxAttack;
 }
+
