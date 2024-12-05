@@ -6,10 +6,10 @@ public class CS_SetPositionPerfPos : MonoBehaviour
 {
     [Header("座標(10000,0,0)を原点としたときのポジション")]
     [SerializeField, Header("サブカメラの位置から+αの値")]
-    private Vector3 mObjectPos= new Vector3(0f, 0f, 10f);
+    private Vector3 mObjectPos = new Vector3(10000f, 0f, 10f);
 
     [SerializeField, Header("カメラのポジション")]
-    private Vector3 mCameraPos;
+    private Vector3 mCameraPos = new Vector3(10000f, 0f, 0f);
     [SerializeField, Header("カメラの回転")]
     private Vector3 mCameraRot;
 
@@ -38,7 +38,6 @@ public class CS_SetPositionPerfPos : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position = mSubCamera.transform.position + mOffsetPos;
     }
 }
 
