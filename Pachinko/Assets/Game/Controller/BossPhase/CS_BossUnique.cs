@@ -14,23 +14,23 @@ public class CS_BossUnique : MonoBehaviour
     virtual protected void Start()
     {
         mBossStatus = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>().BossStatus;
-        mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>().PlayerStatus;
+        mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
         mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
         mMaxPlayerHp = mBossData.PlayerStatus.hp;
 
-        mPrevBuffInfo = mBossData.Buff_Debuff;
+        mPrevBuffInfo = mBossData.BossBuff_Debuff;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     protected bool ReLot(float _percentage)
     {
         float randomValue = UnityEngine.Random.Range(0f, 100f);
-        return _percentage <= randomValue;
+        return randomValue <= _percentage;
     }
 
     virtual public int DesisionFlag(int _val) { return -1; }

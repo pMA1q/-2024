@@ -26,14 +26,6 @@ public class CS_MissionPhaseData : MonoBehaviour
         get { return mMisisonNumber;  }
     }
 
-    //無発展フラグ
-    private bool IsNoDevelopment = false;
-    public bool NoDevelpment
-    {
-        set { IsNoDevelopment = value; }
-        get { return IsNoDevelopment; }
-    }
-
     private int[] mMissionContentsNums = new int[3];
     //抽せんされたミッション番号を保存
     public void SaveMissionContents(int _count, int _contentNum)
@@ -151,5 +143,18 @@ public class CS_MissionPhaseData : MonoBehaviour
         mHighProbabEnemyMode = false;
         mExtensionGameCount = 0;
         mRewardUp = false;
+    }
+
+    private void Awake()
+    {
+        mPlayerStatus.backupStatus = new CSO_PlayerStatus(mPlayerStatus);
+        this.GetComponent<CS_BossPhaseData>().Init();
+    }
+
+    private void OnApplicationQuit()
+    {
+#if UNITY_EDITOR
+        mPlayerStatus.ResetStatus();
+#endif
     }
 }

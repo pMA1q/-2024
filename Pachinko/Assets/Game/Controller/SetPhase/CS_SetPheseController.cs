@@ -84,7 +84,7 @@ public class CS_SetPheseController : MonoBehaviour
         //変動時間設定
         mBigController.VariationTimer = 3.0f;
 
-        GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().NoDevelpment = false;//無発展フラグをfalse
+        GameObject.Find("BigController").GetComponent<CS_CommonData>().NoDevelpment = false;//無発展フラグをfalse
 
        //保留玉使用（変動開始）
        mBigController.UseStock(WIN_LOST.LOST);

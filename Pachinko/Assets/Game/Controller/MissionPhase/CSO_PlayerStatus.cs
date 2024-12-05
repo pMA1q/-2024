@@ -11,8 +11,7 @@ using System;
 public class CSO_PlayerStatus : ScriptableObject
 {
     // ステータスのプロパティ
-    public float hp;
-    public float attack;
+    public int hp;
     public float defense;
 
     public CharacterStatus charaStatus;
@@ -26,7 +25,6 @@ public class CSO_PlayerStatus : ScriptableObject
     public CSO_PlayerStatus(int initialHp, int initialAttack, int initialDefense, float initialPreemptiveAttack, float initialRevaival)
     {
         hp = initialHp;
-        attack = initialAttack;
         defense = initialDefense;
         //preemptiveAttack = initialPreemptiveAttack;
         //revaival = initialRevaival;
@@ -39,7 +37,6 @@ public class CSO_PlayerStatus : ScriptableObject
     public CSO_PlayerStatus(CSO_PlayerStatus _backUp)
     {
         hp = _backUp.hp;
-        attack = _backUp.attack;
         defense = _backUp.defense;
         charaStatus = _backUp.charaStatus;
         ticket = _backUp.ticket;
@@ -56,7 +53,6 @@ public class CSO_PlayerStatus : ScriptableObject
     public void ResetStatus()
     {
         hp = backupStatus.hp;
-        attack = backupStatus.attack;
         defense = backupStatus.defense;
         charaStatus = backupStatus.charaStatus;
         ticket = backupStatus.ticket;
@@ -66,10 +62,8 @@ public class CSO_PlayerStatus : ScriptableObject
     public void UpdateStatus(int hpChange, int attackChange, int defenseChange)
     {
         hp += hpChange;
-        attack += attackChange;
         defense += defenseChange;
 
-        Debug.Log($"ステータス更新: HP {hp}, 攻撃力 {attack}, 防御力 {defense}");
     }
 }
 [System.Serializable] 

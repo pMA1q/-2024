@@ -5,8 +5,8 @@ using UnityEngine;
 public class CS_SetPositionPerfPos : MonoBehaviour
 {
     [Header("座標(10000,0,0)を原点としたときのポジション")]
-    [SerializeField, Header("サブカメラの位置から+αの値")]
-    private Vector3 mObjectPos = new Vector3(10000f, 0f, 10f);
+    [SerializeField, Header("オブジェクトの初期位置")]
+    private Vector3 mObjectPos= new Vector3(10000f, 0f, 10f);
 
     [SerializeField, Header("カメラのポジション")]
     private Vector3 mCameraPos = new Vector3(10000f, 0f, 0f);
@@ -34,10 +34,6 @@ public class CS_SetPositionPerfPos : MonoBehaviour
         }
 
        // Destroy(this);
-    }
-
-    private void Update()
-    {
     }
 }
 

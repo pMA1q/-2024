@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2977572893432882904}
   - component: {fileID: 4608715447548663831}
   - component: {fileID: 4930058131371697441}
+  - component: {fileID: 3986402120166305029}
   m_Layer: 0
   m_Name: BigController
   m_TagString: Untagged
@@ -92,3 +93,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mBossList: {fileID: 11400000, guid: c374b82e5d63a9f49a26db13c56a9978, type: 2}
+  mBossListBackUp: {fileID: 0}
+--- !u!114 &3986402120166305029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474442167957775435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bee913e3acc1e744b704ecfdeb2d6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
