@@ -68,11 +68,20 @@ public class CS_BossPhaseData : MonoBehaviour
         BUFF_BIG,//バフ(大)
         DEBUFF//デバフ
     }
-    private BUFF_DEBUFF mBuff_Debuff = BUFF_DEBUFF.NONE;
-    public BUFF_DEBUFF Buff_Debuff
+    //ボスのバフ、デバフフラグ(項目番号:18)
+    private BUFF_DEBUFF mBossBuff_Debuff = BUFF_DEBUFF.NONE;
+    //バフデバフの設定、取得
+    public BUFF_DEBUFF BossBuff_Debuff
     {
-        set { mBuff_Debuff = value; }
-        get { return mBuff_Debuff; }
+        set { mBossBuff_Debuff = value; }
+        get { return mBossBuff_Debuff; }
+    }
+    //プレイヤーのバフ、フラグ(項目番号:20,21)
+    private BUFF_DEBUFF mPlayerBuff_Debuff = BUFF_DEBUFF.NONE;
+    public BUFF_DEBUFF PlayerBuff_Debuff
+    {
+        set { mPlayerBuff_Debuff = value; }
+        get { return mPlayerBuff_Debuff; }
     }
 
     //次回攻撃時ダメージUPフラグ(項目番号:21,22)
@@ -118,6 +127,24 @@ public class CS_BossPhaseData : MonoBehaviour
     {
         set { mBackUpHP = value; }
         get { return mBackUpHP; }
+    }
+
+    //プレイヤーの攻撃フラグ
+    private bool isPlayerAttack = false;
+    //プレイヤーの攻撃フラグの設定、取得
+    public bool IsPlayerAttack
+    {
+        set { isPlayerAttack = value; }
+        get { return isPlayerAttack; }
+    }
+
+    //ボスの攻撃フラグ
+    private bool isBossAttack = false;
+    //ボスの攻撃フラグの設定、取得
+    public bool IsBossAttack
+    {
+        set { isBossAttack = value; }
+        get { return isBossAttack; }
     }
 
     //プレイヤーの１ブロック当たりのHP量
@@ -174,13 +201,7 @@ public class CS_BossPhaseData : MonoBehaviour
         mBossList.SaveInitialValues();
     }
 
-    //無発展フラグ
-    private bool IsNoDevelopment = false;
-    public bool NoDevelpment
-    {
-        set { IsNoDevelopment = value; }
-        get { return IsNoDevelopment; }
-    }
+   
 
     public void ResetData()
     {

@@ -22,6 +22,7 @@ public class CS_BossPheseController : MonoBehaviour
     private CS_BossUnique mBossUnique;
 
     private CS_BossPhaseData mBossData;
+    private CS_CommonData mData;
 
     private CS_Controller mController;
 
@@ -58,6 +59,7 @@ public class CS_BossPheseController : MonoBehaviour
     void Start()
     {
         mController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
+        mData = GameObject.Find("BigController").GetComponent<CS_CommonData>();//共通データ取得
         mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
         mBossData.ResetData();//ボスフェーズデータの各フラグをリセットする
         mBossStatus = mBossData.BossStatus;
@@ -69,8 +71,6 @@ public class CS_BossPheseController : MonoBehaviour
         guage.GetComponent<CS_HpGuage>().Init();
         //ボス番号に応じた情報を設定
         SetBossInfomation();
-
-        
     }
 
     private void SetBossInfomation()
@@ -99,8 +99,22 @@ public class CS_BossPheseController : MonoBehaviour
     {
         if(mCoroutine != null) { return; }
 
+        //ボス討伐
+        if(mBossData.IsSubjugation)
+        {
+            Subjugation();
+            return;
+        }
+
+        //負け処理
+        if(mBossData.IsPlayerLose)
+        {
+            PlayerLose();
+            return;
+        }
+
         //残りゲーム数が0以下で次のミッションのフラグも立っていない？
-        if (mGameCount <= 0 && mNextMissionNum == -1)
+        if (mGameCount <= 0 && mNextMissionNum <= -1)
         {
             RemoveAllHandlers();
             StartNextPhase();
@@ -115,12 +129,13 @@ public class CS_BossPheseController : MonoBehaviour
         //保留玉が無いなら終了
         if (mController.GetStock() == 0) { return; }
 
-        //int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
-        int randomNumber = 6;
+        int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
+        //randomNumber = 29;
 
         mGameCount--;//ゲームカウントをへらす
 
         string name = mNowBossTable.infomation[randomNumber].name;
+
 
         //無発展
         if (randomNumber <= 2)
@@ -128,15 +143,16 @@ public class CS_BossPheseController : MonoBehaviour
             NoDevelopment(randomNumber);
             return;
         }
-        else
-        {
-            CS_BossPhaseData data = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
-            data.NoDevelpment = false;
-            mController.VariationTimer = 4f; 
+
+        mData.NoDevelpment = false;
+        mController.VariationTimer = 4f;
+      
+        //この時点で次の番号が決まっているなら今回の変動番号決定
+        if (mNextMissionNum > -1) 
+        { 
+            randomNumber = mNextMissionNum; 
         }
-
-        mBossData.NoDevelpment = false;//無発展フラグをfalse
-
+        
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(randomNumber);
         //次の演出番号が-1じゃないなら再抽選結果を入れる
@@ -156,6 +172,19 @@ public class CS_BossPheseController : MonoBehaviour
 
         mCoroutine = StartCoroutine(AfterLottery(randomNumber));//抽せん後処理を走らせる
     }
+
+    //討伐成功処理
+    private void Subjugation()
+    {
+        Debug.Log("目標殲滅しました");
+    }
+
+    //負け
+    private void PlayerLose()
+    {
+        Debug.Log("負けました");
+    }
+
     private void StartNextPhase()
     {
         //HPを元に戻す
@@ -170,9 +199,9 @@ public class CS_BossPheseController : MonoBehaviour
     //無発展処理
     private void NoDevelopment(int _perfNumber)
     {
-        float[] valTime = new float[3] { 8f, 10f, 10f };
+        float[] valTime = new float[3] { 8f, 10f, 12f };
         mController.VariationTimer = valTime[_perfNumber];//変動時間設定
-        mBossData.NoDevelpment = true;//無発展フラグをtrue
+        mData.NoDevelpment = true;//無発展フラグをtrue
         mNextMissionNum = -1;
         mBackupNumber = _perfNumber;
         //保留玉使用（変動開始）
@@ -183,8 +212,7 @@ public class CS_BossPheseController : MonoBehaviour
         CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
         guage.pefName = name;
 
-        CS_BossPhaseData data = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
-        data.NoDevelpment = true;
+        mData.NoDevelpment = true;
 
         Debug.Log("演出番号" + name);
     }
@@ -192,7 +220,7 @@ public class CS_BossPheseController : MonoBehaviour
     
     private int CheckReLottely(int _val)
     {
-        List<int> isRerotteryNums = new List<int> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 17,18, 19, 20, 23, 24, 25, 26, 29, 30 };
+        List<int> isRerotteryNums = new List<int> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14, 17,18, 19, 20, 23, 24, 25, 26, 29, 30 };
         int next = -1;
         for (int i = 0; i < isRerotteryNums.Count; i++)
         {
@@ -221,6 +249,8 @@ public class CS_BossPheseController : MonoBehaviour
         CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
 
         while (!guage.HpUpdateFinish) { yield return null; }
+
+        Debug.Log("HP更新終了");
 
         mController.PerformanceFinish();
 
