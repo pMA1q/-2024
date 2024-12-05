@@ -1482,7 +1482,7 @@ PrefabInstance:
     - target: {fileID: 2423349118339914069, guid: 450896322ae50394385b747cb75b6a99,
         type: 3}
       propertyPath: m_Name
-      value: "\u969C\u5B5000"
+      value: Shoji_0
       objectReference: {fileID: 0}
     - target: {fileID: 3092468277907571695, guid: 450896322ae50394385b747cb75b6a99,
         type: 3}
