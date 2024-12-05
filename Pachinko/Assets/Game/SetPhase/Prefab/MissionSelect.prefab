@@ -564,8 +564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4b5b14fcec5334085dff5dbfb91fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mOffsetPos: {x: 0, y: 0, z: 5.8}
-  mSumPos: {x: 0, y: 0, z: 0}
+  mObjectPos: {x: 10000, y: 0, z: 5}
+  mCameraPos: {x: 10000, y: 0, z: 0}
+  mCameraRot: {x: 0, y: 0, z: 0}
 --- !u!1 &6927818349901546805
 GameObject:
   m_ObjectHideFlags: 0

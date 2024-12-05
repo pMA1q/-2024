@@ -16749,7 +16749,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5000
+  m_ColorTemperature: 5528
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -26208,7 +26208,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mCtrls.Array.data[0]
       value: 
-      objectReference: {fileID: 3287296361909855014, guid: ee9563e037f281d4e8daa650e086a721,
+      objectReference: {fileID: 2851348079688611415, guid: e5792b70b67b5734ca3144eb06c112a7,
         type: 3}
     - target: {fileID: 2474442167957775435, guid: 208585bf3bcdb4c4a86604fec865bb91,
         type: 3}

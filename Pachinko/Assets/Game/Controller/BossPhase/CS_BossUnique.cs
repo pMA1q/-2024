@@ -18,7 +18,7 @@ public class CS_BossUnique : MonoBehaviour
         mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
         mMaxPlayerHp = mBossData.PlayerStatus.hp;
 
-        mPrevBuffInfo = mBossData.Buff_Debuff;
+        mPrevBuffInfo = mBossData.BossBuff_Debuff;
     }
 
     // Update is called once per frame

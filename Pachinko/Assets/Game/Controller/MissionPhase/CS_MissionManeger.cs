@@ -28,6 +28,7 @@ public class CS_MissionManeger : MonoBehaviour
 
     private CS_Controller bigController;//司令塔(大)
     private CS_MissionPhaseData missionData;//司令塔(大)
+    private CS_CommonData mData;//共通データ
 
     private int mGameCount = 20;//入賞数
 
@@ -65,6 +66,7 @@ public class CS_MissionManeger : MonoBehaviour
 
     void Start()
     {
+        mData = GameObject.Find("BigController").GetComponent<CS_CommonData>();//共通データ取得
         missionData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
         missionData.ResetMissionData();//ミッションデータの各フラグをレセットする
         // プレイヤーステータスをデータから取得
@@ -131,9 +133,10 @@ public class CS_MissionManeger : MonoBehaviour
             NoDevelopment(randomNumber);
             return;
         }
-        else { bigController.VariationTimer = 4f; }
+ 
+        mData.NoDevelpment = false;//無発展フラグをfalse
+        bigController.VariationTimer = 4f;
 
-        missionData.NoDevelpment = false;//無発展フラグをfalse
 
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
@@ -156,7 +159,7 @@ public class CS_MissionManeger : MonoBehaviour
     {
         float[] valTime = new float[3] { 8f, 10f, 10f };
         bigController.VariationTimer = valTime[_perfNumber];//変動時間設定
-        missionData.NoDevelpment = true;//無発展フラグをtrue
+        mData.NoDevelpment = true;//無発展フラグをtrue
         mNextMissionNum = -1;
         mBackupNumber = _perfNumber;
         //保留玉使用（変動開始）
