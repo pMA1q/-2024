@@ -699,15 +699,15 @@ public class CS_Boss1_Unique : CS_BossUnique
     public override int DesisionFlag(int _val)
     {
         if (mBossData == null) { mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>(); }
-        if (bossAttack)
-        {
-            guage.PlayerHpDown();
-            StartCoroutine(Revaival());   
-        }
-        if(playerAttack)
-        {
-            guage.BossHpDown();
-        }
+        //if (bossAttack)
+        //{
+        //    guage.PlayerHpDown();
+        //    StartCoroutine(Revaival());   
+        //}
+        //if(playerAttack)
+        //{
+        //    guage.BossHpDown();
+        //}
         //Debug.Log("íäëIå„èàóù" + _val);
         int next = mUniquePF_Functions[_val]() - 1;
         FlagChange();
