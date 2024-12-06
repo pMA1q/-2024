@@ -13,13 +13,16 @@ public class CS_BossPheseController : MonoBehaviour
 {
     [SerializeField, Header("ボスのテーブルリスト")]
     private List<CSO_BossPhaseTable> mBossTables;
-
+    [SerializeField, Header("無発展時のプレハブ")]
+    private GameObject mNodevlopmentPrehab;
     [SerializeField, Header("体力ゲージ")]
     private GameObject mHpGuage;
 
     [SerializeField, Header("デバッグ番号(項目番号-1の値)")]
     [Header("デバッグしないなら-1")]
     private int mDebugNumber = -1;
+
+    private GameObject mNoDevObj;
 
     private CSO_BossPhaseTable mNowBossTable;
 
@@ -75,6 +78,10 @@ public class CS_BossPheseController : MonoBehaviour
         guage.GetComponent<CS_HpGuage>().Init();
         //ボス番号に応じた情報を設定
         SetBossInfomation();
+
+        mNoDevObj = Instantiate(mNodevlopmentPrehab, Vector3.zero, Quaternion.identity);
+        mNoDevObj.GetComponent<CS_SetPositionPerfPos>().Start();
+        mNoDevObj.GetComponent<CS_CameraWander>().Init();
     }
 
     private void SetBossInfomation()
@@ -149,6 +156,7 @@ public class CS_BossPheseController : MonoBehaviour
         }
 
         mData.NoDevelpment = false;
+        mNoDevObj.SetActive(false);
         mController.VariationTimer = 4f;
       
         //この時点で次の番号が決まっているなら今回の変動番号決定
@@ -265,6 +273,9 @@ public class CS_BossPheseController : MonoBehaviour
             rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(false, 0f);
         }
         //mController.PerformanceFinish();
+        while (!mController.GetPerformanceFinish()) { yield return null; }
+
+        mNoDevObj.SetActive(true);
 
         mCoroutine = null;
     }

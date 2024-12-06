@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mBossTables:
   - {fileID: 11400000, guid: d050698ba82341c40a2357c505323a13, type: 2}
+  mNodevlopmentPrehab: {fileID: 7142218133086803431, guid: d0afdb0f80bd4204cb776d18786cc622,
+    type: 3}
   mHpGuage: {fileID: 1623181193349219906, guid: 9eb702c5d76a28245b34f6fd7a27cd63,
     type: 3}
-  mDebugNumber: 3
+  mDebugNumber: 0
