@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor.SceneManagement;
 
 public class CS_MissionManeger : MonoBehaviour
 {
@@ -279,13 +280,14 @@ public class CS_MissionManeger : MonoBehaviour
         playerStatus.charaStatus = cStatus;
     }
 
-    // ボスフェーズへの移行
     private void StartBossPhase()
     {
         Debug.Log("ボスフェーズへ移行します");
-        Destroy(this.gameObject);
-        // ボスフェーズの処理を開始
-        bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOSS);
+
+        // ミッションマネージャーを削除
+        Destroy(this);
+        CS_BossPhaseHandler bossPhaseHandler = gameObject.AddComponent<CS_BossPhaseHandler>();
+        bossPhaseHandler.Initialize(bigController);
     }
 
     //抽選後処理

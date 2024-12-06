@@ -9,7 +9,7 @@ using UnityEngine;
 using System;
 //using System.Diagnostics;
 
-public class CS_BossPheseController : MonoBehaviour
+public class CS_BossPhaseController : MonoBehaviour
 {
     [SerializeField, Header("ボスのテーブルリスト")]
     private List<CSO_BossPhaseTable> mBossTables;
