@@ -68,7 +68,11 @@ public class CS_NumberRailController : MonoBehaviour
         CS_CommonData missionData = GameObject.Find("BigController").GetComponent<CS_CommonData>();
 
         if (missionData.NoDevelpment) { yield return new WaitForSeconds(mVariationTime -2f); }//変動時間が過ぎるまで処理を進めない
-        else { while (!mBigCtrl.PerformanceSemiFinish) { yield return null; } }//演出終了仮フラグがtrueになるまで処理を進めない
+        else 
+        {
+            yield return new WaitForSeconds(mVariationTime - 2f);
+            while (!mBigCtrl.PerformanceSemiFinish) { yield return null; } //演出終了仮フラグがtrueになるまで処理を進めない
+        }
         
 
         mNumRails[0].StopStart(mBigCtrl.GetPatterns()[0]);

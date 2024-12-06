@@ -145,6 +145,7 @@
     <Compile Include="Assets\feature\yamaguchi\Script\CS_ShojiController.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionTitleFade.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3ChoiceTicket.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberRail.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\RotatingObject.cs" />
@@ -177,7 +178,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
+    <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Enemy.cs" />
+    <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
