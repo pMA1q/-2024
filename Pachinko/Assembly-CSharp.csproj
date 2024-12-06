@@ -53,7 +53,7 @@
     <UnityVersion>2021.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
@@ -70,7 +70,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Debuff.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Debuff.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Lottery.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
@@ -79,12 +78,6 @@
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPheseController.cs" />
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Player.cs" />
-    <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
-    <Compile Include="Assets\Game\BossPhase\CS_HpGage.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Extend.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
@@ -115,21 +108,16 @@
     <Compile Include="Assets\Practice\CS_TestSpawnPerfomance.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets\Game\BossPhase\CSO_BPTransition.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderBuilder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Ally.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Ally.cs" />
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
     <Compile Include="Assets\Game\SetPhase\Script\CS_LotMission.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Bokudayo\Script\ColorTransfer.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Skill].cs" />
-    <Compile Include="Assets\Game\Controller\CS_Player Buff Strength.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Player Buff Weak.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Skill].cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Strength.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Weak.cs" />
@@ -144,7 +132,6 @@
     <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossStatus.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAColliderBuilderCommon.cs" />
     <Compile Include="Assets\Game\Core\Prefab\CS_BoundBall.cs" />
-    <Compile Include="Assets\Game\Controller\CS_5EnemiesApeer_Lose.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_5EnemiesApeer_Lose.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneCollider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -152,18 +139,6 @@
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SABoneColliderCommon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\Game\Controller\CS_3Enemies_Flee.cs" />
-    <Compile Include="Assets\feature\yamaguchi\CS_ShojiController.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionTitleFade.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\Game\Controller\CS_3ChoiceTicket.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_NumberRail.cs" />
-    <Compile Include="Assets\feature\PG_sinjo\C#script\RotatingObject.cs" />
-    <Compile Include="Assets\Game\Controller\CS_Enemy.cs" />
-    <Compile Include="Assets\feature\PG_sinjo\C#script\CS_SphereSpawn.cs" />
-    <Compile Include="Assets\feature\PG_sinjo\C#script\ChangeText.cs" />
-    <Compile Include="Assets\Bokudayo\Script\ExplosionSample.cs" />
-    <Compile Include="Assets\Game\Controller\CS_5EnemiesApeer_Win.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_ShojiController.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionTitleFade.cs" />
@@ -191,7 +166,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Game\Controller\CS_Controller.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_RenderTexture.cs" />
-    <Compile Include="Assets\Game\Controller\CS_RewardUp.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_RewardUp.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformanceFinish.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossPhaseTable.cs" />
@@ -200,6 +174,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
+    <Compile Include="Assets\Game\BossPhase\CSO_BPTransition.cs" />
     <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -482,12 +457,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
