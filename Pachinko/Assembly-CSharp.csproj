@@ -141,7 +141,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_ShojiController.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionTitleFade.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_TitleFade.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3ChoiceTicket.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberRail.cs" />
@@ -174,7 +174,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\BossPhase\CSO_BPTransition.cs" />
     <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
   </ItemGroup>
   <ItemGroup>
