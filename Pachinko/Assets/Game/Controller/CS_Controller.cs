@@ -33,7 +33,7 @@ public class CS_Controller : MonoBehaviour
     private CS_NumberRailController mDrawNum2;
 
     private PACHINKO_PHESE mNowPhese = PACHINKO_PHESE.SET;//現在のフェーズ
-    private PACHINKO_PHESE mPrevPhese = PACHINKO_PHESE.SET;//前ののフェーズ
+    private PACHINKO_PHESE mPrevPhese = PACHINKO_PHESE.SET;//前のフェーズ
 
     private int mStock = 0;//保留玉数
     

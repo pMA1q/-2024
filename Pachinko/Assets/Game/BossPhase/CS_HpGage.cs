@@ -66,7 +66,7 @@ public class CS_HpGage : MonoBehaviour
 
         mPlayerGageCol = null;
 
-        Debug.Log("ゲージげ減少終了");
+        Debug.Log("ゲージが減少終了");
         yield return null;
     }
 }

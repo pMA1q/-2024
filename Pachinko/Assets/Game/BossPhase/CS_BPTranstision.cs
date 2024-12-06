@@ -21,5 +21,6 @@ public class CS_BPTranstision : MonoBehaviour
     }
 }
 
-//フェードアウトしてからフェードイン
+//ミッションフェーズをフェードアウトしてからボスフェーズへフェードイン
 //BPController呼び出す(プレハブ/生成)
+//ミッションフェーズからプレイヤーステータスを参照

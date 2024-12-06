@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CS_SMPerfSpawner : MonoBehaviour
+public class CS_BPPerfSpawner : MonoBehaviour
 {
     public CSO_MissionPhaseTable missionPhaseTable; // スクリプタブルオブジェクトの参照
 
