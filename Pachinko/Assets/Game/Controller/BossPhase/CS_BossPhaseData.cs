@@ -89,8 +89,8 @@ public class CS_BossPhaseData : MonoBehaviour
     //ボス討伐フラグの設定、取得
     public bool IsDamageOneRankUp
     {
-        set { isSubjugation = value; }
-        get { return isSubjugation; }
+        set { isDamageUp = value; }
+        get { return isDamageUp; }
     }
 
     //確定成功フラグ(項目番号:25)

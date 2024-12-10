@@ -12,9 +12,6 @@ public class CS_DrawPattern : MonoBehaviour
     [SerializeField]
     Heso mHeso = null;  // ゲームの状態やデータを管理するカスタムクラス
 
-    [SerializeField]
-    TextMeshProUGUI[] mTexts = null;  // UIテキストオブジェクトの配列
-
     Coroutine mCoroutine = null;  // コルーチンの実行を管理する変数
 
     private CS_NumberSprite mNumberSprite;  

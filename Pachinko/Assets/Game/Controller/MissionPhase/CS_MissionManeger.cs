@@ -16,9 +16,6 @@ public class CS_MissionManeger : MonoBehaviour
 
     [SerializeField, Header("カットイン")]
     private GameObject mCutIn;
-    private GameObject mCutInPlay = null;
-
-    private bool isReplayTriggered = false;  // 再抽選フラグ
 
     [SerializeField]
     [Header("0:収集ミッション")]

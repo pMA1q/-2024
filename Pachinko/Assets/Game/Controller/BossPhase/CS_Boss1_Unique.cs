@@ -421,7 +421,6 @@ public class CS_Boss1_Unique : CS_BossUnique
         playerAttack = true;
         return next;
 
-        return next;
     }
 
     // 項目番号19の報酬、記録データ処理
