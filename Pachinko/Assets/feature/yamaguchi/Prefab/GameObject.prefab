@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9665621153806677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4328, y: 64, z: 212}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -765,39 +765,6 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 0.5}
   m_Size: {x: 1, y: 1, z: 1}
   m_FadeFactor: 1
---- !u!1 &5753958357961691354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4794758481258442624, guid: 4d7552287d19376489523f5064090155,
-    type: 3}
-  m_PrefabInstance: {fileID: 1075519364562677318}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3570363546694976835}
-  m_Layer: 0
-  m_Name: 'ShojiController (Missing Prefab with guid: 4d7552287d19376489523f5064090155)'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3570363546694976835
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4794758481258442626, guid: 4d7552287d19376489523f5064090155,
-    type: 3}
-  m_PrefabInstance: {fileID: 1075519364562677318}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5753958357961691354}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5471272371495213215}
-  m_RootOrder: 121
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1075519364562677318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1482,7 +1449,7 @@ PrefabInstance:
     - target: {fileID: 2423349118339914069, guid: 450896322ae50394385b747cb75b6a99,
         type: 3}
       propertyPath: m_Name
-      value: Shoji_0
+      value: "\u969C\u5B5000"
       objectReference: {fileID: 0}
     - target: {fileID: 3092468277907571695, guid: 450896322ae50394385b747cb75b6a99,
         type: 3}

@@ -52,8 +52,7 @@ public class CS_LotMission: MonoBehaviour
     //ミッション決定
     private void DecisionMission(int _num)
     {
-        StartCoroutine(ChangeMaterial(_num));
-        //if (coroutine == null) { coroutine = }
+        if (coroutine == null) { coroutine = StartCoroutine(ChangeMaterial(_num));}
     }
 
     //マテリアルを変更

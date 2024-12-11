@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Assets\SAColliderBuilder\Editor\SAMeshColliderEditorCommon.cs" />
     <Compile Include="Assets\SAColliderBuilder\Editor\SABoneColliderEditorCommon.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\SAColliderBuilder\Editor\SAColliderBoxReducer.cs" />
     <Compile Include="Assets\SAColliderBuilder\Editor\SAColliderHullReducer.cs" />
     <Compile Include="Assets\SAColliderBuilder\Editor\SAMeshColliderBuilderInspector.cs" />

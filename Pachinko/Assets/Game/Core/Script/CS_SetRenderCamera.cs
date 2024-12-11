@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CS_SetRenderCamera : MonoBehaviour
 {
-    private float planeDistance = 1.66f;
+    private float planeDistance = 1.0f;
     // Start is called before the first frame update
     void Awake()
     {

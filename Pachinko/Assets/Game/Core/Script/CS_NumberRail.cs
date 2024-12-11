@@ -32,8 +32,6 @@ public class CS_NumberRail : MonoBehaviour
 
     private float mNowAlpha = 1f;
 
-    bool isBeforeFinish = false;
-
     // Start is called before the first frame update
     void Start()
     {
