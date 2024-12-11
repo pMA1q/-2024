@@ -24,12 +24,13 @@ public class CS_NumberRailController : MonoBehaviour
     {
         mBigCtrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
         if (!mBigCtrl) { Debug.LogError("BigController‚ª–³‚¢"); }
+        //for (int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(1.0f); }
     }
     // Update is called once per frame
     void Update()
     {
         
-        if (isVariation) { ChangeAlpha(); }
+       // if (isVariation) { ChangeAlpha(); }
 
     }
 

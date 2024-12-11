@@ -78,14 +78,26 @@ public class CS_NumberRail : MonoBehaviour
     //パネル外に出たらAlpha値を0にする
     private void CheckOutsidePanel(int _index, RectTransform _rTrans)
     {
-        // RectTransformUtilityでPanelの範囲内か確認
-        bool isInside = RectTransformUtility.RectangleContainsScreenPoint(mPanelRect, _rTrans.position, null);
+        
+        // PanelのRectTransform情報を取得
+        Rect panelRect = mPanelRect.rect;
+        Vector3[] panelCorners = new Vector3[4];
+        mPanelRect.GetWorldCorners(panelCorners);
 
-        // 範囲外ならAlphaを0に、範囲内なら1に設定
+        // Panelのbottom位置（ワールド座標）を取得
+        float panelBottom = panelCorners[0].y; // 左下のy座標がbottom
+
+        // オブジェクトの現在位置（ワールド座標）を取得
+        Vector3 objectPosition = _rTrans.position;
+
+        // オブジェクトのbottomがPanelのbottomより下かをチェック
+        bool isBelow = objectPosition.y < panelBottom;
+
+        // Alphaを更新
         Image img = mNumberPatterns[_index].GetComponent<Image>();
         if (img != null)
         {
-            img.color = new Color(1, 1, 1, isInside ? mNowAlpha : 0.0f);
+            img.color = new Color(1, 1, 1, isBelow ? 0.0f : mNowAlpha);
         }
     }
 

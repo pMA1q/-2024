@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public class CS_TitleFade : MonoBehaviour
 {
-    public RawImage panelImage; // フェードアウトに使用するパネル画像
-    public Text panelText;      // フェードアウトに使用するテキスト
-    public float fadeOutTime = 3.0f; // フェードアウト時間
+    public RawImage panelImage;        // フェードアウトに使用するパネル画像
+    public Text panelText;             // フェードアウトに使用するテキスト
+    public float fadeOutTime = 3.0f;   // フェードアウト時間
     public CS_Controller bigController; // コントローラーへの参照（フェーズ管理用）
+    public CS_Controller.PACHINKO_PHESE nextPhase; // 遷移先のフェーズを指定
 
     private void OnEnable()
     {
@@ -41,11 +42,11 @@ public class CS_TitleFade : MonoBehaviour
         GameObject rootObject = transform.root.gameObject;
         Destroy(rootObject);
 
-        // フェーズをボスフェーズに変更
+        // フェーズを指定されたフェーズに変更
         if (bigController != null)
         {
-            bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOSS);
-            Debug.Log("ボスフェーズへ移行しました");
+            bigController.ChangePhase(nextPhase);
+            Debug.Log($"{nextPhase} フェーズへ移行しました");
         }
         else
         {

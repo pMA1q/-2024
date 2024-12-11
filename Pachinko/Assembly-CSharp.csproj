@@ -53,17 +53,18 @@
     <UnityVersion>2021.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Game\BossPhase\Prefab\GameCount\CSO_CameraInterpolation.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\CSO_CameraInterpolation.cs" />
     <Compile Include="Assets\Bokudayo\Script\E_RanAway.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\CS_BP_NodevCameraMotion.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
     <Compile Include="Assets\Anim_CameraZoom\CameraZoomController.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_Title4FadeOut.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Player.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
@@ -114,6 +114,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Ally.cs" />
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
@@ -455,12 +456,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
