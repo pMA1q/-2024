@@ -9,27 +9,82 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
 
     private Camera subCamera;
 
-
     private int motionNum = 0; // 現在のモーション番号
     private int currentStep = 1; // 現在のステップ番号
 
     private bool isMoving = false; // 移動中かどうか
+    private Coroutine motionCoroutine; // カメラモーションのコルーチン
 
-    // Start is called before the first frame update
-    void Start()
+    private bool mosionStart = false;
+
+    // バックアップ用変数
+    private Vector3 backupPosition;
+    private Quaternion backupRotation;
+
+    float backUpT = 0.0f;
+
+    void Awake()
     {
         subCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
         subCamera.transform.position = cameraMosion.inofomations[0].positions[0];
         subCamera.transform.eulerAngles = cameraMosion.inofomations[0].lotations[0];
+
+        backupPosition = subCamera.transform.position;
+        backupRotation = subCamera.transform.rotation;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        if (!isMoving && subCamera != null)
+        if (subCamera == null)
         {
-            StartCoroutine(MoveAndRotateCamera());
+            subCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
         }
+
+        if (cameraMosion != null && cameraMosion.inofomations.Count > 0)
+        {
+            // 再開時にバックアップの位置と回転をセット
+            if (backupPosition != Vector3.zero || backupRotation != Quaternion.identity)
+            {
+                subCamera.transform.position = backupPosition;
+                subCamera.transform.rotation = backupRotation;
+            }
+
+            // モーションを続きから再開
+            if (!isMoving && subCamera != null)
+            {
+                motionCoroutine = StartCoroutine(MoveAndRotateCamera());
+            }
+        }
+
+        mosionStart = true;
+    }
+
+    private void Update()
+    {
+        if (mosionStart && motionCoroutine == null)
+        {
+            mosionStart = false;
+            motionCoroutine = StartCoroutine(MoveAndRotateCamera());
+        }
+    }
+
+    void OnDisable()
+    {
+        // 現在のコルーチンを停止
+        if (motionCoroutine != null)
+        {
+            StopCoroutine(motionCoroutine);
+            motionCoroutine = null;
+        }
+
+        // 現在のカメラの位置と回転をバックアップ
+        if (subCamera != null)
+        {
+            backupPosition = subCamera.transform.position;
+            backupRotation = subCamera.transform.rotation;
+        }
+
+        mosionStart = false;
     }
 
     private IEnumerator MoveAndRotateCamera()
@@ -48,7 +103,6 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
         // 現在のステップから最後のステップまで補間
         while (currentStep < stepCount)
         {
-            
             // ポジションの取得（短い場合は最後の要素を維持）
             Vector3 startPosition = subCamera.transform.position;
             Vector3 targetPosition = currentStep < positions.Count
@@ -61,14 +115,13 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
                 ? Quaternion.Euler(rotations[currentStep])
                 : Quaternion.Euler(rotations[rotations.Count - 1]);
 
-            float t = 0f;
+            float t = backUpT;
 
             // ポジションと回転を補間
             while (t < 1f)
             {
-                Debug.Log("移動中");
                 t += Time.deltaTime * currentMotion.moveSpeed;
-
+                backUpT = t;
                 // ポジション補間
                 subCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
 
@@ -102,5 +155,10 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
 
         subCamera.transform.position = cameraMosion.inofomations[motionNum].positions[0];
         subCamera.transform.eulerAngles = cameraMosion.inofomations[motionNum].lotations[0];
+        backUpT = 0.0f;
+
+
+        mosionStart = true;
+        motionCoroutine = null;
     }
 }
