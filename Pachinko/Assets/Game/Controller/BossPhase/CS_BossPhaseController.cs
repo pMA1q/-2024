@@ -23,6 +23,7 @@ public class CS_BossPhaseController : MonoBehaviour
     private int mDebugNumber = -1;
 
     private GameObject mNoDevObj;
+    private GameObject mGuageObj;
 
     private CSO_BossPhaseTable mNowBossTable;
 
@@ -73,9 +74,9 @@ public class CS_BossPhaseController : MonoBehaviour
         mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
 
         //体力ゲージ生成
-        GameObject guage = Instantiate(mHpGuage, Vector3.zero, Quaternion.identity);
-        guage.name = mHpGuage.name;//Cloneが付かないように変更
-        guage.GetComponent<CS_HpGuage>().Init();
+        mGuageObj = Instantiate(mHpGuage, Vector3.zero, Quaternion.identity);
+        mGuageObj.name = mHpGuage.name;//Cloneが付かないように変更
+        mGuageObj.GetComponent<CS_HpGuage>().Init();
         //ボス番号に応じた情報を設定
         SetBossInfomation();
 
@@ -189,12 +190,14 @@ public class CS_BossPhaseController : MonoBehaviour
     private void Subjugation()
     {
         Debug.Log("目標殲滅しました");
+        StartNextPhase();
     }
 
     //負け
     private void PlayerLose()
     {
         Debug.Log("負けました");
+        StartNextPhase();
     }
 
     private void StartNextPhase()
@@ -202,8 +205,10 @@ public class CS_BossPhaseController : MonoBehaviour
         //HPを元に戻す
         mPlayerStatus.hp = mPlayerStatus.backupStatus.hp;
         mBossStatus.infomations[mBossNumber].hp = mBossStatus.initialValues[mBossNumber].hp;
+        Destroy(mNoDevObj);
+        Destroy(mGuageObj);
         Debug.Log("次のフェーズへ移行します");
-        //mController.ChangePhase(CS_Controller.PACHINKO_PHESE);
+        mController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
         Destroy(this.gameObject);
 
     }
@@ -292,6 +297,7 @@ public class CS_BossPhaseController : MonoBehaviour
         }
         else
         {
+            mController.PerformanceSemiFinish = true;
             mController.PerformanceFinish();
         }
         

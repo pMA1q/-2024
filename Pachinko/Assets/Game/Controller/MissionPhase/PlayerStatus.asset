@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: PlayerStatus
   m_EditorClassIdentifier: 
   hp: 10
-  attack: 10
   defense: 10
   charaStatus:
-    charColorUP: 8
+    charColorUP: 10
     charColorUpPow:
       smallUP: 3
       middleUP: 5
       bigUP: 20
       max: 80
       conicePercent: 30
-    preemptiveAttack: 8
+    preemptiveAttack: 10
     preemptiveAttackUpPow:
       smallUP: 3
       middleUP: 5
@@ -37,7 +36,7 @@ MonoBehaviour:
       bigUP: 10
       max: 50
       conicePercent: 10
-    revaival: 5
+    revaival: 8
     revivalUpPow:
       smallUP: 3
       middleUP: 5

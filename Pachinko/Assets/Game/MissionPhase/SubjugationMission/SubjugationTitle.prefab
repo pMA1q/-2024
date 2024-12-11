@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4200882807055539732}
   - component: {fileID: 2641610288249066405}
   - component: {fileID: 5149422144424096271}
-  - component: {fileID: 4098278898930472211}
+  - component: {fileID: 5180439887286848228}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -109,7 +109,7 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!114 &4098278898930472211
+--- !u!114 &5180439887286848228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,12 +118,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4802020589064259883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1634be21a77333649bb705cc3f83926d, type: 3}
+  m_Script: {fileID: 11500000, guid: da1c6f032f2f2fb4b8ca58357630083a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panelImage: {fileID: 2641610288249066405}
   panelText: {fileID: 5724005239649643008}
   fadeOutTime: 3
+  bigController: {fileID: 0}
+  nextPhase: 0
 --- !u!1 &7144967071714588428
 GameObject:
   m_ObjectHideFlags: 0

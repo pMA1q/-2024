@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement;
 
 public class CS_MissionManeger : MonoBehaviour
 {
@@ -35,7 +35,7 @@ public class CS_MissionManeger : MonoBehaviour
     private CS_MissionPhaseData missionData;//司令塔(大)
     private CS_CommonData mData;//共通データ
 
-    private int mGameCount = 20;//入賞数
+    private int mGameCount = 1;//入賞数
 
     private GameObject mNoDevObj;
 
@@ -297,11 +297,13 @@ public class CS_MissionManeger : MonoBehaviour
     private void StartBossPhase()
     {
         Debug.Log("ボスフェーズへ移行します");
+        Destroy(mNoDevObj);
+        
+        CS_BossPhaseHandler bossPhaseHandler = gameObject.GetComponent<CS_BossPhaseHandler>();
+        bossPhaseHandler.Initialize(bigController);
 
         // ミッションマネージャーを削除
         Destroy(this);
-        CS_BossPhaseHandler bossPhaseHandler = gameObject.AddComponent<CS_BossPhaseHandler>();
-        bossPhaseHandler.Initialize(bigController);
     }
 
     //抽選後処理

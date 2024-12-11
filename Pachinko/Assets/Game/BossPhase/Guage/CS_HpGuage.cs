@@ -59,11 +59,11 @@ public class CS_HpGuage : MonoBehaviour
     void Update()
     {
         if (!mBossData) { return; }
-        testTx.text = pefName;
-        if(mBossData.IsPlayerRevaival)
-        {
-            testTx.text = pefName + "復活あり";
-        }
+        testTx.text = "";
+        //if(mBossData.IsPlayerRevaival)
+        //{
+        //    testTx.text = pefName + "復活あり";
+        //}
     }
 
     //プレイヤーのHPゲージを減らす

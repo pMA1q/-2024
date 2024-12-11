@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CS_BossPhaseHandler : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject mBossPhaseTitle;
     public void Initialize(CS_Controller controller)
     {
         // ボスフェーズ初期化
@@ -9,6 +11,8 @@ public class CS_BossPhaseHandler : MonoBehaviour
         if (controller != null)
         {
             controller.ChangePhase(CS_Controller.PACHINKO_PHESE.BOSS);
+            Instantiate(mBossPhaseTitle, mBossPhaseTitle.transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
         else
         {

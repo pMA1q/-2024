@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: efea3acf88d7620458f344199048b0bf
+guid: da1c6f032f2f2fb4b8ca58357630083a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - mBossPhaseTitle: {fileID: 7144967071714588428, guid: 611b12d3ac27995458151625e63cf83c,
-      type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

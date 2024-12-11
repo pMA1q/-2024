@@ -115,7 +115,7 @@ public class ColorTransfer : MonoBehaviour
         CS_MissionPhaseData mData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
         mData.MissionType = (CS_MissionPhaseData.MISSION_TYPE)selectNum;
 
-
+        bigctrl.CreateController();
         yield return null;
     }
 }
