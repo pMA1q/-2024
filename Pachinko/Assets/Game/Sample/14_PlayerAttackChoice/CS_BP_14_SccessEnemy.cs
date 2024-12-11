@@ -1,0 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CS_BP_14_SccessEnemy : MonoBehaviour
+{
+    CS_HpGuage mHpGuage;
+    // Start is called before the first frame update
+    void Start()
+    {
+        mHpGuage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //ゲームオブジェクトのタグがPlayer?
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("プレイヤーが当たった");
+            //攻撃が当たった
+            PlayerAttackHit();
+        }
+    }
+
+    private void PlayerAttackHit()
+    {
+        GetComponent<Rigidbody>().AddForce(Vector3.right * 1000); // 後ろに倒れる力を加える
+
+        //敵のHPゲージを減らす
+        mHpGuage.BossHpDown();
+
+        //終了処理
+        StartCoroutine(Finish());
+    }
+
+
+    private IEnumerator Finish()
+    {
+        //体力ゲージの処理が終了するまでループ
+        while (!mHpGuage.HpUpdateFinish) { yield return null; }
+
+        yield return new WaitForSeconds(2f);
+
+       
+        CS_BossPhaseData data = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+        //演出終了を知らせる
+        GameObject rootObject = transform.root.gameObject;
+        if (data.GetChoiceSuccess())
+        {
+            GameObject BossPerf14 = GameObject.Find("14_PlayerAttackChoice");
+            if (!BossPerf14) { Debug.LogError("演出14がない(名前確認)"); }
+            BossPerf14.GetComponent<CS_BP_AttackChoice>().Init();
+            Destroy(rootObject);
+        }
+        else
+        {
+           
+            if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
+            {
+                //3秒後に演出を消す
+                rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 3f);
+            }
+        }
+       
+        Debug.Log("演出終了");
+    }
+}

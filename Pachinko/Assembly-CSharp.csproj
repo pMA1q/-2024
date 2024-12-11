@@ -74,6 +74,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Debuff.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Lottery.cs" />
+    <Compile Include="Assets\Game\Sample\14_PlayerAttackChoice\CS_BP_14_SccessEnemy.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderBuilder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+    <Compile Include="Assets\Game\Sample\14_PlayerAttackChoice\CS_BP_AttackChoice.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />

@@ -141,7 +141,7 @@ public class CS_BossPheseController : MonoBehaviour
         if (mController.GetStock() == 0) { return; }
 
         int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
-        if(mDebugNumber != -1) { randomNumber = mDebugNumber; }
+        if(mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
         mGameCount--;//ゲームカウントをへらす
 
@@ -156,7 +156,7 @@ public class CS_BossPheseController : MonoBehaviour
         }
 
         mData.NoDevelpment = false;
-        mNoDevObj.SetActive(false);
+    
         mController.VariationTimer = 4f;
       
         //この時点で次の番号が決まっているなら今回の変動番号決定
@@ -218,8 +218,8 @@ public class CS_BossPheseController : MonoBehaviour
         mBackupNumber = _perfNumber;
         //保留玉使用（変動開始）
         mController.UseStock(WIN_LOST.LOST);
-        mController.PerformanceFinish();//演出は行わないので終了フラグを立てる
         mController.PerformanceSemiFinish = true;
+        mController.PerformanceFinish();//演出は行わないので終了フラグを立てる
         string name = mNowBossTable.infomation[_perfNumber].name;
         CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
         guage.pefName = name;
@@ -248,10 +248,11 @@ public class CS_BossPheseController : MonoBehaviour
     
     private IEnumerator AfterLottery(int _perfNum)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
+        mNoDevObj.SetActive(false);
         //イベントハンドラ実行
         PlayPerformance(_perfNum);
-        mController.PerformanceSemiFinish = true;
+        //mController.PerformanceSemiFinish = true;
         //演出が終わるまで処理を進めない
         while (!mController.GetPatternVariationFinish()) { yield return null; }
         //Debug.Log("演出終了(仮)" + bigController.PerformanceSemiFinish);
@@ -277,12 +278,23 @@ public class CS_BossPheseController : MonoBehaviour
 
         mNoDevObj.SetActive(true);
 
+
+
         mCoroutine = null;
     }
 
     private void PlayPerformance(int _num)
     {
-        Instantiate(mNowBossTable.infomation[_num].performance, Vector3.zero, Quaternion.identity);
+        if(mNowBossTable.infomation[_num].performance != null)
+        { 
+            GameObject obj = Instantiate(mNowBossTable.infomation[_num].performance, Vector3.zero, Quaternion.identity);
+            obj.name = mNowBossTable.infomation[_num].performance.name;//Cloneが付かないようにする
+        }
+        else
+        {
+            mController.PerformanceFinish();
+        }
+        
     }
 
     //登録されているイベントハンドラをすべて削除

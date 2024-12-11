@@ -34369,7 +34369,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 2555265327571533127}
   spawnInterval: 0.6
-  forceY: 600
+  forceY: 320
 --- !u!114 &6469288111035206169
 MonoBehaviour:
   m_ObjectHideFlags: 0
