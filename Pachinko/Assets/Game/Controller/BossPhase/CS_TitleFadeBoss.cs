@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CS_TitleFade : MonoBehaviour
+public class CS_TitleFadeBoss : MonoBehaviour
 {
     public RawImage panelImage;        // フェードアウトに使用するパネル画像
     public Text panelText;             // フェードアウトに使用するテキスト
@@ -12,6 +12,7 @@ public class CS_TitleFade : MonoBehaviour
 
     private void OnEnable()
     {
+        bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();
         // フェードアウト開始
         StartCoroutine(FadeOutPanelAndTransition());
     }
@@ -45,7 +46,7 @@ public class CS_TitleFade : MonoBehaviour
         // フェーズを指定されたフェーズに変更
         if (bigController != null)
         {
-            bigController.ChangePhase(nextPhase);
+            bigController.CreateController() ;
             Debug.Log($"{nextPhase} フェーズへ移行しました");
         }
         else

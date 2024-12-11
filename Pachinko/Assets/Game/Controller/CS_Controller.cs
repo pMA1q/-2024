@@ -82,7 +82,7 @@ public class CS_Controller : MonoBehaviour
     void Update()
     {
         //現在のフェーズの前のフェーズが違うなら次のフェーズに行く
-        if(mNowPhese != mPrevPhese) { GoNextPhese(); }
+       // if(mNowPhese != mPrevPhese) { GoNextPhese(); }
     }
 
     //現在のフェーズ取得
@@ -96,15 +96,19 @@ public class CS_Controller : MonoBehaviour
     {
         mPrevPhese = mNowPhese;
         mNowPhese = _nextPhese;
-        GoNextPhese();
+       // GoNextPhese();
     }
 
     //次のフェーズへ行く
     private void GoNextPhese()
     {
         mPrevPhese = mNowPhese;
-        //司令塔生成
-        GameObject smallCtrl = Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
+       
+    }
+
+    public void CreateController()
+    {
+        Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
     }
 
     //保留玉を増やす
