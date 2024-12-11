@@ -15,4 +15,8 @@ public class CameraInfomation
     [Header("回転補間")]
     public List<Vector3> lotations;
 
+    [Header("移動スピード")]
+    public float moveSpeed;
+    [Header("回転スピード")]
+    public float rotateSpeed;
 }

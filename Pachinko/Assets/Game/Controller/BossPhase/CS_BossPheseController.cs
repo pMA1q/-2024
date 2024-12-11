@@ -81,7 +81,7 @@ public class CS_BossPheseController : MonoBehaviour
 
         mNoDevObj = Instantiate(mNodevlopmentPrehab, Vector3.zero, Quaternion.identity);
         mNoDevObj.GetComponent<CS_SetPositionPerfPos>().Start();
-        mNoDevObj.GetComponent<CS_CameraWander>().Init();
+        //mNoDevObj.GetComponent<CS_CameraWander>().Init();
     }
 
     private void SetBossInfomation()
