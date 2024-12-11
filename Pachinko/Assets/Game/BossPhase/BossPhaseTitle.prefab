@@ -124,6 +124,7 @@ MonoBehaviour:
   panelImage: {fileID: 2641610288249066405}
   panelText: {fileID: 5724005239649643008}
   fadeOutTime: 3
+  bigController: {fileID: 0}
 --- !u!1 &7144967071714588428
 GameObject:
   m_ObjectHideFlags: 0
