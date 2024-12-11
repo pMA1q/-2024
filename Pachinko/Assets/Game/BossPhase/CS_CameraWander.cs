@@ -20,7 +20,7 @@ public class CS_CameraWander : MonoBehaviour
     public void Init()
     {
         // Scene“à‚Ì"SubCamera"‚Æ‚¢‚¤–¼‘O‚ÌƒJƒƒ‰‚ğæ“¾
-        GameObject subCamera = GameObject.Find("SubCamera");
+        GameObject subCamera = GameObject.Find(CS_CommonData.Obj3D_RenderCamera);
         if (subCamera != null)
         {
             subCameraTransform = subCamera.transform;

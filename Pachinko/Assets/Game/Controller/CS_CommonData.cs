@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CS_CommonData : MonoBehaviour
 {
+    public static string Obj3D_RenderCamera = "FCamera";
     //–³”­“Wƒtƒ‰ƒO
     private bool IsNoDevelopment = false;
     public bool NoDevelpment

@@ -25,7 +25,7 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
 
     void Awake()
     {
-        subCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
+        subCamera = GameObject.Find(CS_CommonData.Obj3D_RenderCamera)?.GetComponent<Camera>();
         subCamera.transform.position = cameraMosion.inofomations[0].positions[0];
         subCamera.transform.eulerAngles = cameraMosion.inofomations[0].lotations[0];
 
@@ -37,7 +37,7 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
     {
         if (subCamera == null)
         {
-            subCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
+            subCamera = GameObject.Find(CS_CommonData.Obj3D_RenderCamera)?.GetComponent<Camera>();
         }
 
         if (cameraMosion != null && cameraMosion.inofomations.Count > 0)

@@ -18,7 +18,7 @@ public class CS_SetPositionPerfPos : MonoBehaviour
     public void Start()
     {
         // "SubCamera"‚Æ‚¢‚¤–¼‘O‚ÌƒJƒƒ‰‚ğŒŸõ
-        mSubCamera = GameObject.Find("SubCamera")?.GetComponent<Camera>();
+        mSubCamera = GameObject.Find(CS_CommonData.Obj3D_RenderCamera)?.GetComponent<Camera>();
 
         // SubCamera‚ªŒ©‚Â‚©‚Á‚½ê‡ACanvas‚ÌRender Camera‚Éİ’è
         if (mSubCamera != null)
