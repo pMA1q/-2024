@@ -7,42 +7,46 @@ public class CS_ShojiController : MonoBehaviour
     public Transform shojiLeft;  // 左の障子
     public Transform shojiRight; // 右の障子
 
-    public float openDistance = 2.0f;  // 開く距離
+    public float openDistance = 2.0f;  // 障子が開く距離（Z軸方向）
     public float openSpeed = 2.0f;     // 開く速さ
-    private bool isOpening = false;   // 開いているかの状態
+    private bool isOpening = false;   // 現在開いているかどうか
 
-    private Vector3 leftStartPos;
-    private Vector3 rightStartPos;
+    private Vector3 leftStartPos;     // 左障子の初期位置
+    private Vector3 rightStartPos;    // 右障子の初期位置
+    private Vector3 leftOpenPos;      // 左障子の開いた位置
+    private Vector3 rightOpenPos;     // 右障子の開いた位置
 
     void Start()
     {
         // 初期位置を記録
         leftStartPos = shojiLeft.position;
         rightStartPos = shojiRight.position;
+
+        // 開いた時の位置を計算
+        leftOpenPos = leftStartPos + new Vector3(0, 0, openDistance);
+        rightOpenPos = rightStartPos + new Vector3(0, 0, -openDistance);
     }
 
     void Update()
     {
-        // スペースキーで開閉
+        // スペースキーで開閉を切り替える
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!isOpening)
-            {
-                OpenShoji();
-            }
+            isOpening = !isOpening;  // 状態を切り替え
         }
 
-        // 開いているときの移動処理
+        // 状態に応じて移動
         if (isOpening)
         {
-            shojiLeft.position = Vector3.Lerp(shojiLeft.position, leftStartPos + Vector3.left * openDistance, Time.deltaTime * openSpeed);
-            shojiRight.position = Vector3.Lerp(shojiRight.position, rightStartPos + Vector3.right * openDistance, Time.deltaTime * openSpeed);
+            // 開く処理
+            shojiLeft.position = Vector3.Lerp(shojiLeft.position, leftOpenPos, Time.deltaTime * openSpeed);
+            shojiRight.position = Vector3.Lerp(shojiRight.position, rightOpenPos, Time.deltaTime * openSpeed);
         }
-    }
-
-    // 障子を開くメソッド
-    public void OpenShoji()
-    {
-        isOpening = true;
+        else
+        {
+            // 閉じる処理
+            shojiLeft.position = Vector3.Lerp(shojiLeft.position, leftStartPos, Time.deltaTime * openSpeed);
+            shojiRight.position = Vector3.Lerp(shojiRight.position, rightStartPos, Time.deltaTime * openSpeed);
+        }
     }
 }
