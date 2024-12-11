@@ -99,7 +99,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
-    <Compile Include="Assets\Game\Controller\MissionPhase\CS_Title4FadeOut.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Player.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
@@ -115,6 +114,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Ally.cs" />
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
@@ -176,8 +176,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
