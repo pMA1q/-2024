@@ -24,11 +24,20 @@ public class CS_MissionManeger : MonoBehaviour
     [Header("2:鍛錬ミッション")]
     private GameObject[] missionPrefab;
 
+    [SerializeField, Header("無発展時のプレハブ")]
+    private GameObject mNodevlopmentPrehab;
+
+    [SerializeField, Header("デバッグ番号(項目番号-1の値)")]
+    [Header("デバッグしないなら-1")]
+    private int mDebugNumber = -1;
+
     private CS_Controller bigController;//司令塔(大)
     private CS_MissionPhaseData missionData;//司令塔(大)
     private CS_CommonData mData;//共通データ
 
     private int mGameCount = 20;//入賞数
+
+    private GameObject mNoDevObj;
 
     //ゲーム数の設定、取得
     public int GameCount
@@ -83,6 +92,10 @@ public class CS_MissionManeger : MonoBehaviour
         mSM_Unique = this.gameObject.AddComponent<CS_SM_Unique>();
         mUniquePF = new int[] { 11, 12, 18, 19, 22 };//ユニークな演出の項目番号配列
 
+        mNoDevObj = Instantiate(mNodevlopmentPrehab, Vector3.zero, Quaternion.identity);
+        mNoDevObj.GetComponent<CS_SetPositionPerfPos>().Start();
+        mNoDevObj.GetComponent<CS_CameraWander>().Init();
+
         //テスト
         OnPlayPerformance += PlayPerformance;
     }
@@ -118,7 +131,8 @@ public class CS_MissionManeger : MonoBehaviour
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
         int randomNumber = CS_LotteryFunction.LotNormalInt(17);//一旦項目17までに限定する
-       
+        if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
+
         mGameCount--;//入賞数減算
 
         //Debug.Log("残りゲーム数" + mGameCount);
@@ -133,6 +147,7 @@ public class CS_MissionManeger : MonoBehaviour
         }
  
         mData.NoDevelpment = false;//無発展フラグをfalse
+
         bigController.VariationTimer = 4f;
 
 
@@ -162,7 +177,9 @@ public class CS_MissionManeger : MonoBehaviour
         mBackupNumber = _perfNumber;
         //保留玉使用（変動開始）
         bigController.UseStock(WIN_LOST.LOST);
+        bigController.PerformanceSemiFinish = true;
         bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
+        
         string name = missionPhaseTable.infomation[_perfNumber].name;
         Debug.Log("演出番号" + name);
     }
@@ -218,7 +235,7 @@ public class CS_MissionManeger : MonoBehaviour
         {
             lot = new int[4] { 6, 9, 14, 16 };
             missionData.PlayerBuff = CS_MissionPhaseData.PLAYER_BUFF.NONE;
-            return lot[CS_LotteryFunction.LotNormalInt(4)]-1;
+            return lot[CS_LotteryFunction.LotNormalInt(4)];
         }
 
         //敵高確率遭遇ゲーム数が1以上なら敵一体遭遇演出にする
@@ -226,7 +243,7 @@ public class CS_MissionManeger : MonoBehaviour
         {
             mHightEnemyCount--;
             lot = new int[6] { 4 ,5, 6, 7, 8, 9 };
-            return lot[CS_LotteryFunction.LotNormalInt(6)] - 1;
+            return lot[CS_LotteryFunction.LotNormalInt(6)];
         }
 
         Debug.Log("再抽選開始");
@@ -291,6 +308,7 @@ public class CS_MissionManeger : MonoBehaviour
     private IEnumerator AfterLottery(int _perfNum)
     {
         yield return new WaitForSeconds(0.5f);
+        mNoDevObj.SetActive(false);
         //イベントハンドラ実行
         OnPlayPerformance(_perfNum);
 
@@ -307,6 +325,8 @@ public class CS_MissionManeger : MonoBehaviour
 
         //演出が終わるまで処理を進めない
         while (JackPotPerf) { yield return null; }
+
+        mNoDevObj.SetActive(true);
 
         mCoroutine = null;
     }
@@ -329,6 +349,14 @@ public class CS_MissionManeger : MonoBehaviour
 
     private void PlayPerformance(int _num)
     {
-        Instantiate(missionPhaseTable.infomation[_num].performance, Vector3.zero, Quaternion.identity);
+        if(missionPhaseTable.infomation[_num].performance != null)
+        {
+            Instantiate(missionPhaseTable.infomation[_num].performance, Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            bigController.PerformanceFinish();
+        }
+        
     }
 }

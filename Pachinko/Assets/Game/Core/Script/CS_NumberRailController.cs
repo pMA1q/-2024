@@ -80,6 +80,7 @@ public class CS_NumberRailController : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         mNumRails[2].StopStart(mBigCtrl.GetPatterns()[2]);
         yield return new WaitForSeconds(1.0f);
+        while (!mBigCtrl.PerformanceSemiFinish) { yield return null; }
         mNumRails[1].StopStart(mBigCtrl.GetPatterns()[1]);
 
         yield return new WaitForSeconds(1.5f);

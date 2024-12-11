@@ -51,3 +51,6 @@ MonoBehaviour:
   - {fileID: 7144967071714588428, guid: b54e3d1629394894aa4b7962a5d5ce8c, type: 3}
   - {fileID: 7144967071714588428, guid: 4dce92416ee72d14e865195c8c79404c, type: 3}
   - {fileID: 7144967071714588428, guid: 535791a7a25c239449b9424028514860, type: 3}
+  mNodevlopmentPrehab: {fileID: 7142218133086803431, guid: d0afdb0f80bd4204cb776d18786cc622,
+    type: 3}
+  mDebugNumber: -1

@@ -83,7 +83,8 @@ MonoBehaviour:
     win_lost: 4
     replay: 0
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 7168569285855081262, guid: 56dcf70ed90235145b8ce8349fb4ad06,
+      type: 3}
   - name: "15_\u6575\u30B9\u30BF\u30F3"
     win_lost: 1
     replay: 0
