@@ -13,6 +13,22 @@ public class CS_BossPhaseData : MonoBehaviour
     private CSO_PlayerStatus mPlayerStatus;
     public CSO_PlayerStatus PlayerStatus { get { return mPlayerStatus; } }
 
+    //使ったチケットのフラグ
+    public enum USE_TIKET
+    {
+        NONE = 0,
+        SPECOAL,
+        PARTNER,
+        PREEMPTIVE_ATTACK
+
+    }
+    private USE_TIKET mUseTiket;
+    public USE_TIKET UseTiket
+    {
+        set { mUseTiket = value; }
+        get { return mUseTiket; }
+    }
+
     //1変動時のプレイヤーの攻撃量(項目番号:4,10,11,14,17,26)
     private float mPlayerOneAttackPow;
     //攻撃量の設定、取得
@@ -46,7 +62,7 @@ public class CS_BossPhaseData : MonoBehaviour
     //選択成功
     public void ChoiceSuccess(bool _success)
     {
-        CS_Controller bigCtrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        CS_Controller bigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         bigCtrl.WaitChoice = false;
         isChoiceSuccess = _success;
     }

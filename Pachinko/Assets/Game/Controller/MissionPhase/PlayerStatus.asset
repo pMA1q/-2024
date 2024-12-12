@@ -52,7 +52,7 @@ MonoBehaviour:
       conicePercent: 10
     equipmentRank: 1
   ticket:
-    charColorUP: 0
-    preemptiveAttack: 0
-    revaival: 0
-    cutIn: 0
+    special: 1
+    preemptiveAttack: 1
+    revaival: 1
+    partner: 1

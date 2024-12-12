@@ -45,7 +45,7 @@ public class CS_MissionPhaseData : MonoBehaviour
     //選択成功
     public void ChoiceSuccess(bool _success) 
     {
-        CS_Controller bigCtrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        CS_Controller bigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         bigCtrl.WaitChoice = false;
         isChoiceSuccess = _success; 
     }

@@ -676,7 +676,7 @@ public class CS_Boss1_Unique : CS_BossUnique
 
     public override int DesisionFlag(int _val)
     {
-        if (mBossData == null) { mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>(); }
+        if (mBossData == null) { mBossData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>(); }
         //if (bossAttack)
         //{
         //    guage.PlayerHpDown();
@@ -694,7 +694,7 @@ public class CS_Boss1_Unique : CS_BossUnique
 
     public override int ReLottery(int _val)
     {
-        if (mBossData == null) { mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>(); }
+        if (mBossData == null) { mBossData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>(); }
         mBossData.BackUpHP = mPlayerStatus.hp;
         playerAttack = false;
         bossAttack = false;

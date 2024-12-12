@@ -18,11 +18,15 @@ public class CS_BossPhaseController : MonoBehaviour
     [SerializeField, Header("体力ゲージ")]
     private GameObject mHpGuage;
 
+    [SerializeField, Header("競り合い")]
+    private GameObject mCompetition;
+
     [SerializeField, Header("デバッグ番号(項目番号-1の値)")]
     [Header("デバッグしないなら-1")]
     private int mDebugNumber = -1;
 
     private GameObject mNoDevObj;
+    private GameObject mCompetitionObj;
     private GameObject mGuageObj;
 
     private CSO_BossPhaseTable mNowBossTable;
@@ -66,12 +70,12 @@ public class CS_BossPhaseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
-        mData = GameObject.Find("BigController").GetComponent<CS_CommonData>();//共通データ取得
-        mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+        mController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//司令塔大を取得
+        mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();//共通データ取得
+        mBossData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();
         mBossData.ResetData();//ボスフェーズデータの各フラグをリセットする
         mBossStatus = mBossData.BossStatus;
-        mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
+        mPlayerStatus = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>().PlayerStatus;
 
         //体力ゲージ生成
         mGuageObj = Instantiate(mHpGuage, Vector3.zero, Quaternion.identity);
@@ -141,31 +145,63 @@ public class CS_BossPhaseController : MonoBehaviour
         //保留玉が無いなら終了
         if (mController.GetStock() == 0) { return; }
 
+        //5秒間待機してから下の処理に
+        mCoroutine = StartCoroutine(Lottery());
+
+       
+    }
+
+    //討伐成功処理
+    private void Subjugation()
+    {
+        Debug.Log("目標殲滅しました");
+        StartNextPhase();
+    }
+
+    //負け
+    private void PlayerLose()
+    {
+        Debug.Log("負けました");
+        StartNextPhase();
+    }
+
+    private IEnumerator Lottery()
+    {
         int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
-        if(mDebugNumber >= 0) { randomNumber = mDebugNumber; }
+        if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
         mGameCount--;//ゲームカウントをへらす
 
         string name = mNowBossTable.infomation[randomNumber].name;
 
-
         //無発展
         if (randomNumber <= 2)
         {
             NoDevelopment(randomNumber);
-            return;
+            yield break;
         }
 
-        mData.NoDevelpment = false;
-    
-        mController.VariationTimer = 4f;
-      
-        //この時点で次の番号が決まっているなら今回の変動番号決定
-        if (mNextMissionNum > -1) 
-        { 
-            randomNumber = mNextMissionNum; 
+        //プレイヤーが攻撃するか確認
+        if (CheackPlayerAttack(randomNumber))
+        {
+            mNoDevObj.SetActive(false);
+            mCompetitionObj = Instantiate(mCompetition, Vector3.zero, Quaternion.identity); //攻撃するなら競り合いのシーンを入れる
+
+            yield return new WaitForSeconds(6f);
+
+            randomNumber = ChangePerfNumber(randomNumber);//選んだチケットに応じて演出番号変更
         }
-        
+      
+        mData.NoDevelpment = false;
+
+        mController.VariationTimer = 4f;
+
+        //この時点で次の番号が決まっているなら今回の変動番号決定
+        if (mNextMissionNum > -1)
+        {
+            randomNumber = mNextMissionNum;
+        }
+
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(randomNumber);
         //次の演出番号が-1じゃないなら再抽選結果を入れる
@@ -184,20 +220,39 @@ public class CS_BossPhaseController : MonoBehaviour
         guage.pefName = name;
 
         mCoroutine = StartCoroutine(AfterLottery(randomNumber));//抽せん後処理を走らせる
+        yield return null;
     }
 
-    //討伐成功処理
-    private void Subjugation()
+    bool CheackPlayerAttack(int _random)
     {
-        Debug.Log("目標殲滅しました");
-        StartNextPhase();
+        int[] competitionNum = new int[] { 4, 5,6,10,12,13,17,19,20,24 };
+        for (int i = 0; i < competitionNum.Length; i++)
+        {
+            if (competitionNum[i] == _random + 1)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    //負け
-    private void PlayerLose()
+    private int ChangePerfNumber(int _randomNum)
     {
-        Debug.Log("負けました");
-        StartNextPhase();
+        _randomNum++;//一旦項目番号にする
+        switch(mBossData.UseTiket)
+        {
+            case CS_BossPhaseData.USE_TIKET.SPECOAL:
+                _randomNum = 25;
+                break;
+            case CS_BossPhaseData.USE_TIKET.PARTNER:
+                _randomNum = 29;
+                break;
+            case CS_BossPhaseData.USE_TIKET.PREEMPTIVE_ATTACK:
+                _randomNum = 4;
+                break;
+        }
+      
+        return _randomNum -1;
     }
 
     private void StartNextPhase()
@@ -254,6 +309,11 @@ public class CS_BossPhaseController : MonoBehaviour
     private IEnumerator AfterLottery(int _perfNum)
     {
         yield return new WaitForSeconds(2f);
+        if(mCompetitionObj != null) 
+        {
+            Destroy(mCompetitionObj); //競り合いのオブジェクトを消す
+            GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>().ButtonsInteractable();//ボタンを有効にする
+        }
         mNoDevObj.SetActive(false);
         //イベントハンドラ実行
         PlayPerformance(_perfNum);

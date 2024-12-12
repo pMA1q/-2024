@@ -44,7 +44,7 @@ public class CS_HpGuage : MonoBehaviour
     // Start is called before the first frame update
     public void Init()
     {
-        mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+        mBossData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();
         if(mBossData.PlayerStatus==null) { Debug.Log("PlayerStatusÇÕnullÇ≈Ç∑"); }
         mMaxPlayerHp = mBossData.PlayerStatus.backupStatus.hp;
         Debug.Log("ÉvÉåÉCÉÑÅ[HP" + mMaxPlayerHp);

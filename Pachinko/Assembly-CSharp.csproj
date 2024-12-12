@@ -61,6 +61,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\CSO_CameraInterpolation.cs" />
     <Compile Include="Assets\Bokudayo\Script\E_RanAway.cs" />
+    <Compile Include="Assets\Fujisawa\CS_FCameraController.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
@@ -123,8 +124,10 @@
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
     <Compile Include="Assets\Game\SetPhase\Script\CS_LotMission.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionController.cs" />
     <Compile Include="Assets\Bokudayo\Script\ColorTransfer.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Skill].cs" />
+    <Compile Include="Assets\Bokudayo\Script\ApplyMaterialToAll.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Strength.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Weak.cs" />
     <Compile Include="Assets\Game\MissionPhase\CutIn\CS_CutIn.cs" />
@@ -141,6 +144,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderChild.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SABoneColliderCommon.cs" />
+    <Compile Include="Assets\Bokudayo\Script\ShojiDoorController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
@@ -178,8 +182,8 @@
     <Compile Include="Assets\Game\Core\Script\CS_CameraZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Fujisawa\CS_FCameraController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -189,6 +193,7 @@
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\Bokudayo\Shader\ShojiBlackOutBehind.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\SAColliderBuilder\Readme_en.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -196,11 +201,13 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Bokudayo\Shader\OutlineShader.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\JP_Hotel\README.txt" />
+    <None Include="Assets\Bokudayo\Shader\ShojiStencilShader.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

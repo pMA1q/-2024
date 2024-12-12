@@ -12,7 +12,7 @@ public class CS_TitleFadeBoss : MonoBehaviour
 
     private void OnEnable()
     {
-        bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        bigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         // フェードアウト開始
         StartCoroutine(FadeOutPanelAndTransition());
     }

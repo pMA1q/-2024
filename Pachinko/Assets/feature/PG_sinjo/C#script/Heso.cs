@@ -18,7 +18,7 @@ public class Heso : MonoBehaviour
     void Start()
     {
         // CS_Controllerがアタッチされているオブジェクトを取得
-        GameObject controllerObject = GameObject.Find("BigController");
+        GameObject controllerObject = GameObject.Find(CS_CommonData.BigControllerName);
 
         // CS_Controllerコンポーネントを取得
         if (controllerObject != null)

@@ -92,7 +92,7 @@ public class CS_DrawPattern : MonoBehaviour
         //mHeso.stock.RemoveAt(0);//ストックリストの０番目を削除
 
         //司令塔に図柄変動終了を伝える
-        //CS_Controller ctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        //CS_Controller ctrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         //ctrl.PatternVariationFinish();
 
         yield return null;

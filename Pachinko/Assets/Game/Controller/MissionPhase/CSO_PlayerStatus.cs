@@ -38,8 +38,9 @@ public class CSO_PlayerStatus : ScriptableObject
     {
         hp = _backUp.hp;
         defense = _backUp.defense;
-        charaStatus = _backUp.charaStatus;
-        ticket = _backUp.ticket;
+        charaStatus = new CharacterStatus( _backUp.charaStatus);
+        ticket = new Ticket(_backUp.ticket);
+        Debug.Log("チケット数" + ticket.special);
     }
 
 
@@ -47,6 +48,7 @@ public class CSO_PlayerStatus : ScriptableObject
     private void BackupInitialStatus()
     {
         backupStatus = new CSO_PlayerStatus(this);
+
     }
 
     // ゲーム終了時、ステータスを初期状態に戻す
@@ -56,6 +58,7 @@ public class CSO_PlayerStatus : ScriptableObject
         defense = backupStatus.defense;
         charaStatus = backupStatus.charaStatus;
         ticket = backupStatus.ticket;
+        Debug.Log("プレイヤーステータスをリセットしました");
     }
 
     // 抽選結果に基づいてステータスを更新
@@ -91,7 +94,24 @@ public class CharacterStatus
     public STATUS_UP_Power cutInUpPow;
     [Header("装備ランク")]
     public int equipmentRank;
-  
+
+    // コピーコンストラクタ
+    public CharacterStatus(CharacterStatus original)
+    {
+        charColorUP = original.charColorUP;
+        charColorUpPow = original.charColorUpPow;
+        preemptiveAttack = original.preemptiveAttack;
+        preemptiveAttackUpPow = original.preemptiveAttackUpPow;
+        attack = original.attack;
+        attackUpPow = original.attackUpPow;
+        revaival = original.revaival;
+        revivalUpPow = original.revivalUpPow;
+        cutIn = original.cutIn;
+        cutInUpPow = original.cutInUpPow;
+        equipmentRank = original.equipmentRank;
+    }
+    public CharacterStatus() { } // デフォルトコンストラクタ
+
 }
 
 [System.Serializable]
@@ -107,17 +127,30 @@ public struct STATUS_UP_Power
     public float max;
     [Header("選ばれる確率(%)")]
     public float conicePercent;
+
+   
 }
 
 [System.Serializable]
 public class Ticket
 {
-    [Header("文字色アップ")]
-    public int charColorUP = 0;
+    [Header("奥義")]
+    public int special = 0;
     [Header("先制攻撃")]
     public int preemptiveAttack = 0;
     [Header("復活")]
     public int revaival = 0;
-    [Header("カットイン")]
-    public int cutIn = 0;
+    [Header("仲間参戦")]
+    public int partner = 0;
+
+    // コピーコンストラクタ
+    public Ticket(Ticket original)
+    {
+        special = original.special;
+        preemptiveAttack = original.preemptiveAttack;
+        revaival = original.revaival;
+        partner = original.partner;
+    }
+
+    public Ticket() { } // デフォルトコンストラクタ
 }
