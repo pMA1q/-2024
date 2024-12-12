@@ -22,7 +22,7 @@ public class CS_NumberRailController : MonoBehaviour
 
     private void Start()
     {
-        mBigCtrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        mBigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         if (!mBigCtrl) { Debug.LogError("BigController‚ª–³‚¢"); }
         //for (int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(1.0f); }
     }
@@ -66,7 +66,7 @@ public class CS_NumberRailController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         isVariation = true;
 
-        CS_CommonData missionData = GameObject.Find("BigController").GetComponent<CS_CommonData>();
+        CS_CommonData missionData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();
 
         if (missionData.NoDevelpment) { yield return new WaitForSeconds(mVariationTime -2f); }//•Ï“®ŠÔ‚ª‰ß‚¬‚é‚Ü‚Åˆ—‚ği‚ß‚È‚¢
         else 

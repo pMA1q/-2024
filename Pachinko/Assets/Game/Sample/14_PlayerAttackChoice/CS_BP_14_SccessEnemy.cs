@@ -49,7 +49,7 @@ public class CS_BP_14_SccessEnemy : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
        
-        CS_BossPhaseData data = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+        CS_BossPhaseData data = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();
         //ââèoèIóπÇímÇÁÇπÇÈ
         GameObject rootObject = transform.root.gameObject;
         if (data.GetChoiceSuccess())

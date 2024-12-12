@@ -37,6 +37,8 @@ public class CS_BP_AttackChoice : MonoBehaviour
         get { return successionNum; }
     }
 
+    private bool IsOnePush = false;
+
     private void Start()
     {
         // ボタンが押されたときのイベントを設定
@@ -83,6 +85,8 @@ public class CS_BP_AttackChoice : MonoBehaviour
         //選択成功番号の抽せん
         mSuccessNum = CS_LotteryFunction.LotNormalInt(mImages.Count);
         Debug.Log("成功" + mSuccessNum);
+
+        IsOnePush = false;
     }
 
     private void FindButtons()
@@ -102,6 +106,7 @@ public class CS_BP_AttackChoice : MonoBehaviour
     //右ボタン
     private void MoveRight()
     {
+        if (IsOnePush) { return; }
         // 最後のCubeの色を保存
         Color lastColors = mImages[mImages.Count - 1].GetComponent<Image>().color;
 
@@ -124,6 +129,7 @@ public class CS_BP_AttackChoice : MonoBehaviour
     //左ボタン
     private void MoveLeft()
     {
+        if (IsOnePush) { return; }
         // 最後のCubeの色を保存
         Color lastColors = mImages[0].GetComponent<Image>().color;
 
@@ -146,6 +152,8 @@ public class CS_BP_AttackChoice : MonoBehaviour
     //Pushボタン
     private void AttackDecision()
     {
+        if (IsOnePush) { return; }
+        IsOnePush = true;
         foreach (Button button in buttons)
         {
             button.interactable = false;
@@ -161,7 +169,7 @@ public class CS_BP_AttackChoice : MonoBehaviour
         }
 
         //BossPhaseDataを取得
-        CS_BossPhaseData bossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+        CS_BossPhaseData bossData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();
         
         Transform parentObject = transform.root;
         //選択後の演出を生成

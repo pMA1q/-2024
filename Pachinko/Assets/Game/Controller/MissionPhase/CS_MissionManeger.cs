@@ -73,13 +73,13 @@ public class CS_MissionManeger : MonoBehaviour
 
     void Start()
     {
-        mData = GameObject.Find("BigController").GetComponent<CS_CommonData>();//共通データ取得
-        missionData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
+        mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();//共通データ取得
+        missionData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>();
         missionData.ResetMissionData();//ミッションデータの各フラグをレセットする
         // プレイヤーステータスをデータから取得
         playerStatus = missionData.PlayerStatus;
 
-        bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
+        bigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//司令塔大を取得
 
         //ミッションの種類を取得
         int missionType = (int)bigController.GetComponent<CS_MissionPhaseData>().MissionType;

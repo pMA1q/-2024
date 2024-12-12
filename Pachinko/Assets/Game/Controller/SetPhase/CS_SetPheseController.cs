@@ -47,7 +47,7 @@ public class CS_SetPheseController : MonoBehaviour
     void Start()
     {
         
-        mBigController = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
+        mBigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//司令塔大を取得
         
         //ミッション選択オブジェクトを生成
         GameObject instance = Instantiate(mMisstionSelect, Vector3.zero, mMisstionSelect.transform.rotation);
@@ -84,7 +84,7 @@ public class CS_SetPheseController : MonoBehaviour
         //変動時間設定
         mBigController.VariationTimer = 3.0f;
 
-        GameObject.Find("BigController").GetComponent<CS_CommonData>().NoDevelpment = false;//無発展フラグをfalse
+        GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>().NoDevelpment = false;//無発展フラグをfalse
 
        //保留玉使用（変動開始）
        mBigController.UseStock(WIN_LOST.LOST);
@@ -96,7 +96,7 @@ public class CS_SetPheseController : MonoBehaviour
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
 
         //ミッション内容保存
-        CS_MissionPhaseData data = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
+        CS_MissionPhaseData data = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>();
         data.SaveMissionContents(mPrizesNum, randomNumber);
 
         mPrizesNum++;//入賞数加算

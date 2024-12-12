@@ -107,12 +107,12 @@ public class ColorTransfer : MonoBehaviour
         //ミッションセレクトを消す
         Destroy(GameObject.Find("MissionSelect"));
 
-        CS_Controller bigctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();//司令塔大を取得
+        CS_Controller bigctrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//司令塔大を取得
 
         //仮処理
         bigctrl.ChangePhase(CS_Controller.PACHINKO_PHESE.MISSION);
         
-        CS_MissionPhaseData mData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
+        CS_MissionPhaseData mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>();
         mData.MissionType = (CS_MissionPhaseData.MISSION_TYPE)selectNum;
 
         bigctrl.CreateController();

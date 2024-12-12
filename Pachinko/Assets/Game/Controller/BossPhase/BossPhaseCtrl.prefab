@@ -50,4 +50,6 @@ MonoBehaviour:
     type: 3}
   mHpGuage: {fileID: 1623181193349219906, guid: 9eb702c5d76a28245b34f6fd7a27cd63,
     type: 3}
-  mDebugNumber: -1
+  mCompetition: {fileID: 8840276981696036596, guid: 01632a38b4531e7499f4e515cb59b8dd,
+    type: 3}
+  mDebugNumber: 3

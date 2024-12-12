@@ -9,7 +9,7 @@ public class CS_UniqueMission : MonoBehaviour
     // Start is called before the first frame update
     virtual protected void Start()
     {
-        missionData = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>();
+        missionData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>();
 
     }
 

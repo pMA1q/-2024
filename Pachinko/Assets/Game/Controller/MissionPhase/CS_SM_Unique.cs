@@ -49,7 +49,7 @@ public class CS_SM_Unique : CS_UniqueMission
             missionData.SubjugationOneMission = 0;
             return -1;
         }
-        CSO_PlayerStatus pStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
+        CSO_PlayerStatus pStatus = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>().PlayerStatus;
         CharacterStatus cStatus = pStatus.charaStatus;
         float[] status = new float[5] { cStatus.charColorUP, cStatus.preemptiveAttack, cStatus.attack, cStatus.revaival, cStatus.cutIn };
         List<float> choicePercent = new List<float> {cStatus.charColorUpPow.conicePercent, cStatus.preemptiveAttackUpPow.conicePercent,cStatus.attackUpPow.conicePercent,

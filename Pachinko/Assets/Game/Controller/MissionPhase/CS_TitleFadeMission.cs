@@ -8,12 +8,12 @@ public class CS_TitleFadeMission : MonoBehaviour
     public RawImage panelImage;        // フェードアウトに使用するパネル画像
     public Text panelText;             // フェードアウトに使用するテキスト
     public float fadeOutTime = 3.0f;   // フェードアウト時間
-    public CS_Controller bigController; // コントローラーへの参照（フェーズ管理用）
+    public CS_Controller bigController; // コントローラーへの参照（フェーズ管理用）CS_CommonData.BigControllerName
     public CS_Controller.PACHINKO_PHESE nextPhase; // 遷移先のフェーズを指定
 
     private void OnEnable()
     {
-        bigController = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        bigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         // フェードアウト開始
         StartCoroutine(FadeOutPanelAndTransition());
     }
@@ -24,7 +24,7 @@ public class CS_TitleFadeMission : MonoBehaviour
         Color startColor = panelImage.color;
         Color textColor = panelText.color;
 
-        // アルファ値減少速度を計算
+        // アルファ値減少速度を計算CS_CommonData.BigControllerName
         float alphaPerSecondPanel = startColor.a / fadeOutTime;
         float alphaPerSecondText = textColor.a / fadeOutTime;
 

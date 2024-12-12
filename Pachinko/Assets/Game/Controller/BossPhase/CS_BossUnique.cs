@@ -13,9 +13,9 @@ public class CS_BossUnique : MonoBehaviour
     // Start is called before the first frame update
     virtual protected void Start()
     {
-        mBossStatus = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>().BossStatus;
-        mPlayerStatus = GameObject.Find("BigController").GetComponent<CS_MissionPhaseData>().PlayerStatus;
-        mBossData = GameObject.Find("BigController").GetComponent<CS_BossPhaseData>();
+        mBossStatus = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>().BossStatus;
+        mPlayerStatus = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>().PlayerStatus;
+        mBossData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();
         mMaxPlayerHp = mBossData.PlayerStatus.hp;
 
         mPrevBuffInfo = mBossData.BossBuff_Debuff;

@@ -26,7 +26,7 @@ public class CS_PerformanceFinish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CS_Controller ctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        CS_Controller ctrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         ctrl.PerformanceSemiFinish = true;//演出終了仮フラグをtrue
         
     }
@@ -42,7 +42,7 @@ public class CS_PerformanceFinish : MonoBehaviour
     private IEnumerator FinishWait()
     {
         //司令塔を取得して、演出が終了したことを知らせる
-        CS_Controller ctrl = GameObject.Find("BigController").GetComponent<CS_Controller>();
+        CS_Controller ctrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         ctrl.PerformanceSemiFinish = true ;
         //指定した秒数待つ
         yield return new WaitForSeconds(mTimer);
