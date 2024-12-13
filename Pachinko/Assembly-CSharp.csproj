@@ -185,6 +185,8 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
+    <Compile Include="Assets\Bokudayo\Script\BackgroundObjectTransparency1.cs" />
+    <Compile Include="Assets\Bokudayo\Script\TransparencyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -216,6 +218,7 @@
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\SAColliderBuilder\Readme_jp.txt" />
+    <None Include="Assets\Bokudayo\Shader\TransparencyController.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
   </ItemGroup>
