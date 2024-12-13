@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class CS_BP_14_SccessEnemy : MonoBehaviour
 {
+    [SerializeField, Header("倒れるまでの時間")]
+    private float mStartDown = 0.3f;
     CS_HpGuage mHpGuage;
     // Start is called before the first frame update
     void Start()
     {
         mHpGuage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+        StartCoroutine(PlayerAttackHit());
     }
 
-    // Update is called once per frame
-    void Update()
+   
+
+   
+   
+    private IEnumerator PlayerAttackHit()
     {
+        yield return new WaitForSeconds(mStartDown);
 
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //ゲームオブジェクトのタグがPlayer?
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("プレイヤーが当たった");
-            //攻撃が当たった
-            PlayerAttackHit();
-        }
-    }
-
-    private void PlayerAttackHit()
-    {
         GetComponent<Rigidbody>().AddForce(Vector3.right * 1000); // 後ろに倒れる力を加える
 
         //敵のHPゲージを減らす
@@ -39,7 +30,6 @@ public class CS_BP_14_SccessEnemy : MonoBehaviour
         //終了処理
         StartCoroutine(Finish());
     }
-
 
     private IEnumerator Finish()
     {
@@ -69,6 +59,5 @@ public class CS_BP_14_SccessEnemy : MonoBehaviour
             }
         }
        
-        Debug.Log("演出終了");
     }
 }

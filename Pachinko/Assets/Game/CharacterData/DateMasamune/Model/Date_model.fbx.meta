@@ -16,7 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -24,7 +25,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -79,8 +80,181 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: Date_Body
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Date_model(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.00475587, y: 0.00475587, z: 0.00475587}
+    - name: Date_Body
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 9.492241, z: 18.29764}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair1
+      parentName: Date_model(Clone)
+      position: {x: -0.000030517578, y: 123.7363, z: 61.155636}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair2
+      parentName: Date_model(Clone)
+      position: {x: 0.001083374, y: 121.19617, z: 52.076748}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair3
+      parentName: Date_model(Clone)
+      position: {x: 0.023971558, y: 118.563194, z: 45.130047}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair4
+      parentName: Date_model(Clone)
+      position: {x: 0.024795532, y: 124.35486, z: 36.55465}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair5
+      parentName: Date_model(Clone)
+      position: {x: 0.5602722, y: 169.57422, z: -0.6982074}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair6
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 165.16785, z: 1.1602461}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair7
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 155.07074, z: 0.31447434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair8
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 139.86224, z: -1.3913424}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair9
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 126.29649, z: -1.0046816}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair10
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 117.04108, z: -12.228992}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.96590537, y: 0.96590537, z: 0.96590537}
+    - name: Date_Hair11
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 115.67067, z: -16.552414}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.9552002, y: 0.9552002, z: 0.9552002}
+    - name: Date_Hair12
+      parentName: Date_model(Clone)
+      position: {x: -0.6780548, y: 117.87029, z: -21.763374}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair13
+      parentName: Date_model(Clone)
+      position: {x: -1.8100281, y: 68.479706, z: -43.96144}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair14
+      parentName: Date_model(Clone)
+      position: {x: -10.383392, y: 51.20017, z: -48.219326}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Hair15
+      parentName: Date_model(Clone)
+      position: {x: 4.431732, y: 61.389782, z: -44.47294}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_hakama1
+      parentName: Date_model(Clone)
+      position: {x: -0.000015258789, y: -12.017204, z: 31.833666}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_hakama2
+      parentName: Date_model(Clone)
+      position: {x: -0.7533264, y: -83.61578, z: 26.511925}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Matuge
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 112.005646, z: 63.630997}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Mayuge
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 119.90584, z: 65.021545}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Piasu1
+      parentName: Date_model(Clone)
+      position: {x: 0.18851471, y: 106.89497, z: 15.337022}
+      rotation: {x: 0, y: 0, z: 0.1145767, w: 0.9934144}
+      scale: {x: 2.5984504, y: 1.847787, z: 2.5984504}
+    - name: Date_Piasu2
+      parentName: Date_model(Clone)
+      position: {x: 0.14021301, y: 104.528175, z: 15.337022}
+      rotation: {x: 0, y: 0, z: 0.1145767, w: 0.9934144}
+      scale: {x: 2.5984504, y: 1.3743329, z: 2.5984504}
+    - name: Date_Piasu3
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 97.26126, z: 18.178976}
+      rotation: {x: 0.6440096, y: -0, z: -0, w: 0.76501745}
+      scale: {x: 0.82390386, y: 0.82390386, z: 0.82390386}
+    - name: Date_Piasu4
+      parentName: Date_model(Clone)
+      position: {x: -0.0000076293945, y: 96.27674, z: 18.649574}
+      rotation: {x: 0.6440096, y: -0, z: -0, w: 0.76501745}
+      scale: {x: 0.82390386, y: 0.82390386, z: 0.82390386}
+    - name: Date_Piasu5
+      parentName: Date_model(Clone)
+      position: {x: 0.07953644, y: 90.69174, z: 17.884914}
+      rotation: {x: 0, y: 0, z: 0.69645125, w: 0.71760416}
+      scale: {x: 2.8028958, y: 1.8703291, z: 2.5984504}
+    - name: Date_Piasu6
+      parentName: Date_model(Clone)
+      position: {x: 1.1147003, y: 104.48511, z: 17.180103}
+      rotation: {x: 0.97121984, y: -0.23119646, z: 0.032418314, w: -0.047215007}
+      scale: {x: 0.82390386, y: 4.176484, z: 0.82390386}
+    - name: Date_Ribbon1
+      parentName: Date_model(Clone)
+      position: {x: -0, y: -10.4746895, z: 56.63438}
+      rotation: {x: -0.2527657, y: 0, z: -0, w: 0.96752757}
+      scale: {x: 14.71631, y: 6.240714, z: 2.8295853}
+    - name: Date_Ribbon2
+      parentName: Date_model(Clone)
+      position: {x: -0.4517975, y: -15.29393, z: 59.552464}
+      rotation: {x: -0.24144326, y: -0.074803926, z: -0.28633186, w: 0.9241881}
+      scale: {x: 13.607754, y: 4.430889, z: 2.0089974}
+    - name: Date_Ribbon3
+      parentName: Date_model(Clone)
+      position: {x: -0, y: -19.786695, z: 60.690804}
+      rotation: {x: -0.19650559, y: 0, z: -0, w: 0.9805027}
+      scale: {x: 6.808232, y: 16.458883, z: 1.6530931}
+    - name: Date_sarasi
+      parentName: Date_model(Clone)
+      position: {x: -0, y: 23.174707, z: 30.49865}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Date_Shoes1
+      parentName: Date_model(Clone)
+      position: {x: 0.044174194, y: -165.81374, z: 40.83098}
+      rotation: {x: 0, y: 0.0011323928, z: -0, w: 0.99999934}
+      scale: {x: 16.877178, y: 9.379265, z: 10.412453}
+    - name: Date_Shoes2
+      parentName: Date_model(Clone)
+      position: {x: -0, y: -173.37003, z: 24.410547}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.3029542, y: 13.5098295, z: 1.3029542}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -95,9 +269,9 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
