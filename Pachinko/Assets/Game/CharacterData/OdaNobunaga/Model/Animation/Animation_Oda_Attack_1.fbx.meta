@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 686fc10be1476ce40b12b56b4b384079
+guid: a612ef448094a484f9b1da8f5bd92959
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,18 +33,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Animation_Oda_Neutral
-      takeName: Animation_Oda_Neutral
-      internalID: 5653031640292699577
+      name: Animation_Oda_Attack_1
+      takeName: Animation_Oda_Attack_1
+      internalID: -3062625112032557114
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 75
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
