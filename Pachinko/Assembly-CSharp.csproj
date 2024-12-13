@@ -67,6 +67,7 @@
     <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\Bokudayo\Script\TransparencyController.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Debuff.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Practice\CS_TestProbabilityStatus.cs" />
     <Compile Include="Assets\Game\Controller\CameraController\CS_SetSafeArea.cs" />
     <Compile Include="Assets\Bokudayo\Script\ChangeColor.cs" />
+    <Compile Include="Assets\Bokudayo\Script\BackgroundObjectTransparency1.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAMeshColliderCommon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_Title4FadeOut.cs" />
     <Compile Include="Assets\Game\MissionPhase\SubjugationMission\CS_SMPerfSpawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\CameraZoomController.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
@@ -120,6 +123,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Bokudayo\Script\ColorTransfer.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Skill].cs" />
+    <Compile Include="Assets\Bokudayo\Script\ApplyMaterialToAll.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Strength.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Weak.cs" />
     <Compile Include="Assets\Game\MissionPhase\CutIn\CS_CutIn.cs" />
@@ -138,6 +142,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderChild.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SABoneColliderCommon.cs" />
+    <Compile Include="Assets\Bokudayo\Script\ShojiDoorController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
@@ -176,9 +181,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\CameraZoomController.cs" />
-    <Compile Include="Assets\Bokudayo\Script\ApplyMaterialToAll.cs" />
-    <Compile Include="Assets\Bokudayo\Script\ShojiDoorController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -211,6 +213,7 @@
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\SAColliderBuilder\Readme_jp.txt" />
+    <None Include="Assets\Bokudayo\Shader\TransparencyController.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
   </ItemGroup>
