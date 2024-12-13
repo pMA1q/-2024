@@ -16,7 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftLowerLeg' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -24,7 +25,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -79,8 +80,225 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: Oda
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: polySurface8
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Oda_shoes
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Oda_Ate2
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Oda_Model(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda
+      parentName: Oda_Model(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.004451419, y: 0.004451419, z: 0.004451419}
+    - name: Oda_Body
+      parentName: Oda
+      position: {x: -0, y: 39.746704, z: 2.0084288}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_Mayuge
+      parentName: Oda
+      position: {x: -0, y: 109.637505, z: 51.55649}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Oda_Matuge
+      parentName: Oda
+      position: {x: -0, y: 101.95288, z: 51.86727}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_Hair
+      parentName: Oda
+      position: {x: 0.93055725, y: 38.653046, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 51.66804, y: 51.66804, z: 51.66804}
+    - name: Oda_Hakama
+      parentName: Oda
+      position: {x: -32.601288, y: 0.7910805, z: 13.290493}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_Hakama2
+      parentName: Oda
+      position: {x: 13.201187, y: -87.76697, z: 7.9147034}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 61.834106, y: 79.16801, z: 61.834106}
+    - name: Oda_Ude
+      parentName: Oda
+      position: {x: -0, y: 44.183533, z: 8.483013}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_Kosi1
+      parentName: Oda
+      position: {x: -0.38946533, y: -11.825027, z: 15.47083}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 97.60424, y: 55.652153, z: 103.60802}
+    - name: Oda_Kosi2
+      parentName: Oda
+      position: {x: 0.57566833, y: -1.9383411, z: 16.326857}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 94.62337, y: 61.08712, z: 100.44379}
+    - name: Oda_Ate1
+      parentName: Oda
+      position: {x: -0.2567749, y: 54.623093, z: 4.8689084}
+      rotation: {x: 0.52744263, y: 0.4970379, z: 0.51062137, w: -0.46262667}
+      scale: {x: 24.865112, y: 13.763182, z: 22.980091}
+    - name: Oda_Ate2
+      parentName: Oda
+      position: {x: -0.46394348, y: 54.42975, z: 4.8354716}
+      rotation: {x: 0.5418615, y: 0.48057938, z: 0.526141, w: -0.44565153}
+      scale: {x: 24.865112, y: 13.763182, z: 22.980091}
+    - name: Oda_Ate3
+      parentName: Oda
+      position: {x: -0.14068604, y: 52.35051, z: 4.8878484}
+      rotation: {x: 0.5190107, y: 0.5061689, z: 0.5015715, w: -0.47206673}
+      scale: {x: 24.865112, y: 13.763182, z: 22.980091}
+    - name: Oda_Ate4
+      parentName: Oda
+      position: {x: 1.0147858, y: -26.80518, z: 15.506556}
+      rotation: {x: -0.18717699, y: -0.6938893, z: -0.19704849, w: 0.66682404}
+      scale: {x: 32.15977, y: 16.255512, z: 28.210037}
+    - name: Oda_Ate7
+      parentName: Oda
+      position: {x: -116.90703, y: 52.787018, z: 6.023904}
+      rotation: {x: 0, y: -0, z: -0.016989445, w: 0.9998557}
+      scale: {x: 27.439735, y: 27.439735, z: 22.561152}
+    - name: Oda_Ate8
+      parentName: Oda
+      position: {x: 1.0391388, y: -37.556133, z: 15.506557}
+      rotation: {x: -0.18717699, y: -0.6938893, z: -0.19704849, w: 0.66682404}
+      scale: {x: 32.15977, y: 16.255512, z: 28.210037}
+    - name: Oda_Ate9
+      parentName: Oda
+      position: {x: 1.1375275, y: -47.654644, z: 15.506556}
+      rotation: {x: -0.18717699, y: -0.6938893, z: -0.19704849, w: 0.66682404}
+      scale: {x: 32.15977, y: 16.255512, z: 28.210037}
+    - name: Oda_acse1
+      parentName: Oda
+      position: {x: -57.699432, y: 157.87654, z: 28.44132}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 33.60891, y: 33.60891, z: 33.60891}
+    - name: Oda_acse2
+      parentName: Oda
+      position: {x: -62.76683, y: 154.21579, z: 24.748203}
+      rotation: {x: 0.43220413, y: 0.20997982, z: 0.5596424, w: 0.67521}
+      scale: {x: 3.7781532, y: 4.2550306, z: 10.921245}
+    - name: Oda_acse3
+      parentName: Oda
+      position: {x: -57.36862, y: 161.75168, z: 28.528929}
+      rotation: {x: 0.6248673, y: -0.08786674, z: 0.3309695, w: 0.7016263}
+      scale: {x: 4.2550306, y: 4.2550306, z: 10.921245}
+    - name: Oda_String1
+      parentName: Oda
+      position: {x: -0.27397156, y: -9.951405, z: 16.00492}
+      rotation: {x: 0, y: -0, z: -0.012472409, w: 0.9999222}
+      scale: {x: 30.315758, y: 29.329172, z: 26.73696}
+    - name: Oda_String2
+      parentName: Oda
+      position: {x: -0.27616882, y: -9.951393, z: 16.00492}
+      rotation: {x: 0, y: 0, z: 0.0070789065, w: 0.99997497}
+      scale: {x: 30.315758, y: 29.329172, z: 26.73696}
+    - name: Oda_String3
+      parentName: Oda
+      position: {x: -0.27539062, y: -9.890556, z: 41.71012}
+      rotation: {x: 0.6866998, y: 0.07771736, z: -0.03794249, w: 0.7217782}
+      scale: {x: 2.5622978, y: 1.5664226, z: 1.7601826}
+    - name: Oda_shoes
+      parentName: Oda
+      position: {x: 1.53302, y: -136.9634, z: 25.138435}
+      rotation: {x: 0, y: 0.076452576, z: -0, w: 0.99707323}
+      scale: {x: 7.6693425, y: 7.6693425, z: 7.6693425}
+    - name: polySurface8
+      parentName: Oda
+      position: {x: -124.90057, y: 44.739937, z: 5.451521}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 159.96912, y: 159.96912, z: 159.96912}
+    - name: Oda_sword
+      parentName: Oda_Model(Clone)
+      position: {x: -0.19202848, y: -0.1370244, z: -0.033896923}
+      rotation: {x: 0.3945705, y: -0.45063218, z: 0.52975035, w: 0.6005076}
+      scale: {x: 0.047848783, y: 0.047848783, z: 0.047848783}
+    - name: Oda_katana10
+      parentName: Oda_sword
+      position: {x: 0.25562656, y: -0.021868706, z: -0.8468466}
+      rotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 0.27604583, y: 0.061860174, z: 0.34015483}
+    - name: Oda_katana9
+      parentName: Oda_sword
+      position: {x: 3.4932463, y: -0.021868706, z: -0.4820366}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 0.024951898, y: 0.057141118, z: 0.024951898}
+    - name: Oda_katana6
+      parentName: Oda_sword
+      position: {x: 3.497462, y: -0.021868706, z: 0.07611656}
+      rotation: {x: 1, y: 0, z: 0, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_katana11
+      parentName: Oda_sword
+      position: {x: 0.255969, y: -0.021868706, z: -0.4820366}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 0.024951898, y: 0.057141118, z: 0.024951898}
+    - name: Oda_katana1
+      parentName: Oda_sword
+      position: {x: 8.00341, y: -0.021868706, z: -0.059635162}
+      rotation: {x: 1, y: 0, z: 0, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_katana8
+      parentName: Oda_sword
+      position: {x: 3.492904, y: -0.021868706, z: -0.8468466}
+      rotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 0.27604583, y: 0.061860174, z: 0.34015483}
+    - name: Oda_katana3
+      parentName: Oda_sword
+      position: {x: -2.6067016, y: -0.021868706, z: -0.2673645}
+      rotation: {x: 1, y: 0, z: 0, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_katana5
+      parentName: Oda_sword
+      position: {x: -2.784668, y: -0.021868706, z: -0.2682972}
+      rotation: {x: 1, y: 0, z: 0, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_katana7
+      parentName: Oda_sword
+      position: {x: 0.26018476, y: -0.021868706, z: 0.07611656}
+      rotation: {x: 1, y: 0, z: 0, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oda_katana4
+      parentName: Oda_sword
+      position: {x: 5.1713, y: 0, z: 0.09461504}
+      rotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 1.1994565, y: 1.1994565, z: 1.9324577}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -91,13 +309,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0

@@ -86,6 +86,8 @@ public class CS_BP_AttackChoice : MonoBehaviour
         mSuccessNum = CS_LotteryFunction.LotNormalInt(mImages.Count);
         Debug.Log("ê¨å˜" + mSuccessNum);
 
+        selectNum = 0;
+
         IsOnePush = false;
     }
 
