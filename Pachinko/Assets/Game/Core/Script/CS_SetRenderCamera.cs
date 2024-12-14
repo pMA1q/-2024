@@ -20,7 +20,7 @@ public class CS_SetRenderCamera : MonoBehaviour
             {
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
                 canvas.worldCamera = subCamera;
-                canvas.planeDistance = subCamera.nearClipPlane + 0.001f;
+                canvas.planeDistance = planeDistance;
             }
             else
             {
