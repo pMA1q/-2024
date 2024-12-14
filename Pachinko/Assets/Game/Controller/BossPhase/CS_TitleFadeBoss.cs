@@ -46,6 +46,7 @@ public class CS_TitleFadeBoss : MonoBehaviour
         // フェーズを指定されたフェーズに変更
         if (bigController != null)
         {
+            bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOSS);
             bigController.CreateController() ;
             Debug.Log($"{nextPhase} フェーズへ移行しました");
         }
