@@ -152,7 +152,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_ShojiController.cs" />
-    <Compile Include="Assets\Game\Controller\BossPhase\CS_TitleFadeBoss.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\Title\CS_TitleFadeBoss.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3ChoiceTicket.cs" />
