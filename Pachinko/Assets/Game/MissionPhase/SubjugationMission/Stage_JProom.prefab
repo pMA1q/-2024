@@ -8018,18 +8018,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftShoji: {fileID: 2375515843539104872}
   rightShoji: {fileID: 6191346781688490994}
+  backgroundModels: []
   backgroundObject: {fileID: 0}
-  slideSpeed: 30
+  firstSlideSpeed: 2
+  secondSlideSpeed: 2
+  firstOpenWidth: 1
   openWidth: 10
+  firstOpenDuration: 1
   closedState:
-    material: {fileID: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-  backgroundClosedState:
     material: {fileID: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
   openingState:
     material: {fileID: 0}
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  transparentState:
+    material: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 0}
+  cameraCloseDistance: -50
+  cameraMoveSpeed: 4
 --- !u!1 &578037426476805913
 GameObject:
   m_ObjectHideFlags: 0
@@ -19840,18 +19846,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftShoji: {fileID: 1041159717979050063}
   rightShoji: {fileID: 1990909728722462861}
+  backgroundModels: []
   backgroundObject: {fileID: 0}
-  slideSpeed: 30
+  firstSlideSpeed: 2
+  secondSlideSpeed: 2
+  firstOpenWidth: 1
   openWidth: 10
+  firstOpenDuration: 1
   closedState:
-    material: {fileID: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-  backgroundClosedState:
     material: {fileID: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
   openingState:
     material: {fileID: 0}
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  transparentState:
+    material: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 0}
+  cameraCloseDistance: -50
+  cameraMoveSpeed: 4
 --- !u!1 &1401953313849581550
 GameObject:
   m_ObjectHideFlags: 0
@@ -70613,8 +70625,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5300657373346451427}
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90, y: 0, z: 3}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -90.00003, y: 0, z: 2.9999785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -75548,8 +75560,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5697570941550740017}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -270, y: 0, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -90.00009, y: 0, z: -3.0000682}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79608,8 +79620,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6008534970189208724}
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90, y: 0, z: 3}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -90.00002, y: 0, z: 2.9999871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -80005,18 +80017,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftShoji: {fileID: 3383468042727740777}
   rightShoji: {fileID: 6008534970189208724}
+  backgroundModels: []
   backgroundObject: {fileID: 0}
-  slideSpeed: 30
+  firstSlideSpeed: 2
+  secondSlideSpeed: 2
+  firstOpenWidth: 1
   openWidth: 10
+  firstOpenDuration: 1
   closedState:
-    material: {fileID: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-  backgroundClosedState:
     material: {fileID: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
   openingState:
     material: {fileID: 0}
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  transparentState:
+    material: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 0}
+  cameraCloseDistance: -50
+  cameraMoveSpeed: 4
 --- !u!1 &6025008165040903249
 GameObject:
   m_ObjectHideFlags: 0
@@ -82447,7 +82465,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6191346781688490994}
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -90, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -93039,8 +93057,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6893293398747726976}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -270, y: 0, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -90.00003, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -112355,8 +112373,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8291756416139808578}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -270, y: 0, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -90.00003, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -119309,18 +119327,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftShoji: {fileID: 9154707547313036933}
   rightShoji: {fileID: 5300657373346451427}
+  backgroundModels: []
   backgroundObject: {fileID: 0}
-  slideSpeed: 30
+  firstSlideSpeed: 2
+  secondSlideSpeed: 2
+  firstOpenWidth: 1
   openWidth: 10
+  firstOpenDuration: 1
   closedState:
-    material: {fileID: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-  backgroundClosedState:
     material: {fileID: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
   openingState:
     material: {fileID: 0}
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  transparentState:
+    material: {fileID: 0}
+    color: {r: 1, g: 1, b: 1, a: 0}
+  cameraCloseDistance: -50
+  cameraMoveSpeed: 4
 --- !u!1 &8918228263766274493
 GameObject:
   m_ObjectHideFlags: 0

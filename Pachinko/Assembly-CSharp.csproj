@@ -71,6 +71,7 @@
     <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\Bokudayo\Script\TransparencyController.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_PlayerStatus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Debuff.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Game\Core\Script\CS_DrawPattern.cs" />
     <Compile Include="Assets\Game\Controller\CameraController\CS_SetSafeArea.cs" />
     <Compile Include="Assets\Bokudayo\Script\ChangeColor.cs" />
+    <Compile Include="Assets\Bokudayo\Script\BackgroundObjectTransparency1.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAMeshColliderCommon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Game\BossPhase\CS_CameraWander.cs" />
@@ -149,7 +151,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
-    <Compile Include="Assets\feature\yamaguchi\Script\CS_ShojiController.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_TitleFadeBoss.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
@@ -185,8 +186,6 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Bokudayo\Script\BackgroundObjectTransparency1.cs" />
-    <Compile Include="Assets\Bokudayo\Script\TransparencyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
