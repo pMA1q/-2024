@@ -6,7 +6,7 @@ public class CS_BossPhaseData : MonoBehaviour
 {
     [SerializeField, Header("ボスステータス")]
     private CSO_BossStatus mBossList;
-    [SerializeField, Header("ボスステータスBackUP")]
+    //[SerializeField, Header("ボスステータスBackUP")]
     private CSO_BossStatus mBossListBackUp;
     public CSO_BossStatus BossStatus { get { return mBossList; } }
 
