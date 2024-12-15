@@ -345,3 +345,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3306422b3b5ce4d854c9684d1f12ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planeDistance: 1
