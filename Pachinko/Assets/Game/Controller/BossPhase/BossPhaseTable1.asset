@@ -48,7 +48,8 @@ MonoBehaviour:
     win_lost: 0
     replay: 2
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 1105777239294549336, guid: 5aeb3927b47526749aa1d1a47f067260,
+      type: 3}
   - name: "8_\u6575\u653B\u6483(\u5F37)"
     win_lost: 0
     replay: 2
@@ -99,7 +100,7 @@ MonoBehaviour:
     replay: 4
     replayNum: 0
     performance: {fileID: 0}
-  - name: "18_\u6575\u30D0\u30D5 or \u30C7\u30D0\u30D5"
+  - name: "18_\u30D7\u30EC\u30A4\u30E4\u30FC\u5148\u5236\u653B\u6483(\u5F31)"
     win_lost: 4
     replay: 0
     replayNum: 0
@@ -159,7 +160,7 @@ MonoBehaviour:
     replay: 5
     replayNum: 0
     performance: {fileID: 0}
-  - name: "30_\u6575\u653B\u6483(\u5C0F)"
+  - name: "30_\u30D7\u30EC\u30A4\u30E4\u30FC\u653B\u6483(\u4E2D)"
     win_lost: 0
     replay: 1
     replayNum: 0
