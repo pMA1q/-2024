@@ -53,7 +53,7 @@
     <UnityVersion>2021.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
@@ -84,7 +84,6 @@
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseController.cs" />
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
-    <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Enemy.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Assets\Bokudayo\Script\ChangeColor.cs" />
     <Compile Include="Assets\Bokudayo\Script\BackgroundObjectTransparency1.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAMeshColliderCommon.cs" />
+    <Compile Include="Assets\Game\BossPhase\Effect\3DTextureAnimation\CS_QuadEffectAnimation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Game\BossPhase\CS_CameraWander.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -105,8 +105,8 @@
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_TitleFadeMission.cs" />
-    <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Player.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\CameraSizeAdjuster\CameraSizeAdjuster.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
@@ -187,7 +187,6 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\BossPhase\Effect\3DTextureAnimation\CS_QuadEffectAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
