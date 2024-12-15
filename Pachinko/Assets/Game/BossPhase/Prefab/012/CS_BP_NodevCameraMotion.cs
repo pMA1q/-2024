@@ -7,6 +7,9 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
     [SerializeField]
     private CSO_CameraInterpolation cameraMosion;
 
+    [SerializeField]
+    private List<GameObject> mEffects;
+
     private Camera subCamera;
 
     private int motionNum = 0; // 現在のモーション番号
@@ -144,7 +147,16 @@ public class CS_BP_NodevCameraMotion : MonoBehaviour
 
     private IEnumerator NextCameraMotion()
     {
-        yield return new WaitForSeconds(1f); // 次のモーション開始までの待機
+        if (mEffects[motionNum] != null)
+        {
+            mEffects[motionNum].SetActive(true);
+        }
+        yield return new WaitForSeconds(2f); // 次のモーション開始までの待機
+
+        if (mEffects[motionNum] != null)
+        {
+            mEffects[motionNum].SetActive(false);
+        }
 
         motionNum++;
 

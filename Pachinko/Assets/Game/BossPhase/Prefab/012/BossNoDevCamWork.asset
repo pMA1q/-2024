@@ -30,8 +30,8 @@ MonoBehaviour:
     moveSpeed: 0.3
     rotateSpeed: 0.3
   - positions:
-    - {x: 9999.01, y: -0.16, z: 3.71}
-    - {x: 9999.01, y: 0.34, z: 3.71}
+    - {x: 9999.665, y: -0.16, z: 3.71}
+    - {x: 9999.665, y: 0.266, z: 3.71}
     lotations:
     - {x: 22.795, y: -90, z: 0}
     - {x: 0, y: -90, z: 0}
