@@ -29,7 +29,8 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     void Start()
     {
         defaultRotation = this.transform.localRotation;
-        Debug.Log("初期位置" + this.transform.localRotation);
+        Debug.Log("初期位置" + this.transform.eulerAngles);
+        //AttakerOpen(3);
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
         {
             if (IsAttackOpen) 
             {
-                AddDedama();//出玉処理
+                //AddDedama();//出玉処理
             }
             if(IsInV_Open)
             {
@@ -56,12 +57,12 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
         Prize = 0;
         NowRound++;
         IsAttackOpen = false;
+        StopCoroutine(NextRoundTimer());
         if (NowRound > RoundNum)
         {
             IsAttakerEnable = false;
             NowRound = 0;
             this.transform.rotation = defaultRotation;
-            StopCoroutine(NextRoundTimer());
             return;
         }
 
@@ -72,9 +73,58 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     {
         Prize = 0;
         IsAttakerEnable = true;
-        StartCoroutine(NextRound());
-        StartCoroutine(NextRoundTimer());
+
         RoundNum = _round;
+        StartCoroutine(NextRoundTimer());
+    }
+
+    private IEnumerator NextRoundTimer()
+    {
+        IsAttackOpen = true;
+        this.transform.eulerAngles = new Vector3(defaultRotation.x, defaultRotation.y, openRot);
+        float timer = 0;
+
+        while (timer <= 20)
+        {
+            timer += Time.deltaTime;
+            if (Prize < 15) { yield return null; }//15個入ってないなら終了
+            else
+            {
+                Debug.Log("15個数入りました");
+                break;
+            }
+        }
+
+        if (timer >= 20) { Debug.Log("20秒経ちました"); }
+
+        Debug.Log("次のラウンドへ移行します");
+
+        Prize = 0;
+        NowRound++;
+        IsAttackOpen = false;
+        if (NowRound > RoundNum)
+        {
+            IsAttakerEnable = false;
+            NowRound = 0;
+            this.transform.rotation = defaultRotation;
+            yield break;
+        }
+
+        //次のラウンド
+        StartCoroutine(NextRound());//次のラウンドへ
+        yield break;
+    }
+
+    private IEnumerator NextRound()
+    {
+        this.transform.rotation = defaultRotation;
+
+        yield return new WaitForSeconds(1f);
+
+
+
+        //タイマー
+        StartCoroutine(NextRoundTimer());
     }
 
     public void AttakerOpen_V_Bounus()
@@ -93,32 +143,5 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
             Prize = 0;
             this.transform.rotation = defaultRotation;
         }
-    }
-
-    private IEnumerator NextRoundTimer()
-    {
-        yield return new WaitForSeconds(20f);
-        Prize = 0;
-        NowRound++;
-        IsAttackOpen = false;
-        if (NowRound > RoundNum)
-        {
-            IsAttakerEnable = false;
-            NowRound = 0;
-            this.transform.rotation = defaultRotation;
-            yield break;
-        }
-
-        StartCoroutine(NextRound());//次のラウンドへ
-    }
-
-    private IEnumerator NextRound()
-    {
-        this.transform.rotation = defaultRotation;
-
-        yield return new WaitForSeconds(1f);
-
-        IsAttackOpen = true;
-        this.transform.eulerAngles = new Vector3(defaultRotation.x, defaultRotation.y, openRot);
     }
 }

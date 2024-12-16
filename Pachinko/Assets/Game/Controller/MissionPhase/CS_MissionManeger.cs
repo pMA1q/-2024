@@ -35,7 +35,7 @@ public class CS_MissionManeger : MonoBehaviour
     private CS_MissionPhaseData missionData;//i—ß“ƒ(‘å)
     private CS_CommonData mData;//‹¤’Êƒf[ƒ^
 
-    private int mGameCount = 1;//“üÜ”
+    private int mGameCount = 20;//“üÜ”
 
     private GameObject mNoDevObj;
 

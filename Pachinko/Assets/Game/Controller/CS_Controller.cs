@@ -32,6 +32,7 @@ public class CS_Controller : MonoBehaviour
     [SerializeField, Header("図柄表示")]
     private CS_NumberRailController mDrawNum2;
 
+    [SerializeField]
     private PACHINKO_PHESE mNowPhese = PACHINKO_PHESE.SET;//現在のフェーズ
     private PACHINKO_PHESE mPrevPhese = PACHINKO_PHESE.SET;//前ののフェーズ
 
@@ -170,10 +171,12 @@ public class CS_Controller : MonoBehaviour
         { 
             if(mNowPhese == PACHINKO_PHESE.MISSION)
             {
-                mPerformanceFinish = false;
-                mPerformanceSemiFinish = false;
-                JackPotPerf = true;
+               
             }
+            mPerformanceFinish = false;
+            mPerformanceSemiFinish = false;
+            JackPotPerf = true;
+            GetComponent<CS_CommonData>().LeftAttakerStart(3);
         }
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除
