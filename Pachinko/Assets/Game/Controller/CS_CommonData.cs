@@ -10,9 +10,9 @@ public class CS_CommonData : MonoBehaviour
     readonly public static string MainCanvasName = "ButtonCanvas";
 
     //アタッカー
-    public CS_AttakerOpenClose mLeftAttaker;
-    public CS_AttakerOpenClose mRightAttaker;
-    public CS_AttakerOpenClose RightAttaker
+    public CS_LeftAttakerOpenClose mLeftAttaker;
+    public CS_RightAttakerOpenClose mRightAttaker;
+    public CS_RightAttakerOpenClose RightAttaker
     {
         get { return mRightAttaker; }
     }

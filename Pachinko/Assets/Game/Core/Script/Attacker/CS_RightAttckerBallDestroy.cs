@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CS_LeftattakerBallDestroy : MonoBehaviour
+public class CS_RightAttckerBallDestroy : MonoBehaviour
 {
     [SerializeField]
-    private CS_LeftAttakerOpenClose mAttaker;
+    private CS_RightAttakerOpenClose mAttaker;
 
     private void Start()
     {

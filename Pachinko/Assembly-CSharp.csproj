@@ -69,7 +69,6 @@
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
     <Compile Include="Assets\Anim_CameraZoom\CameraZoomController.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
-    <Compile Include="Assets\Game\Core\Script\Attacker\CS_AttakerOpenClose.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Bokudayo\Script\TransparencyController.cs" />
@@ -121,6 +120,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\14_PlayerAttackChoice\CS_BP_AttackChoice.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberSprite.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_ShootController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
@@ -192,8 +192,9 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_ShootController.cs" />
-    <Compile Include="Assets\Game\Core\Script\Attacker\CS_AttakerBallDestroy.cs" />
+    <Compile Include="Assets\Game\Core\Script\Attacker\CS_LeftAttakerOpenClose.cs" />
+    <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttakerOpenClose.cs" />
+    <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttckerBallDestroy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
