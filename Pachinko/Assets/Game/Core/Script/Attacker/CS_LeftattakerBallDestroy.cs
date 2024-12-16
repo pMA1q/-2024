@@ -5,20 +5,22 @@ using UnityEngine;
 public class CS_LeftattakerBallDestroy : MonoBehaviour
 {
     [SerializeField]
-    private CS_LeftAttakerOpenClose leftAttaker;
-
+    private CS_AttakerOpenClose mAttaker;
 
     private void Start()
     {
         //ƒeƒXƒg
-        leftAttaker.AttakerOpen(3);
+        mAttaker.AttakerOpen(3);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pachinko Ball"))
         {
-            leftAttaker.Prize++;
+            mAttaker.Prize++;
+            CS_CommonData data = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();
+            data.Dedama += 15;
             Destroy(other.gameObject);
+
         }
     }
 }
