@@ -168,9 +168,12 @@ public class CS_Controller : MonoBehaviour
     {
         if (GetJuckpot()) 
         { 
-            mPerformanceFinish = false;
-            mPerformanceSemiFinish = false;
-            JackPotPerf = true;
+            if(mNowPhese == PACHINKO_PHESE.MISSION)
+            {
+                mPerformanceFinish = false;
+                mPerformanceSemiFinish = false;
+                JackPotPerf = true;
+            }
         }
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除

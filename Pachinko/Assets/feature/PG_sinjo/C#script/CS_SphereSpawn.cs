@@ -26,8 +26,11 @@ public class CS_SphereSpawn : MonoBehaviour
     {
         while (true)
         {
+            force = new Vector3(0.0f, forceY, 0.0f);
             // オブジェクトを指定の位置に生成
             var Ball = Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+            CS_CommonData data = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();
+            data.Dedama--;
             var rb = Ball.GetComponent<Rigidbody>();
             rb.AddForce(force, ForceMode.Impulse);
 

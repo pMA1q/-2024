@@ -63,7 +63,7 @@ public class CS_BP_CompetitionController : MonoBehaviour
 
     private void FindButtons()
     {
-        Canvas canvas = GameObject.Find("ButtonCanvas").GetComponent<Canvas>();
+        Canvas canvas = GameObject.Find(CS_CommonData.MainCanvasName).GetComponent<Canvas>();
         buttons = canvas.GetComponentsInChildren<Button>();
 
 
