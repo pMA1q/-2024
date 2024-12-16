@@ -48,6 +48,8 @@ public class CS_LeftAttakerOpenClose : MonoBehaviour
         if (NowRound > RoundNum)
         {
             IsAttakerEnable = false;
+            NowRound = 0;
+            this.transform.eulerAngles = defaultRotation;
             return;
         }
 

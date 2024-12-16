@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CS_CommonData : MonoBehaviour
 {
+    public CS_LeftAttakerOpenClose mLeftAttaker;
+
     readonly public static string Obj3D_RenderCamera = "FCamera";
     readonly public static string BigControllerName = "BigController";
     //–³”­“Wƒtƒ‰ƒO

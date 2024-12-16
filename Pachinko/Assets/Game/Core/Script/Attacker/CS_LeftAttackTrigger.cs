@@ -27,7 +27,7 @@ public class CS_LeftAttackTrigger : MonoBehaviour
     private ForceDirection forceDirection = ForceDirection.Forward;
 
     // トリガーに何かが触れたときに呼ばれるメソッド
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay (Collider other)
     {
         // 触れたオブジェクトのタグが"A"の場合
         if (other.CompareTag("Pachinko Ball"))
@@ -38,13 +38,16 @@ public class CS_LeftAttackTrigger : MonoBehaviour
             // Rigidbodyが存在する場合のみ力を加える
             if (rb != null)
             {
+                Debug.Log("ボールが中に入った");
                 // 力の方向を決定する
                 Vector3 force = Vector3.zero;
 
                 switch (forceDirection)
                 {
                     case ForceDirection.Forward:
+                       
                         force = Vector3.forward * forceAmount;
+                        
                         break;
                     case ForceDirection.Backward:
                         force = Vector3.back * forceAmount;
@@ -59,9 +62,10 @@ public class CS_LeftAttackTrigger : MonoBehaviour
                         force = Vector3.up * forceAmount;
                         break;
                 }
-
+                
                 // 指定した方向に力を加える
-                rb.AddForce(force, ForceMode.Impulse);
+                //rb.AddForce(force, ForceMode.Impulse);
+                rb.velocity = force;
             }
         }
     }
