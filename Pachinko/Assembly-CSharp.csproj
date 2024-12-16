@@ -62,9 +62,11 @@
     <Compile Include="Assets\Game\BossPhase\Prefab\CSO_CameraInterpolation.cs" />
     <Compile Include="Assets\Bokudayo\Script\E_RanAway.cs" />
     <Compile Include="Assets\Fujisawa\CS_FCameraController.cs" />
+    <Compile Include="Assets\Game\Sample\7_EnemyAttack(small)\CS_BP_7_Player.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
+    <Compile Include="Assets\Game\Sample\7_EnemyAttack(small)\CS_BP_7_Enemy.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\CS_BP_NodevCameraMotion.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
     <Compile Include="Assets\Anim_CameraZoom\CameraZoomController.cs" />
