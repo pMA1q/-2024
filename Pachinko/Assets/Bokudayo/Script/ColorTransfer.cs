@@ -28,7 +28,7 @@ public class ColorTransfer : MonoBehaviour
 
     private void FindButtons()
     {
-        Canvas canvas = GameObject.Find("ButtonCanvas").GetComponent<Canvas>();
+        Canvas canvas = GameObject.Find(CS_CommonData.MainCanvasName).GetComponent<Canvas>();
         Button[] buttons = canvas.GetComponentsInChildren<Button>();
 
         string[] buttonNames = new string[3] { "ButtonLeft", "BottonRight", "ButtonPush" };
