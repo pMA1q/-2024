@@ -16,12 +16,16 @@ public class CS_Controller : MonoBehaviour
         SET,    //準備フェーズ
         MISSION,//ミッションフェーズ
         BOSS,   //ボスフェーズ       
+        BOUNUS,
         RUSH    //ラッシュフェーズ
     }
 
     
     [SerializeField, Header("司令塔コントローラー")]
     List<GameObject> mCtrls = new List<GameObject>();
+    [SerializeField, Header("各フェーズのBGM")]
+    List<GameObject> mBGM = new List<GameObject>();
+
 
     [SerializeField, Header("ヘソ")]
     private CS_Stock mHeso;
@@ -35,6 +39,8 @@ public class CS_Controller : MonoBehaviour
     [SerializeField]
     private PACHINKO_PHESE mNowPhese = PACHINKO_PHESE.SET;//現在のフェーズ
     private PACHINKO_PHESE mPrevPhese = PACHINKO_PHESE.SET;//前ののフェーズ
+
+    private GameObject mNowBGM;
 
     private int mStock = 0;//保留玉数
     
@@ -76,7 +82,7 @@ public class CS_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
+        CreateController();
     }
 
     // Update is called once per frame
@@ -109,8 +115,18 @@ public class CS_Controller : MonoBehaviour
 
     public void CreateController()
     {
+        if(mNowBGM != null)
+        {
+            AudioSource audio = mNowBGM.GetComponent<AudioSource>();
+            if(audio.isPlaying)
+            {
+                audio.Stop();
+            }
+            Destroy(mNowBGM);
+        }
         GameObject ctrl = Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
         ctrl.name = mCtrls[(int)mNowPhese].name;
+        mNowBGM = Instantiate(mBGM[(int)mNowPhese], Vector3.zero, Quaternion.identity);
     }
 
     //保留玉を増やす
