@@ -27,52 +27,36 @@ public class CS_LeftAttakerOpenClose : MonoBehaviour
     void Start()
     {
         defaultRotation = this.transform.localRotation;
-        Debug.Log("初期位置" + this.transform.localRotation);
+        //テスト
+        //AttakerOpen(3);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(IsAttakerEnable && IsAttackOpen)
-        {
-            AddDedama();//出玉処理
-        }
-    }
-
-    //出玉処理
-    private void AddDedama()
-    {
-        if(Prize < 15) { return; }
-
-        Prize = 0;
-        NowRound++;
-        IsAttackOpen = false;
-        if (NowRound > RoundNum)
-        {
-            IsAttakerEnable = false;
-            NowRound = 0;
-            this.transform.rotation = defaultRotation;
-            StopCoroutine(NextRoundTimer());
-            return;
-        }
-
-        StartCoroutine(NextRound());//次のラウンドへ
-    }
-
+  
     public void AttakerOpen(int _round)
     {
         Prize = 0;
         IsAttakerEnable = true;
-        StartCoroutine(NextRound());
+
         StartCoroutine(NextRoundTimer());
         RoundNum = _round;
     }
 
-  
-
     private IEnumerator NextRoundTimer()
     {
-        yield return new WaitForSeconds(20f);
+        IsAttackOpen = true;
+        this.transform.eulerAngles = new Vector3(openRot, defaultRotation.y, defaultRotation.z);
+        float timer = 0;
+
+        while(timer <= 20)
+        {
+            timer += Time.deltaTime;
+            if (Prize < 15) { yield return null; }//15個入ってないなら終了
+            else 
+            {
+                break; 
+            }
+        }
+
         Prize = 0;
         NowRound++;
         IsAttackOpen = false;
@@ -84,7 +68,9 @@ public class CS_LeftAttakerOpenClose : MonoBehaviour
             yield break;
         }
 
+        //次のラウンド
         StartCoroutine(NextRound());//次のラウンドへ
+        yield break;
     }
 
     private IEnumerator NextRound()
@@ -92,9 +78,8 @@ public class CS_LeftAttakerOpenClose : MonoBehaviour
         this.transform.rotation = defaultRotation;
 
         yield return new WaitForSeconds(1f);
-
-        IsAttackOpen = true;
-        this.transform.eulerAngles = new Vector3(openRot, defaultRotation.y, defaultRotation.z);
+        //タイマー
+        StartCoroutine(NextRoundTimer());
     }
 }
 

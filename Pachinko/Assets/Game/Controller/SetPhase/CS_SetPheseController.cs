@@ -14,18 +14,12 @@ using Unity.VisualScripting;
 
 public class CS_SetPheseController : MonoBehaviour
 {
-    //[SerializeField]
-    //CSO_SetPhaseStatus mProbabilityStatus;
-    //List<float> mProbabilities = new List<float>();
 
     [SerializeField,Header("準備フェーズのテーブル")]
     private CSO_SetPhaseTable mMissionStatus;
 
     [SerializeField, Header("ミッションselectのプレハブ")]
     private GameObject mMisstionSelect;
-
-    [SerializeField, Header("キュイン(テスト用なので後で消す)")]
-    private GameObject mCuinSE;
 
     private int mPrizesNum = 0;//入賞数
 
@@ -88,10 +82,7 @@ public class CS_SetPheseController : MonoBehaviour
 
        //保留玉使用（変動開始）
        mBigController.UseStock(WIN_LOST.LOST);
-    
-        //テスト
-        if (mBigController.GetJuckpot()) { Instantiate(mCuinSE, mCuinSE.transform.position, mCuinSE.transform.rotation); }
-
+   
         //演出抽選
         int randomNumber = CS_LotteryFunction.LotNormalInt(mMissionStatus.infomation[mPrizesNum].mission.Count -1);
 
@@ -109,25 +100,6 @@ public class CS_SetPheseController : MonoBehaviour
            
     }
 
-
-
-    private void CheckLottery()
-    {
-        if (debugCount < 10000)
-        {
-            //int randomNumber = CS_LotteryFunction.LotPerformance(mProbabilities);
-            //Debug.Log("�����_���ɑI�΂ꂽ���o: " + mProbabilityStatus.performances[randomNumber].name);
-            //debugCount++;
-
-            //if (debugCount >= 10000)
-            //{
-            //    Debug.Log("10000��I��");
-            //}
-        }
-
-    }
-
-   
     public static void RemoveAllHandlers()
     {
         // OnPlayPerformanceに登録されている関数を消す
