@@ -30,7 +30,6 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     {
         defaultRotation = this.transform.localRotation;
         Debug.Log("‰ŠúˆÊ’u" + this.transform.eulerAngles);
-        //AttakerOpen(3);
     }
 
     // Update is called once per frame
