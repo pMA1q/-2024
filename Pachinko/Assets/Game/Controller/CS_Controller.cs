@@ -109,7 +109,8 @@ public class CS_Controller : MonoBehaviour
 
     public void CreateController()
     {
-        Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
+        GameObject ctrl = Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
+        ctrl.name = mCtrls[(int)mNowPhese].name;
     }
 
     //•Û—¯‹Ê‚ğ‘‚â‚·

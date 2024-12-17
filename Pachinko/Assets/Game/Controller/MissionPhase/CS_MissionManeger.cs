@@ -76,6 +76,7 @@ public class CS_MissionManeger : MonoBehaviour
         mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();//共通データ取得
         missionData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>();
         missionData.ResetMissionData();//ミッションデータの各フラグをレセットする
+       
         // プレイヤーステータスをデータから取得
         playerStatus = missionData.PlayerStatus;
 
@@ -276,8 +277,8 @@ public class CS_MissionManeger : MonoBehaviour
                                                      cStatus.revivalUpPow.conicePercent,cStatus.cutInUpPow.conicePercent};
         List<float> smallpower = new List<float> {cStatus.charColorUpPow.smallUP, cStatus.preemptiveAttackUpPow.smallUP,cStatus.attackUpPow.smallUP,
                                                      cStatus.revivalUpPow.smallUP,cStatus.cutInUpPow.smallUP};
-        List<float> midllepower = new List<float> {cStatus.charColorUpPow.smallUP, cStatus.preemptiveAttackUpPow.smallUP,cStatus.attackUpPow.smallUP,
-                                                     cStatus.revivalUpPow.smallUP,cStatus.cutInUpPow.smallUP};
+        List<float> midllepower = new List<float> {cStatus.charColorUpPow.middleUP, cStatus.preemptiveAttackUpPow.middleUP,cStatus.attackUpPow.middleUP,
+                                                     cStatus.revivalUpPow.middleUP,cStatus.cutInUpPow.middleUP};
         List<float> maxpower = new List<float> {cStatus.charColorUpPow.max, cStatus.preemptiveAttackUpPow.max,cStatus.attackUpPow.max,
                                                      cStatus.revivalUpPow.max,cStatus.cutInUpPow.max};
         int random = CS_LotteryFunction.LotPerformance(choicePercent);
@@ -297,13 +298,85 @@ public class CS_MissionManeger : MonoBehaviour
     private void StartBossPhase()
     {
         Debug.Log("ボスフェーズへ移行します");
-        Destroy(mNoDevObj);
-        
+        Destroy(mNoDevObj); // 無発展オブジェクト削除
+
+        Remuneration();//報酬獲得処理
+
+        // 次のフェーズの準備処理
         CS_BossPhaseHandler bossPhaseHandler = gameObject.GetComponent<CS_BossPhaseHandler>();
         bossPhaseHandler.Initialize(bigController);
 
         // ミッションマネージャーを削除
         Destroy(this);
+    }
+
+    //報酬処理
+    void Remuneration()
+    {
+        //ミッションデータ取得
+        CS_MissionPhaseData.MISSION_TYPE mType = missionData.MissionType;
+
+        int missionCnontents = missionData.GetMissionContent((int)mType);//ミッションの種類の中の要素番号を取得
+        CSO_PlayerStatus pStatus = missionData.PlayerStatus;//プレイヤー情報取得
+        int addTiket = 3;//チケット増加数
+        switch(mType)
+        {
+            case CS_MissionPhaseData.MISSION_TYPE.COLLECT://収集(チケット)
+                if(missionCnontents == missionData.tPreAttack)
+                {
+                    pStatus.ticket.preemptiveAttack += addTiket;
+                    
+                }
+                else if (missionCnontents == missionData.tPreRev)
+                {
+                    pStatus.ticket.revaival += addTiket;
+                }
+               
+                break;
+            case CS_MissionPhaseData.MISSION_TYPE.SUBJUGATION://討伐(スキル)
+                if (missionCnontents == missionData.eSkill)
+                {
+                    pStatus.ticket.special += 3;
+                }
+                break;
+            case CS_MissionPhaseData.MISSION_TYPE.TRAINING://鍛錬(ステータス)
+                //ステータス10%Up
+                if (missionCnontents == missionData.sCut)
+                {
+                    pStatus.charaStatus.cutIn *= 1.10f;
+                    //最大値を超えないようにする
+                    if(pStatus.charaStatus.cutIn > pStatus.charaStatus.cutInUpPow.max) { pStatus.charaStatus.cutIn = pStatus.charaStatus.cutInUpPow.max; }
+                }
+                if (missionCnontents == missionData.sColor)
+                { 
+                    pStatus.charaStatus.charColorUP *= 1.10f;
+                    //最大値を超えないようにする
+                    if (pStatus.charaStatus.charColorUP > pStatus.charaStatus.charColorUpPow.max) { pStatus.charaStatus.charColorUP = pStatus.charaStatus.charColorUpPow.max; }
+                }
+                if (missionCnontents == missionData.sPreAttack)
+                { 
+                    pStatus.charaStatus.preemptiveAttack *= 1.10f;
+                    //最大値を超えないようにする
+                    if (pStatus.charaStatus.preemptiveAttack > pStatus.charaStatus.preemptiveAttackUpPow.max) { pStatus.charaStatus.preemptiveAttack = pStatus.charaStatus.preemptiveAttackUpPow.max; }
+                }
+                if (missionCnontents == missionData.sRev)
+                {
+                    pStatus.charaStatus.revaival *= 1.10f;
+                    //最大値を超えないようにする
+                    if (pStatus.charaStatus.revaival > pStatus.charaStatus.revivalUpPow.max) { pStatus.charaStatus.revaival = pStatus.charaStatus.revivalUpPow.max; }
+                }
+                if (missionCnontents == missionData.sEquipmentRank)
+                {
+                    pStatus.charaStatus.equipmentRank += 1;
+                    //最大値を超えないようにする
+                    if (pStatus.charaStatus.revaival > pStatus.charaStatus.revivalUpPow.max) { pStatus.charaStatus.revaival = pStatus.charaStatus.revivalUpPow.max; }
+                }
+
+                //攻撃力UP
+                pStatus.charaStatus.attack += 5;
+                if(pStatus.charaStatus.attack > pStatus.charaStatus.attackUpPow.max) { pStatus.charaStatus.attack = pStatus.charaStatus.attackUpPow.max; }
+                break;
+        }
     }
 
     //抽選後処理

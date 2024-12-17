@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a9aaefb79f3244c9d3fb801b0df60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMissionStatus: {fileID: 11400000, guid: 04e48b602a5ae0140b6879cdccfa3f8e, type: 2}
+  mMissionStatus: {fileID: 11400000, guid: 087c2dfdcaccef84a9c35d89e8a99d3f, type: 2}
   mMisstionSelect: {fileID: 5303551311178200054, guid: 00908f137ac06ff4abdb97fafe746a48,
     type: 3}
   mCuinSE: {fileID: 301587773258209136, guid: c5a78b4ebca1794488d8c9359df48ded, type: 3}
