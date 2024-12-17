@@ -38,7 +38,6 @@ public class CS_LeftAttackTrigger : MonoBehaviour
             // Rigidbody‚ª‘¶İ‚·‚éê‡‚Ì‚İ—Í‚ğ‰Á‚¦‚é
             if (rb != null)
             {
-                Debug.Log("ƒ{[ƒ‹‚ª’†‚É“ü‚Á‚½");
                 // —Í‚Ì•ûŒü‚ğŒˆ’è‚·‚é
                 Vector3 force = Vector3.zero;
 

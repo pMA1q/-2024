@@ -10,7 +10,7 @@ public class CS_LeftattakerBallDestroy : MonoBehaviour
     private void Start()
     {
         //ƒeƒXƒg
-        mAttaker.AttakerOpen(3);
+        //mAttaker.AttakerOpen(3);
     }
     private void OnTriggerEnter(Collider other)
     {

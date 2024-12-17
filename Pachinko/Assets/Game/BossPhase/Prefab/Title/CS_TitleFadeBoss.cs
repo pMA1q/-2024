@@ -20,7 +20,6 @@ public class CS_TitleFadeBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(fadeOutTime);
 
-        Debug.Log("3秒たった");
         // フェーズを指定されたフェーズに変更
         if (bigController != null)
         {

@@ -13,9 +13,9 @@ public class CS_MissionPhaseData : MonoBehaviour
     //準備フェーズの選択結果の保存、取得
     public enum MISSION_TYPE
     {
-        COLLECT = 0,    //収集
+        TRAINING = 0,   //トレーニング(ステータス)
+        COLLECT ,    //収集
         SUBJUGATION,//討伐
-        TRAINING,   //トレーニング
     }
     private MISSION_TYPE mMisisonNumber = MISSION_TYPE.COLLECT;
     
@@ -36,9 +36,24 @@ public class CS_MissionPhaseData : MonoBehaviour
     {
         return mMissionContentsNums[_contentsNum];
     }
+
+    //ステータスミッション番号
+    readonly public int sColor = 0;//文字色
+    readonly public int sCut = 1;//カットイン
+    readonly public int sPreAttack = 2;//先制攻撃
+    readonly public int sRev = 3;//復活
+    readonly public int sEquipmentRank = 4;//装備ランク
+
+    //イベントミッション番号
+    readonly public int eSkill = 0;//スキル獲得
+
+    //チケットミッション
+    readonly public int tPreAttack = 0;//先制攻撃
+    readonly public int tPreRev = 1;//復活
+
     /// </summary>-----------------------------------------------------------------
 
-    
+
     //選択方式演出の選択成功フラグ(項目番号:11,12,18,19)
     private bool isChoiceSuccess = false;
     public bool GetChoiceSuccess() { return isChoiceSuccess; }

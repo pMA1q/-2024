@@ -9,8 +9,6 @@ public class CS_RightAttckerBallDestroy : MonoBehaviour
 
     private void Start()
     {
-        //ƒeƒXƒg
-        mAttaker.AttakerOpen(3);
     }
     private void OnTriggerEnter(Collider other)
     {
