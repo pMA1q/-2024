@@ -168,7 +168,6 @@ public class CS_BossPhaseController : MonoBehaviour
     private IEnumerator Lottery()
     {
         int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
-        if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
         mGameCount--;//ゲームカウントをへらす
 
@@ -201,6 +200,8 @@ public class CS_BossPhaseController : MonoBehaviour
         {
             randomNumber = mNextMissionNum;
         }
+
+        if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(randomNumber);
