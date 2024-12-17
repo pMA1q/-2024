@@ -1,5 +1,5 @@
 //-----------------------------
-//敵からから見たプレイヤー攻撃が当たった時の処理(ボスフェーズ項目番号:4)
+//敵からから見たプレイヤー攻撃が当たった時の処理(ボスフェーズ項目番号:5)
 //-----------------------------
 using System.Collections;
 using System.Collections.Generic;
@@ -17,19 +17,13 @@ public class CS_BP_4_Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    
+
     private void OnCollisionEnter(Collision collision)
     {
-        //ゲームオブジェクトのタグがPlayer?
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("プレイヤーが当たった");
-            //攻撃が当たった
-            PlayerAttackHit();
-        }
+
     }
 
     private void PlayerAttackHit()
@@ -53,7 +47,7 @@ public class CS_BP_4_Enemy : MonoBehaviour
         if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
         {
             //3秒後に演出を消す
-            rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 3f); 
+            rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 3f);
         }
         Debug.Log("演出終了");
     }
