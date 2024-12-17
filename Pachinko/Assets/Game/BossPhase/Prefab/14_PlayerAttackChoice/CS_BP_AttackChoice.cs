@@ -179,7 +179,7 @@ public class CS_BP_AttackChoice : MonoBehaviour
         {
             //ê¨å˜
             successionNum++;
-            mAfterChoicePrefab = Instantiate(mChoiceSuccessPrefab, Vector3.zero, Quaternion.identity);
+            mAfterChoicePrefab = Instantiate(mChoiceSuccessPrefab, Vector3.zero, mChoiceSuccessPrefab.transform.rotation);
             mAfterChoicePrefab.GetComponent<CS_SetPositionPerfPos>().Start();
             if (successionNum < 3)//òAë±ê≥âêîÇ™3
             {
