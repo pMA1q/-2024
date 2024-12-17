@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CS_SetCharaAnimState : MonoBehaviour
 {
+    public static string StateID = "StateID";
     [SerializeField]
     private int mState = 0;
 
@@ -17,8 +18,8 @@ public class CS_SetCharaAnimState : MonoBehaviour
         SetState(mState);  // —á: JumpState‚Ö‘JˆÚ
     }
 
-    void SetState(int stateID)
+    public void SetState(int _stateID)
     {
-        animator.SetInteger("StateID", stateID);
+        animator.SetInteger(StateID, _stateID);
     }
 }

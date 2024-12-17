@@ -355,6 +355,7 @@ public class CS_BossPhaseController : MonoBehaviour
         { 
             GameObject obj = Instantiate(mNowBossTable.infomation[_num].performance, Vector3.zero, Quaternion.identity);
             obj.name = mNowBossTable.infomation[_num].performance.name;//Clone‚ª•t‚©‚È‚¢‚æ‚¤‚É‚·‚é
+            obj.GetComponent<CS_SetPositionPerfPos>().Start();
         }
         else
         {

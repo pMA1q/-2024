@@ -19086,9 +19086,14 @@ MonoBehaviour:
   - {fileID: 7144967071714588428, guid: 611b12d3ac27995458151625e63cf83c, type: 3}
   - {fileID: 2851348079688611415, guid: b6588963ab6950248a476caee95e70e3, type: 3}
   - {fileID: 3287296361909855014, guid: ee9563e037f281d4e8daa650e086a721, type: 3}
+  mBGM:
+  - {fileID: 301587773258209136, guid: 424841fc7d939134e8ad2d66a94d7f7d, type: 3}
+  - {fileID: 301587773258209136, guid: 9fc97d4c2bc15734eab1904a35b756e5, type: 3}
+  - {fileID: 301587773258209136, guid: db9dc8e8814db114c9ae04b062102707, type: 3}
   mHeso: {fileID: 7602412641873340122}
   mDrawNum: {fileID: 0}
   mDrawNum2: {fileID: 332890383376395829}
+  mNowPhese: 0
 --- !u!4 &3631619335660295828
 Transform:
   m_ObjectHideFlags: 0
