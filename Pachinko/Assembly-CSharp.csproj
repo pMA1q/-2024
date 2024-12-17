@@ -201,6 +201,9 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
+    <Compile Include="Assets\Bokudayo\Script\CameraAspect.cs" />
+    <Compile Include="Assets\Bokudayo\Script\SceneLoader.cs" />
+    <Compile Include="Assets\Bokudayo\Script\QuitGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
