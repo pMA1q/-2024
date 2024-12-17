@@ -88,6 +88,7 @@
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
     <Compile Include="Assets\Game\Core\Script\Attacker\CS_LeftAttakerOpenClose.cs" />
+    <Compile Include="Assets\Game\CharacterData\CS_SetCharaAnimState.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Enemy.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />

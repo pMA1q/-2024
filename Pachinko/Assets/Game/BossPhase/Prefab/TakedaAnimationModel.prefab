@@ -4696,7 +4696,7 @@ GameObject:
   - component: {fileID: 6713118472566591689}
   - component: {fileID: 2577470395349667935}
   m_Layer: 0
-  m_Name: Takeda_Idel
+  m_Name: TakedaAnimationModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
