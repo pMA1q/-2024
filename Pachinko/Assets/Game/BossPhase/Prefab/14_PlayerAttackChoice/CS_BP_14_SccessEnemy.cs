@@ -16,13 +16,11 @@ public class CS_BP_14_SccessEnemy : MonoBehaviour
 
    
 
-   
-   
     private IEnumerator PlayerAttackHit()
     {
         yield return new WaitForSeconds(mStartDown);
 
-        GetComponent<Rigidbody>().AddForce(Vector3.right * 1000); // 後ろに倒れる力を加える
+        GetComponent<CS_SetCharaAnimState>().SetState(3);
 
         //敵のHPゲージを減らす
         mHpGuage.BossHpDown();
@@ -36,7 +34,7 @@ public class CS_BP_14_SccessEnemy : MonoBehaviour
         //体力ゲージの処理が終了するまでループ
         while (!mHpGuage.HpUpdateFinish) { yield return null; }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
        
         CS_BossPhaseData data = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();

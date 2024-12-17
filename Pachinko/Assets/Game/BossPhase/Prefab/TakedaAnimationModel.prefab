@@ -4695,6 +4695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6713118472566591689}
   - component: {fileID: 2577470395349667935}
+  - component: {fileID: -3966180288769606033}
   m_Layer: 0
   m_Name: TakedaAnimationModel
   m_TagString: Untagged
@@ -4743,6 +4744,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3966180288769606033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6224565133486688883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95af55e5c59ad54c90f95e2c4b18f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mState: 0
 --- !u!1 &6277109429013081379
 GameObject:
   m_ObjectHideFlags: 0
