@@ -21,5 +21,10 @@ public class SceneAnimatorParentManager : MonoBehaviour
         {
             sceneAnimator.SetBool("bRight", true);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            sceneAnimator.SetBool("bLeft", true);
+        }
     }
 }

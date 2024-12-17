@@ -53,18 +53,21 @@
     <UnityVersion>2021.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
+    <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttakerOpenClose.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\012\CSO_CameraInterpolation.cs" />
     <Compile Include="Assets\Bokudayo\Script\E_RanAway.cs" />
     <Compile Include="Assets\Fujisawa\CS_FCameraController.cs" />
+    <Compile Include="Assets\Game\Sample\7_EnemyAttack(small)\CS_BP_7_Player.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
+    <Compile Include="Assets\Game\Sample\7_EnemyAttack(small)\CS_BP_7_Enemy.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\012\CS_BP_NodevCameraMotion.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CSO_MissionPhaseTable.cs" />
     <Compile Include="Assets\Anim_CameraZoom\CameraZoomController.cs" />
@@ -84,6 +87,8 @@
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseController.cs" />
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
+    <Compile Include="Assets\Game\Core\Script\Attacker\CS_LeftAttakerOpenClose.cs" />
+    <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Enemy.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
@@ -99,12 +104,14 @@
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAMeshColliderCommon.cs" />
     <Compile Include="Assets\Game\BossPhase\Effect\3DTextureAnimation\CS_QuadEffectAnimation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
+    <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttckerBallDestroy.cs" />
     <Compile Include="Assets\Game\BossPhase\CS_CameraWander.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseData.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\Heso.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_TitleFadeMission.cs" />
+    <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Player.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\CameraSizeAdjuster\CameraSizeAdjuster.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
@@ -115,6 +122,7 @@
     <Compile Include="Assets\Bokudayo\Script\P_RanAway.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
+    <Compile Include="Assets\nozaki\RoomChoice\Script\RoomSelect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderBuilder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
@@ -154,9 +162,9 @@
     <Compile Include="Assets\Game\Core\Script\Attacker\CS_LeftattakerBallDestroy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
-    <Compile Include="Assets\feature\yamaguchi\Script\CS_ShojiController.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\Title\CS_TitleFadeBoss.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\nozaki\RoomChoice\Script\SceneAnimatorParentManager.cs" />
     <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3ChoiceTicket.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberRail.cs" />
@@ -192,9 +200,6 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Colision.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
-    <Compile Include="Assets\Game\Core\Script\Attacker\CS_LeftAttakerOpenClose.cs" />
-    <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttakerOpenClose.cs" />
-    <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttckerBallDestroy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -479,12 +484,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
