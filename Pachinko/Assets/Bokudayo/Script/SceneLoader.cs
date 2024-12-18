@@ -7,6 +7,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadNextScene()
     {
         // 次のシーン（シーン名を変更してください）
-        SceneManager.LoadScene("Defeat");  // Scene2に遷移
+        SceneManager.LoadScene("PachinkoScene");  // PachinkoSceneに遷移
     }
 }
