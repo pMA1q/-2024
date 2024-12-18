@@ -9,9 +9,13 @@ public class CS_TitleFadeBoss : MonoBehaviour
     private CS_Controller bigController; // コントローラーへの参照（フェーズ管理用）
     public CS_Controller.PACHINKO_PHESE nextPhase; // 遷移先のフェーズを指定
 
+    private GameObject mNumberRail;
+
     private void OnEnable()
     {
         bigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
+        mNumberRail = bigController.NumberRail;
+        mNumberRail.SetActive(false);
         // フェードアウト開始
         StartCoroutine(FadeOutPanelAndTransition());
     }
@@ -25,6 +29,7 @@ public class CS_TitleFadeBoss : MonoBehaviour
         {
             bigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOSS);
             bigController.CreateController();
+            mNumberRail.SetActive(true);
             Debug.Log($"{nextPhase} フェーズへ移行しました");
         }
         else

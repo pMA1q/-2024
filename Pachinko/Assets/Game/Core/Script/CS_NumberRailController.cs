@@ -13,6 +13,8 @@ public class CS_NumberRailController : MonoBehaviour
 
     Coroutine mCoroutine = null;  // ƒRƒ‹[ƒ`ƒ“‚ÌÀs‚ğŠÇ—‚·‚é•Ï”
 
+    IEnumerator enumerator;
+
     private float mVariationTime = 8.0f;
 
     private float mNowTime = 0.0f;
@@ -25,6 +27,7 @@ public class CS_NumberRailController : MonoBehaviour
         mBigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         if (!mBigCtrl) { Debug.LogError("BigController‚ª–³‚¢"); }
         //for (int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(1.0f); }
+        enumerator = RealTex();
     }
     // Update is called once per frame
     void Update()
@@ -48,13 +51,41 @@ public class CS_NumberRailController : MonoBehaviour
 
     public void StartPattenRail()
     {
-        if(mCoroutine == null)
+        if(enumerator == null) { enumerator = RealTex(); }
+        if(mCoroutine == null && enumerator != null)
         {
             mVariationTime = mBigCtrl.VariationTimer-1.0f;//•Ï“®ŠÔİ’è
-            mCoroutine = StartCoroutine(RealTex());
+            mCoroutine = StartCoroutine(enumerator);
         }
     }
 
+    public void Rail777()
+    {
+        StopCoroutine(enumerator);
+        enumerator = null;
+        mCoroutine = null;
+
+        StartCoroutine(RealTex7()); 
+    }
+
+
+    private IEnumerator RealTex7()
+    {
+        while (!mBigCtrl.PerformanceSemiFinish) { yield return null; }
+        mNumRails[0].StopStart(7);
+
+        mNumRails[2].StopStart(7);
+
+        
+        mNumRails[1].StopStart(7);
+
+        yield return new WaitForSeconds(2.0f);
+        //i—ß“ƒ‚É}•¿•Ï“®I—¹‚ğ“`‚¦‚é
+        mBigCtrl.PatternVariationFinish();
+
+        isVariation = false;
+        mNowTime = 0.0f;
+    }
     //}•¿•Ï“®
     private IEnumerator RealTex()
     {
@@ -91,6 +122,7 @@ public class CS_NumberRailController : MonoBehaviour
         mNowTime = 0.0f;
 
         mCoroutine = null;
+        enumerator = null;
 
         yield return null;
     }
