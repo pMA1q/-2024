@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneAnimatorParentManager : MonoBehaviour
+public class RoomSelectAnimatorManager : MonoBehaviour
 {
 
     [SerializeField, Header("アニメーター")]
