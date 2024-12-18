@@ -168,7 +168,7 @@ public class CS_BossPhaseController : MonoBehaviour
     private IEnumerator Lottery()
     {
         int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
-
+        if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
         mGameCount--;//ゲームカウントをへらす
 
         string name = mNowBossTable.infomation[randomNumber].name;
@@ -185,8 +185,20 @@ public class CS_BossPhaseController : MonoBehaviour
         {
             mNoDevObj.SetActive(false);
             mCompetitionObj = Instantiate(mCompetition, Vector3.zero, Quaternion.identity); //攻撃するなら競り合いのシーンを入れる
+            Debug.Log("競り合いシーンを生成しました");
+            CS_BP_CompetitionController competition = mCompetitionObj.GetComponent<CS_BP_CompetitionController>();
 
-            yield return new WaitForSeconds(6f);
+            float t = 0f;
+            while(t <= 6f)
+            {
+                t += Time.deltaTime;
+                if(competition.isActiveAndEnabled)  
+                {
+                    if (competition.NoHaveTikets()) { break; }
+                    else { yield return null; }
+                   
+                }
+            }
 
             randomNumber = ChangePerfNumber(randomNumber);//選んだチケットに応じて演出番号変更
         }
@@ -226,12 +238,13 @@ public class CS_BossPhaseController : MonoBehaviour
 
     bool CheackPlayerAttack(int _random)
     {
-        int[] competitionNum = new int[] { 4, 5,6,10,12,13,17,19,20,24 };
+        int[] competitionNum = new int[] { 4, 5,6,10,12,14,17,19,20,24 };
         for (int i = 0; i < competitionNum.Length; i++)
         {
             if (competitionNum[i] == _random + 1)
             {
                 return true;
+                Debug.Log("競り合いシーンを生成します");
             }
         }
         return false;

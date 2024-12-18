@@ -55,6 +55,23 @@ public class CS_NumberRailController : MonoBehaviour
         }
     }
 
+    public void Rail777()
+    {
+        StopCoroutine(RealTex());
+
+        mNumRails[0].StopStart(7);
+        mNumRails[2].StopStart(7);
+        mNumRails[1].StopStart(7);
+
+        //i—ß“ƒ‚É}•¿•Ï“®I—¹‚ğ“`‚¦‚é
+        mBigCtrl.PatternVariationFinish();
+
+        isVariation = false;
+        mNowTime = 0.0f;
+
+        mCoroutine = null;
+    }
+
     //}•¿•Ï“®
     private IEnumerator RealTex()
     {

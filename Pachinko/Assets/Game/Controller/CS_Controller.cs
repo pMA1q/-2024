@@ -36,6 +36,9 @@ public class CS_Controller : MonoBehaviour
     [SerializeField, Header("図柄表示")]
     private CS_NumberRailController mDrawNum2;
 
+    public GameObject NumberRail { get{ return mDrawNum2.gameObject; } }
+    public CS_NumberRailController NumberRailController { get{ return mDrawNum2; } }
+
     [SerializeField]
     private PACHINKO_PHESE mNowPhese = PACHINKO_PHESE.SET;//現在のフェーズ
     private PACHINKO_PHESE mPrevPhese = PACHINKO_PHESE.SET;//前ののフェーズ
@@ -149,6 +152,10 @@ public class CS_Controller : MonoBehaviour
 
     }
 
+    public void Set777()
+    {
+        mDrawNum2.Rail777();
+    }
 
 
     public int[] GetPatterns()
