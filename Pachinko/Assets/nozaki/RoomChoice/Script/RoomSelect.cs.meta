@@ -3,7 +3,14 @@ guid: e35fb6fbd789f2e41a737a41b09c77d4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cameraAnimator: {instanceID: 0}
+  - leftEnemy: {fileID: 6224565133486688883, guid: 61ae6ced193336740825c037edc03fa3,
+      type: 3}
+  - rightEnemy: {fileID: 6224565133486688883, guid: 61ae6ced193336740825c037edc03fa3,
+      type: 3}
+  - leftEmpty: {instanceID: 0}
+  - rightEmpty: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
