@@ -32303,7 +32303,7 @@ MonoBehaviour:
   mHeso: {fileID: 2590659114508426617}
   mDrawNum: {fileID: 0}
   mDrawNum2: {fileID: 5686998166740702614}
-  mNowPhese: 0
+  mNowPhese: 2
 --- !u!1 &8652811482080439593
 GameObject:
   m_ObjectHideFlags: 0
