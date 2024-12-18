@@ -36,6 +36,9 @@ public class CS_Controller : MonoBehaviour
     [SerializeField, Header("図柄表示")]
     private CS_NumberRailController mDrawNum2;
 
+    public GameObject NumberRail { get{ return mDrawNum2.gameObject; } }
+    public CS_NumberRailController NumberRailController { get{ return mDrawNum2; } }
+
     [SerializeField]
     private PACHINKO_PHESE mNowPhese = PACHINKO_PHESE.SET;//現在のフェーズ
     private PACHINKO_PHESE mPrevPhese = PACHINKO_PHESE.SET;//前ののフェーズ
@@ -124,6 +127,9 @@ public class CS_Controller : MonoBehaviour
             }
             Destroy(mNowBGM);
         }
+        mPerformanceFinish = true;
+        mPerformanceSemiFinish = true;
+        mPatternVariationFinish = true;
         GameObject ctrl = Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
         ctrl.name = mCtrls[(int)mNowPhese].name;
         mNowBGM = Instantiate(mBGM[(int)mNowPhese], Vector3.zero, Quaternion.identity);
@@ -142,14 +148,18 @@ public class CS_Controller : MonoBehaviour
         mPerformanceFinish = false;//演出終了フラグをfalse
         mPerformanceSemiFinish = false;//演出終了(仮)フラグをfalse
 
-        mPattern = CS_LotteryFunction.PatternLottery2(_win_lost); 
+        mPattern = CS_LotteryFunction.PatternLottery2(_win_lost);
         //Debug.Log("図柄:" + mHeso.stock[0][0] + "," + mHeso.stock[0][1] + "," + mHeso.stock[0][2] + ",");
+        if (!mDrawNum2.gameObject.activeSelf) { mDrawNum2.gameObject.SetActive(true); }
         if(mDrawNum != null) {  mDrawNum.StartPatternVariation();}
         if(mDrawNum2 != null) {  mDrawNum2.StartPattenRail();}
 
     }
 
-
+    public void Set777()
+    {
+        mDrawNum2.Rail777();
+    }
 
     public int[] GetPatterns()
     {
@@ -195,6 +205,7 @@ public class CS_Controller : MonoBehaviour
             JackPotPerf = true;
             GetComponent<CS_CommonData>().LeftAttakerStart(3);
         }
+        Debug.Log("図柄終了");
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除
     }

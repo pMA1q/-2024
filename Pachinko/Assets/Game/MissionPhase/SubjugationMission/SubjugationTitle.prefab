@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7144967071714588424}
-  - component: {fileID: 3323118581998630172}
+  - component: {fileID: 5729868451291580138}
   m_Layer: 0
   m_Name: SubjugationTitle
   m_TagString: Untagged
@@ -159,7 +159,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3323118581998630172
+--- !u!114 &5729868451291580138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,11 +168,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7144967071714588428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1634be21a77333649bb705cc3f83926d, type: 3}
+  m_Script: {fileID: 11500000, guid: da1c6f032f2f2fb4b8ca58357630083a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelImage: {fileID: 2641610288249066405}
+  panelText: {fileID: 5724005239649643008}
   fadeOutTime: 3
-  nextPhase: 2
+  bigController: {fileID: 0}
+  nextPhase: 0
 --- !u!1 &8420349362198264333
 GameObject:
   m_ObjectHideFlags: 0

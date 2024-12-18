@@ -29,6 +29,14 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return mUseTiket; }
     }
 
+    private bool mLastAttack = false;
+    //復活フラグの設定、取得
+    public bool LastAttack
+    {
+        set { mLastAttack = value; }
+        get { return mLastAttack; }
+    }
+
     //1変動時のプレイヤーの攻撃量(項目番号:4,10,11,14,17,26)
     private float mPlayerOneAttackPow;
     //攻撃量の設定、取得
@@ -221,7 +229,7 @@ public class CS_BossPhaseData : MonoBehaviour
 
     public void ResetData()
     {
-
+        isSubjugation = false;
     }
 
     private void OnApplicationQuit()

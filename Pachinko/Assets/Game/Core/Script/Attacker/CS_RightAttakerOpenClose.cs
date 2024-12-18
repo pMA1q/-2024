@@ -35,7 +35,7 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsAttakerEnable && IsAttackOpen)
+        if (IsAttakerEnable)
         {
             if (IsAttackOpen) 
             {
@@ -129,16 +129,20 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     public void AttakerOpen_V_Bounus()
     {
         Prize = 0;
+        this.transform.eulerAngles = new Vector3(defaultRotation.x, defaultRotation.y, openRot);
         IsAttakerEnable = true;
         IsInV_Open = true;
+        IsInV_Spot = false;
     }
 
     private void V_Spot_Update()
     {
+        Debug.Log("V“üÜ‘Ò‚¿");
         if (Prize >= 1)
         {
             IsInV_Spot = true;
             IsInV_Open = false;
+            IsAttakerEnable = false;
             Prize = 0;
             this.transform.rotation = defaultRotation;
         }

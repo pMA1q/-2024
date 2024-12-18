@@ -22,11 +22,13 @@ public class CS_BP_CompetitionController : MonoBehaviour
 
     bool IsOnePush = false;
     Button[] buttons;
+
+    public bool NoHaveTikets() { return mTikets.Count == 0; }
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         mBossData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();
-        if(mBossData == null) { Debug.LogWarning("CS_BossPhaseDataが無い"); }
+        if (mBossData == null) { Debug.LogWarning("CS_BossPhaseDataが無い"); }
         mPlayerStatus = mBossData.PlayerStatus;
         mTiketNum[0] = mPlayerStatus.ticket.special;
         mTiketNum[1] = mPlayerStatus.ticket.partner;
@@ -41,9 +43,11 @@ public class CS_BP_CompetitionController : MonoBehaviour
                 mTikets.RemoveAt(i);
                 mTiketNum.RemoveAt(i);
                 mTiketNumbers.RemoveAt(i);
+                i --;
             }
+            
         }
-
+        Debug.Log("チケットカウント" + mTikets.Count);
         //0番目意外の画像を非選択時の色に変更
         for (int i = 1; i < mTikets.Count; i++)
         {

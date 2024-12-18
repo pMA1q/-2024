@@ -63,7 +63,7 @@ public class CS_Boss1_Unique : CS_BossUnique
             attack = mBossData.BossOneBlockHp*2;//çUåÇóÕ(íÜ)Ç…Ç∑ÇÈ
         }
 
-        mBossData.PlayerOneAttackPow = attack;
+        mBossData.PlayerOneAttackPow = 4;
 
         CheckPlayerkPowerUp(4);
         playerAttack = true;
