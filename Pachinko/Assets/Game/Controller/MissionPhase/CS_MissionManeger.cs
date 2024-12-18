@@ -35,7 +35,7 @@ public class CS_MissionManeger : MonoBehaviour
     private CS_MissionPhaseData missionData;//司令塔(大)
     private CS_CommonData mData;//共通データ
 
-    private int mGameCount = 20;//入賞数
+    private int mGameCount = 5;//入賞数
 
     private GameObject mNoDevObj;
 
@@ -107,6 +107,8 @@ public class CS_MissionManeger : MonoBehaviour
         
         UniquePerformance();//ユニークなミッションならば報酬または次のミッション番号を決める
 
+        Debug.Log("aaa");
+
         //入賞数が20？
         if (mGameCount <= 0 && mNextMissionNum == -1)
         {
@@ -131,7 +133,7 @@ public class CS_MissionManeger : MonoBehaviour
        
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
-        int randomNumber = CS_LotteryFunction.LotNormalInt(17);//一旦項目17までに限定する
+        int randomNumber = CS_LotteryFunction.LotNormalInt(10);//一旦項目17までに限定する
         if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
         mGameCount--;//入賞数減算
@@ -178,6 +180,7 @@ public class CS_MissionManeger : MonoBehaviour
         mBackupNumber = _perfNumber;
         //保留玉使用（変動開始）
         bigController.UseStock(WIN_LOST.LOST);
+        mCoroutine = StartCoroutine(AfterLotteryNodev());
         bigController.PerformanceSemiFinish = true;
         bigController.PerformanceFinish();//演出は行わないので終了フラグを立てる
         
@@ -300,7 +303,7 @@ public class CS_MissionManeger : MonoBehaviour
         Debug.Log("ボスフェーズへ移行します");
         Destroy(mNoDevObj); // 無発展オブジェクト削除
 
-        Remuneration();//報酬獲得処理
+        //Remuneration();//報酬獲得処理
 
         // 次のフェーズの準備処理
         CS_BossPhaseHandler bossPhaseHandler = gameObject.GetComponent<CS_BossPhaseHandler>();
@@ -379,6 +382,13 @@ public class CS_MissionManeger : MonoBehaviour
         }
     }
 
+    private IEnumerator AfterLotteryNodev()
+    {
+        //演出が終わるまで処理を進めない
+        while (!bigController.GetPatternVariationFinish()) { yield return null; }
+        Debug.Log("図柄変動が終了しました");
+        mCoroutine = null;
+    }
     //抽選後処理
     private IEnumerator AfterLottery(int _perfNum)
     {

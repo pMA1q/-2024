@@ -19470,6 +19470,7 @@ MonoBehaviour:
   winningPlayer: {fileID: 5935004623296033133}
   winningSE: {fileID: 301587773258209136, guid: c5a78b4ebca1794488d8c9359df48ded,
     type: 3}
+  winningCanvas: {fileID: 0}
 --- !u!1 &3978615546715492079
 GameObject:
   m_ObjectHideFlags: 0
@@ -29781,6 +29782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c56d06daf99d324db6fbcf7c7e650e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winUI: {fileID: 7230081561538012776}
 --- !u!1 &5950975758904095731
 GameObject:
   m_ObjectHideFlags: 0

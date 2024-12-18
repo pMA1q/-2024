@@ -5,7 +5,7 @@ using UnityEngine;
 public class CS_PlayerWinning : MonoBehaviour
 {
     [SerializeField]
-    //private GameObject winUI;
+    private GameObject winUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,20 +20,22 @@ public class CS_PlayerWinning : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        
         CS_Controller bigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         bigCtrl.Set777();
 
+        
         GameObject rootObject = transform.root.gameObject;
         if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
         {
-            rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 0.1f); ;//引数2:プレハブを消すまでの時間(秒)
+            rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 1f); ;//引数2:プレハブを消すまでの時間(秒)
         }
-
         CS_BossPhaseData bData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BossPhaseData>();
         bData.IsSubjugation = true;
-       
-       
+        while (!bigCtrl.GetPatternVariationFinish() || !bigCtrl.GetPerformanceFinish()) { yield return null; }
+
+        
+
+        Destroy(winUI);
     }
     
 }

@@ -21,6 +21,9 @@ public class CS_BossPhaseController : MonoBehaviour
     [SerializeField, Header("競り合い")]
     private GameObject mCompetition;
 
+    [SerializeField, Header("ラストアタック")]
+    private GameObject mLastAttack;
+
     [SerializeField, Header("デバッグ番号(項目番号-1の値)")]
     [Header("デバッグしないなら-1")]
     private int mDebugNumber = -1;
@@ -49,12 +52,12 @@ public class CS_BossPhaseController : MonoBehaviour
     }
 
     private int mNextMissionNum = -1;
-    private int mGameCount = 10;
-    public int GameCount
-    {
-        set { mGameCount = value; }
-        get { return mGameCount; }
-    }
+    private int mGameCount = 3;
+    //public int GameCount
+    //{
+    //    set { mGameCount = value; }
+    //    get { return mGameCount; }
+    //}
 
     private int mBackupNumber = 0;
 
@@ -118,6 +121,7 @@ public class CS_BossPhaseController : MonoBehaviour
         //ボス討伐
         if(mBossData.IsSubjugation)
         {
+            if (!mController.CanVariationStart()) { return; }
             Subjugation();
             return;
         }
@@ -132,6 +136,7 @@ public class CS_BossPhaseController : MonoBehaviour
         //残りゲーム数が0以下で次のミッションのフラグも立っていない？
         if (mGameCount <= 0 && mNextMissionNum <= -1)
         {
+            Debug.Log("カウント" + mGameCount);
             RemoveAllHandlers();
             StartNextPhase();
             //Destroy(this.gameObject);
@@ -220,6 +225,8 @@ public class CS_BossPhaseController : MonoBehaviour
         //次の演出番号が-1じゃないなら再抽選結果を入れる
         if (mNextMissionNum > -1) { randomNumber = mNextMissionNum; }
 
+       
+
         Debug.Log("再抽選番号:" + mNextMissionNum);
         Debug.Log("番号:" + randomNumber);
         name = mNowBossTable.infomation[randomNumber].name;
@@ -250,6 +257,14 @@ public class CS_BossPhaseController : MonoBehaviour
         return false;
     }
 
+    bool CheckLastAttack()
+    {
+        float attackPow = Mathf.Ceil(mBossData.PlayerOneAttackPow / mBossData.BossOneBlockHp);
+        float bossHp = mBossData.BossStatus.infomations[mBossData.BossNumber].hp - attackPow;
+        return bossHp <= 0.0f;
+
+    }
+
     private int ChangePerfNumber(int _randomNum)
     {
         _randomNum++;//一旦項目番号にする
@@ -278,6 +293,7 @@ public class CS_BossPhaseController : MonoBehaviour
         Destroy(mGuageObj);
         Debug.Log("次のフェーズへ移行します");
         mController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
+        mController.CreateController();
         Destroy(this.gameObject);
 
     }
@@ -357,15 +373,20 @@ public class CS_BossPhaseController : MonoBehaviour
 
         mNoDevObj.SetActive(true);
 
-
-
         mCoroutine = null;
     }
 
     private void PlayPerformance(int _num)
     {
         if(mNowBossTable.infomation[_num].performance != null)
-        { 
+        {
+            if (CheckLastAttack())
+            {
+                mCompetitionObj.SetActive(false);
+                mNoDevObj.SetActive(false);
+                Instantiate(mLastAttack, Vector3.zero, mLastAttack.transform.rotation);
+                return;
+            }
             GameObject obj = Instantiate(mNowBossTable.infomation[_num].performance, Vector3.zero, mNowBossTable.infomation[_num].performance.transform.rotation);
             obj.name = mNowBossTable.infomation[_num].performance.name;//Cloneが付かないようにする
             obj.GetComponent<CS_SetPositionPerfPos>().Start();
@@ -378,6 +399,42 @@ public class CS_BossPhaseController : MonoBehaviour
         
     }
 
+    //空のコルーチン
+    private IEnumerator Empty()
+    {
+        yield return new WaitForSeconds(2f);
+        if (mCompetitionObj != null)
+        {
+            Destroy(mCompetitionObj); //競り合いのオブジェクトを消す
+            GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>().ButtonsInteractable();//ボタンを有効にする
+        }
+        mNoDevObj.SetActive(false);
+       
+        //演出が終わるまで処理を進めない
+        while (!mController.GetPatternVariationFinish()) { yield return null; }
+        //Debug.Log("演出終了(仮)" + bigController.PerformanceSemiFinish);
+
+      
+        CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+
+        while (!guage.HpUpdateFinish) { yield return null; }
+
+        Debug.Log("HP更新終了");
+
+
+        //演出終了を知らせる
+        //GameObject rootObject = transform.root.gameObject;
+        //if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
+        //{
+        //    //3秒後に演出を消す
+        //    rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(false, 0f);
+        //}
+        //mController.PerformanceFinish();
+        while (!mController.GetPerformanceFinish()) { yield return null; }
+
+
+        mCoroutine = null;
+    }
     //登録されているイベントハンドラをすべて削除
     public static void RemoveAllHandlers()
     {

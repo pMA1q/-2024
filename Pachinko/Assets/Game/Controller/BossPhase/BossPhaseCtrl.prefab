@@ -52,4 +52,6 @@ MonoBehaviour:
     type: 3}
   mCompetition: {fileID: 8840276981696036596, guid: 01632a38b4531e7499f4e515cb59b8dd,
     type: 3}
-  mDebugNumber: 5
+  mLastAttack: {fileID: 2693174054406052321, guid: 34fb68aaa2b13f7459b600c1c812a911,
+    type: 3}
+  mDebugNumber: 3
