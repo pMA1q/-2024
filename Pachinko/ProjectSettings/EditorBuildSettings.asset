@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PachinkoScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/Bokudayo/Scene/Title.unity
     guid: a9e5c089142430640b9d41ee75a50833
   - enabled: 1
+    path: Assets/Scenes/PachinkoScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
     path: Assets/Bokudayo/Scene/Defeat.unity
     guid: 25d427111b3d2b74782dfcbd4d6d39fc
   m_configObjects: {}
