@@ -20,6 +20,15 @@ public class EnemyController : MonoBehaviour
     private Quaternion targetRotation;
     private float rotationTime;
 
+    // 倒れるための回転パラメータ
+    private bool isKnockedDown = false;
+    private float knockdownRotationTime = 0f;
+    public float knockdownDuration = 3f;  // 倒れる動作の時間を調整（大きくするほど遅く倒れる）
+    public float knockdownDelay = 1f;    // 倒れるまでの遅延時間（例えば1秒遅らせる）
+
+    // 倒れる動作開始の時間
+    private float knockdownStartTime;
+
     void Update()
     {
         // 逃げる動作がオンの場合にのみ実行
@@ -39,6 +48,24 @@ public class EnemyController : MonoBehaviour
                 transform.position += Vector3.back * escapeSpeed * Time.deltaTime;  // `Vector3.back`で-1方向に移動
             }
         }
+
+        // 倒れるアニメーション（回転を適用）
+        if (isKnockedDown)
+        {
+            // 倒れるまでの遅延が経過した後、倒れ始める
+            if (Time.time - knockdownStartTime >= knockdownDelay)
+            {
+                // 倒れる動作の進行
+                knockdownRotationTime += Time.deltaTime / knockdownDuration;  // knockdownDurationで倒れる時間を調整
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(-90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), knockdownRotationTime);
+
+                // 回転が完了したら倒れた状態に保持
+                if (knockdownRotationTime >= 1f)
+                {
+                    isKnockedDown = false; // これで倒れる動作が終了
+                }
+            }
+        }
     }
 
     // 逃げる処理を開始
@@ -56,6 +83,14 @@ public class EnemyController : MonoBehaviour
             isEscaping = true;
             escapeStartTime = Time.time + 2f; // 2秒後に逃げる開始
         }
+    }
+
+    // 攻撃を受けて倒れる処理
+    public void KnockDown()
+    {
+        isKnockedDown = true;  // 倒れる処理を開始
+        knockdownRotationTime = 0f; // 初期化
+        knockdownStartTime = Time.time;  // 倒れる動作を開始した時間を記録
     }
 
     // 逃げる動作を停止するためのメソッド（オプション）
