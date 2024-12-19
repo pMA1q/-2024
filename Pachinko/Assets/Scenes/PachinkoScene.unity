@@ -32303,6 +32303,8 @@ MonoBehaviour:
   mHeso: {fileID: 2590659114508426617}
   mDrawNum: {fileID: 0}
   mDrawNum2: {fileID: 5686998166740702614}
+  mBigNumberScale: {x: 0.85, y: 0.85, z: 0.85}
+  mBigNumberPosition: {x: 374, y: -260, z: 1}
   mNowPhese: 0
 --- !u!1 &8652811482080439593
 GameObject:
