@@ -14,6 +14,9 @@ public class CS_BP_AttackChoice : MonoBehaviour
     [SerializeField, Header("選択成功時の演出プレハブ")]
     private GameObject mChoiceSuccessPrefab;
 
+    [SerializeField, Header("ラストアタック")]
+    private GameObject mChoiceLastAttackPrefab;
+
     [SerializeField, Header("選択失敗時の演出プレハブ")]
     private GameObject mChoiceFailedPrefab;
 
@@ -177,6 +180,13 @@ public class CS_BP_AttackChoice : MonoBehaviour
         //選択後の演出を生成
         if (selectNum == mSuccessNum)
         {
+            if(bossData.LastAttack)
+            {
+                mAfterChoicePrefab = Instantiate(mChoiceLastAttackPrefab, Vector3.zero, mChoiceLastAttackPrefab.transform.rotation);
+                mAfterChoicePrefab.GetComponent<CS_SetPositionPerfPos>().Start();
+                Destroy(transform.root.gameObject);
+                return;
+            }
             //成功
             successionNum++;
             mAfterChoicePrefab = Instantiate(mChoiceSuccessPrefab, Vector3.zero, mChoiceSuccessPrefab.transform.rotation);

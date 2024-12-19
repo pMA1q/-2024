@@ -16294,7 +16294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7912663765531551408}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 10000, y: -18, z: 80.34234}
+  m_LocalPosition: {x: 9985, y: -18, z: 39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32305,7 +32305,7 @@ MonoBehaviour:
   mDrawNum2: {fileID: 5686998166740702614}
   mBigNumberScale: {x: 0.85, y: 1, z: 0.85}
   mBigNumberPosition: {x: 374, y: -262, z: 1}
-  mNowPhese: 2
+  mNowPhese: 0
 --- !u!1 &8652811482080439593
 GameObject:
   m_ObjectHideFlags: 0
