@@ -5,6 +5,9 @@ using UnityEngine;
 public class CS_PlayerWinning : MonoBehaviour
 {
     [SerializeField]
+    private GameObject winCanvas;
+
+    [SerializeField]
     private GameObject winUI;
 
     private CS_Controller mController;
@@ -13,18 +16,23 @@ public class CS_PlayerWinning : MonoBehaviour
     {
         StartCoroutine(Finish());
         mController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
+        winUI.SetActive(false);
     }
 
 
     private IEnumerator Finish()
     {
         CS_Controller bigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
+        //1•bŒã‚ÉŸ—˜UI‚ğ•\¦
+        yield return new WaitForSeconds(2f);
+        winUI.SetActive(true);
+
+        // 3•bŒã‚É}•¿‚ğ‘å‚«‚­‰f‚·
         yield return new WaitForSeconds(3f);
         bigCtrl.NumberRailBigger();
 
-        yield return new WaitForSeconds(4f);
-
-        
+        // 3•bŒã‚É777‚Å}•¿•Ï“®‚ğ~‚ß‚é
+        yield return new WaitForSeconds(2f);
         bigCtrl.Set777();
 
         
@@ -39,8 +47,7 @@ public class CS_PlayerWinning : MonoBehaviour
 
         bigCtrl.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
 
-        Destroy(winUI);
-
+        Destroy(winCanvas);
     }
     
 }
