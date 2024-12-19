@@ -35,7 +35,7 @@ public class CS_MissionManeger : MonoBehaviour
     private CS_MissionPhaseData missionData;//司令塔(大)
     private CS_CommonData mData;//共通データ
 
-    private int mGameCount = 5;//入賞数
+    public int mGameCount = 20;//入賞数
 
     private GameObject mNoDevObj;
 
@@ -107,8 +107,6 @@ public class CS_MissionManeger : MonoBehaviour
         
         UniquePerformance();//ユニークなミッションならば報酬または次のミッション番号を決める
 
-        Debug.Log("aaa");
-
         //入賞数が20？
         if (mGameCount <= 0 && mNextMissionNum == -1)
         {
@@ -130,10 +128,12 @@ public class CS_MissionManeger : MonoBehaviour
         //保留玉が無いなら終了
         if (bigController.GetStock() == 0) { return; }
 
-       
+
+        int[] numbers = new int[] { 0, 1, 2, 12, 13 };
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
-        int randomNumber = CS_LotteryFunction.LotNormalInt(10);//一旦項目17までに限定する
+        //int randomNumber = CS_LotteryFunction.LotNormalInt(10);//一旦項目17までに限定する
+        int randomNumber = numbers[CS_LotteryFunction.LotNormalInt(numbers.Length)];//一旦項目17までに限定する
         if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
         mGameCount--;//入賞数減算
@@ -155,7 +155,7 @@ public class CS_MissionManeger : MonoBehaviour
 
 
         //再抽選確認。当選すれば次のミッション決定
-        mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
+        //mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
         //次の演出番号が-1じゃないなら再抽選結果を入れる
         if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
 

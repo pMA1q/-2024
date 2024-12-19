@@ -34,7 +34,13 @@ public class CS_BossPhaseData : MonoBehaviour
     public bool LastAttack
     {
         set { mLastAttack = value; }
-        get { return mLastAttack; }
+        get 
+        {
+            float attackPow = Mathf.Ceil(PlayerOneAttackPow / mBossOneBlockHp);
+            float bossHp = BossStatus.infomations[BossNumber].hp - attackPow;
+            mLastAttack = bossHp <= 0.0f;
+            return mLastAttack; 
+        }
     }
 
     //1•Ï“®Žž‚ÌƒvƒŒƒCƒ„[‚ÌUŒ‚—Ê(€–Ú”Ô†:4,10,11,14,17,26)
@@ -230,6 +236,8 @@ public class CS_BossPhaseData : MonoBehaviour
     public void ResetData()
     {
         isSubjugation = false;
+        isBossAttack = false;
+        isPlayerAttack = false;
     }
 
     private void OnApplicationQuit()
