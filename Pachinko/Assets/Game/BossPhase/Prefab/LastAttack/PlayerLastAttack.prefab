@@ -17370,6 +17370,7 @@ GameObject:
   - component: {fileID: 1872531855378621599}
   - component: {fileID: 3033919216378586020}
   - component: {fileID: 4013332454981866318}
+  - component: {fileID: 3324795644149030864}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -17469,6 +17470,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mState: 0
+--- !u!114 &3324795644149030864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3186894413080096712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43c656ba75ed37449c62c543fc7f6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTimer: 9.5
 --- !u!1 &3191521601089922778
 GameObject:
   m_ObjectHideFlags: 0
@@ -19470,7 +19484,6 @@ MonoBehaviour:
   winningPlayer: {fileID: 5935004623296033133}
   winningSE: {fileID: 301587773258209136, guid: c5a78b4ebca1794488d8c9359df48ded,
     type: 3}
-  winningCanvas: {fileID: 0}
 --- !u!1 &3978615546715492079
 GameObject:
   m_ObjectHideFlags: 0

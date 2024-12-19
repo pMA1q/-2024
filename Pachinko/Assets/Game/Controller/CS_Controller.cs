@@ -36,6 +36,17 @@ public class CS_Controller : MonoBehaviour
     [SerializeField, Header("ê}ïøï\é¶")]
     private CS_NumberRailController mDrawNum2;
 
+    private Vector3 mDefaultNumberScale;
+
+
+    private Vector3 mDefaultNumberPosition;
+
+    [SerializeField]
+    private Vector3 mBigNumberScale;
+
+    [SerializeField]
+    private Vector3 mBigNumberPosition;
+
     public GameObject NumberRail { get{ return mDrawNum2.gameObject; } }
     public CS_NumberRailController NumberRailController { get{ return mDrawNum2; } }
 
@@ -86,6 +97,10 @@ public class CS_Controller : MonoBehaviour
     void Start()
     {
         CreateController();
+
+        RectTransform NumberTrans = mDrawNum2.GetComponent<RectTransform>();
+        mDefaultNumberScale = NumberTrans.localScale;
+        mDefaultNumberPosition = NumberTrans.localPosition ;
     }
 
     // Update is called once per frame
@@ -159,6 +174,20 @@ public class CS_Controller : MonoBehaviour
     public void Set777()
     {
         mDrawNum2.Rail777();
+    }
+
+    public void NumberRailBigger()
+    {
+        RectTransform NumberTrans = mDrawNum2.GetComponent<RectTransform>();
+        NumberTrans.localScale = mBigNumberScale;
+        NumberTrans.anchoredPosition = mBigNumberPosition;
+    }
+
+    public void NumberRailResetTrans()
+    {
+        RectTransform NumberTrans = mDrawNum2.GetComponent<RectTransform>();
+        NumberTrans.localScale = mDefaultNumberScale;
+        NumberTrans.localPosition = mDefaultNumberPosition;
     }
 
     public int[] GetPatterns()

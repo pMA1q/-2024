@@ -6,21 +6,25 @@ public class CS_PlayerWinning : MonoBehaviour
 {
     [SerializeField]
     private GameObject winUI;
+
+    private CS_Controller mController;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Finish());
+        mController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
     }
 
 
     private IEnumerator Finish()
     {
-        yield return new WaitForSeconds(2f);
-        ///winUI.SetActive(true);
-
-        yield return new WaitForSeconds(5f);
-
         CS_Controller bigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
+        yield return new WaitForSeconds(3f);
+        bigCtrl.NumberRailBigger();
+
+        yield return new WaitForSeconds(4f);
+
+        
         bigCtrl.Set777();
 
         

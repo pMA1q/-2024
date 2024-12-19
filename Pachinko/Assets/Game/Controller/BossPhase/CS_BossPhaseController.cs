@@ -292,6 +292,7 @@ public class CS_BossPhaseController : MonoBehaviour
         Destroy(mNoDevObj);
         Destroy(mGuageObj);
         Debug.Log("次のフェーズへ移行します");
+        mController.NumberRailResetTrans();
         mController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
         mController.CreateController();
         Destroy(this.gameObject);
@@ -399,42 +400,7 @@ public class CS_BossPhaseController : MonoBehaviour
         
     }
 
-    //空のコルーチン
-    private IEnumerator Empty()
-    {
-        yield return new WaitForSeconds(2f);
-        if (mCompetitionObj != null)
-        {
-            Destroy(mCompetitionObj); //競り合いのオブジェクトを消す
-            GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>().ButtonsInteractable();//ボタンを有効にする
-        }
-        mNoDevObj.SetActive(false);
-       
-        //演出が終わるまで処理を進めない
-        while (!mController.GetPatternVariationFinish()) { yield return null; }
-        //Debug.Log("演出終了(仮)" + bigController.PerformanceSemiFinish);
-
-      
-        CS_HpGuage guage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
-
-        while (!guage.HpUpdateFinish) { yield return null; }
-
-        Debug.Log("HP更新終了");
-
-
-        //演出終了を知らせる
-        //GameObject rootObject = transform.root.gameObject;
-        //if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
-        //{
-        //    //3秒後に演出を消す
-        //    rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(false, 0f);
-        //}
-        //mController.PerformanceFinish();
-        while (!mController.GetPerformanceFinish()) { yield return null; }
-
-
-        mCoroutine = null;
-    }
+   
     //登録されているイベントハンドラをすべて削除
     public static void RemoveAllHandlers()
     {
