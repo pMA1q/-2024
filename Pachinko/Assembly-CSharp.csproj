@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
     <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttakerOpenClose.cs" />
+    <Compile Include="Assets\Bokudayo\Script\EnemyController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_SE_5_Pa.cs" />
@@ -224,7 +225,6 @@
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_PlayerAnimation.cs" />
-    <Compile Include="Assets\Bokudayo\Script\EnemyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
