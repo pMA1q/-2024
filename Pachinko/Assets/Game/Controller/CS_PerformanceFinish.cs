@@ -60,5 +60,6 @@ public class CS_PerformanceFinish : MonoBehaviour
 
         // 最上位のオブジェクト（親プレハブ）を削除
         Destroy(rootObject);
+        Debug.Log("演出終了");
     }
 }

@@ -100,7 +100,7 @@ public class CS_Controller : MonoBehaviour
 
         RectTransform NumberTrans = mDrawNum2.GetComponent<RectTransform>();
         mDefaultNumberScale = NumberTrans.localScale;
-        mDefaultNumberPosition = NumberTrans.localPosition ;
+        mDefaultNumberPosition = NumberTrans.anchoredPosition;
     }
 
     // Update is called once per frame
@@ -187,7 +187,7 @@ public class CS_Controller : MonoBehaviour
     {
         RectTransform NumberTrans = mDrawNum2.GetComponent<RectTransform>();
         NumberTrans.localScale = mDefaultNumberScale;
-        NumberTrans.localPosition = mDefaultNumberPosition;
+        NumberTrans.anchoredPosition = mDefaultNumberPosition;
     }
 
     public int[] GetPatterns()

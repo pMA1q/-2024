@@ -121,7 +121,6 @@ public class CS_BossPhaseController : MonoBehaviour
         //É{ÉXì¢î∞
         if(mBossData.IsSubjugation)
         {
-            if (!mController.CanVariationStart()) { return; }
             Subjugation();
             return;
         }

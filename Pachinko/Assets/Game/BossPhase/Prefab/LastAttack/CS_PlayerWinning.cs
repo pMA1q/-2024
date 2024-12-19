@@ -37,9 +37,10 @@ public class CS_PlayerWinning : MonoBehaviour
         bData.IsSubjugation = true;
         while (!bigCtrl.GetPatternVariationFinish() || !bigCtrl.GetPerformanceFinish()) { yield return null; }
 
-        
+        bigCtrl.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
 
         Destroy(winUI);
+
     }
     
 }

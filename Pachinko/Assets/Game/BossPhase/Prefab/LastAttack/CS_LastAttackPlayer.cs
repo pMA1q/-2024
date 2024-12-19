@@ -5,12 +5,9 @@ using UnityEngine.UI;
 
 public class CS_LastAttackPlayer : MonoBehaviour
 {
-    private CS_CommonData mData;//ã§í ÉfÅ[É^
-
     [SerializeField]
     private GameObject mNeraeCanvas;
-    [SerializeField]
-    private GameObject mNerae;
+  
     [SerializeField]
     private GameObject mEffect;
 
@@ -29,22 +26,17 @@ public class CS_LastAttackPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();
-        mData.V_SpotOpen();
         mNeraeCanvas.transform.SetParent(null);
-        mBack.SetActive(false);
+        mBack.SetActive(true);
         Enemy.SetActive(false);
-        StartCoroutine(LastAttack());
-        
+        mRedEffect.SetActive(false);
     }
 
     private IEnumerator LastAttack()
     {
-        while (!mData.RightAttaker.IsInV_Spot) { yield return null; }
-
+        mRedEffect.SetActive(false);
         mRainbowEffect.SetActive(true);
 
-        Destroy(mNerae);
         Destroy(mRedEffect);
 
         CS_SetCharaAnimState animState = GetComponent<CS_SetCharaAnimState>();
@@ -57,5 +49,8 @@ public class CS_LastAttackPlayer : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    
+    public void StartLastAttack()
+    {
+        StartCoroutine(LastAttack());
+    }
 }
