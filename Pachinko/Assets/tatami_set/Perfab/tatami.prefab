@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33252047099894744}
   - component: {fileID: 23977685164235594}
   m_Layer: 0
-  m_Name: tatami_new
+  m_Name: tatami
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
