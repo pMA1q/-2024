@@ -228,6 +228,10 @@
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_EnemyAnimation.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_Ef_4_En.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_EllipticalTerrain.cs" />
+    <Compile Include="Assets\Bokudayo\Script\EnemyController.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\LastAttack\CS_RootObjDestroy.cs" />
+    <Compile Include="Assets\Bokudayo\Script\OdaController.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\LastAttack\CS_LastUI_Controller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -264,7 +268,6 @@
     <None Include="Assets\Bokudayo\Shader\ShojiStencilShader.shader" />
     <None Include="Assets\Game Buffs\Free Realistic Textures\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\feature\yamaguchi\D_lance\[VRChat向け]Dボーン式両手槍.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Hovl Studio\Procedural fire\Shaders\FireSphere.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
