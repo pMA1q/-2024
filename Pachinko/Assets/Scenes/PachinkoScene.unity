@@ -10019,8 +10019,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.999998, y: 0.000000018626451, z: 9.13}
-  m_Center: {x: -0.46, y: -0.0000019073486, z: -0.24}
+  m_Size: {x: 9.999998, y: 0.000000018620486, z: 10.43214}
+  m_Center: {x: -0.46000007, y: -0.0010747631, z: 0.4110824}
 --- !u!136 &142295820092644524
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14345,7 +14345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904670579418067490}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.9099997, y: -20.85, z: -0.97}
+  m_LocalPosition: {x: 0.9099997, y: -20.85, z: -0.94}
   m_LocalScale: {x: 0.7932428, y: 1, z: 0.20420197}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19903,7 +19903,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1963254731}
   m_PlaneDistance: 0.11
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -32305,7 +32305,7 @@ MonoBehaviour:
   mDrawNum2: {fileID: 5686998166740702614}
   mBigNumberScale: {x: 0.85, y: 1, z: 0.85}
   mBigNumberPosition: {x: 374, y: -262, z: 1}
-  mNowPhese: 2
+  mNowPhese: 0
 --- !u!1 &8652811482080439593
 GameObject:
   m_ObjectHideFlags: 0

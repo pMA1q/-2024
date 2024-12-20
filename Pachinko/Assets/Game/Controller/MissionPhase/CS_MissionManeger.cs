@@ -436,7 +436,7 @@ public class CS_MissionManeger : MonoBehaviour
     {
         if(missionPhaseTable.infomation[_num].performance != null)
         {
-            Instantiate(missionPhaseTable.infomation[_num].performance, Vector3.zero, Quaternion.identity);
+            Instantiate(missionPhaseTable.infomation[_num].performance, Vector3.zero, missionPhaseTable.infomation[_num].performance.transform.rotation);
         }
         else
         {
