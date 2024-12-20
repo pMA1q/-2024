@@ -61,6 +61,12 @@ public class CS_BossPhaseData : MonoBehaviour
         get { return mBossOneAttackPow; }
     }
 
+    public void AttackPowReset()
+    {
+        mBossOneAttackPow = 0.0f;
+        mPlayerOneAttackPow = 0.0f;
+    }
+
     //1変動時のプレイヤーの復活(項目番号:5,6,7,8,9,23,30)
     private bool isPlayerRevaival = false;
     //復活フラグの設定、取得
@@ -219,7 +225,25 @@ public class CS_BossPhaseData : MonoBehaviour
     public bool IsPlayerLose
     {
         set { isPlayerLose = value; }
-        get { return isPlayerLose; }
+        get 
+        {
+            return isPlayerLose; 
+        }
+    }
+
+    //負けフラグ
+    private bool isPlayerHpZero = false;
+    //負けフラグの設定、取得
+    public bool IsPlayerHpZero
+    {
+        set { isPlayerHpZero = value; }
+        get
+        {
+            float attackPow = Mathf.Ceil(BossOneAttackPow / mPlayerOneBlockHp);
+            float playerHp = PlayerStatus.hp - attackPow;
+            isPlayerHpZero = playerHp <= 0.0f;
+            return isPlayerHpZero;
+        }
     }
 
 

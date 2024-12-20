@@ -23,6 +23,8 @@ public class CS_BossPhaseController : MonoBehaviour
 
     [SerializeField, Header("ラストアタック")]
     private GameObject mLastAttack;
+    [SerializeField, Header("敵アタック")]
+    private GameObject mLastAttackEnemy;
 
     [SerializeField, Header("デバッグ番号(項目番号-1の値)")]
     [Header("デバッグしないなら-1")]
@@ -171,6 +173,7 @@ public class CS_BossPhaseController : MonoBehaviour
 
     private IEnumerator Lottery()
     {
+        int[] randomNumbers = new int[] { 0, 1, 2, 3, 13 };
         int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
         if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
         mGameCount--;//ゲームカウントをへらす
@@ -184,6 +187,8 @@ public class CS_BossPhaseController : MonoBehaviour
             yield break;
         }
 
+        mBossData.AttackPowReset();//攻撃値をリセットする
+
         //プレイヤーが攻撃するか確認
         if (CheackPlayerAttack(randomNumber))
         {
@@ -193,20 +198,20 @@ public class CS_BossPhaseController : MonoBehaviour
             CS_BP_CompetitionController competition = mCompetitionObj.GetComponent<CS_BP_CompetitionController>();
 
             float t = 0f;
-            while(t <= 6f)
+            while (t <= 6f)
             {
                 t += Time.deltaTime;
-                if(competition.isActiveAndEnabled)  
+                if (competition.isActiveAndEnabled)
                 {
                     if (competition.NoHaveTikets()) { break; }
                     else { yield return null; }
-                   
+
                 }
             }
 
             randomNumber = ChangePerfNumber(randomNumber);//選んだチケットに応じて演出番号変更
         }
-      
+        
         mData.NoDevelpment = false;
 
         mController.VariationTimer = 4f;
@@ -222,9 +227,21 @@ public class CS_BossPhaseController : MonoBehaviour
         //再抽選確認。当選すれば次のミッション決定
         mNextMissionNum = CheckReLottely(randomNumber);
         //次の演出番号が-1じゃないなら再抽選結果を入れる
-        if (mNextMissionNum > -1) { randomNumber = mNextMissionNum; }
-
-       
+        if (mNextMissionNum > -1) 
+        {
+            bool possible = false;
+            // randomNumbersに存在するならフラグを変える
+            for(int i= 0; i < randomNumbers.Length; i++)
+            {
+                if(mNextMissionNum == i)
+                {
+                    possible = true;
+                    break;
+                }
+            }
+            if (possible) { randomNumber = mNextMissionNum; }
+           
+        }
 
         Debug.Log("再抽選番号:" + mNextMissionNum);
         Debug.Log("番号:" + randomNumber);
@@ -384,7 +401,14 @@ public class CS_BossPhaseController : MonoBehaviour
             {
                 mCompetitionObj.SetActive(false);
                 mNoDevObj.SetActive(false);
-                Instantiate(mLastAttack, Vector3.zero, mLastAttack.transform.rotation);
+                Instantiate(mLastAttack, Vector3.zero, mLastAttackEnemy.transform.rotation);
+                return;
+            }
+            if (true)//mBossData.IsPlayerHpZero
+            {
+                mCompetitionObj.SetActive(false);
+                mNoDevObj.SetActive(false);
+                Instantiate(mLastAttackEnemy, Vector3.zero, mLastAttackEnemy.transform.rotation);
                 return;
             }
             GameObject obj = Instantiate(mNowBossTable.infomation[_num].performance, Vector3.zero, mNowBossTable.infomation[_num].performance.transform.rotation);

@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11e49ef6f6ecd84095b5f4b254e4b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMissionStatus: {fileID: 11400000, guid: 04e48b602a5ae0140b6879cdccfa3f8e, type: 2}
+  mMissionStatus: {fileID: 11400000, guid: 087c2dfdcaccef84a9c35d89e8a99d3f, type: 2}
   mStatusMission: {fileID: 7183007788400577825}
   mEventMission: {fileID: 9155250584009690025}
   mItemMission: {fileID: 119508675576951844}
