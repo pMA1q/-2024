@@ -76,7 +76,7 @@ public class CS_MissionPhaseData : MonoBehaviour
         get { return mSubjugationSum; }
     }
 
-    //１ミッションで討伐した敵の討伐数（項目番号:18,19）
+    //１ミッションで討伐した敵の討伐数（プレイヤー攻撃系）
     private int mSubjugation_OneMission = 0;
     //討伐数の設定、取得
     public int SubjugationOneMission

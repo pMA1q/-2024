@@ -287,7 +287,8 @@ public class CS_BossPhaseController : MonoBehaviour
         switch(mBossData.UseTiket)
         {
             case CS_BossPhaseData.USE_TIKET.SPECOAL:
-                _randomNum = 25;
+                //_randomNum = 25; 
+                _randomNum = 4;
                 break;
             case CS_BossPhaseData.USE_TIKET.PARTNER:
                 _randomNum = 29;
