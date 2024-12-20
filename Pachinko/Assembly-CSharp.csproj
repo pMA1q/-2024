@@ -133,10 +133,11 @@
     <Compile Include="Assets\Bokudayo\Script\P_RanAway.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Matthew Guz\Slash Effects FREE\Scripts\Prefab Manager.cs" />
+    <Compile Include="Assets\nozaki\SubjugationMission\Script\RoomSelect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
-    <Compile Include="Assets\nozaki\RoomChoice\Script\RoomSelect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\LastAttack\CS_RootObjDestroy.cs" />
+    <Compile Include="Assets\nozaki\SubjugationMission\Script\RoomSelectAnimatorManager.cs" />
     <Compile Include="Assets\Bokudayo\Script\ResolutionManager.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderBuilder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Assets\Game\Core\Prefab\CS_BoundBall.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\LastAttack\CS_LastAttackEnemy.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_5EnemiesApeer_Lose.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_PerformanceFinishEditor.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneCollider.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_BP_5_ChangeCameraOne.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -186,11 +188,11 @@
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_Ef_4_En.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
+    <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimatorSync.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Player.cs" />
     <Compile Include="Assets\Matthew Guz\Slash Effects FREE\Scripts\CameraRotation.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\Title\CS_TitleFadeBoss.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\nozaki\RoomChoice\Script\RoomSelectAnimatorManager.cs" />
     <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3ChoiceTicket.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberRail.cs" />
@@ -204,6 +206,7 @@
     <Compile Include="Assets\Bokudayo\Script\ExplosionSample.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_5EnemiesApeer_Win.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshColliderBuilder.cs" />
+    <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimationController.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseTable.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_EnemyAnimation.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_Boss1_Unique.cs" />
@@ -232,9 +235,6 @@
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_PlayerAnimation.cs" />
-    <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimationController.cs" />
-    <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimatorSync.cs" />
-    <Compile Include="Assets\Game\Core\Script\CS_PerformanceFinishEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
