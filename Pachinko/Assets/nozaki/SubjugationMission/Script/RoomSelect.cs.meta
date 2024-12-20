@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 53b98fe50af581c41bc3ce7ce9b56b4a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cameraAnimator: {instanceID: 0}
+  - leftEnemy: {fileID: 6224565133486688883, guid: 61ae6ced193336740825c037edc03fa3,
+      type: 3}
+  - rightEnemy: {fileID: 6224565133486688883, guid: 61ae6ced193336740825c037edc03fa3,
+      type: 3}
+  - leftEmpty: {instanceID: 0}
+  - rightEmpty: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

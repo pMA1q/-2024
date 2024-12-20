@@ -66,6 +66,8 @@
     <Compile Include="Assets\SAColliderBuilder\Editor\SAMeshColliderInspector.cs" />
     <Compile Include="Assets\SAColliderBuilder\Editor\SABoneColliderBuilderInspector.cs" />
     <Compile Include="Assets\SAColliderBuilder\Editor\SAColliderBuilderEditorCommon.cs" />
+    <Compile Include="Assets\StaTech\AnimationValidator\Editor\AnimationValidator.cs" />
+    <Compile Include="Assets\StaTech\AnimationValidator\Editor\AnimationValidatorView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
