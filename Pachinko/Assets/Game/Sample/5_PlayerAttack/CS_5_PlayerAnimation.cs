@@ -27,9 +27,7 @@ public class CS_5_PlayerAnimation : MonoBehaviour
             if (Time.time - StartTime > 2.0f)
             {
                 anim.speed = 0;
-            }
-               
+            }  
         }
-
     }
 }
