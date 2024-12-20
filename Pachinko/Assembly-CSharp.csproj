@@ -234,6 +234,7 @@
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_PlayerAnimation.cs" />
     <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimationController.cs" />
     <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimatorSync.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_PerformanceFinishEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
