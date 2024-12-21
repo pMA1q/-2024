@@ -161,7 +161,10 @@ public class CS_BP_AttackChoice : MonoBehaviour
         IsOnePush = true;
         foreach (Button button in buttons)
         {
-            button.interactable = false;
+            if (button.name == "ButtonLeft"|| button.name == "ButtonRight"||button.name == "ButtonPush")
+            {
+                button.interactable = false;
+            }
         }
         mChoiceTimePrefab.SetActive(false);
         //選ばれてないミッションは消す
@@ -185,6 +188,10 @@ public class CS_BP_AttackChoice : MonoBehaviour
                 mAfterChoicePrefab = Instantiate(mChoiceLastAttackPrefab, Vector3.zero, mChoiceLastAttackPrefab.transform.rotation);
                 mAfterChoicePrefab.GetComponent<CS_SetPositionPerfPos>().Start();
                 Destroy(transform.root.gameObject);
+                foreach (Button button in buttons)
+                {
+                    button.interactable = true;
+                }
                 return;
             }
             //成功

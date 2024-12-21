@@ -174,6 +174,7 @@ public class CS_Controller : MonoBehaviour
     public void Set777()
     {
         mDrawNum2.Rail777();
+        mPattern[0] = 7;
     }
 
     public void NumberRailBigger()
@@ -225,16 +226,16 @@ public class CS_Controller : MonoBehaviour
     {
         if (GetJuckpot()) 
         { 
-            if(mNowPhese == PACHINKO_PHESE.MISSION)
+            if(GetPatterns()[0] == 7)
             {
-                GetComponent<CS_CommonData>().LeftAttakerStart(1);
+                GetComponent<CS_CommonData>().LeftAttakerStart(3);
             }
+            else { GetComponent<CS_CommonData>().LeftAttakerStart(1); }
             mPerformanceFinish = false;
             mPerformanceSemiFinish = false;
             JackPotPerf = true;
-            GetComponent<CS_CommonData>().LeftAttakerStart(3);
+            
         }
-        Debug.Log("図柄終了");
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除
     }
