@@ -5695,7 +5695,8 @@ MonoBehaviour:
   mChoiceTimePrefab: {fileID: 9176660283972788469}
   mChoiceSuccessPrefab: {fileID: 2693174054406052321, guid: 2dff25e894c98df47abdbceeb4c06f3c,
     type: 3}
-  mChoiceLastAttackPrefab: {fileID: 0}
+  mChoiceLastAttackPrefab: {fileID: 2693174054406052321, guid: 34fb68aaa2b13f7459b600c1c812a911,
+    type: 3}
   mChoiceFailedPrefab: {fileID: 4530986817790575741, guid: 585b785c78988e748bc0a2e573154edd,
     type: 3}
   mNoSelectColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}

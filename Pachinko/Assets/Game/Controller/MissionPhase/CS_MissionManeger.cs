@@ -129,7 +129,7 @@ public class CS_MissionManeger : MonoBehaviour
         if (bigController.GetStock() == 0) { return; }
 
 
-        int[] numbers = new int[] { 0, 1, 2, 6, 12, 13 };
+        int[] numbers = new int[] { 0, 1, 2, 5, 12, 13 };
         //‰‰o’Š‘I
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
         //int randomNumber = CS_LotteryFunction.LotNormalInt(10);//ˆê’U€–Ú17‚Ü‚Å‚ÉŒÀ’è‚·‚é

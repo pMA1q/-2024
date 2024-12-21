@@ -227,7 +227,7 @@ public class CS_Controller : MonoBehaviour
         { 
             if(mNowPhese == PACHINKO_PHESE.MISSION)
             {
-               
+                GetComponent<CS_CommonData>().LeftAttakerStart(1);
             }
             mPerformanceFinish = false;
             mPerformanceSemiFinish = false;
