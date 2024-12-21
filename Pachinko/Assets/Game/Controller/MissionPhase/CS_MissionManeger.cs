@@ -1,6 +1,6 @@
 //---------------------------------
-//ƒ~ƒbƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ[
-//’S“–ÒF–ìè
+//ãƒŸãƒƒã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//æ‹…å½“è€…ï¼šé‡å´
 //---------------------------------
 using System.Collections;
 using System.Collections.Generic;
@@ -10,49 +10,49 @@ using System;
 
 public class CS_MissionManeger : MonoBehaviour
 {
-    public CSO_MissionPhaseTable missionPhaseTable;  // Inspector ‚Åİ’è‰Â”\
+    public CSO_MissionPhaseTable missionPhaseTable;  // Inspector ã§è¨­å®šå¯èƒ½
 
-    [SerializeField,Header("ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX")]
+    [SerializeField,Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹")]
     private CSO_PlayerStatus playerStatus;
 
-    [SerializeField, Header("ƒJƒbƒgƒCƒ“")]
+    [SerializeField, Header("ã‚«ãƒƒãƒˆã‚¤ãƒ³")]
     private GameObject mCutIn;
 
     [SerializeField]
-    [Header("0:ûWƒ~ƒbƒVƒ‡ƒ“")]
-    [Header("1:“¢”°ƒ~ƒbƒVƒ‡ƒ“")]
-    [Header("2:’b˜Bƒ~ƒbƒVƒ‡ƒ“")]
+    [Header("0:åé›†ãƒŸãƒƒã‚·ãƒ§ãƒ³")]
+    [Header("1:è¨ä¼ãƒŸãƒƒã‚·ãƒ§ãƒ³")]
+    [Header("2:é›éŒ¬ãƒŸãƒƒã‚·ãƒ§ãƒ³")]
     private GameObject[] missionPrefab;
 
-    [SerializeField, Header("–³”­“W‚ÌƒvƒŒƒnƒu")]
+    [SerializeField, Header("ç„¡ç™ºå±•æ™‚ã®ãƒ—ãƒ¬ãƒãƒ–")]
     private GameObject mNodevlopmentPrehab;
 
-    [SerializeField, Header("ƒfƒoƒbƒO”Ô†(€–Ú”Ô†-1‚Ì’l)")]
-    [Header("ƒfƒoƒbƒO‚µ‚È‚¢‚È‚ç-1")]
+    [SerializeField, Header("ãƒ‡ãƒãƒƒã‚°ç•ªå·(é …ç›®ç•ªå·-1ã®å€¤)")]
+    [Header("ãƒ‡ãƒãƒƒã‚°ã—ãªã„ãªã‚‰-1")]
     private int mDebugNumber = -1;
 
-    private CS_Controller bigController;//i—ß“ƒ(‘å)
-    private CS_MissionPhaseData missionData;//i—ß“ƒ(‘å)
-    private CS_CommonData mData;//‹¤’Êƒf[ƒ^
+    private CS_Controller bigController;//å¸ä»¤å¡”(å¤§)
+    private CS_MissionPhaseData missionData;//å¸ä»¤å¡”(å¤§)
+    private CS_CommonData mData;//å…±é€šãƒ‡ãƒ¼ã‚¿
 
-    public int mGameCount = 20;//“üÜ”
+    public int mGameCount = 20;//å…¥è³æ•°
 
     private GameObject mNoDevObj;
 
-    //ƒQ[ƒ€”‚Ìİ’èAæ“¾
+    //ã‚²ãƒ¼ãƒ æ•°ã®è¨­å®šã€å–å¾—
     public int GameCount
     {
         set { mGameCount = value; }
         get { return mGameCount; }
     }
 
-    //“G“¢”°”
+    //æ•µè¨ä¼æ•°
     private int mSubjugationNum = 0;
     public int SunjugationEnemy { get { return mSubjugationNum; } }
 
 
 
-    //ƒ†ƒj[ƒN‚È‰‰o
+    //ãƒ¦ãƒ‹ãƒ¼ã‚¯ãªæ¼”å‡º
     CS_SM_Unique mSM_Unique;
     private int[] mUniquePF;
 
@@ -64,40 +64,40 @@ public class CS_MissionManeger : MonoBehaviour
 
     private int mHightEnemyCount = 0;
 
-    //-----------------------ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰-----------------------
-    public delegate void Performance(int _performance);//ˆø”F€–Ú”Ô†-1
+    //-----------------------ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©-----------------------
+    public delegate void Performance(int _performance);//å¼•æ•°ï¼šé …ç›®ç•ªå·-1
 
-    //“o˜^‚Ég—p
+    //ç™»éŒ²æ™‚ã«ä½¿ç”¨
     public static event Performance OnPlayPerformance;
     //-------------------------------------------------------------
 
     void Start()
     {
-        mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();//‹¤’Êƒf[ƒ^æ“¾
+        mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();//å…±é€šãƒ‡ãƒ¼ã‚¿å–å¾—
         missionData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_MissionPhaseData>();
-        missionData.ResetMissionData();//ƒ~ƒbƒVƒ‡ƒ“ƒf[ƒ^‚ÌŠeƒtƒ‰ƒO‚ğƒŒƒZƒbƒg‚·‚é
+        missionData.ResetMissionData();//ãƒŸãƒƒã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®å„ãƒ•ãƒ©ã‚°ã‚’ãƒ¬ã‚»ãƒƒãƒˆã™ã‚‹
        
-        // ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX‚ğƒf[ƒ^‚©‚çæ“¾
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—
         playerStatus = missionData.PlayerStatus;
 
-        bigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//i—ß“ƒ‘å‚ğæ“¾
+        bigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//å¸ä»¤å¡”å¤§ã‚’å–å¾—
 
-        //ƒ~ƒbƒVƒ‡ƒ“‚Ìí—Ş‚ğæ“¾
+        //ãƒŸãƒƒã‚·ãƒ§ãƒ³ã®ç¨®é¡ã‚’å–å¾—
         int missionType = (int)bigController.GetComponent<CS_MissionPhaseData>().MissionType;
-        //ƒ~ƒbƒVƒ‡ƒ“‘I‘ğƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        //ãƒŸãƒƒã‚·ãƒ§ãƒ³é¸æŠã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         GameObject instance = Instantiate(missionPrefab[missionType], missionPrefab[missionType].transform.position, missionPrefab[missionType].transform.rotation);
-        instance.name = missionPrefab[missionType].name; // (Clone)‚ª•t‚©‚È‚¢‚æ‚¤‚É–¼‘O‚ğƒIƒŠƒWƒiƒ‹‚Ì–¼‘O‚É–ß‚·
+        instance.name = missionPrefab[missionType].name; // (Clone)ãŒä»˜ã‹ãªã„ã‚ˆã†ã«åå‰ã‚’ã‚ªãƒªã‚¸ãƒŠãƒ«ã®åå‰ã«æˆ»ã™
 
         CS_MissionPhaseData.MISSION_TYPE mtype = missionData.MissionType;
         //if(mtype == CS_MissionPhaseData.MISSION_TYPE.SUBJUGATION) { mSM_Unique = new CS_SM_Unique(); }
         mSM_Unique = this.gameObject.AddComponent<CS_SM_Unique>();
-        mUniquePF = new int[] { 11, 12, 18, 19, 22 };//ƒ†ƒj[ƒN‚È‰‰o‚Ì€–Ú”Ô†”z—ñ
+        mUniquePF = new int[] { 11, 12, 18, 19, 22 };//ãƒ¦ãƒ‹ãƒ¼ã‚¯ãªæ¼”å‡ºã®é …ç›®ç•ªå·é…åˆ—
 
         mNoDevObj = Instantiate(mNodevlopmentPrehab, Vector3.zero, Quaternion.identity);
         mNoDevObj.GetComponent<CS_SetPositionPerfPos>().Start();
         mNoDevObj.GetComponent<CS_CameraWander>().Init();
 
-        //ƒeƒXƒg
+        //ãƒ†ã‚¹ãƒˆ
         OnPlayPerformance += PlayPerformance;
     }
 
@@ -105,9 +105,9 @@ public class CS_MissionManeger : MonoBehaviour
     {
         if(mCoroutine != null) { return; }
         
-        UniquePerformance();//ƒ†ƒj[ƒN‚Èƒ~ƒbƒVƒ‡ƒ“‚È‚ç‚Î•ñV‚Ü‚½‚ÍŸ‚Ìƒ~ƒbƒVƒ‡ƒ“”Ô†‚ğŒˆ‚ß‚é
+        UniquePerformance();//ãƒ¦ãƒ‹ãƒ¼ã‚¯ãªãƒŸãƒƒã‚·ãƒ§ãƒ³ãªã‚‰ã°å ±é…¬ã¾ãŸã¯æ¬¡ã®ãƒŸãƒƒã‚·ãƒ§ãƒ³ç•ªå·ã‚’æ±ºã‚ã‚‹
 
-        //“üÜ”‚ª20H
+        //å…¥è³æ•°ãŒ20ï¼Ÿ
         if (mGameCount <= 0 && mNextMissionNum == -1)
         {
             RemoveAllHandlers();
@@ -116,80 +116,81 @@ public class CS_MissionManeger : MonoBehaviour
             return;
         }
 
-        //•Ï“®‚Å‚«‚é‚©‚ğæ“¾
+        //å¤‰å‹•ã§ãã‚‹ã‹ã‚’å–å¾—
         bool variationStart = bigController.CanVariationStart();
-        if (!variationStart) { return; }//false‚È‚çI—¹
+        if (!variationStart) { return; }//falseãªã‚‰çµ‚äº†
 
-        //Debug.Log("Ÿ‚Ìƒ~ƒbƒVƒ‡ƒ“ƒtƒ‰ƒO" + mNextMissionNum);
+        //Debug.Log("æ¬¡ã®ãƒŸãƒƒã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°" + mNextMissionNum);
        
-        //ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰‚Ínull‚È‚çI—¹
+        //ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã¯nullãªã‚‰çµ‚äº†
         if (OnPlayPerformance == null) { return; }
 
-        //•Û—¯‹Ê‚ª–³‚¢‚È‚çI—¹
+        //ä¿ç•™ç‰ãŒç„¡ã„ãªã‚‰çµ‚äº†
         if (bigController.GetStock() == 0) { return; }
 
 
+        int[] numbers = new int[] { 0, 1, 2, 6,12, 13 };
         int[] numbers = new int[] { 0, 1, 2, 5, 12, 13 };
-        //‰‰o’Š‘I
+        //æ¼”å‡ºæŠ½é¸
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
-        //int randomNumber = CS_LotteryFunction.LotNormalInt(10);//ˆê’U€–Ú17‚Ü‚Å‚ÉŒÀ’è‚·‚é
-        int randomNumber = numbers[CS_LotteryFunction.LotNormalInt(numbers.Length)];//ˆê’U€–Ú17‚Ü‚Å‚ÉŒÀ’è‚·‚é
+        //int randomNumber = CS_LotteryFunction.LotNormalInt(10);//ä¸€æ—¦é …ç›®17ã¾ã§ã«é™å®šã™ã‚‹
+        int randomNumber = numbers[CS_LotteryFunction.LotNormalInt(numbers.Length)];//ä¸€æ—¦é …ç›®17ã¾ã§ã«é™å®šã™ã‚‹
         if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
-        mGameCount--;//“üÜ”Œ¸Z
+        mGameCount--;//å…¥è³æ•°æ¸›ç®—
 
-        //Debug.Log("c‚èƒQ[ƒ€”" + mGameCount);
+        //Debug.Log("æ®‹ã‚Šã‚²ãƒ¼ãƒ æ•°" + mGameCount);
 
         string name = missionPhaseTable.infomation[randomNumber].name;
        
-        //–³”­“W
+        //ç„¡ç™ºå±•
         if (randomNumber <= 2)
         {
             NoDevelopment(randomNumber);
             return;
         }
  
-        mData.NoDevelpment = false;//–³”­“Wƒtƒ‰ƒO‚ğfalse
+        mData.NoDevelpment = false;//ç„¡ç™ºå±•ãƒ•ãƒ©ã‚°ã‚’false
 
         bigController.VariationTimer = 4f;
 
 
-        //Ä’Š‘IŠm”FB“–‘I‚·‚ê‚ÎŸ‚Ìƒ~ƒbƒVƒ‡ƒ“Œˆ’è
+        //å†æŠ½é¸ç¢ºèªã€‚å½“é¸ã™ã‚Œã°æ¬¡ã®ãƒŸãƒƒã‚·ãƒ§ãƒ³æ±ºå®š
         //mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
-        //Ÿ‚Ì‰‰o”Ô†‚ª-1‚¶‚á‚È‚¢‚È‚çÄ’Š‘IŒ‹‰Ê‚ğ“ü‚ê‚é
+        //æ¬¡ã®æ¼”å‡ºç•ªå·ãŒ-1ã˜ã‚ƒãªã„ãªã‚‰å†æŠ½é¸çµæœã‚’å…¥ã‚Œã‚‹
         if (mNextMissionNum != -1) { randomNumber = mNextMissionNum; }
 
-        //•Û—¯‹Êg—pi•Ï“®ŠJnj
+        //ä¿ç•™ç‰ä½¿ç”¨ï¼ˆå¤‰å‹•é–‹å§‹ï¼‰
         bigController.UseStock(missionPhaseTable.infomation[randomNumber].win_lost);
 
-        //’Š‚¹‚ñ”Ô†‚ğ•Û‘¶‚·‚é
+        //æŠ½ã›ã‚“ç•ªå·ã‚’ä¿å­˜ã™ã‚‹
         mBackupNumber = randomNumber;
 
         name = missionPhaseTable.infomation[randomNumber].name;
-        Debug.Log("‰‰o“à—e" + name);
-        mCoroutine = StartCoroutine(AfterLottery(randomNumber));//’Š‚¹‚ñŒãˆ—‚ğ‘–‚ç‚¹‚é
+        Debug.Log("æ¼”å‡ºå†…å®¹" + name);
+        mCoroutine = StartCoroutine(AfterLottery(randomNumber));//æŠ½ã›ã‚“å¾Œå‡¦ç†ã‚’èµ°ã‚‰ã›ã‚‹
     }
 
-    //–³”­“Wˆ—
+    //ç„¡ç™ºå±•å‡¦ç†
     private void NoDevelopment(int _perfNumber)
     {
         float[] valTime = new float[3] { 8f, 10f, 10f };
-        bigController.VariationTimer = valTime[_perfNumber];//•Ï“®ŠÔİ’è
-        mData.NoDevelpment = true;//–³”­“Wƒtƒ‰ƒO‚ğtrue
+        bigController.VariationTimer = valTime[_perfNumber];//å¤‰å‹•æ™‚é–“è¨­å®š
+        mData.NoDevelpment = true;//ç„¡ç™ºå±•ãƒ•ãƒ©ã‚°ã‚’true
         mNextMissionNum = -1;
         mBackupNumber = _perfNumber;
-        //•Û—¯‹Êg—pi•Ï“®ŠJnj
+        //ä¿ç•™ç‰ä½¿ç”¨ï¼ˆå¤‰å‹•é–‹å§‹ï¼‰
         bigController.UseStock(WIN_LOST.LOST);
         mCoroutine = StartCoroutine(AfterLotteryNodev());
         bigController.PerformanceSemiFinish = true;
-        bigController.PerformanceFinish();//‰‰o‚Ís‚í‚È‚¢‚Ì‚ÅI—¹ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+        bigController.PerformanceFinish();//æ¼”å‡ºã¯è¡Œã‚ãªã„ã®ã§çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
         
         string name = missionPhaseTable.infomation[_perfNumber].name;
-        Debug.Log("‰‰o”Ô†" + name);
+        Debug.Log("æ¼”å‡ºç•ªå·" + name);
     }
    
 
-    //ƒ†ƒj[ƒN‚È‰‰o‚Ìˆ—
+    //ãƒ¦ãƒ‹ãƒ¼ã‚¯ãªæ¼”å‡ºæ™‚ã®å‡¦ç†
     private void UniquePerformance()
     {
        
@@ -209,24 +210,24 @@ public class CS_MissionManeger : MonoBehaviour
             mHightEnemyCount = 3;
         }
 
-        //“G‚ğ“¢”°‚µ‚½‚È‚ç
+        //æ•µã‚’è¨ä¼ã—ãŸãªã‚‰
         if(missionData.SubjugationOneMission >= 1)
         {
-            mSubjugationNum += missionData.SubjugationOneMission;//“¢”°”‚É‰ÁZ
-            missionData.SubjugationSum = mSubjugationNum;//ƒ~ƒbƒVƒ‡ƒ“ƒf[ƒ^‚Ì“¢”°”‡Œv‚ğXV
-            int perfNumber = mBackupNumber + 1;//‰‰o€–Ú”Ô†
-            //Ÿ‰ñƒ~ƒbƒVƒ‡ƒ“‹sƒtƒ‰ƒOŠm’èH‚Ì‰‰o‚©‚ğ’²‚×‚é
+            mSubjugationNum += missionData.SubjugationOneMission;//è¨ä¼æ•°ã«åŠ ç®—
+            missionData.SubjugationSum = mSubjugationNum;//ãƒŸãƒƒã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®è¨ä¼æ•°åˆè¨ˆã‚’æ›´æ–°
+            int perfNumber = mBackupNumber + 1;//æ¼”å‡ºé …ç›®ç•ªå·
+            //æ¬¡å›ãƒŸãƒƒã‚·ãƒ§ãƒ³é‚è¡Œãƒ•ãƒ©ã‚°ç¢ºå®šï¼Ÿã®æ¼”å‡ºã‹ã‚’èª¿ã¹ã‚‹
             bool perfNumber18or19 = (perfNumber == 18 || perfNumber == 19);
-            //Ÿ‰ñƒ~ƒbƒVƒ‡ƒ“‹sƒtƒ‰ƒOŠm’èH‚Ì‰‰o‚Å‚È‚¢‚È‚ç‚Pƒ~ƒbƒVƒ‡ƒ““¢”°”‚ğ0‚É–ß‚·
+            //æ¬¡å›ãƒŸãƒƒã‚·ãƒ§ãƒ³é‚è¡Œãƒ•ãƒ©ã‚°ç¢ºå®šï¼Ÿã®æ¼”å‡ºã§ãªã„ãªã‚‰ï¼‘ãƒŸãƒƒã‚·ãƒ§ãƒ³è¨ä¼æ•°ã‚’0ã«æˆ»ã™
             if (!perfNumber18or19) {   missionData.SubjugationOneMission = 0; }
            
         }
     }
     
-    //Ä’Š‘IŠm”F
+    //å†æŠ½é¸ç¢ºèª
     private int CheckReLottely(MissionPhaseInfomation mission)
     {
-        //Ä’Š‘I–³‚µ‚È‚çI—¹
+        //å†æŠ½é¸ç„¡ã—ãªã‚‰çµ‚äº†
         if(mission.replay == REPLAY.FALSE) { return -1; }
 
         int[] lot;
@@ -243,7 +244,7 @@ public class CS_MissionManeger : MonoBehaviour
             return lot[CS_LotteryFunction.LotNormalInt(4)];
         }
 
-        //“G‚Šm—¦‘˜‹öƒQ[ƒ€”‚ª1ˆÈã‚È‚ç“Gˆê‘Ì‘˜‹ö‰‰o‚É‚·‚é
+        //æ•µé«˜ç¢ºç‡é­é‡ã‚²ãƒ¼ãƒ æ•°ãŒ1ä»¥ä¸Šãªã‚‰æ•µä¸€ä½“é­é‡æ¼”å‡ºã«ã™ã‚‹
         if(mHightEnemyCount >= 1)
         {
             mHightEnemyCount--;
@@ -251,18 +252,18 @@ public class CS_MissionManeger : MonoBehaviour
             return lot[CS_LotteryFunction.LotNormalInt(6)];
         }
 
-        Debug.Log("Ä’Š‘IŠJn");
-        //æ§UŒ‚‚ÌŠm—¦‚Éİ’è
+        Debug.Log("å†æŠ½é¸é–‹å§‹");
+        //å…ˆåˆ¶æ”»æ’ƒã®ç¢ºç‡ã«è¨­å®š
         float percentage = playerStatus.charaStatus.preemptiveAttack;
        
-        //P2‚È‚ç•œŠˆ’l‚É‚·‚é
+        //P2ãªã‚‰å¾©æ´»å€¤ã«ã™ã‚‹
         if(mission.replay == REPLAY.TRUE_P2){ percentage = playerStatus.charaStatus.revaival; }
 
         float randomValue = UnityEngine.Random.Range(0f, 100f);
-        if (randomValue < percentage)//“–‚½‚Á‚½
+        if (randomValue < percentage)//å½“ãŸã£ãŸ
         {
-            Debug.Log("Ä’Š‘I“–‘I");
-            //ƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒ^ƒXUP
+            Debug.Log("å†æŠ½é¸å½“é¸");
+            //ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹UP
             if(mission.replayNum <= 16) 
             {
                 RundomStatusUP(mission.replayNum);
@@ -272,7 +273,7 @@ public class CS_MissionManeger : MonoBehaviour
         return -1;
     }
 
-    //ûWƒ~ƒbƒVƒ‡ƒ“ˆÈŠO‚ÌƒXƒe[ƒ^ƒXUPˆ—
+    //åé›†ãƒŸãƒƒã‚·ãƒ§ãƒ³æ™‚ä»¥å¤–ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹UPå‡¦ç†
     private void RundomStatusUP(int _val)
     {
         CharacterStatus cStatus = playerStatus.charaStatus;
@@ -287,9 +288,9 @@ public class CS_MissionManeger : MonoBehaviour
                                                      cStatus.revivalUpPow.max,cStatus.cutInUpPow.max};
         int random = CS_LotteryFunction.LotPerformance(choicePercent);
         
-        if(_val == 6 || _val == 9) { status[random] += smallpower[random]; }//ƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒ^ƒXUP¬
-        else  { status[random] += midllepower[random]; }//ƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒ^ƒXUP’†
-        //Å‘å’l‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+        if(_val == 6 || _val == 9) { status[random] += smallpower[random]; }//ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹UPå°
+        else  { status[random] += midllepower[random]; }//ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹UPä¸­
+        //æœ€å¤§å€¤ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
         if (status[random] > maxpower[random]) { status[random] = maxpower[random]; }
         cStatus.charColorUP = status[0];
         cStatus.preemptiveAttack = status[1];
@@ -301,32 +302,32 @@ public class CS_MissionManeger : MonoBehaviour
 
     private void StartBossPhase()
     {
-        Debug.Log("ƒ{ƒXƒtƒF[ƒY‚ÖˆÚs‚µ‚Ü‚·");
-        Destroy(mNoDevObj); // –³”­“WƒIƒuƒWƒFƒNƒgíœ
+        Debug.Log("ãƒœã‚¹ãƒ•ã‚§ãƒ¼ã‚ºã¸ç§»è¡Œã—ã¾ã™");
+        Destroy(mNoDevObj); // ç„¡ç™ºå±•ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤
 
-        Remuneration();//•ñVŠl“¾ˆ—
+        Remuneration();//å ±é…¬ç²å¾—å‡¦ç†
 
-        // Ÿ‚ÌƒtƒF[ƒY‚Ì€”õˆ—
+        // æ¬¡ã®ãƒ•ã‚§ãƒ¼ã‚ºã®æº–å‚™å‡¦ç†
         CS_BossPhaseHandler bossPhaseHandler = gameObject.GetComponent<CS_BossPhaseHandler>();
         bossPhaseHandler.Initialize(bigController);
 
-        // ƒ~ƒbƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ[‚ğíœ
+        // ãƒŸãƒƒã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’å‰Šé™¤
         Destroy(this);
     }
 
-    //•ñVˆ—
+    //å ±é…¬å‡¦ç†
     void Remuneration()
     {
         if(mSubjugationNum < 10) { return; }
-        //ƒ~ƒbƒVƒ‡ƒ“ƒf[ƒ^æ“¾
+        //ãƒŸãƒƒã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
         CS_MissionPhaseData.MISSION_TYPE mType = missionData.MissionType;
 
-        int missionCnontents = missionData.GetMissionContent((int)mType);//ƒ~ƒbƒVƒ‡ƒ“‚Ìí—Ş‚Ì’†‚Ì—v‘f”Ô†‚ğæ“¾
-        CSO_PlayerStatus pStatus = missionData.PlayerStatus;//ƒvƒŒƒCƒ„[î•ñæ“¾
-        int addTiket = 3;//ƒ`ƒPƒbƒg‘‰Á”
+        int missionCnontents = missionData.GetMissionContent((int)mType);//ãƒŸãƒƒã‚·ãƒ§ãƒ³ã®ç¨®é¡ã®ä¸­ã®è¦ç´ ç•ªå·ã‚’å–å¾—
+        CSO_PlayerStatus pStatus = missionData.PlayerStatus;//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±å–å¾—
+        int addTiket = 3;//ãƒã‚±ãƒƒãƒˆå¢—åŠ æ•°
         switch(mType)
         {
-            case CS_MissionPhaseData.MISSION_TYPE.COLLECT://ûW(ƒ`ƒPƒbƒg)
+            case CS_MissionPhaseData.MISSION_TYPE.COLLECT://åé›†(ãƒã‚±ãƒƒãƒˆ)
                 if(missionCnontents == missionData.tPreAttack)
                 {
                     pStatus.ticket.preemptiveAttack += addTiket;
@@ -337,46 +338,46 @@ public class CS_MissionManeger : MonoBehaviour
                     pStatus.ticket.revaival += addTiket;
                 }
                 break;
-            case CS_MissionPhaseData.MISSION_TYPE.SUBJUGATION://“¢”°(ƒXƒLƒ‹)
+            case CS_MissionPhaseData.MISSION_TYPE.SUBJUGATION://è¨ä¼(ã‚¹ã‚­ãƒ«)
                 if (missionCnontents == missionData.eSkill)
                 {
                     pStatus.ticket.special += 3;
                 }
                 break;
-            case CS_MissionPhaseData.MISSION_TYPE.TRAINING://’b˜B(ƒXƒe[ƒ^ƒX)
-                //ƒXƒe[ƒ^ƒX10%Up
+            case CS_MissionPhaseData.MISSION_TYPE.TRAINING://é›éŒ¬(ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹)
+                //ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹10%Up
                 if (missionCnontents == missionData.sCut)
                 {
                     pStatus.charaStatus.cutIn *= 1.10f;
-                    //Å‘å’l‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+                    //æœ€å¤§å€¤ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
                     if(pStatus.charaStatus.cutIn > pStatus.charaStatus.cutInUpPow.max) { pStatus.charaStatus.cutIn = pStatus.charaStatus.cutInUpPow.max; }
                 }
                 if (missionCnontents == missionData.sColor)
                 { 
                     pStatus.charaStatus.charColorUP *= 1.10f;
-                    //Å‘å’l‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+                    //æœ€å¤§å€¤ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
                     if (pStatus.charaStatus.charColorUP > pStatus.charaStatus.charColorUpPow.max) { pStatus.charaStatus.charColorUP = pStatus.charaStatus.charColorUpPow.max; }
                 }
                 if (missionCnontents == missionData.sPreAttack)
                 { 
                     pStatus.charaStatus.preemptiveAttack *= 1.10f;
-                    //Å‘å’l‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+                    //æœ€å¤§å€¤ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
                     if (pStatus.charaStatus.preemptiveAttack > pStatus.charaStatus.preemptiveAttackUpPow.max) { pStatus.charaStatus.preemptiveAttack = pStatus.charaStatus.preemptiveAttackUpPow.max; }
                 }
                 if (missionCnontents == missionData.sRev)
                 {
                     pStatus.charaStatus.revaival *= 1.10f;
-                    //Å‘å’l‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+                    //æœ€å¤§å€¤ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
                     if (pStatus.charaStatus.revaival > pStatus.charaStatus.revivalUpPow.max) { pStatus.charaStatus.revaival = pStatus.charaStatus.revivalUpPow.max; }
                 }
                 if (missionCnontents == missionData.sEquipmentRank)
                 {
                     pStatus.charaStatus.equipmentRank += 1;
-                    //Å‘å’l‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+                    //æœ€å¤§å€¤ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
                     if (pStatus.charaStatus.revaival > pStatus.charaStatus.revivalUpPow.max) { pStatus.charaStatus.revaival = pStatus.charaStatus.revivalUpPow.max; }
                 }
 
-                //UŒ‚—ÍUP
+                //æ”»æ’ƒåŠ›UP
                 pStatus.charaStatus.attack += 5;
                 if(pStatus.charaStatus.attack > pStatus.charaStatus.attackUpPow.max) { pStatus.charaStatus.attack = pStatus.charaStatus.attackUpPow.max; }
                 break;
@@ -385,31 +386,31 @@ public class CS_MissionManeger : MonoBehaviour
 
     private IEnumerator AfterLotteryNodev()
     {
-        //‰‰o‚ªI‚í‚é‚Ü‚Åˆ—‚ği‚ß‚È‚¢
+        //æ¼”å‡ºãŒçµ‚ã‚ã‚‹ã¾ã§å‡¦ç†ã‚’é€²ã‚ãªã„
         while (!bigController.GetPatternVariationFinish()) { yield return null; }
-        Debug.Log("}•¿•Ï“®‚ªI—¹‚µ‚Ü‚µ‚½");
+        Debug.Log("å›³æŸ„å¤‰å‹•ãŒçµ‚äº†ã—ã¾ã—ãŸ");
         mCoroutine = null;
     }
-    //’Š‘IŒãˆ—
+    //æŠ½é¸å¾Œå‡¦ç†
     private IEnumerator AfterLottery(int _perfNum)
     {
         yield return new WaitForSeconds(0.5f);
         mNoDevObj.SetActive(false);
-        //ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰Às
+        //ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©å®Ÿè¡Œ
         OnPlayPerformance(_perfNum);
 
-        //‰‰o‚ªI‚í‚é‚Ü‚Åˆ—‚ği‚ß‚È‚¢
+        //æ¼”å‡ºãŒçµ‚ã‚ã‚‹ã¾ã§å‡¦ç†ã‚’é€²ã‚ãªã„
         while (!bigController.GetPatternVariationFinish()) { yield return null; }
-        //Debug.Log("‰‰oI—¹(‰¼)" + bigController.PerformanceSemiFinish);
+        //Debug.Log("æ¼”å‡ºçµ‚äº†(ä»®)" + bigController.PerformanceSemiFinish);
 
         GameObject JackPotPerf = null;
-        //“–‚½‚è‰‰oƒtƒ‰ƒO‚ªtrue‚È‚ç‚»‚Ì‰‰o¶¬
+        //å½“ãŸã‚Šæ¼”å‡ºãƒ•ãƒ©ã‚°ãŒtrueãªã‚‰ãã®æ¼”å‡ºç”Ÿæˆ
         if (bigController.JackPotPerf)
         {
             JackPotPerf = Instantiate(mCutIn, mCutIn.transform.position, mCutIn.transform.rotation);
         }
 
-        //‰‰o‚ªI‚í‚é‚Ü‚Åˆ—‚ği‚ß‚È‚¢
+        //æ¼”å‡ºãŒçµ‚ã‚ã‚‹ã¾ã§å‡¦ç†ã‚’é€²ã‚ãªã„
         while (JackPotPerf) { yield return null; }
 
         mNoDevObj.SetActive(true);
@@ -417,13 +418,13 @@ public class CS_MissionManeger : MonoBehaviour
         mCoroutine = null;
     }
 
-    //ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰íœ
+    //ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©å‰Šé™¤
     public static void RemoveAllHandlers()
     {
-        // OnPlayPerformance‚É“o˜^‚³‚ê‚Ä‚¢‚éŠÖ”‚ğÁ‚·
+        // OnPlayPerformanceã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹é–¢æ•°ã‚’æ¶ˆã™
         if (OnPlayPerformance != null)
         {
-            //“o˜^‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ğæ“¾
+            //ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã‚’å–å¾—
             Delegate[] handlers = OnPlayPerformance.GetInvocationList();
 
             foreach (Delegate handler in handlers)

@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 7144967071714588428, guid: 4dce92416ee72d14e865195c8c79404c, type: 3}
   mNodevlopmentPrehab: {fileID: 7142218133086803431, guid: d0afdb0f80bd4204cb776d18786cc622,
     type: 3}
-  mDebugNumber: -1
+  mDebugNumber: 6
   mGameCount: 20
 --- !u!114 &7243282921257143215
 MonoBehaviour:
