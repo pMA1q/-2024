@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class OdaController : MonoBehaviour
@@ -30,6 +31,13 @@ public class OdaController : MonoBehaviour
     // 攻撃可能かどうかのフラグ（外部から制御可能）
     public bool canAttack = true;
 
+    // ダウンアニメーションを開始するかどうかのフラグ（外部から制御可能）
+    public bool canKnockDown = false;
+
+    // ダウンアニメーションの遅延時間
+    private float knockDownDelay = 1f;
+    private float knockDownStartTime;
+
     void Start()
     {
         // Animator コンポーネントの取得
@@ -52,32 +60,38 @@ public class OdaController : MonoBehaviour
         // 新しいz座標を設定
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
 
-        // z座標が目標に達したら、移動を停止
-        if (Mathf.Approximately(newZ, targetZ) && !isStopped)
+        // 目標z座標に達したかどうかを確認
+        if (Mathf.Abs(newZ - targetZ) < 0.1f && !isStopped)  // 0.1fは許容誤差
         {
-            // 停止フラグを設定して、停止後の2秒待機を開始
+            // 停止フラグを設定して、停止後の2秒待機を開始            
             isStopped = true;
             stopTime = Time.time;
             animationStartTime = Time.time;  // アニメーションのカウント開始
         }
 
         // 停止後2秒待機したら、攻撃アニメーション遷移を開始
-        if (isStopped && !animationTriggered && Time.time - animationStartTime >= animationDelay && canAttack)
+        if (isStopped && !animationTriggered && Time.time - animationStartTime >= animationDelay && (canAttack || canKnockDown))
         {
             // アニメーションを遷移させる
-            animator.SetTrigger("SpacePressed");
+            animator.SetTrigger("Attack");
 
             // アニメーション遷移が発生したことを記録
             animationTriggered = true;
 
-            // 攻撃が発生したので、敵が倒れるようにする
-            foreach (var enemyController in enemyControllers)
+            // 攻撃が発生したので、敵が倒れるようにする（canAttackがtrueの場合）
+            if (canAttack)
             {
-                if (enemyController != null)
+                foreach (var enemyController in enemyControllers)
                 {
-                    enemyController.KnockDown(); // 敵を倒す
+                    if (enemyController != null)
+                    {
+                        enemyController.KnockDown(); // 敵を倒す
+                    }
                 }
             }
+
+            // 攻撃アニメーションが終了するのを待つコルーチンを開始
+            StartCoroutine(WaitForAttackAnimationToEnd());
         }
 
         // 停止後2秒待機したら、敵の逃げる動作を開始
@@ -94,11 +108,19 @@ public class OdaController : MonoBehaviour
             isStopped = false; // 逃げる処理が開始されたら、停止フラグをリセット
         }
 
-        // スペースキーが押されたか確認
-        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+    }
+
+    // 攻撃アニメーションが終わるのを待つためのコルーチン
+    IEnumerator WaitForAttackAnimationToEnd()
+    {
+        // アニメーションが完了するまで待機
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        // 攻撃アニメーションが終了した後、自分が倒れるアニメーションを開始（canKnockDownがtrueの場合）
+        if (canKnockDown)
         {
-            // SpacePressed トリガーをセットして遷移を発生させる
-            animator.SetTrigger("SpacePressed");
+            canKnockDown = false;  // 再度倒れないようにフラグをリセット
+            animator.SetTrigger("Down");  // 自分が倒れるアニメーションをトリガー
         }
     }
 
@@ -106,5 +128,11 @@ public class OdaController : MonoBehaviour
     public void ToggleAttack(bool isEnabled)
     {
         canAttack = isEnabled;
+    }
+
+    // 外部からダウンアニメーションのオンオフを制御するメソッド
+    public void ToggleKnockDown(bool isEnabled)
+    {
+        canKnockDown = isEnabled;
     }
 }
