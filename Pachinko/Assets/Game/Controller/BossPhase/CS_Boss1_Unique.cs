@@ -62,10 +62,14 @@ public class CS_Boss1_Unique : CS_BossUnique
             attackType = ATTACK_TYPE.MIDDLE;
             attack = mBossData.BossOneBlockHp*2;//çUåÇóÕ(íÜ)Ç…Ç∑ÇÈ
         }
-
-        mBossData.PlayerOneAttackPow = 4;
+        
+        mBossData.PlayerOneAttackPow = attack*2;
 
         CheckPlayerkPowerUp(4);
+        if(mBossData.UseTiket == CS_BossPhaseData.USE_TIKET.SPECOAL || mBossData.UseTiket == CS_BossPhaseData.USE_TIKET.PREEMPTIVE_ATTACK)
+        {
+            mBossData.PlayerOneAttackPow++;
+        }
         playerAttack = true;
         return next;
     }

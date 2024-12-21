@@ -20,7 +20,7 @@ public class CS_SetCharaAnimState : MonoBehaviour
 
     public void SetState(int _stateID)
     {
-        if (_stateID == previousStateID) return; // 同じ値なら再設定しない
+        //if (_stateID == previousStateID) return; // 同じ値なら再設定しない
         previousStateID = _stateID;
         animator.SetInteger(StateID, _stateID);
         Debug.Log(this.gameObject.name + "の" + "アニメーションステートが変わりました");

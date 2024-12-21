@@ -56,6 +56,7 @@ public class CS_BP_CompetitionController : MonoBehaviour
 
         if (mTikets.Count <= 0)
         {
+            mBossData.UseTiket = CS_BossPhaseData.USE_TIKET.NONE;
             StartCoroutine(AfterPush());
         }
         else

@@ -54,7 +54,7 @@ public class CS_BossPhaseController : MonoBehaviour
     }
 
     private int mNextMissionNum = -1;
-    private int mGameCount = 3;
+    private int mGameCount = 10;
     //public int GameCount
     //{
     //    set { mGameCount = value; }
@@ -174,7 +174,8 @@ public class CS_BossPhaseController : MonoBehaviour
     private IEnumerator Lottery()
     {
         int[] randomNumbers = new int[] { 0, 1, 2, 3, 13 };
-        int randomNumber = CS_LotteryFunction.LotNormalInt(mNowBossTable.infomation.Count);//0~情報数分の間で抽せん
+        int randomNumber = randomNumbers[CS_LotteryFunction.LotNormalInt(randomNumbers.Length)];//0~情報数分の間で抽せん
+        Debug.Log("抽せん結果番号" + randomNumber);
         if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
         mGameCount--;//ゲームカウントをへらす
 
@@ -210,11 +211,12 @@ public class CS_BossPhaseController : MonoBehaviour
             }
 
             randomNumber = ChangePerfNumber(randomNumber);//選んだチケットに応じて演出番号変更
+            //randomNumber = 4;//選んだチケットに応じて演出番号変更
         }
         
         mData.NoDevelpment = false;
 
-        mController.VariationTimer = 4f;
+        mController.VariationTimer = 3f;
 
         //この時点で次の番号が決まっているなら今回の変動番号決定
         if (mNextMissionNum > -1)
@@ -287,7 +289,8 @@ public class CS_BossPhaseController : MonoBehaviour
         switch(mBossData.UseTiket)
         {
             case CS_BossPhaseData.USE_TIKET.SPECOAL:
-                _randomNum = 25;
+                //_randomNum = 25; 
+                _randomNum = 4;
                 break;
             case CS_BossPhaseData.USE_TIKET.PARTNER:
                 _randomNum = 29;
@@ -404,7 +407,7 @@ public class CS_BossPhaseController : MonoBehaviour
                 Instantiate(mLastAttack, Vector3.zero, mLastAttackEnemy.transform.rotation);
                 return;
             }
-            if (true)//mBossData.IsPlayerHpZero
+            if (mBossData.IsPlayerHpZero)//mBossData.IsPlayerHpZero
             {
                 mCompetitionObj.SetActive(false);
                 mNoDevObj.SetActive(false);

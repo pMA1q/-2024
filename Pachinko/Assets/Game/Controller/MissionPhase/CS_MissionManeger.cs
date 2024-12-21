@@ -129,7 +129,7 @@ public class CS_MissionManeger : MonoBehaviour
         if (bigController.GetStock() == 0) { return; }
 
 
-        int[] numbers = new int[] { 0, 1, 2, 12, 13 };
+        int[] numbers = new int[] { 0, 1, 2, 5, 12, 13 };
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
         //int randomNumber = CS_LotteryFunction.LotNormalInt(10);//一旦項目17までに限定する
@@ -192,6 +192,7 @@ public class CS_MissionManeger : MonoBehaviour
     //ユニークな演出時の処理
     private void UniquePerformance()
     {
+       
         int next = -1;
         for (int i = 0; i < mUniquePF.Length; i++)
         {
@@ -211,7 +212,7 @@ public class CS_MissionManeger : MonoBehaviour
         //敵を討伐したなら
         if(missionData.SubjugationOneMission >= 1)
         {
-            mSubjugationNum = missionData.SubjugationOneMission;//討伐数に加算
+            mSubjugationNum += missionData.SubjugationOneMission;//討伐数に加算
             missionData.SubjugationSum = mSubjugationNum;//ミッションデータの討伐数合計を更新
             int perfNumber = mBackupNumber + 1;//演出項目番号
             //次回ミッション遂行フラグ確定？の演出かを調べる
@@ -303,7 +304,7 @@ public class CS_MissionManeger : MonoBehaviour
         Debug.Log("ボスフェーズへ移行します");
         Destroy(mNoDevObj); // 無発展オブジェクト削除
 
-        //Remuneration();//報酬獲得処理
+        Remuneration();//報酬獲得処理
 
         // 次のフェーズの準備処理
         CS_BossPhaseHandler bossPhaseHandler = gameObject.GetComponent<CS_BossPhaseHandler>();
@@ -316,6 +317,7 @@ public class CS_MissionManeger : MonoBehaviour
     //報酬処理
     void Remuneration()
     {
+        if(mSubjugationNum < 10) { return; }
         //ミッションデータ取得
         CS_MissionPhaseData.MISSION_TYPE mType = missionData.MissionType;
 
@@ -334,7 +336,6 @@ public class CS_MissionManeger : MonoBehaviour
                 {
                     pStatus.ticket.revaival += addTiket;
                 }
-               
                 break;
             case CS_MissionPhaseData.MISSION_TYPE.SUBJUGATION://討伐(スキル)
                 if (missionCnontents == missionData.eSkill)

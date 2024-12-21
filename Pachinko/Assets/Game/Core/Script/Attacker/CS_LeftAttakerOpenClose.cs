@@ -34,11 +34,17 @@ public class CS_LeftAttakerOpenClose : MonoBehaviour
   
     public void AttakerOpen(int _round)
     {
-        Prize = 0;
-        IsAttakerEnable = true;
-
-        StartCoroutine(NextRoundTimer());
-        RoundNum = _round;
+        if (!IsAttakerEnable)
+        {
+            Prize = 0;
+            IsAttakerEnable = true;
+            StartCoroutine(NextRoundTimer());
+            RoundNum = _round;
+        }
+        else 
+        {
+            RoundNum += _round; 
+        }
     }
 
     private IEnumerator NextRoundTimer()
