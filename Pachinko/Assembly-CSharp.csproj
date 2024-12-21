@@ -67,6 +67,7 @@
     <Compile Include="Assets\Fujisawa\CS_FCameraController.cs" />
     <Compile Include="Assets\Game\Sample\7_EnemyAttack\CS_BP_7_Player.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\PlayerLose\CS_PlayerLose.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_Cutin_5_Enemy.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\nozaki\SubjugationMission\Scene\No.06\AnimationController_06.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseController.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_NodevCameraMotiona.cs" />
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_Ef_4_Pa.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Weak.cs" />
     <Compile Include="Assets\Game\MissionPhase\CutIn\CS_CutIn.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\PlayerLose\CS_EnemyLastAttack.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_EllipticalTerrain.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_Windmill.cs" />
@@ -207,6 +210,7 @@
     <Compile Include="Assets\feature\yamaguchi\Script\CS_5EnemiesApeer_Win.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshColliderBuilder.cs" />
     <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimationController.cs" />
+    <Compile Include="Assets\nozaki\SubjugationMission\Scene\No.06\AnimationSequenceController_06.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseTable.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_EnemyAnimation.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_Boss1_Unique.cs" />
@@ -235,10 +239,6 @@
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_PlayerAnimation.cs" />
-    <Compile Include="Assets\Game\BossPhase\Prefab\PlayerLose\CS_PlayerLose.cs" />
-    <Compile Include="Assets\Game\BossPhase\Prefab\PlayerLose\CS_EnemyLastAttack.cs" />
-    <Compile Include="Assets\nozaki\SubjugationMission\Scene\No.06\AnimationController_06.cs" />
-    <Compile Include="Assets\nozaki\SubjugationMission\Scene\No.06\AnimationSequenceController_06.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
