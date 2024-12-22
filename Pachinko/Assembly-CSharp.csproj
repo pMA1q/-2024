@@ -53,7 +53,7 @@
     <UnityVersion>2021.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Game\Lottery\CS_LotteryFunction.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Assets\Fujisawa\CS_FCameraController.cs" />
     <Compile Include="Assets\Game\Sample\7_EnemyAttack\CS_BP_7_Player.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossUnique.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\PlayerLose\CS_PlayerLose.cs" />
     <Compile Include="Assets\Bokudayo\Script\Revival.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_Cutin_5_Enemy.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CollisionPlane.cs" />
@@ -98,8 +99,10 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_DrawText.cs" />
     <Compile Include="Assets\Game\Core\Script\Attacker\CS_LeftAttakerOpenClose.cs" />
     <Compile Include="Assets\Game\CharacterData\CS_SetCharaAnimState.cs" />
+    <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_SE_5_Cutin.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
+    <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_SE_5_Pa2.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\GameCount\CS_BP_DrawCount.cs" />
     <Compile Include="Assets\Game\BossPhase\Guage\CS_HpGuage.cs" />
@@ -153,6 +156,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionController.cs" />
     <Compile Include="Assets\Bokudayo\Script\ColorTransfer.cs" />
+    <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_5_PlayerAnimation2.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Skill].cs" />
     <Compile Include="Assets\Bokudayo\Script\ApplyMaterialToAll.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Enemy.cs" />
@@ -160,10 +164,12 @@
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_Ef_4_Pa.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player Buff Weak.cs" />
     <Compile Include="Assets\Game\MissionPhase\CutIn\CS_CutIn.cs" />
+    <Compile Include="Assets\Game\BossPhase\Prefab\PlayerLose\CS_EnemyLastAttack.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_EllipticalTerrain.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_Windmill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_5_EnemyAnimation.cs" />
     <Compile Include="Assets\Bokudayo\Script\QuitGame.cs" />
     <Compile Include="Assets\Game\Controller\CameraController\CS_CameraSizeSetter.cs" />
     <Compile Include="Assets\Fujisawa\Animation\CSPlayerAnimation.cs" />
@@ -206,6 +212,7 @@
     <Compile Include="Assets\Bokudayo\Script\ExplosionSample.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_5EnemiesApeer_Win.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshColliderBuilder.cs" />
+    <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_SE_5_En.cs" />
     <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimationController.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CSO_SetPhaseTable.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_EnemyAnimation.cs" />
@@ -224,8 +231,10 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Game\Controller\CS_Controller.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_RenderTexture.cs" />
+    <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_Ef_5_En.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_RewardUp.cs" />
     <Compile Include="Assets\Bokudayo\Script\OdaController.cs" />
+    <Compile Include="Assets\Game\Controller\MissionPhase\CS_MS_AddSubCount.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformanceFinish.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossPhaseTable.cs" />
     <Compile Include="Assets\Bokudayo\Script\Move.cs" />
@@ -533,6 +542,12 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
