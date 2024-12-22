@@ -129,8 +129,13 @@ public class CS_MissionManeger : MonoBehaviour
         if (bigController.GetStock() == 0) { return; }
 
 
+<<<<<<< HEAD
         int[] numbers = new int[] { 0, 1, 2, 6,12, 13 };
         //int[] numbers = new int[] { 0, 1, 2, 5, 12, 13 };
+=======
+        //int[] numbers = new int[] { 0, 1, 2, 6,12, 13 };
+        int[] numbers = new int[] { 0, 1, 2, 5, 12, 13 };
+>>>>>>> origin/nakashima/Other/777Marge
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
         //int randomNumber = CS_LotteryFunction.LotNormalInt(10);//一旦項目17までに限定する
