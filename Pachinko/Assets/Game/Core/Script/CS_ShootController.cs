@@ -33,7 +33,7 @@ public class CS_ShootController : MonoBehaviour
 
     private void LeftShootButton()
     {
-        ballSpawn.forceY = 370;
+        //ballSpawn.forceY = 370;
 
         leftShootButton.GetComponent<Image>().color = selectColor;
        

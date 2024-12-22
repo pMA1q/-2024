@@ -96,7 +96,18 @@ public class CS_Controller : MonoBehaviour
     private bool is777 = false;
     public bool Is777
     {
-        set { is777 = value; }
+        set
+        {
+
+            is777 = value;
+            if(is777)
+            {
+                for(int i = 0; i < mPattern.Length; i ++)
+                {
+                    mPattern[i] = 7;
+                }
+            }
+        }
         get { return is777; }
     }
 
