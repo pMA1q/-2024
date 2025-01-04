@@ -244,6 +244,7 @@
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_PlayerAnimation.cs" />
+    <Compile Include="Assets\CS_BallSpeedController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

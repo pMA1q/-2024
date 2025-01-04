@@ -93,6 +93,24 @@ public class CS_Controller : MonoBehaviour
         get { return mWaitChoice; }
     }
 
+    private bool is777 = false;
+    public bool Is777
+    {
+        set
+        {
+
+            is777 = value;
+            if(is777)
+            {
+                for(int i = 0; i < mPattern.Length; i ++)
+                {
+                    mPattern[i] = 7;
+                }
+            }
+        }
+        get { return is777; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -226,8 +244,9 @@ public class CS_Controller : MonoBehaviour
     {
         if (GetJuckpot()) 
         { 
-            if(GetPatterns()[0] == 7)
+            if(is777)
             {
+                is777 = false;
                 GetComponent<CS_CommonData>().LeftAttakerStart(3);
             }
             else { GetComponent<CS_CommonData>().LeftAttakerStart(1); }
