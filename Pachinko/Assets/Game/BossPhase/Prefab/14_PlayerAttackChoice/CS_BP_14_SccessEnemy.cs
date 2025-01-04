@@ -20,7 +20,7 @@ public class CS_BP_14_SccessEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(mStartDown);
 
-        GetComponent<CS_SetCharaAnimState>().SetState(3);
+        GetComponent<CS_SetCharaAnimState>().SetState(CHARACTER_ANIMATION_STATE.DAMAGE);
 
         //ìGÇÃHPÉQÅ[ÉWÇå∏ÇÁÇ∑
         mHpGuage.BossHpDown();

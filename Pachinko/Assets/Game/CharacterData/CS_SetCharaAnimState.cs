@@ -2,27 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CHARACTER_ANIMATION_STATE
+{
+    IDLE = 0,
+    ATTACK,
+    DOWN,
+    DAMAGE,
+    WINNING = 7
+}
+
 public class CS_SetCharaAnimState : MonoBehaviour
 {
-    public static string StateID = "StateID";
+    public readonly static string StateID = "StateID";
     [SerializeField]
-    private int mState = 0;
+    private CHARACTER_ANIMATION_STATE mCharacterState = CHARACTER_ANIMATION_STATE.IDLE;
 
     private Animator animator;
-    private int previousStateID = -1;
     void Start()
     {
         animator = GetComponent<Animator>();
 
         // 遷移するStateを指定
-        SetState(mState);  // 例: JumpStateへ遷移
+        SetState(mCharacterState);
     }
 
-    public void SetState(int _stateID)
+    //ステート番号を変更
+    public void SetState(CHARACTER_ANIMATION_STATE _stateID)
     {
         //if (_stateID == previousStateID) return; // 同じ値なら再設定しない
-        previousStateID = _stateID;
-        animator.SetInteger(StateID, _stateID);
+
+        animator.SetInteger(StateID, (int)_stateID);
         Debug.Log(this.gameObject.name + "の" + "アニメーションステートが変わりました");
     }
 }

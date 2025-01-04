@@ -12,6 +12,10 @@ public class CS_ShootController : MonoBehaviour
     [SerializeField]
     private CS_SphereSpawn ballSpawn;
     [SerializeField]
+    private float mLeftForce = 370f;
+    [SerializeField]
+    private float mRightForce = 640f;
+    [SerializeField]
     private Color NoSelectColor;
     private Color selectColor = new Color(1f, 1f, 1f, 1f);
     private Color selectColorTx = new Color(1f, 0f, 0f, 1f);
@@ -28,12 +32,11 @@ public class CS_ShootController : MonoBehaviour
         {
             Debug.LogError("rightShootButton is null. Check the Button assignment.");
         }
-        Debug.Log("É{É^Éìê›íËÇµÇ‹ÇµÇΩ");
     }
 
     private void LeftShootButton()
     {
-        ballSpawn.forceY = 370;
+        ballSpawn.forceY = mLeftForce;
 
         leftShootButton.GetComponent<Image>().color = selectColor;
        
@@ -42,7 +45,7 @@ public class CS_ShootController : MonoBehaviour
 
     private void RightShootButton()
     {
-        ballSpawn.forceY = 640;
+        ballSpawn.forceY = mRightForce;
         leftShootButton.GetComponent<Image>().color = NoSelectColor;
         rightShootButton.GetComponent<Image>().color = selectColor;   
     }

@@ -21,15 +21,19 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
 
     private int NowRound = 1;
 
+    [NonSerialized]
     public bool IsInV_Spot = false;
+    [NonSerialized]
     public bool IsInV_Open = false;
 
-    Quaternion defaultRotation;
+    private float mMoveSpeed = 480f;
+
+    Vector3 defaultRotation;
     // Start is called before the first frame update
     void Start()
     {
-        defaultRotation = this.transform.localRotation;
-        Debug.Log("初期位置" + this.transform.eulerAngles);
+        defaultRotation = this.transform.eulerAngles;
+
     }
 
     // Update is called once per frame
@@ -37,10 +41,7 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     {
         if (IsAttakerEnable)
         {
-            if (IsAttackOpen) 
-            {
-                //AddDedama();//出玉処理
-            }
+            
             if(IsInV_Open)
             {
                 V_Spot_Update();
@@ -48,27 +49,8 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
         }
     }
 
-    //出玉処理
-    private void AddDedama()
-    {
-        if (Prize < 15) { return; }
-
-        Prize = 0;
-        NowRound++;
-        IsAttackOpen = false;
-        StopCoroutine(NextRoundTimer());
-        if (NowRound > RoundNum)
-        {
-            IsAttakerEnable = false;
-            NowRound = 0;
-            this.transform.rotation = defaultRotation;
-            return;
-        }
-
-        StartCoroutine(NextRound());//次のラウンドへ
-    }
-
-    public void AttakerOpen(int _round)
+    
+    public void AttakerStart(int _round)
     {
         Prize = 0;
         IsAttakerEnable = true;
@@ -80,7 +62,8 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     private IEnumerator NextRoundTimer()
     {
         IsAttackOpen = true;
-        this.transform.eulerAngles = new Vector3(defaultRotation.x, defaultRotation.y, openRot);
+        StartCoroutine(AttakerMove(openRot));//解放位置まで回転させる
+        Prize = 0;
         float timer = 0;
 
         while (timer <= 20)
@@ -89,7 +72,6 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
             if (Prize < 15) { yield return null; }//15個入ってないなら終了
             else
             {
-                Debug.Log("15個数入りました");
                 break;
             }
         }
@@ -105,7 +87,7 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
         {
             IsAttakerEnable = false;
             NowRound = 0;
-            this.transform.rotation = defaultRotation;
+            StartCoroutine(AttakerMove(defaultRotation.z));//初期位置まで回転させる
             yield break;
         }
 
@@ -114,22 +96,45 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
         yield break;
     }
 
+    private IEnumerator AttakerMove(float _targetRot)
+    {
+        // 現在のz軸の回転角度を取得
+        float currentZRotation = transform.eulerAngles.z;
+        // 回転がopenrotまで到達するまで回転を続ける
+        while (Mathf.Abs(currentZRotation - _targetRot) > 0.1f)
+        {
+            // 回転を計算
+            float step = mMoveSpeed * Time.deltaTime; // フレームごとの回転量
+            float targetZ = Mathf.MoveTowards(currentZRotation, _targetRot, step);
+
+            // 回転を適用
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, targetZ);
+
+            // 現在の角度を更新
+            currentZRotation = transform.eulerAngles.z;
+
+            // 次のフレームまで待機
+            yield return null;
+        }
+
+        // 最終的に目標角度にスナップ
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, _targetRot);
+    }
+
     private IEnumerator NextRound()
     {
-        this.transform.rotation = defaultRotation;
+        StartCoroutine(AttakerMove(defaultRotation.z));//初期位置まで回転させる
 
         yield return new WaitForSeconds(1f);
-
-
 
         //タイマー
         StartCoroutine(NextRoundTimer());
     }
 
-    public void AttakerOpen_V_Bounus()
+    public void AttakerStart_V_Bounus()
     {
         Prize = 0;
-        this.transform.eulerAngles = new Vector3(defaultRotation.x, defaultRotation.y, openRot);
+        StartCoroutine(AttakerMove(openRot));//解放位置まで回転させる
         IsAttakerEnable = true;
         IsInV_Open = true;
         IsInV_Spot = false;
@@ -144,7 +149,7 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
             IsInV_Open = false;
             IsAttakerEnable = false;
             Prize = 0;
-            this.transform.rotation = defaultRotation;
+            StartCoroutine(AttakerMove(defaultRotation.z));//初期位置まで回転させる
         }
     }
 }

@@ -49,12 +49,12 @@ public class CS_CommonData : MonoBehaviour
     // 右のアタッカーを開く
     public void RightAttakerStart(int _round)
     {
-        mRightAttaker.AttakerOpen(_round);
+        mRightAttaker.AttakerStart(_round);
     }
 
     // V入賞
     public void V_SpotOpen()
     {
-        mRightAttaker.AttakerOpen_V_Bounus();
+        mRightAttaker.AttakerStart_V_Bounus();
     }
 }

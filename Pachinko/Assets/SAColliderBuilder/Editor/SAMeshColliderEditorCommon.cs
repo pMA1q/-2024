@@ -939,9 +939,9 @@ public class SAMeshColliderEditorCommon
 
 	public static string GetSAMeshColliderName_Material( Material[] materials, int index )
 	{
-		if( materials != null && index < materials.Length && !string.IsNullOrEmpty(materials[index].name) ) {
-			return materials[index].name;
-		}
+		//if( materials != null && index < materials.Length && !string.IsNullOrEmpty(materials[index].name) ) {
+		//	return materials[index].name;
+		//}
 
 		return "Mesh." + index.ToString("D8");
 	}

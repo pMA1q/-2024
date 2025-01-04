@@ -40,7 +40,7 @@ public class CS_LastAttackPlayer : MonoBehaviour
         Destroy(mRedEffect);
 
         CS_SetCharaAnimState animState = GetComponent<CS_SetCharaAnimState>();
-        animState.SetState(1);
+        animState.SetState(CHARACTER_ANIMATION_STATE.ATTACK);
         mEffect.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
