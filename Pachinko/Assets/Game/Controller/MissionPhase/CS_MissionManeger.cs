@@ -128,19 +128,10 @@ public class CS_MissionManeger : MonoBehaviour
         //保留玉が無いなら終了
         if (bigController.GetStock() == 0) { return; }
 
-
-<<<<<<< HEAD
-        int[] numbers = new int[] { 0, 1, 2, 6,12, 13 };
-        //int[] numbers = new int[] { 0, 1, 2, 5, 12, 13 };
-=======
-
-        //int[] numbers = new int[] { 0, 1, 2, 6,12, 13 };
-        int[] numbers = new int[] { 0, 1, 2, 5, 12, 13 };
-
->>>>>>> origin/nozaki/feature/Ball#2
+        int[] numbers = new int[] { 0, 1, 2, 6, 7, 12, 13 };
+    
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
-        //int randomNumber = CS_LotteryFunction.LotNormalInt(10);//一旦項目17までに限定する
         int randomNumber = numbers[CS_LotteryFunction.LotNormalInt(numbers.Length)];//一旦項目17までに限定する
         if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }
 
@@ -160,7 +151,6 @@ public class CS_MissionManeger : MonoBehaviour
         mData.NoDevelpment = false;//無発展フラグをfalse
 
         bigController.VariationTimer = 4f;
-
 
         //再抽選確認。当選すれば次のミッション決定
         //mNextMissionNum = CheckReLottely(missionPhaseTable.infomation[randomNumber]);
