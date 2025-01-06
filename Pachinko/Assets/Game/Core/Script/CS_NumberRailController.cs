@@ -79,6 +79,8 @@ public class CS_NumberRailController : MonoBehaviour
         
         mNumRails[1].StopStart(7);
 
+        mBigCtrl.Is777 = true;
+
         yield return new WaitForSeconds(2.0f);
         //i—ß“ƒ‚É}•¿•Ï“®I—¹‚ğ“`‚¦‚é
         mBigCtrl.PatternVariationFinish();
