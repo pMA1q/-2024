@@ -119,8 +119,6 @@ public class CS_MissionManeger : MonoBehaviour
         //変動できるかを取得
         bool variationStart = bigController.CanVariationStart();
         if (!variationStart) { return; }//falseなら終了
-
-        //Debug.Log("次のミッションフラグ" + mNextMissionNum);
        
         //イベントハンドラはnullなら終了
         if (OnPlayPerformance == null) { return; }

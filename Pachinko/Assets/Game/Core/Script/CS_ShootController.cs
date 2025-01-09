@@ -12,7 +12,7 @@ public class CS_ShootController : MonoBehaviour
     [SerializeField]
     private CS_SphereSpawn ballSpawn;
     [SerializeField]
-    private float mLeftForce = 370f;
+    private float mLeftForce = 3000f;
     [SerializeField]
     private float mRightForce = 640f;
     [SerializeField]

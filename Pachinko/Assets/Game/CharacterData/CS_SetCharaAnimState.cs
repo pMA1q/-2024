@@ -8,7 +8,9 @@ public enum CHARACTER_ANIMATION_STATE
     ATTACK,
     DOWN,
     DAMAGE,
-    WINNING = 7
+    WALK,
+    WINNING = 7,
+    BONUS = 777,
 }
 
 public class CS_SetCharaAnimState : MonoBehaviour
