@@ -25,6 +25,13 @@ public class CS_LotteryFunction : MonoBehaviour
         return randomValue == 0;
     }
 
+    public static bool LotJackpotFloat(float _bigWinProbability)
+    {
+       
+        float randomValue = UnityEngine.Random.Range(0.0f, 1.0f); // 0.0ˆÈã1.0–¢–‚Ìƒ‰ƒ“ƒ_ƒ€‚È’l
+        return randomValue < _bigWinProbability;
+    }
+
     //}•¿’Š‚¹‚ñ‚ğ‚·‚é
     public static int[] PatternLottery()
     {

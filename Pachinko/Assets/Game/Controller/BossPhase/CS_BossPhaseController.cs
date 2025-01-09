@@ -315,7 +315,6 @@ public class CS_BossPhaseController : MonoBehaviour
         mController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
         mController.CreateController();
         Destroy(this.gameObject);
-
     }
 
     //ñ≥î≠ìWèàóù
@@ -355,7 +354,6 @@ public class CS_BossPhaseController : MonoBehaviour
         return next;
     }
 
-    
     private IEnumerator AfterLottery(int _perfNum)
     {
         yield return new WaitForSeconds(2f);

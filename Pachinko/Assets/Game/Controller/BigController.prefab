@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4608715447548663831}
   - component: {fileID: 4930058131371697441}
   - component: {fileID: 3986402120166305029}
+  - component: {fileID: 7243608585345176253}
   m_Layer: 0
   m_Name: BigController
   m_TagString: Untagged
@@ -52,9 +53,13 @@ MonoBehaviour:
   - {fileID: 2851348079688611415, guid: e5792b70b67b5734ca3144eb06c112a7, type: 3}
   - {fileID: 2851348079688611415, guid: b6588963ab6950248a476caee95e70e3, type: 3}
   - {fileID: 3287296361909855014, guid: ee9563e037f281d4e8daa650e086a721, type: 3}
+  mBGM: []
   mHeso: {fileID: 0}
   mDrawNum: {fileID: 0}
   mDrawNum2: {fileID: 0}
+  mBigNumberScale: {x: 0, y: 0, z: 0}
+  mBigNumberPosition: {x: 0, y: 0, z: 0}
+  mNowPhese: 0
 --- !u!114 &2977572893432882904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mBossList: {fileID: 11400000, guid: c374b82e5d63a9f49a26db13c56a9978, type: 2}
-  mBossListBackUp: {fileID: 0}
 --- !u!114 &3986402120166305029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,5 +108,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bee913e3acc1e744b704ecfdeb2d6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mLeftAttaker: {fileID: 0}
+  mRightAttaker: {fileID: 0}
+  Dedama: 0
+--- !u!114 &7243608585345176253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474442167957775435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75eaa970f7ee264899e18b35a1ada7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -94,7 +94,6 @@
     <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\Game\Bonus\MoveCharaBonus.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseController.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_NodevCameraMotiona.cs" />
     <Compile Include="Assets\Bokudayo\Script\Win.cs" />
@@ -154,7 +153,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Ally.cs" />
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
-    <Compile Include="Assets\Game\Bonus\CS_AnimChangeTimer.cs" />
     <Compile Include="Assets\Game\SetPhase\Script\CS_LotMission.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionController.cs" />
@@ -174,7 +172,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_5_EnemyAnimation.cs" />
     <Compile Include="Assets\Bokudayo\Script\QuitGame.cs" />
-    <Compile Include="Assets\Game\Bonus\BonusCamera.cs" />
     <Compile Include="Assets\Game\Controller\CameraController\CS_CameraSizeSetter.cs" />
     <Compile Include="Assets\Fujisawa\Animation\CSPlayerAnimation.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_SE_4_Pa.cs" />
@@ -248,6 +245,10 @@
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_PlayerAnimation.cs" />
+    <Compile Include="Assets\Game\Controller\RUSH\CS_RushPhaseController.cs" />
+    <Compile Include="Assets\Game\Controller\RUSH\CS_RushPhaseData.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_CameraMotion.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_RushOda.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

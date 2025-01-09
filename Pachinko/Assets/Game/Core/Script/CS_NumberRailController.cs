@@ -8,6 +8,7 @@ public class CS_NumberRailController : MonoBehaviour
     private CS_NumberRail[] mNumRails = new CS_NumberRail[3];
 
     private CS_Controller mBigCtrl;
+    private CS_RushPhaseData mRushData;
 
     private int[] mNumbers = new int[3];
 
@@ -26,8 +27,8 @@ public class CS_NumberRailController : MonoBehaviour
     {
         mBigCtrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         if (!mBigCtrl) { Debug.LogError("BigControllerÇ™ñ≥Ç¢"); }
-        //for (int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(1.0f); }
-        enumerator = RealTex();
+        mRushData = mBigCtrl.GetComponent<CS_RushPhaseData>();
+        enumerator = null;
     }
     // Update is called once per frame
     void Update()
@@ -46,12 +47,20 @@ public class CS_NumberRailController : MonoBehaviour
 
         mAlpha = newAlpha;
 
-        for(int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(mAlpha); }
+        //for(int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(mAlpha); }
     }
 
     public void StartPattenRail()
     {
-        if(enumerator == null) { enumerator = RealTex(); }
+        if(enumerator == null)
+        { 
+            if(mBigCtrl.GetPhese()== CS_Controller.PACHINKO_PHESE.RUSH)
+            {
+                enumerator = RealTexRush();
+                Debug.Log("ÉâÉbÉVÉÖïœìÆ");
+            }
+            else {enumerator = RealTex();}
+        }
         if(mCoroutine == null && enumerator != null)
         {
             mVariationTime = mBigCtrl.VariationTimer-1.0f;//ïœìÆéûä‘ê›íË
@@ -68,6 +77,63 @@ public class CS_NumberRailController : MonoBehaviour
         StartCoroutine(RealTex7()); 
     }
 
+    private IEnumerator RealTexRush()
+    {
+        Vector3[] scaledefa = new Vector3[3];
+        for (int i = 0; i < 3; i++) { scaledefa[i] = mNumRails[i].GetComponent<RectTransform>().localScale; }
+
+        for (int i = 0; i < 3; i++)
+        {
+            Vector3 scale = mNumRails[i].GetComponent<RectTransform>().localScale;
+            scale *= 1.5f;
+            mNumRails[i].GetComponent<RectTransform>().localScale = scale;
+        }
+        int[] number = new int[] { mBigCtrl.GetPatterns()[0], mBigCtrl.GetPatterns()[2], mBigCtrl.GetPatterns()[1] };
+        yield return new WaitForSeconds(0.2f);
+        if (mRushData.JackPot)
+        {
+            Debug.Log("ëÂìñÇΩÇË");
+            for (int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(0.0f); }
+            Debug.Log("êFÇ©Ç¶");
+            yield return new WaitForSeconds(2.8f);
+            for (int i = 0; i < 3; i++)
+            {
+                mNumRails[i].StopStartRush(number[i]);
+                mNumRails[i].ChangeAlpha(1.0f);
+            }
+            
+            yield return new WaitForSeconds(5.0f);
+            //éióﬂìÉÇ…ê}ïøïœìÆèIóπÇì`Ç¶ÇÈ
+            mBigCtrl.PatternVariationFinish();
+
+            isVariation = false;
+            mNowTime = 0.0f;
+
+            mCoroutine = null;
+            enumerator = null;
+            yield break;
+        }
+        
+      
+        //int[] number = new int[] { 1, 2, 3 };
+        for (int i = 0; i < 3; i++)
+        {
+            Vector3 scale = mNumRails[i].GetComponent<RectTransform>().localScale;
+            scale = scaledefa[i];
+            mNumRails[i].StopStartRush(number[i]);
+            mNumRails[i].GetComponent<RectTransform>().localScale = scale;
+        }
+        yield return new WaitForSeconds(0.7f);
+        //éióﬂìÉÇ…ê}ïøïœìÆèIóπÇì`Ç¶ÇÈ
+        mBigCtrl.PatternVariationFinish();
+
+        isVariation = false;
+        mNowTime = 0.0f;
+
+        mCoroutine = null;
+        enumerator = null;
+
+    }
 
     private IEnumerator RealTex7()
     {
@@ -76,7 +142,6 @@ public class CS_NumberRailController : MonoBehaviour
 
         mNumRails[2].StopStart(7);
 
-        
         mNumRails[1].StopStart(7);
 
         mBigCtrl.Is777 = true;

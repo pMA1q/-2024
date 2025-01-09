@@ -101,6 +101,8 @@ public class CS_NumberRail : MonoBehaviour
         }
     }
 
+   
+
     private void StopPatterns()
     {
         int stopPattern = mStopNumber - 1;//止まる図柄
@@ -139,7 +141,13 @@ public class CS_NumberRail : MonoBehaviour
         ArrangePatterns(5);
         isStopStart = true;
     }
-
+    public void StopStartRush(int _stopNum)
+    {
+        mStopNumber = _stopNum;
+        Debug.Log("stopnum" + mStopNumber);
+        ArrangePatterns(1);
+        StopPatterns();
+    }
     //BottomPosより下にあるならひとつ前のインデクス+Intervalのポジションにする
     private void CheckOverBottom(int _val, RectTransform _rRtrans)
     {
@@ -166,21 +174,23 @@ public class CS_NumberRail : MonoBehaviour
     {
         StartCoroutine(StartVal());
     }
+   
 
     //アルファ値を変える
     public void ChangeAlpha(float _alpha)
     {
+        mNowAlpha = _alpha;
         for (int i = 0; i < 9; i++)
         {
             RectTransform rTrans = mNumberPatterns[i].GetComponent<RectTransform>();
             mNumberPatterns[i].GetComponent<Image>().color = new Color(1, 1, 1, _alpha);
             CheckOutsidePanel(i, rTrans);//パネル外なら透明にする
         }
-        mNowAlpha = _alpha;
     }
 
     private IEnumerator StartVal()
     {
+        
         //図柄を少し上げる
         float up = 100;
         float afterpos = mNumberPatterns[0].GetComponent<RectTransform>().localPosition.y + up;

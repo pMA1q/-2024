@@ -165,7 +165,8 @@ public class CS_Controller : MonoBehaviour
         mPatternVariationFinish = true;
         GameObject ctrl = Instantiate(mCtrls[(int)mNowPhese], transform.position, transform.rotation);
         ctrl.name = mCtrls[(int)mNowPhese].name;
-        mNowBGM = Instantiate(mBGM[(int)mNowPhese], Vector3.zero, Quaternion.identity);
+        if(mBGM[(int)mNowPhese] != null) { mNowBGM = Instantiate(mBGM[(int)mNowPhese], Vector3.zero, Quaternion.identity); } 
+       
     }
 
     //ï€óØã ÇëùÇ‚Ç∑

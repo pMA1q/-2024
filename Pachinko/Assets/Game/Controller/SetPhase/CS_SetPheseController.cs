@@ -51,7 +51,6 @@ public class CS_SetPheseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //入賞数が3？
         if (mPrizesNum == 3 && mBigController.GetVariationFinish())
         {
@@ -63,7 +62,6 @@ public class CS_SetPheseController : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
 
         //変動できるかを取得
         bool variationStart = mBigController.CanVariationStart();
@@ -114,7 +112,4 @@ public class CS_SetPheseController : MonoBehaviour
             }
         }
     }
-
-    
-
 }
