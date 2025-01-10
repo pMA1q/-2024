@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2881196583427451959}
   - component: {fileID: 2881196583427451952}
   - component: {fileID: 2881196583427451953}
+  - component: {fileID: 946825944095574709}
   m_Layer: 5
   m_Name: RushJackpot
   m_TagString: Untagged
@@ -115,6 +116,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeDistance: 1.5
+--- !u!114 &946825944095574709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2881196583427451954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc69c37fafb9424db04f4f159bf6caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTimer: 8
 --- !u!1 &2881196585341690404
 GameObject:
   m_ObjectHideFlags: 0

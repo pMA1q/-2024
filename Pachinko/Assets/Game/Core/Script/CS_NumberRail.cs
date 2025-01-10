@@ -45,9 +45,13 @@ public class CS_NumberRail : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i = 0; i < 9; i++)
+        {
+            RectTransform rTrans = mNumberPatterns[i].GetComponent<RectTransform>();
+            CheckOutsidePanel(i, rTrans);//パネル外なら透明にする
+        }
 
-        if(!isVariation) { return; }
+        if (!isVariation) { return; }
 
         float moveSpeed = mSpeed;
         if (isStopStart) { moveSpeed = mStopStartSpeed; }
@@ -87,17 +91,19 @@ public class CS_NumberRail : MonoBehaviour
         // Panelのbottom位置（ワールド座標）を取得
         float panelBottom = panelCorners[0].y; // 左下のy座標がbottom
 
+        float panelTop = panelCorners[1].y;    // 左上のy座標がtop
+
         // オブジェクトの現在位置（ワールド座標）を取得
         Vector3 objectPosition = _rTrans.position;
 
-        // オブジェクトのbottomがPanelのbottomより下かをチェック
-        bool isBelow = objectPosition.y < panelBottom;
+        // オブジェクトのbottomがPanelのbottomより下、またはtopより上かをチェック
+        bool isOutside = objectPosition.y < panelBottom || objectPosition.y > panelTop;
 
         // Alphaを更新
         Image img = mNumberPatterns[_index].GetComponent<Image>();
         if (img != null)
         {
-            img.color = new Color(1, 1, 1, isBelow ? 0.0f : mNowAlpha);
+            img.color = new Color(1, 1, 1, isOutside ? 0.0f : mNowAlpha);
         }
     }
 
@@ -144,7 +150,6 @@ public class CS_NumberRail : MonoBehaviour
     public void StopStartRush(int _stopNum)
     {
         mStopNumber = _stopNum;
-        Debug.Log("stopnum" + mStopNumber);
         ArrangePatterns(1);
         StopPatterns();
     }

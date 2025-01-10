@@ -5,8 +5,13 @@ using UnityEngine;
 public class CS_RushPhaseController : MonoBehaviour
 {
   
-    [SerializeField, Header("プレハブ")]
+    [SerializeField, Header("大当たり演出プレハブ")]
     private GameObject mJackPotPerf;
+
+    [SerializeField, Header("ゲームカウントプレハブ")]
+    private GameObject mGameCountPerf;
+
+    private CS_BP_DrawCount mDrawCount;
 
     private int mGameCount = 100;//入賞数
 
@@ -14,7 +19,7 @@ public class CS_RushPhaseController : MonoBehaviour
     private CS_RushPhaseData mData;
 
     // 大当たりの確率
-    private const float mBigWinProbability = 1.0f / 1.0f;
+    private const float mBigWinProbability = 1.0f / 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,10 @@ public class CS_RushPhaseController : MonoBehaviour
         mBigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//司令塔大を取得
         mBigController.NumberRailBigger();
         mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_RushPhaseData>();
+
+        mGameCountPerf.transform.SetParent(null);
+        mDrawCount = mGameCountPerf.GetComponent<CS_BP_DrawCount>();
+        mDrawCount.SetCount(mGameCount);
     }
 
     // Update is called once per frame
@@ -32,17 +41,29 @@ public class CS_RushPhaseController : MonoBehaviour
         if (mGameCount <= 0 && mBigController.GetVariationFinish())
         {
             Destroy(this.gameObject);
+            Destroy(mGameCountPerf);
             return;
         }
 
-        
+        if(mBigController.GetVariationFinish())
+        {
+            if(mData.JackPot)
+            {
+                //ボーナスシーンへ
+                mBigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOUNUS);
+                mBigController.CreateController();
+                mBigController.NumberRailResetTrans();
+                Destroy(this.gameObject);
+                Destroy(mGameCountPerf);
+                return;
+            }
+        }
+
         //変動できるかを取得
         bool variationStart = mBigController.CanVariationStart();
         if (!variationStart) { return; }//falseなら終了
 
-        //保留玉が無いなら終了
-        if (mBigController.GetStock() == 0) { return; }
-
+       
         //演出抽選
         bool jackPot = CS_LotteryFunction.LotJackpotFloat(mBigWinProbability);
         WIN_LOST winlos = WIN_LOST.LOST;
@@ -58,12 +79,14 @@ public class CS_RushPhaseController : MonoBehaviour
 
         PlayPerf(jackPot);
         mGameCount--;//入賞数減算
+        mDrawCount.SetCount(mGameCount);
     }
     private void PlayPerf(bool _jackpot)
     {
         if(_jackpot)
         {
-            if(mJackPotPerf != null)
+            mBigController.Is777 = true;
+            if (mJackPotPerf != null)
             {
                 StartCoroutine(WaitStartPerf());
             }

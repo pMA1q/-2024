@@ -105,7 +105,7 @@ public class CS_CameraZoom : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
-                float movepow = 4.0f;
+                float movepow = 6.0f;
                 float addscalepow = 1.5f;
                 if (!hasScaled) 
                 { 

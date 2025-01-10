@@ -29,11 +29,15 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     private float mMoveSpeed = 480f;
 
     Vector3 defaultRotation;
+
+    GameObject mBigCtrl;
+    CS_BonusPhaseData mBdata;
     // Start is called before the first frame update
     void Start()
     {
         defaultRotation = this.transform.eulerAngles;
-
+        mBigCtrl = GameObject.Find(CS_CommonData.BigControllerName);
+        mBdata = mBigCtrl.GetComponent<CS_BonusPhaseData>();
     }
 
     // Update is called once per frame
@@ -82,9 +86,18 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
 
         Prize = 0;
         NowRound++;
+        CS_Controller.PACHINKO_PHESE nowPhase = mBigCtrl.GetComponent<CS_Controller>().GetPhese();
+        if(nowPhase == CS_Controller.PACHINKO_PHESE.BOUNUS)
+        {
+            mBdata.RoundCount = NowRound;
+        }
         IsAttackOpen = false;
         if (NowRound > RoundNum)
         {
+            if (nowPhase == CS_Controller.PACHINKO_PHESE.BOUNUS)
+            {
+                mBdata.IsBonusFinish = true;
+            }
             IsAttakerEnable = false;
             NowRound = 0;
             StartCoroutine(AttakerMove(defaultRotation.z));//èâä˙à íuÇ‹Ç≈âÒì]Ç≥ÇπÇÈ

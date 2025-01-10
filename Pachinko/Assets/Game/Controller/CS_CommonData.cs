@@ -19,6 +19,7 @@ public class CS_CommonData : MonoBehaviour
 
     public int Dedama = 0;
 
+ 
     //ñ≥î≠ìWÉtÉâÉO
     private bool IsNoDevelopment = false;
     public bool NoDevelpment
@@ -50,6 +51,13 @@ public class CS_CommonData : MonoBehaviour
     public void RightAttakerStart(int _round)
     {
         mRightAttaker.AttakerStart(_round);
+
+        CS_Controller.PACHINKO_PHESE nowPhase = GetComponent<CS_Controller>().GetPhese();
+        if(nowPhase == CS_Controller.PACHINKO_PHESE.BOUNUS)
+        {
+            GetComponent<CS_BonusPhaseData>().MaxRound = _round;
+            GetComponent<CS_BonusPhaseData>().RoundCount = 1;
+        }
     }
 
     // Vì¸è‹

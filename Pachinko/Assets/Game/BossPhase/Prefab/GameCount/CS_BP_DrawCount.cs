@@ -22,7 +22,7 @@ public class CS_BP_DrawCount : MonoBehaviour
 
     private void Start()
     {
-        SetCount(-1);
+
     }
     /// <summary>
     /// カウントを設定する
@@ -55,7 +55,7 @@ public class CS_BP_DrawCount : MonoBehaviour
         // 各桁のスプライトを設定
         for (int i = 0; i < countStr.Length; i++)
         {
-            int digit = int.Parse(countStr[countStr.Length - 1 - i].ToString()); // 1の位から順番に取得
+            int digit = int.Parse(countStr[i].ToString()); // 1の位から順番に取得
             digitImages[i].sprite = numberSprites[digit];
             digitImages[i].gameObject.SetActive(true);
         }

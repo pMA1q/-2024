@@ -245,10 +245,10 @@ public class CS_Controller : MonoBehaviour
     {
         if (GetJuckpot()) 
         { 
-            if(is777)
+            if(Is777)
             {
                 is777 = false;
-                GetComponent<CS_CommonData>().LeftAttakerStart(3);
+                GetComponent<CS_CommonData>().RightAttakerStart(3);
             }
             else { GetComponent<CS_CommonData>().LeftAttakerStart(1); }
             mPerformanceFinish = false;
