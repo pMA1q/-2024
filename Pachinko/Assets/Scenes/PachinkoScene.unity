@@ -66048,7 +66048,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -66390,7 +66390,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -66511,7 +66511,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -106957,7 +106957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -23.000008, y: 66}
+  m_AnchoredPosition: {x: -23, y: 66}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6154408281105508940
@@ -108293,8 +108293,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731600534123974552}
   m_LocalRotation: {x: -0.7064607, y: -0.030220186, z: 0.030220173, w: 0.7064607}
-  m_LocalPosition: {x: 13.745601, y: -17.937477, z: -0.74319077}
-  m_LocalScale: {x: 149.72519, y: 100, z: 5.2246633}
+  m_LocalPosition: {x: 13.85, y: -17.93, z: -0.74319077}
+  m_LocalScale: {x: 175.46512, y: 100, z: 5.2246633}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1876177130}
@@ -112698,8 +112698,8 @@ MonoBehaviour:
   mDrawNum: {fileID: 0}
   mDrawNum2: {fileID: 5686998166740702614}
   mBigNumberScale: {x: 0.85, y: 1, z: 0.85}
-  mBigNumberPosition: {x: 374, y: -262, z: 1}
-  mNowPhese: 4
+  mBigNumberPosition: {x: 374, y: -368.27, z: 1}
+  mNowPhese: 0
 --- !u!1 &8652811482080439593
 GameObject:
   m_ObjectHideFlags: 0
