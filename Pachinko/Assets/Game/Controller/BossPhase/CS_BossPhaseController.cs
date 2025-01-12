@@ -139,7 +139,7 @@ public class CS_BossPhaseController : MonoBehaviour
         {
             Debug.Log("カウント" + mGameCount);
             RemoveAllHandlers();
-            StartNextPhase();
+            StartNextPhase(CS_Controller.PACHINKO_PHESE.SET);
             //Destroy(this.gameObject);
             return;
         }
@@ -161,14 +161,14 @@ public class CS_BossPhaseController : MonoBehaviour
     private void Subjugation()
     {
         Debug.Log("目標殲滅しました");
-        StartNextPhase();
+        StartNextPhase(CS_Controller.PACHINKO_PHESE.BONUS);
     }
 
     //負け
     private void PlayerLose()
     {
         Debug.Log("負けました");
-        StartNextPhase();
+        StartNextPhase(CS_Controller.PACHINKO_PHESE.SET);
     }
 
     private IEnumerator Lottery()
@@ -195,7 +195,6 @@ public class CS_BossPhaseController : MonoBehaviour
         {
             mNoDevObj.SetActive(false);
             mCompetitionObj = Instantiate(mCompetition, Vector3.zero, Quaternion.identity); //攻撃するなら競り合いのシーンを入れる
-            Debug.Log("競り合いシーンを生成しました");
             CS_BP_CompetitionController competition = mCompetitionObj.GetComponent<CS_BP_CompetitionController>();
 
             float t = 0f;
@@ -269,7 +268,6 @@ public class CS_BossPhaseController : MonoBehaviour
             if (competitionNum[i] == _random + 1)
             {
                 return true;
-                Debug.Log("競り合いシーンを生成します");
             }
         }
         return false;
@@ -303,16 +301,15 @@ public class CS_BossPhaseController : MonoBehaviour
         return _randomNum -1;
     }
 
-    private void StartNextPhase()
+    private void StartNextPhase(CS_Controller.PACHINKO_PHESE _next)
     {
         //HPを元に戻す
         mPlayerStatus.hp = mPlayerStatus.backupStatus.hp;
         mBossStatus.infomations[mBossNumber].hp = mBossStatus.initialValues[mBossNumber].hp;
         Destroy(mNoDevObj);
         Destroy(mGuageObj);
-        Debug.Log("次のフェーズへ移行します");
         mController.NumberRailResetTrans();
-        mController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
+        mController.ChangePhase(_next);
         mController.CreateController();
         Destroy(this.gameObject);
     }

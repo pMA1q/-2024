@@ -34,6 +34,5 @@ public class CS_SetCharaAnimState : MonoBehaviour
         //if (_stateID == previousStateID) return; // 同じ値なら再設定しない
 
         animator.SetInteger(StateID, (int)_stateID);
-        Debug.Log(this.gameObject.name + "の" + "アニメーションステートが変わりました");
     }
 }

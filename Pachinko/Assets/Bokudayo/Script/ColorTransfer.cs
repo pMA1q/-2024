@@ -35,7 +35,8 @@ public class ColorTransfer : MonoBehaviour
 
         for(int i = 0; i < buttons.Length; i++)
         {
-            if(buttons[i].name == "ButtonLeft") { buttons[i].onClick.AddListener(MoveLeft); }
+            buttons[i].interactable = true;
+            if (buttons[i].name == "ButtonLeft") { buttons[i].onClick.AddListener(MoveLeft); }
             else if(buttons[i].name == "ButtonRight") { buttons[i].onClick.AddListener(MoveRight); }
             else if (buttons[i].name == "ButtonPush") { buttons[i].onClick.AddListener(MissionDecision); }
         }

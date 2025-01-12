@@ -126,7 +126,7 @@ public class CS_MissionManeger : MonoBehaviour
         //保留玉が無いなら終了
         if (bigController.GetStock() == 0) { return; }
 
-        int[] numbers = new int[] { 0, 1, 2, 6, 7, 12, 13 };
+        int[] numbers = new int[] { 0, 1, 2, 5, 6, 12, 13 };
     
         //演出抽選
         //int randomNumber = CS_LotteryFunction.LotNormalInt(missionPhaseTable.infomation.Count - 1);
@@ -383,7 +383,6 @@ public class CS_MissionManeger : MonoBehaviour
     {
         //演出が終わるまで処理を進めない
         while (!bigController.GetPatternVariationFinish()) { yield return null; }
-        Debug.Log("図柄変動が終了しました");
         mCoroutine = null;
     }
     //抽選後処理
@@ -395,7 +394,7 @@ public class CS_MissionManeger : MonoBehaviour
         OnPlayPerformance(_perfNum);
 
         //演出が終わるまで処理を進めない
-        while (!bigController.GetPatternVariationFinish()) { yield return null; }
+        while (!bigController.GetPerformanceFinish()) { yield return null; }
         //Debug.Log("演出終了(仮)" + bigController.PerformanceSemiFinish);
 
         GameObject JackPotPerf = null;

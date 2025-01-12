@@ -28,7 +28,6 @@ public class CS_CameraWander : MonoBehaviour
             // 対象物の位置を基準にカメラの初期位置を設定
             initialCameraPosition = mPlayer.position + offset;
             subCameraTransform.position = initialCameraPosition;
-            Debug.Log("カメラの位置" + subCameraTransform.position);
             subCameraTransform.LookAt(transform.position); // カメラを対象物に向ける
         }
         else

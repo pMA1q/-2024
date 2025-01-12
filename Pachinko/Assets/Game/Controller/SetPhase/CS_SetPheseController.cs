@@ -21,6 +21,9 @@ public class CS_SetPheseController : MonoBehaviour
     [SerializeField, Header("ミッションselectのプレハブ")]
     private GameObject mMisstionSelect;
 
+    [SerializeField]
+    private GameObject mLeftShootCanvas;
+
     private int mPrizesNum = 0;//入賞数
 
     private CS_Controller mBigController;//司令塔(大)
@@ -46,6 +49,11 @@ public class CS_SetPheseController : MonoBehaviour
         //ミッション選択オブジェクトを生成
         GameObject instance = Instantiate(mMisstionSelect, Vector3.zero, mMisstionSelect.transform.rotation);
         instance.name = mMisstionSelect.name; // (Clone)が付かないように名前をオリジナルの名前に戻す
+
+        if(mBigController.GetPrevPhese() == CS_Controller.PACHINKO_PHESE.RUSH)
+        {
+            Instantiate(mLeftShootCanvas, Vector3.zero, mLeftShootCanvas.transform.rotation);
+        }
     }
 
     // Update is called once per frame

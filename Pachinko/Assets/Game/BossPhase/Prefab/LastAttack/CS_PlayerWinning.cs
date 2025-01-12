@@ -11,6 +11,8 @@ public class CS_PlayerWinning : MonoBehaviour
     private GameObject winUI;
 
     private CS_Controller mController;
+
+    private float mNowTime = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,16 @@ public class CS_PlayerWinning : MonoBehaviour
         winUI.SetActive(false);
     }
 
+    private void Update()
+    {
+        if(mNowTime >= 0.5f) { return; }
+        mNowTime += Time.deltaTime;
+
+
+        Vector3 pos = this.transform.position;
+        pos += this.transform.forward * 0.5f * Time.deltaTime;
+        this.transform.position = pos;
+    }
 
     private IEnumerator Finish()
     {

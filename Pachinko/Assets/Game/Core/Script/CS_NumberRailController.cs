@@ -88,13 +88,11 @@ public class CS_NumberRailController : MonoBehaviour
             scale *= 1.5f;
             mNumRails[i].GetComponent<RectTransform>().localScale = scale;
         }
-        int[] number = new int[] { mBigCtrl.GetPatterns()[0], mBigCtrl.GetPatterns()[2], mBigCtrl.GetPatterns()[1] };
+        int[] number = new int[] { mBigCtrl.GetPatterns()[0], mBigCtrl.GetPatterns()[1], mBigCtrl.GetPatterns()[2] };
         yield return new WaitForSeconds(0.2f);
         if (mRushData.JackPot)
         {
-            Debug.Log("大当たり");
             for (int i = 0; i < 3; i++) { mNumRails[i].ChangeAlpha(0.0f); }
-            Debug.Log("色かえ");
             yield return new WaitForSeconds(2.8f);
             for (int i = 0; i < 3; i++)
             {
@@ -102,7 +100,31 @@ public class CS_NumberRailController : MonoBehaviour
                 mNumRails[i].ChangeAlpha(1.0f);
             }
             
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(1.0f);
+
+
+            float t = 0;
+            Vector3 nowscale = mNumRails[0].GetComponent<RectTransform>().localScale;
+            while (t<=3.0f)
+            {
+                t += Time.deltaTime;
+                for (int i = 0; i < 3; i++)
+                {
+                    Vector3 scale = Vector3.Slerp(nowscale, scaledefa[0], t);
+                    mNumRails[i].StopStartRush(number[i]);
+                    mNumRails[i].GetComponent<RectTransform>().localScale = scale;
+                }
+                yield return null;
+            }
+            yield return new WaitForSeconds(2.0f);
+            for (int i = 0; i < 3; i++)
+            {
+                Vector3 scale = mNumRails[i].GetComponent<RectTransform>().localScale;
+                scale = scaledefa[i];
+                mNumRails[i].StopStartRush(number[i]);
+                mNumRails[i].GetComponent<RectTransform>().localScale = scale;
+            }
+
             //司令塔に図柄変動終了を伝える
             mBigCtrl.PatternVariationFinish();
 
@@ -165,12 +187,15 @@ public class CS_NumberRailController : MonoBehaviour
         isVariation = true;
 
         CS_CommonData missionData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();
-
         if (missionData.NoDevelpment) { yield return new WaitForSeconds(mVariationTime -2f); }//変動時間が過ぎるまで処理を進めない
         else 
         {
             yield return new WaitForSeconds(mVariationTime - 2f);
-            while (!mBigCtrl.PerformanceSemiFinish) { yield return null; } //演出終了仮フラグがtrueになるまで処理を進めない
+            while (!mBigCtrl.PerformanceSemiFinish)
+            {
+               
+                yield return null; 
+            } //演出終了仮フラグがtrueになるまで処理を進めない
         }
         
 

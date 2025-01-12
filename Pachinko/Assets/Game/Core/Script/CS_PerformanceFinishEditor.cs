@@ -9,9 +9,14 @@ public class CS_PerformanceFinishEditor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject root = transform.root.gameObject;
-        root.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, mTimer);
+        StartCoroutine(FinishPerf());
     }
-
+     
+    private IEnumerator FinishPerf()
+    {
+        yield return new WaitForSeconds(mTimer);
+        GameObject root = transform.root.gameObject;
+        root.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 4);
+    }
    
 }

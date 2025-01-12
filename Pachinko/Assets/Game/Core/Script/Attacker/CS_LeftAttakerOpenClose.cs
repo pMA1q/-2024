@@ -28,9 +28,6 @@ public class CS_LeftAttakerOpenClose : MonoBehaviour
     void Start()
     {
         defaultRotation = this.transform.eulerAngles;
-        Debug.Log("初期位置" + defaultRotation);
-        //テスト
-        //AttakerOpen(3);
     }
 
   

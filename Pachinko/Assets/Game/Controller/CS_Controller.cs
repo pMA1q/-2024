@@ -16,7 +16,7 @@ public class CS_Controller : MonoBehaviour
         SET,    //準備フェーズ
         MISSION,//ミッションフェーズ
         BOSS,   //ボスフェーズ       
-        BOUNUS,
+        BONUS,
         RUSH    //ラッシュフェーズ
     }
 
@@ -65,7 +65,7 @@ public class CS_Controller : MonoBehaviour
 
     public bool PerformanceSemiFinish
     {
-        set { mPerformanceSemiFinish = value; }
+        set { mPerformanceSemiFinish = value;}
         get { return mPerformanceSemiFinish; }
     }
 
@@ -133,6 +133,10 @@ public class CS_Controller : MonoBehaviour
     {
         return mNowPhese;
     }
+    public PACHINKO_PHESE GetPrevPhese()
+    {
+        return mPrevPhese;
+    }
 
     //フェーズ切り替え
     public void ChangePhase(PACHINKO_PHESE _nextPhese)
@@ -146,7 +150,6 @@ public class CS_Controller : MonoBehaviour
     private void GoNextPhese()
     {
         mPrevPhese = mNowPhese;
-       
     }
 
     public void CreateController()
@@ -251,10 +254,14 @@ public class CS_Controller : MonoBehaviour
                 GetComponent<CS_CommonData>().RightAttakerStart(3);
             }
             else { GetComponent<CS_CommonData>().LeftAttakerStart(1); }
-            mPerformanceFinish = false;
-            mPerformanceSemiFinish = false;
-            JackPotPerf = true;
-            
+
+            if(GetPhese() == PACHINKO_PHESE.MISSION)
+            {
+                mPerformanceFinish = false;
+                mPerformanceSemiFinish = false;
+                JackPotPerf = true;
+            }
+           
         }
         mPatternVariationFinish = true;
         mHeso.DisableStock();//ストックを削除

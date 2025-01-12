@@ -47,4 +47,5 @@ MonoBehaviour:
   mMissionStatus: {fileID: 11400000, guid: 087c2dfdcaccef84a9c35d89e8a99d3f, type: 2}
   mMisstionSelect: {fileID: 5303551311178200054, guid: 00908f137ac06ff4abdb97fafe746a48,
     type: 3}
-  mCuinSE: {fileID: 301587773258209136, guid: c5a78b4ebca1794488d8c9359df48ded, type: 3}
+  mLeftShootCanvas: {fileID: 1068983104675385326, guid: 5f4880037e72dd44bb630a4a830b2d80,
+    type: 3}

@@ -80,7 +80,7 @@ public class CS_LotteryFunction : MonoBehaviour
             case WIN_LOST.LOST:
             case WIN_LOST.RANDOM:
                 //三つの数字がバラバラになるまでループ
-                while(i[0] == i[1])
+                while(i[0] == i[2])
                 {
                     // 通常はランダムに生成//0~8で抽せんし、+1した値にする
                     i = new int[] { CS_LotteryFunction.LotNormalInt(9) + 1, CS_LotteryFunction.LotNormalInt(9) + 1, CS_LotteryFunction.LotNormalInt(8) + 1 };

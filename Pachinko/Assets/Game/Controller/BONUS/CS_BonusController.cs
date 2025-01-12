@@ -13,6 +13,8 @@ public class CS_BonusController : MonoBehaviour
     {
         mCdata = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_BonusPhaseData>();
         mCdata.IsBonusFinish = false;
+        mCdata.RoundCount = 1;
+        Debug.Log("Œ»İƒ‰ƒEƒ“ƒh”" + mCdata.RoundCount);
     }
 
     // Update is called once per frame

@@ -28,7 +28,6 @@ public class CS_PerformanceFinish : MonoBehaviour
     {
         CS_Controller ctrl = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         ctrl.PerformanceSemiFinish = true;//演出終了仮フラグをtrue
-        
     }
 
     public void DestroyConfig(bool _destroy, float _destroyTimer)
@@ -60,6 +59,5 @@ public class CS_PerformanceFinish : MonoBehaviour
 
         // 最上位のオブジェクト（親プレハブ）を削除
         Destroy(rootObject);
-        Debug.Log("演出終了");
     }
 }

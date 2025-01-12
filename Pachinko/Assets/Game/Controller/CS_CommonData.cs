@@ -52,12 +52,6 @@ public class CS_CommonData : MonoBehaviour
     {
         mRightAttaker.AttakerStart(_round);
 
-        CS_Controller.PACHINKO_PHESE nowPhase = GetComponent<CS_Controller>().GetPhese();
-        if(nowPhase == CS_Controller.PACHINKO_PHESE.BOUNUS)
-        {
-            GetComponent<CS_BonusPhaseData>().MaxRound = _round;
-            GetComponent<CS_BonusPhaseData>().RoundCount = 1;
-        }
     }
 
     // Vì¸è‹

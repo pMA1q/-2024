@@ -67,6 +67,13 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
     {
         IsAttackOpen = true;
         StartCoroutine(AttakerMove(openRot));//解放位置まで回転させる
+        CS_Controller.PACHINKO_PHESE nowPhase = mBigCtrl.GetComponent<CS_Controller>().GetPhese();
+        if (nowPhase == CS_Controller.PACHINKO_PHESE.BONUS)
+        {
+            mBdata.RoundCount = NowRound;
+            Debug.Log("現在ラウンド数" + mBdata.RoundCount);
+            
+        }
         Prize = 0;
         float timer = 0;
 
@@ -86,20 +93,15 @@ public class CS_RightAttakerOpenClose : MonoBehaviour
 
         Prize = 0;
         NowRound++;
-        CS_Controller.PACHINKO_PHESE nowPhase = mBigCtrl.GetComponent<CS_Controller>().GetPhese();
-        if(nowPhase == CS_Controller.PACHINKO_PHESE.BOUNUS)
-        {
-            mBdata.RoundCount = NowRound;
-        }
         IsAttackOpen = false;
         if (NowRound > RoundNum)
         {
-            if (nowPhase == CS_Controller.PACHINKO_PHESE.BOUNUS)
+            if (nowPhase == CS_Controller.PACHINKO_PHESE.BONUS)
             {
                 mBdata.IsBonusFinish = true;
             }
             IsAttakerEnable = false;
-            NowRound = 0;
+            NowRound = 1;
             StartCoroutine(AttakerMove(defaultRotation.z));//初期位置まで回転させる
             yield break;
         }

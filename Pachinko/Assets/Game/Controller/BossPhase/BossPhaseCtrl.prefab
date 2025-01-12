@@ -56,4 +56,4 @@ MonoBehaviour:
     type: 3}
   mLastAttackEnemy: {fileID: 2693174054406052321, guid: a7e416dd1434a29488e49aa606d42d4b,
     type: 3}
-  mDebugNumber: -1
+  mDebugNumber: 13

@@ -74,6 +74,7 @@ public class CS_BP_CompetitionController : MonoBehaviour
 
         for (int i = 0; i < buttons.Length; i++)
         {
+            buttons[i].interactable = true;
             if (buttons[i].name == "ButtonLeft") { buttons[i].onClick.AddListener(LeftButton); }
             else if (buttons[i].name == "ButtonRight") { buttons[i].onClick.AddListener(RightButton); }
             else if (buttons[i].name == "ButtonPush") { buttons[i].onClick.AddListener(PushButton); }
@@ -129,10 +130,10 @@ public class CS_BP_CompetitionController : MonoBehaviour
         IsOnePush = true;
 
         //ボタンを無効にする
-        foreach (Button button in buttons)
-        {
-            button.interactable = false;
-        }
+         foreach (Button button in buttons)
+                {
+                    button.interactable = true;
+                }
         //選んだもの意外を消す
         for (int i = 0; i < mTikets.Count; i++)
         {

@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class CS_RushPhaseController : MonoBehaviour
 {
-  
     [SerializeField, Header("大当たり演出プレハブ")]
     private GameObject mJackPotPerf;
 
     [SerializeField, Header("ゲームカウントプレハブ")]
     private GameObject mGameCountPerf;
+
+    [SerializeField, Header("突入プレハブ")]
+    private GameObject mRushIn;
+
+    [SerializeField, Header("継続プレハブ")]
+    private GameObject mRushConti;
+
+    private static bool mContinue = false;
 
     private CS_BP_DrawCount mDrawCount;
 
@@ -19,7 +26,9 @@ public class CS_RushPhaseController : MonoBehaviour
     private CS_RushPhaseData mData;
 
     // 大当たりの確率
-    private const float mBigWinProbability = 1.0f / 10f;
+    private const float mBigWinProbability = 1.0f / 94.2f;
+
+    Coroutine mWaitCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +36,31 @@ public class CS_RushPhaseController : MonoBehaviour
         mBigController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();//司令塔大を取得
         mBigController.NumberRailBigger();
         mData = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_RushPhaseData>();
-
+        mData.JackPot = false;
         mGameCountPerf.transform.SetParent(null);
         mDrawCount = mGameCountPerf.GetComponent<CS_BP_DrawCount>();
         mDrawCount.SetCount(mGameCount);
+
+        mWaitCoroutine = StartCoroutine(WaitStart());
+
+        if (mContinue) { Instantiate(mRushConti, Vector3.zero, Quaternion.identity); }
+        else{ Instantiate(mRushIn, Vector3.zero, Quaternion.identity); }
     }
 
     // Update is called once per frame
     void Update()
     { 
+        if(mWaitCoroutine != null) { return; }
 
         //入賞数が3？
         if (mGameCount <= 0 && mBigController.GetVariationFinish())
         {
+            mContinue = false;
+            CS_Denchu denchu = GameObject.Find("Denchu").GetComponent<CS_Denchu>();
+            denchu.ActiveStop();
+            mBigController.ChangePhase(CS_Controller.PACHINKO_PHESE.SET);
+            mBigController.CreateController();
+            mBigController.NumberRailResetTrans();
             Destroy(this.gameObject);
             Destroy(mGameCountPerf);
             return;
@@ -50,9 +71,12 @@ public class CS_RushPhaseController : MonoBehaviour
             if(mData.JackPot)
             {
                 //ボーナスシーンへ
-                mBigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BOUNUS);
+                mBigController.ChangePhase(CS_Controller.PACHINKO_PHESE.BONUS);
                 mBigController.CreateController();
                 mBigController.NumberRailResetTrans();
+                mContinue = true;
+                CS_Denchu denchu = GameObject.Find("Denchu").GetComponent<CS_Denchu>();
+                denchu.ActiveStop();
                 Destroy(this.gameObject);
                 Destroy(mGameCountPerf);
                 return;
@@ -90,7 +114,6 @@ public class CS_RushPhaseController : MonoBehaviour
             {
                 StartCoroutine(WaitStartPerf());
             }
-           
         }
         else
         {
@@ -102,5 +125,13 @@ public class CS_RushPhaseController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         Instantiate(mJackPotPerf, Vector3.zero, mJackPotPerf.transform.rotation);
+    }
+
+    private IEnumerator WaitStart()
+    {
+        yield return new WaitForSeconds(6.0f);
+        mWaitCoroutine = null;
+        CS_Denchu denchu = GameObject.Find("Denchu").GetComponent<CS_Denchu>();
+        denchu.ActiveStart();
     }
 }

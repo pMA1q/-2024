@@ -50,7 +50,7 @@ public class CS_Stock : MonoBehaviour
             
     }
 
-    private void AddStock()
+    public void AddStock()
     {
         if (mStockCount < MAX_STOCK) // == ‚©‚ç < ‚É•ÏXBMAX_STOCK–¢–ž‚Ìê‡‚É’Ç‰Á‚·‚é
         {
