@@ -18,7 +18,7 @@ public class CS_LeftattakerBallDestroy : MonoBehaviour
         {
             mAttaker.Prize++;
             CS_CommonData data = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_CommonData>();
-            data.Dedama += 15;
+            data.Dedama += 3;
             Destroy(other.gameObject);
 
         }

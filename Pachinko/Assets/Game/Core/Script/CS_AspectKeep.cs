@@ -2,33 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[ExecuteAlways]
+[ExecuteAlways]
 public class CS_AspectKeep : MonoBehaviour
 {
     [SerializeField]
     private Camera targetCamera; //対象とするカメラ
 
     [SerializeField]
-    private Vector2 aspectVec = new Vector2( 1080f,1920f ); //目的解像度
+    private Vector2 aspectVec = new Vector2(1080f, 1920f); //目的解像度
 
-    private void OnEnable()
+    int width;
+    int height;
+    private void Awake()
     {
         targetCamera = GetComponent<Camera>();
+        width = Screen.width;
+        height = Screen.height;
+        Screen.SetResolution(width, height, true);
     }
 
     void Update()
     {
-        var screenAspect = Display.main.systemWidth / (float)Display.main.systemHeight; //画面のアスペクト比
-        Debug.Log("width" + Display.main.systemWidth);
-        Debug.Log("height" + Display.main.systemHeight);
+        if (Screen.width != width || Screen.height != height)
+        {
+            Screen.SetResolution(width, height, true);
+        }
+        var screenAspect = Screen.width / (float)Screen.height;
+        Debug.Log("width" + Screen.width);
+        Debug.Log("height" + Screen.height);
         Debug.Log("screenAspect" + screenAspect);
         var targetAspect = aspectVec.x / aspectVec.y; //目的のアスペクト比
-        Debug.Log("targetAspect" + targetAspect);
 
         var magRate = targetAspect / screenAspect; //目的アスペクト比にするための倍率
         var viewportRect = new Rect(0, 0, 1, 1); //Viewport初期値でRectを作成
-
-        Debug.Log("倍率" + magRate);
 
         if (magRate < 1)
         {
@@ -42,6 +48,5 @@ public class CS_AspectKeep : MonoBehaviour
         }
 
         targetCamera.rect = viewportRect; //カメラのViewportに適用
-        Destroy(this);
     }
 }

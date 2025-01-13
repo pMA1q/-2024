@@ -251,7 +251,7 @@ public class CS_Controller : MonoBehaviour
             if(Is777)
             {
                 is777 = false;
-                GetComponent<CS_CommonData>().RightAttakerStart(3);
+                GetComponent<CS_CommonData>().RightAttakerStart(10);
             }
             else { GetComponent<CS_CommonData>().LeftAttakerStart(1); }
 

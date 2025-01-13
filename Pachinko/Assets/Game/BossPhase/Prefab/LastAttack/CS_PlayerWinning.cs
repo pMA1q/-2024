@@ -23,12 +23,12 @@ public class CS_PlayerWinning : MonoBehaviour
 
     private void Update()
     {
-        if(mNowTime >= 0.5f) { return; }
+        if(mNowTime >= 2.0f) { return; }
         mNowTime += Time.deltaTime;
 
 
         Vector3 pos = this.transform.position;
-        pos += this.transform.forward * 0.5f * Time.deltaTime;
+        pos += this.transform.forward * 2.0f * Time.deltaTime;
         this.transform.position = pos;
     }
 

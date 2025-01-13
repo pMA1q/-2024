@@ -60,8 +60,10 @@
     <Compile Include="Assets\Game\Core\Script\Attacker\CS_RightAttakerOpenClose.cs" />
     <Compile Include="Assets\Bokudayo\Script\EnemyController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_PinVibration.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_SE_5_Pa.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_Denchu.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\012\CSO_CameraInterpolation.cs" />
     <Compile Include="Assets\Bokudayo\Script\E_RanAway.cs" />
     <Compile Include="Assets\Fujisawa\CS_FCameraController.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Assets\Bokudayo\Script\SceneLoader.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_NumberRailController.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\LastAttack\CS_PlayerWinning.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_VidepPlayerController.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Bokudayo\Script\TransparencyController.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Lottery.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\14_PlayerAttackChoice\CS_BP_14_SccessEnemy.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_BP_5_Enemy.cs" />
+    <Compile Include="Assets\Game\Controller\BONUS\CS_BonusController.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\14_PlayerAttackChoice\CS_BP_EnemyAvoidance.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetPositionPerfPos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
@@ -103,6 +107,7 @@
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_SE_5_Cutin.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Player.cs" />
     <Compile Include="Assets\feature\PG_sinjo\C#script\CS_Heso.cs" />
+    <Compile Include="Assets\Game\Controller\BONUS\CS_BonusPhaseData.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_SE_5_Pa2.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\GameCount\CS_BP_DrawCount.cs" />
@@ -111,6 +116,7 @@
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Extend.cs" />
     <Compile Include="Assets\Game\Controller\SetPhase\CS_SetPheseController.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_DrawPattern.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_RushTitleFadeOut.cs" />
     <Compile Include="Assets\Game\Controller\CameraController\CS_SetSafeArea.cs" />
     <Compile Include="Assets\Bokudayo\Script\ChangeColor.cs" />
     <Compile Include="Assets\Bokudayo\Script\BackgroundObjectTransparency1.cs" />
@@ -128,6 +134,7 @@
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_BP_5_NodevCameraMotiona.cs" />
     <Compile Include="Assets\Bokudayo\CameraSizeAdjuster\CameraSizeAdjuster.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_Ef_5_Pa.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_BallChangeVelocity.cs" />
     <Compile Include="Assets\Game\Controller\CS_PerformancePos.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Game\Controller\MissionPhase\CS_MissionManeger.cs" />
@@ -150,13 +157,17 @@
     <Compile Include="Assets\Game\Core\Script\CS_ShootController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CS_BossPhaseHandler.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_DenchuDedama.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_CameraMotion.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Ally.cs" />
     <Compile Include="Assets\Bokudayo\Script\Lose.cs" />
+    <Compile Include="Assets\Game\Controller\RUSH\CS_RushPhaseData.cs" />
     <Compile Include="Assets\Game\SetPhase\Script\CS_LotMission.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionController.cs" />
     <Compile Include="Assets\Bokudayo\Script\ColorTransfer.cs" />
+    <Compile Include="Assets\Game\SetPhase\Script\CS_CanvasFadeOut.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_5_PlayerAnimation2.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_Skill].cs" />
     <Compile Include="Assets\Bokudayo\Script\ApplyMaterialToAll.cs" />
@@ -172,10 +183,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Game\Sample\5_PlayerAttack\CS_5_EnemyAnimation.cs" />
     <Compile Include="Assets\Bokudayo\Script\QuitGame.cs" />
+    <Compile Include="Assets\Game\RUSH\CS_RushOda.cs" />
     <Compile Include="Assets\Game\Controller\CameraController\CS_CameraSizeSetter.cs" />
     <Compile Include="Assets\Fujisawa\Animation\CSPlayerAnimation.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_SE_4_Pa.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_AspectKeep.cs" />
     <Compile Include="Assets\Game\Controller\BossPhase\CSO_BossStatus.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAColliderBuilderCommon.cs" />
     <Compile Include="Assets\Game\Core\Prefab\CS_BoundBall.cs" />
@@ -195,10 +208,13 @@
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_Ef_4_En.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3Enemies_Flee.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_RondomForceTrigger.cs" />
     <Compile Include="Assets\nozaki\SubjugationMission\Script\ParentChildAnimatorSync.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_BP_4_Player.cs" />
     <Compile Include="Assets\Matthew Guz\Slash Effects FREE\Scripts\CameraRotation.cs" />
+    <Compile Include="Assets\Game\Controller\RUSH\CS_RushPhaseController.cs" />
     <Compile Include="Assets\Game\BossPhase\Prefab\Title\CS_TitleFadeBoss.cs" />
+    <Compile Include="Assets\Game\Core\Script\CS_CameraSetAcpect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Game\Controller\CS_CommonData.cs" />
     <Compile Include="Assets\feature\yamaguchi\Script\CS_3ChoiceTicket.cs" />
@@ -245,10 +261,6 @@
     <Compile Include="Assets\Game\BossPhase\Prefab\competition\CS_BP_CompetitionCenterMove.cs" />
     <Compile Include="Assets\Game\Core\Script\CS_SetRenderCamera.cs" />
     <Compile Include="Assets\Game\Sample\4_PlayerAttack\CS_4_PlayerAnimation.cs" />
-    <Compile Include="Assets\Game\Controller\RUSH\CS_RushPhaseController.cs" />
-    <Compile Include="Assets\Game\Controller\RUSH\CS_RushPhaseData.cs" />
-    <Compile Include="Assets\Game\RUSH\CS_CameraMotion.cs" />
-    <Compile Include="Assets\Game\RUSH\CS_RushOda.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -53,7 +53,7 @@ public class CS_LeftAttakerOpenClose : MonoBehaviour
         StartCoroutine(AttakerMove(openRot));//‰ð•úˆÊ’u‚Ü‚Å‰ñ“]‚³‚¹‚é
         float timer = 0;
 
-        while(timer <= 20)
+        while(timer <= 10)
         {
             timer += Time.deltaTime;
             if (Prize < 15) { yield return null; }//15ŒÂ“ü‚Á‚Ä‚È‚¢‚È‚çI—¹
