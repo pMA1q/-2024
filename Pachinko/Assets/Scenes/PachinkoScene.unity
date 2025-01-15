@@ -107092,7 +107092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -23, y: 66}
+  m_AnchoredPosition: {x: -23.000015, y: 66}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6154408281105508940
@@ -107771,9 +107771,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00017410517
+    x: 0.0005531013
     y: 0
-    width: 0.9996518
+    width: 0.9988938
     height: 1
   near clip plane: 22.5
   far clip plane: 822.84
@@ -112825,7 +112825,7 @@ MonoBehaviour:
   - {fileID: 301587773258209136, guid: 9fc97d4c2bc15734eab1904a35b756e5, type: 3}
   - {fileID: 301587773258209136, guid: db9dc8e8814db114c9ae04b062102707, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 301587773258209136, guid: 4cacafa0f36f5b9408d0fdc2bc8024c7, type: 3}
   mHeso: {fileID: 11431681}
   mDrawNum: {fileID: 0}
   mDrawNum2: {fileID: 5686998166740702614}

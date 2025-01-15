@@ -17,6 +17,9 @@ public class CS_PlayerLose : MonoBehaviour
         StartCoroutine(Finish());
         mController = GameObject.Find(CS_CommonData.BigControllerName).GetComponent<CS_Controller>();
         mLoseUI.SetActive(false);
+        CS_HpGuage hpGuage;
+        hpGuage = GameObject.Find("HpGuage").GetComponent<CS_HpGuage>();
+        hpGuage.PlayerHpDown();
     }
 
 
@@ -33,7 +36,7 @@ public class CS_PlayerLose : MonoBehaviour
         GameObject rootObject = transform.root.gameObject;
         if (rootObject.GetComponent<CS_PerformanceFinish>() == null)
         {
-            rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 3f); ;//引数2:プレハブを消すまでの時間(秒)
+            rootObject.AddComponent<CS_PerformanceFinish>().DestroyConfig(true, 3f);//引数2:プレハブを消すまでの時間(秒)
         }
 
         yield return new WaitForSeconds(2.9f);

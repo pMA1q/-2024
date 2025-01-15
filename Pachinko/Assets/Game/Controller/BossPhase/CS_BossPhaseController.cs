@@ -173,7 +173,7 @@ public class CS_BossPhaseController : MonoBehaviour
 
     private IEnumerator Lottery()
     {
-        int[] randomNumbers = new int[] { 0, 1, 2, 3, 13 };
+        int[] randomNumbers = new int[] { 0, 1, 2, 3, 4, 5, 9, 12,13 };
         int randomNumber = randomNumbers[CS_LotteryFunction.LotNormalInt(randomNumbers.Length)];//0~î•ñ”•ª‚ÌŠÔ‚Å’Š‚¹‚ñ
         Debug.Log("’Š‚¹‚ñŒ‹‰Ê”Ô†" + randomNumber);
         if (mDebugNumber >= 0) { randomNumber = mDebugNumber; }

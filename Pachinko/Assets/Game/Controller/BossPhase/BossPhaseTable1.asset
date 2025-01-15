@@ -44,7 +44,7 @@ MonoBehaviour:
     win_lost: 0
     replay: 1
     replayNum: 0
-    performance: {fileID: 2693174054406052321, guid: 34fb68aaa2b13f7459b600c1c812a911,
+    performance: {fileID: 1105777239294549336, guid: a17147269554a234faf2038258f35d25,
       type: 3}
   - name: "7_\u6575\u653B\u6483(\u5F31)"
     win_lost: 0
@@ -66,7 +66,8 @@ MonoBehaviour:
     win_lost: 2
     replay: 4
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 1105777239294549336, guid: fb4bb8d43940e63469cd5541c6320755,
+      type: 3}
   - name: "11_\u6575\u653B\u6483\u5931\u6557\uFF0B\u30D7\u30EC\u30A4\u30E4\u30FC\u653B\u6483(\u5F31)"
     win_lost: 2
     replay: 4
@@ -81,7 +82,8 @@ MonoBehaviour:
     win_lost: 0
     replay: 2
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 1105777239294549336, guid: a17147269554a234faf2038258f35d25,
+      type: 3}
   - name: "14_\u30D7\u30EC\u30A4\u30E4\u30FC\u653B\u6483\u65B9\u6CD5\u9078\u629E\uFF0B\u9023\u7D9A\u653B\u6483(\u5F31)(33\uFF05)"
     win_lost: 4
     replay: 0
@@ -102,12 +104,14 @@ MonoBehaviour:
     win_lost: 2
     replay: 4
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 1105777239294549336, guid: fb4bb8d43940e63469cd5541c6320755,
+      type: 3}
   - name: "18_\u30D7\u30EC\u30A4\u30E4\u30FC\u5148\u5236\u653B\u6483(\u5F31)"
     win_lost: 4
     replay: 0
     replayNum: 0
-    performance: {fileID: 0}
+    performance: {fileID: 1105777239294549336, guid: fb4bb8d43940e63469cd5541c6320755,
+      type: 3}
   - name: "19_\u30D7\u30EC\u30A4\u30E4\u30FC\u653B\u6483\u5931\u6557"
     win_lost: 0
     replay: 3
