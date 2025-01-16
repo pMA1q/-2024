@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 15058
+  packageName: SAColliderBuilder
+  packageVersion: 1.0.3
+  assetPath: Assets/SAColliderBuilder/Editor/SABoneColliderInspector.cs
+  uploadId: 35059

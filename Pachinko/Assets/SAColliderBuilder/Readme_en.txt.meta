@@ -5,3 +5,10 @@ TextScriptImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 15058
+  packageName: SAColliderBuilder
+  packageVersion: 1.0.3
+  assetPath: Assets/SAColliderBuilder/Readme_en.txt
+  uploadId: 35059

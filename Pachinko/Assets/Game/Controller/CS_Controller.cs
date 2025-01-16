@@ -114,6 +114,10 @@ public class CS_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
+
         CreateController();
 
         RectTransform NumberTrans = mDrawNum2.GetComponent<RectTransform>();
