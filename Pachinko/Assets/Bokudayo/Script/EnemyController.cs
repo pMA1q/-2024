@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour
         {
             // 回転を開始する直前に回転の初期設定を行う
             startRotation = transform.rotation;  // 現在の回転を保存
-            targetRotation = Quaternion.Euler(0f, 180f, 0f);  // 目標回転を設定（y軸で180度回転）
+            targetRotation = Quaternion.Euler(startRotation.x, startRotation.y + 180.0f, startRotation.z);  // 目標回転を設定（y軸で180度回転）
 
             rotationTime = 0f;  // 回転開始時に進行状況をリセット
 
@@ -91,6 +91,7 @@ public class EnemyController : MonoBehaviour
         isKnockedDown = true;  // 倒れる処理を開始
         knockdownRotationTime = 0f; // 初期化
         knockdownStartTime = Time.time;  // 倒れる動作を開始した時間を記録
+        Debug.Log("ノックダウン開始");
     }
 
     // 逃げる動作を停止するためのメソッド（オプション）

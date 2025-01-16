@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514b9e947b793524883c573a709ed31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 100
+  forceAmount: 10
   forceDirection: 2
 --- !u!65 &75715220
 BoxCollider:
@@ -112705,7 +112705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -22.999985, y: 66}
+  m_AnchoredPosition: {x: -22.999992, y: 66}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6154408281105508940
@@ -113427,10 +113427,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.00066399574
-    width: 1
-    height: 0.998672
+    x: 0.21875
+    y: 0
+    width: 0.5625
+    height: 1
   near clip plane: 22.5
   far clip plane: 822.84
   field of view: 60
@@ -119012,7 +119012,7 @@ MonoBehaviour:
   - {fileID: 301587773258209136, guid: fb0e87fc0f604cb4e92dc4386d34a9f0, type: 3}
   - {fileID: 301587773258209136, guid: 9fc97d4c2bc15734eab1904a35b756e5, type: 3}
   - {fileID: 301587773258209136, guid: db9dc8e8814db114c9ae04b062102707, type: 3}
-  - {fileID: 0}
+  - {fileID: 301587773258209136, guid: 3b6fa183d30718a4db77a652bc20593a, type: 3}
   - {fileID: 301587773258209136, guid: 4cacafa0f36f5b9408d0fdc2bc8024c7, type: 3}
   mHeso: {fileID: 11431681}
   mDrawNum: {fileID: 0}
