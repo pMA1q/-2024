@@ -27960,6 +27960,8 @@ MonoBehaviour:
   mHeso: {fileID: 3377787657971560411}
   mDrawNum: {fileID: 0}
   mDrawNum2: {fileID: 4899872362718062388}
+  mBigNumberScale: {x: 0.75, y: 0.75, z: 0.75}
+  mBigNumberPosition: {x: 374, y: -262, z: 1}
   mNowPhese: 0
 --- !u!114 &9080362659850444056
 MonoBehaviour:
