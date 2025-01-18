@@ -67855,7 +67855,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 720, y: 720}
-  m_ScreenMatchMode: 2
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -119019,7 +119019,7 @@ MonoBehaviour:
   mDrawNum2: {fileID: 5686998166740702614}
   mBigNumberScale: {x: 0.85, y: 1, z: 0.85}
   mBigNumberPosition: {x: 374, y: -368.27, z: 1}
-  mNowPhese: 0
+  mNowPhese: 4
 --- !u!1 &8652811482080439593
 GameObject:
   m_ObjectHideFlags: 0

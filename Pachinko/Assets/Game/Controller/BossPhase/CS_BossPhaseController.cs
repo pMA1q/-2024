@@ -161,6 +161,7 @@ public class CS_BossPhaseController : MonoBehaviour
     private void Subjugation()
     {
         Debug.Log("–Ú•WŸr–Å‚µ‚Ü‚µ‚½");
+        mBossData.PlayerStatus.ResetStatus();
         StartNextPhase(CS_Controller.PACHINKO_PHESE.BONUS);
     }
 

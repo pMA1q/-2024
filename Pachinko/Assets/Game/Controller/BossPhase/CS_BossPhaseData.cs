@@ -34,12 +34,12 @@ public class CS_BossPhaseData : MonoBehaviour
     public bool LastAttack
     {
         set { mLastAttack = value; }
-        get 
+        get
         {
             float attackPow = Mathf.Ceil(PlayerOneAttackPow / mBossOneBlockHp);
             float bossHp = BossStatus.infomations[BossNumber].hp - attackPow;
             mLastAttack = bossHp <= 0.0f;
-            return mLastAttack; 
+            return mLastAttack;
         }
     }
 
@@ -209,7 +209,7 @@ public class CS_BossPhaseData : MonoBehaviour
         set { mBossNumber = value; }
         get { return mBossNumber; }
     }
-    
+
     //ボス討伐フラグ
     private bool isSubjugation = false;
     //ボス討伐フラグの設定、取得
@@ -225,9 +225,9 @@ public class CS_BossPhaseData : MonoBehaviour
     public bool IsPlayerLose
     {
         set { isPlayerLose = value; }
-        get 
+        get
         {
-            return isPlayerLose; 
+            return isPlayerLose;
         }
     }
 
@@ -255,14 +255,17 @@ public class CS_BossPhaseData : MonoBehaviour
         mBossList.SaveInitialValues();
     }
 
-   
+
 
     public void ResetData()
     {
         isSubjugation = false;
         isBossAttack = false;
         isPlayerAttack = false;
+        isPlayerLose = false;
+        isPlayerHpZero = false;
     }
+
 
     private void OnApplicationQuit()
     {
@@ -270,5 +273,6 @@ public class CS_BossPhaseData : MonoBehaviour
         mBossList.ResetToInitialValues();
 #endif
     }
+
 
 }

@@ -53,7 +53,7 @@ public class CS_RushPhaseController : MonoBehaviour
         if(mWaitCoroutine != null) { return; }
 
         //“üÜ”‚ª3H
-        if (mGameCount <= 0 && mBigController.GetVariationFinish())
+        if (mGameCount <= 0 && mBigController.GetVariationFinish() && !mData.JackPot)
         {
             mContinue = false;
             CS_Denchu denchu = GameObject.Find("Denchu").GetComponent<CS_Denchu>();

@@ -35,7 +35,7 @@ public class CS_MissionManeger : MonoBehaviour
     private CS_MissionPhaseData missionData;//司令塔(大)
     private CS_CommonData mData;//共通データ
 
-    public int mGameCount = 20;//入賞数
+    private int mGameCount = 20;//入賞数
 
     private GameObject mNoDevObj;
 
@@ -103,12 +103,14 @@ public class CS_MissionManeger : MonoBehaviour
 
     private void Update()
     {
-        if(mCoroutine != null) { return; }
+
+        if (mCoroutine != null) { return; }
         
         UniquePerformance();//ユニークなミッションならば報酬または次のミッション番号を決める
 
+      
         //入賞数が20？
-        if (mGameCount <= 0 && mNextMissionNum == -1)
+        if (mGameCount <= 0 && mNextMissionNum <= -1)
         {
             RemoveAllHandlers();
             StartBossPhase();
